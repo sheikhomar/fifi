@@ -10,6 +10,7 @@ namespace fifi.ConsoleUI
     {
         static void Main(string[] args)
         {
+            // TODO: Fancy stuff
             Console.WriteLine("fifi");
             Console.ReadKey();
         }
