@@ -1,0 +1,6 @@
+script: "./build.sh"
+
+language: csharp
+solution: fifi.sln
+script:
+  - ./build.sh
