@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>9dcacf7d-844f-4cc4-b55d-68ceef3e224a</ProjectGuid>
+    <ProjectGuid>{1AA72C6E-29F5-4394-938F-771DEDB3BD2A}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>fifi.ConsoleUI</RootNamespace>
