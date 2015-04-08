@@ -39,6 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\Birch.cs" />
+    <Compile Include="Algorithms\Cluster.cs" />
+    <Compile Include="Algorithms\IClusteringAlgorithm.cs" />
+    <Compile Include="Algorithms\KMeans.cs" />
+    <Compile Include="Algorithms\Loca.cs" />
     <Compile Include="Profile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

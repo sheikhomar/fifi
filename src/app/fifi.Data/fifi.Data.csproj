@@ -39,7 +39,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CsvDataExporter.cs" />
+    <Compile Include="CsvProfileImporter.cs" />
+    <Compile Include="DataMerger.cs" />
+    <Compile Include="IDataExporter.cs" />
+    <Compile Include="IProfileImporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XmlProfileImporter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\fifi.Core\fifi.Core.csproj">
+      <Project>{69240501-bf4e-4b3e-870a-b0405bc5432a}</Project>
+      <Name>fifi.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

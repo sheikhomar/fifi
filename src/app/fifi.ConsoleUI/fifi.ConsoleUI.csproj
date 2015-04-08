@@ -46,6 +46,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\fifi.Core\fifi.Core.csproj">
+      <Project>{69240501-bf4e-4b3e-870a-b0405bc5432a}</Project>
+      <Name>fifi.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\fifi.Data\fifi.Data.csproj">
+      <Project>{e39006da-c35a-4b80-a361-c38855a447e2}</Project>
+      <Name>fifi.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
