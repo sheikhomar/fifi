@@ -1,4 +1,4 @@
 language: csharp
 solution: fifi.sln
 script:
-  - ./build.sh
+  - build.sh
