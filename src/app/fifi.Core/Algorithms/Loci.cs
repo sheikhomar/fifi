@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace fifi.Core.Algorithms
 {
-  public class Loca : IClusteringAlgorithm
+  public class Loci : IClusteringAlgorithm
   {
   }
 }
