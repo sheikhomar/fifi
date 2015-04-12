@@ -42,6 +42,8 @@
     <Compile Include="Algorithms\Birch.cs" />
     <Compile Include="Algorithms\Cluster.cs" />
     <Compile Include="Algorithms\IClusteringAlgorithm.cs" />
+    <Compile Include="Algorithms\IDistanceMetric.cs" />
+    <Compile Include="Algorithms\EuclideanMetric.cs" />
     <Compile Include="Algorithms\KMeans.cs" />
     <Compile Include="Algorithms\Loci.cs" />
     <Compile Include="Jaccard.cs" />
