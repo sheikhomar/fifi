@@ -1,2 +1,8 @@
 language: csharp
 solution: fifi.sln
+
+before_install:
+ - chmod ugo+x ./build.sh
+
+script:
+ - ./build.sh
