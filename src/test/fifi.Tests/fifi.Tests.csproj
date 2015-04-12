@@ -42,7 +42,35 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Algorithms\KMeansTests.cs" />
+    <Compile Include="Data\CsvProfileImporterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\app\fifi.Core\fifi.Core.csproj">
+      <Project>{69240501-bf4e-4b3e-870a-b0405bc5432a}</Project>
+      <Name>fifi.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\fifi.Data\fifi.Data.csproj">
+      <Project>{e39006da-c35a-4b80-a361-c38855a447e2}</Project>
+      <Name>fifi.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SampleData.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
