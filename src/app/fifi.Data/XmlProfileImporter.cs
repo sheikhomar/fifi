@@ -8,5 +8,9 @@ namespace fifi.Data
 {
   public class XmlProfileImporter : IProfileImporter
   {
+      public IList<Core.Profile> Run()
+      {
+          throw new NotImplementedException();
+      }
   }
 }
