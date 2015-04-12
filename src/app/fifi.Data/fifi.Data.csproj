@@ -34,6 +34,7 @@
       <HintPath>..\..\..\packages\CsvHelper\lib\net40-client\CsvHelper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\Import\ConfigurationSectionHandler.cs" />
+    <Compile Include="Configuration\Import\Field.cs" />
+    <Compile Include="Configuration\Import\FieldCollection.cs" />
     <Compile Include="CsvDataExporter.cs" />
     <Compile Include="CsvProfileImporter.cs" />
     <Compile Include="DataMerger.cs" />
