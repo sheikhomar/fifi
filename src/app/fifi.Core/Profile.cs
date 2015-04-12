@@ -8,6 +8,26 @@ namespace fifi.Core
 {
     public class Profile
     {
+        private IList<LabeledValue> values;
+
+        public Profile()
+        {
+            values = new List<LabeledValue>();
+        }
+
+        public void AddValue(string label, float value)
+        {
+            values.Add(new LabeledValue(label, value));
+        }
+
+        public LabeledValue this[string label]
+        {
+            get
+            {
+                return values.Where(v => v.Label == label).FirstOrDefault();
+            }
+        }
+
         public string CreatedAt { get; set; }
         public string Gender { get; set; }
         public string EmploymentStatus { get; set; }
