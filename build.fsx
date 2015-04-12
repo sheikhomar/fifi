@@ -28,13 +28,13 @@ Target "BuildTest" (fun _ ->
       |> Log "TestBuild-Output: "
 )
  
-//Target "Test" (fun _ ->
-//    !! (testDir + "/NUnit.Test.*.dll") 
-//      |> NUnit (fun p ->
-//          {p with
-//             DisableShadowCopy = true;
-//             OutputFile = testDir + "TestResults.xml" })
-//)
+Target "Test" (fun _ ->
+    !! (testDir + "/fifi.Tests.dll") 
+      |> NUnit (fun p ->
+          {p with
+             DisableShadowCopy = true;
+             OutputFile = testDir + "TestResults.xml" })
+)
  
 Target "Zip" (fun _ ->
     !! (buildDir + "/**/*.*") 
@@ -50,7 +50,7 @@ Target "Default" (fun _ ->
 "Clean"
   ==> "BuildApp"
   ==> "BuildTest"
-//  ==> "Test"
+  ==> "Test"
   ==> "Zip"
   ==> "Default"
  
