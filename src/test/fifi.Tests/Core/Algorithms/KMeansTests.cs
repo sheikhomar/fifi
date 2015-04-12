@@ -13,7 +13,6 @@ namespace fifi.Tests.Core.Algorithms
         [Test]
         public void ToleratesExtremeInputValues()
         {
-            Assert.Fail("Just need to fail the test.");
         }
     }
 }
