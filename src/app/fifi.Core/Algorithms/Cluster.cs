@@ -8,7 +8,13 @@ namespace fifi.Core.Algorithms
 {
     public class Cluster
     {
-        public Centroid Centroid { get; set; }
-        public IList<ClusterMember> Members { get; set; }
+        public Cluster(Centroid centroid)
+        {
+            Centroid = centroid;
+            Members = new List<ClusterMember>();
+        }
+
+        public Centroid Centroid { get; private set; }
+        public IList<ClusterMember> Members { get; private set; }
     }
 }

@@ -8,7 +8,13 @@ namespace fifi.Core.Algorithms
 {
     public class ClusterMember
     {
-        public Profile Profile { get; set; }
-        public double Distance { get; set; }
+        public ClusterMember(Profile profile, double distance)
+        {
+            Profile = profile;
+            Distance = distance;
+        }
+
+        public Profile Profile { get; private set; }
+        public double Distance { get; private set; }
     }
 }
