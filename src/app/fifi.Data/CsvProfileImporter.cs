@@ -33,27 +33,41 @@ namespace fifi.Data
               //profile.CreatedAt = csv.GetField<string>(0);
               //profile.Gender = csv.GetField<string>(1);
               ProcessGender(profile, csv.GetField<string>(1), 1, csv.Row);
+
               //profile.EmploymentStatus = csv.GetField<string>(2);
               ProcessEmploymentStatus(profile, csv.GetField<string>(2), 2, csv.Row);
+
               //profile.ReadingHabits = csv.GetField<string>(3).Split(',');
               string[] ReadingHabits = csv.GetField<string>(3).Split(',');
               ProcessReadingHabits(profile, ReadingHabits, 2, csv.Row);
+
               //profile.BookGenres = csv.GetField<string>(4).Split(',');
               string[] BookGenres = csv.GetField<string>(4).Split(',');
               ProcessBookGenres(profile, BookGenres, 2, csv.Row);
+
               //profile.FilmGenres = csv.GetField<string>(5).Split(',');
               string[] FilmGenres = csv.GetField<string>(5).Split(',');
               ProcessFilmGenres(profile, FilmGenres, 2, csv.Row);
+
               //profile.RelationshipStatus = csv.GetField<string>(6);
+
               //profile.HouseholdSize = csv.GetField<string>(7);
+
               //profile.Gadgets = csv.GetField<string>(8).Split(',');
+
               //profile.Children = csv.GetField<string>(10);
+
               //profile.HousingType = csv.GetField<string>(11);
+
               //profile.HouseholdControl = csv.GetField<string>(12);
+
               //profile.Salary = csv.GetField<string>(13);
+
               //profile.MajorPurchase = csv.GetField<string>(15);
+
               //profile.PurchaseDecision = csv.GetField<string>(16);
-              //profile.BirthYear = csv.GetField<int>(17);
+
+              //profile.BirthYear = csv.GetField<double>(17);
 
               profiles.Add(profile);
           }
@@ -292,19 +306,163 @@ namespace fifi.Data
       private void ProcessHouseholdControl(Profile profile, string data, int fieldIndex, int rowIndex)
       {
           if ("Yes".Equals(data))
-              profile.AddValue("Yes", 1);
-          else
-              profile.AddValue("Yes", 0);
+              profile.AddValue("Household Control", 1);
+          else if ("No".Equals(data))
+              profile.AddValue("Household Control", 0);
+          else if ("Partially".Equals(data))
+              profile.AddValue("Household Control", 1/2);
+      }
 
-          if ("No".Equals(data))
-              profile.AddValue("No", 1);
+      private void ProcessHouseholdSize(Profile profile, string data, int fieldIndex, int rowIndex)
+      {
+          if ("I live alone".Equals(data))
+              profile.AddValue("I live alone", 1);
           else
-              profile.AddValue("No", 0);
+              profile.AddValue("I live alone", 0);
 
-          if ("Partially".Equals(data))
-              profile.AddValue("Partially", 1);
+          if ("Two".Equals(data))
+              profile.AddValue("Two", 1);
           else
-              profile.AddValue("Partially", 0);
+              profile.AddValue("Two", 0);
+
+          if ("Three".Equals(data))
+              profile.AddValue("Three", 1);
+          else
+              profile.AddValue("Three", 0);
+
+          if ("Four or more".Equals(data))
+              profile.AddValue("Four or more", 1);
+          else
+              profile.AddValue("Four or more", 0);
+      }
+
+      private void ProcessChildren(Profile profile, string data, int fieldIndex, int rowIndex)
+      {
+          if ("None".Equals(data))
+              profile.AddValue("None", 1);
+          else
+              profile.AddValue("None", 0);
+
+          if ("One".Equals(data))
+              profile.AddValue("One", 1);
+          else
+              profile.AddValue("One", 0);
+
+          if ("Two".Equals(data))
+              profile.AddValue("Two", 1);
+          else
+              profile.AddValue("Two", 0);
+
+          if ("Three".Equals(data))
+              profile.AddValue("Three", 1);
+          else
+              profile.AddValue("Three", 0);
+
+          if ("Four or more".Equals(data))
+              profile.AddValue("Four or more", 1);
+          else
+              profile.AddValue("Four or more", 0);
+      }
+
+      private void ProcessSalary(Profile profile, string data, int fieldIndex, int rowIndex)
+      {
+          if ("Less than 750 €".Equals(data))
+              profile.AddValue("Less than 750 €", 1);
+          else
+              profile.AddValue("Less than 750 €", 0);
+
+          if ("750 -1000 €".Equals(data))
+              profile.AddValue("750 -1000 €", 1);
+          else
+              profile.AddValue("750 -1000 €", 0);
+
+          if ("1000 - 1500 €".Equals(data))
+              profile.AddValue("1000 - 1500 €", 1);
+          else
+              profile.AddValue("1000 - 1500 €", 0);
+
+          if ("1500 - 2000 €".Equals(data))
+              profile.AddValue("1500 - 2000 €", 1);
+          else
+              profile.AddValue("1500 - 2000 €", 0);
+
+          if ("2000 - 3000 €".Equals(data))
+              profile.AddValue("2000 - 3000 €", 1);
+          else
+              profile.AddValue("2000 - 3000 €", 0);
+
+          if ("3000 - 4000 €".Equals(data))
+              profile.AddValue("3000 - 4000 €", 1);
+          else
+              profile.AddValue("3000 - 4000 €", 0);
+
+          if ("More than 4000 €".Equals(data))
+              profile.AddValue("More than 4000 €", 1);
+          else
+              profile.AddValue("More than 4000 €", 0);
+      }
+
+      private void ProcessMajorPurchase(Profile profile, string data, int fieldIndex, int rowIndex)
+      {
+          if ("Let your emotions alone decide".Equals(data))
+              profile.AddValue("Let your emotions alone decide", 1);
+          else
+              profile.AddValue("Let your emotions alone decide", 0);
+
+          if ("Let emotions decide more than rational thought".Equals(data))
+              profile.AddValue("Let emotions decide more than rational thought", 1);
+          else
+              profile.AddValue("Let emotions decide more than rational thought", 0);
+
+          if ("Let rational thought decide more than emotions".Equals(data))
+              profile.AddValue("Let rational thought decide more than emotions", 1);
+          else
+              profile.AddValue("Let rational thought decide more than emotions", 0);
+
+          if ("Let rational thought decide completely".Equals(data))
+              profile.AddValue("Let rational thought decide completely", 1);
+          else
+              profile.AddValue("Let rational thought decide completely", 0);
+
+          if ("Both - 50/50".Equals(data))
+              profile.AddValue("Both - 50/50", 1);
+          else
+              profile.AddValue("Both - 50/50", 0);
+      }
+
+      private void ProcessPurchaseDecision(Profile profile, string data, int fieldIndex, int rowIndex)
+      {
+          if ("The price".Equals(data))
+              profile.AddValue("The price", 1);
+          else
+              profile.AddValue("The price", 0);
+
+          if ("The brand".Equals(data))
+              profile.AddValue("The brand", 1);
+          else
+              profile.AddValue("The brand", 0);
+
+          if ("Test results and reviews".Equals(data))
+              profile.AddValue("Test results and reviews", 1);
+          else
+              profile.AddValue("Test results and reviews", 0);
+
+          if ("The store".Equals(data))
+              profile.AddValue("The store", 1);
+          else
+              profile.AddValue("The store", 0);
+
+          if ("The envy of others".Equals(data))
+              profile.AddValue("The envy of others", 1);
+          else
+              profile.AddValue("The envy of others", 0);
+      }
+
+      private void ProcessBirthYear(Profile profile, double data, int fieldIndex, int rowIndex)
+      {
+          double age;
+          age = (DateTime.Now.Year - data) / 100;
+          profile.AddValue("Age", age);
       }
   }
 }

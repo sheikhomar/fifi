@@ -15,7 +15,7 @@ namespace fifi.Core
             values = new List<LabeledValue>();
         }
 
-        public void AddValue(string label, float value)
+        public void AddValue(string label, double value)
         {
             values.Add(new LabeledValue(label, value));
         }
