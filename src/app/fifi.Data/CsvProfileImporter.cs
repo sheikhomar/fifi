@@ -367,67 +367,33 @@ namespace fifi.Data
       private void ProcessSalary(Profile profile, string data, int fieldIndex, int rowIndex)
       {
           if ("Less than 750 €".Equals(data))
-              profile.AddValue("Less than 750 €", 1);
-          else
-              profile.AddValue("Less than 750 €", 0);
-
-          if ("750 -1000 €".Equals(data))
-              profile.AddValue("750 -1000 €", 1);
-          else
-              profile.AddValue("750 -1000 €", 0);
-
-          if ("1000 - 1500 €".Equals(data))
-              profile.AddValue("1000 - 1500 €", 1);
-          else
-              profile.AddValue("1000 - 1500 €", 0);
-
-          if ("1500 - 2000 €".Equals(data))
-              profile.AddValue("1500 - 2000 €", 1);
-          else
-              profile.AddValue("1500 - 2000 €", 0);
-
-          if ("2000 - 3000 €".Equals(data))
-              profile.AddValue("2000 - 3000 €", 1);
-          else
-              profile.AddValue("2000 - 3000 €", 0);
-
-          if ("3000 - 4000 €".Equals(data))
-              profile.AddValue("3000 - 4000 €", 1);
-          else
-              profile.AddValue("3000 - 4000 €", 0);
-
-          if ("More than 4000 €".Equals(data))
-              profile.AddValue("More than 4000 €", 1);
-          else
-              profile.AddValue("More than 4000 €", 0);
+              profile.AddValue("Salary", 1/7);
+          else if ("750 -1000 €".Equals(data))
+              profile.AddValue("Salary", 2/7);
+          else if ("1000 - 1500 €".Equals(data))
+              profile.AddValue("Salary", 3/7);
+          else if ("1500 - 2000 €".Equals(data))
+              profile.AddValue("Salary", 4/7);
+          else if ("2000 - 3000 €".Equals(data))
+              profile.AddValue("Salary", 5/7);
+          else if ("3000 - 4000 €".Equals(data))
+              profile.AddValue("Salary", 6/7);
+          else if ("More than 4000 €".Equals(data))
+              profile.AddValue("Salary", 1);
       }
 
       private void ProcessMajorPurchase(Profile profile, string data, int fieldIndex, int rowIndex)
       {
           if ("Let your emotions alone decide".Equals(data))
-              profile.AddValue("Let your emotions alone decide", 1);
-          else
-              profile.AddValue("Let your emotions alone decide", 0);
-
-          if ("Let emotions decide more than rational thought".Equals(data))
-              profile.AddValue("Let emotions decide more than rational thought", 1);
-          else
-              profile.AddValue("Let emotions decide more than rational thought", 0);
-
-          if ("Let rational thought decide more than emotions".Equals(data))
-              profile.AddValue("Let rational thought decide more than emotions", 1);
-          else
-              profile.AddValue("Let rational thought decide more than emotions", 0);
-
-          if ("Let rational thought decide completely".Equals(data))
-              profile.AddValue("Let rational thought decide completely", 1);
-          else
-              profile.AddValue("Let rational thought decide completely", 0);
-
-          if ("Both - 50/50".Equals(data))
-              profile.AddValue("Both - 50/50", 1);
-          else
-              profile.AddValue("Both - 50/50", 0);
+              profile.AddValue("Major Purchase", 0);
+          else if ("Let emotions decide more than rational thought".Equals(data))
+              profile.AddValue("Major Purchase", 1/4);
+          else if ("Let rational thought decide more than emotions".Equals(data))
+              profile.AddValue("Major Purchase", 3/4);
+          else if ("Let rational thought decide completely".Equals(data))
+              profile.AddValue("Major Purchase", 1);
+          else if ("Both - 50/50".Equals(data))
+              profile.AddValue("Major Purchase", 2/4);
       }
 
       private void ProcessPurchaseDecision(Profile profile, string data, int fieldIndex, int rowIndex)
