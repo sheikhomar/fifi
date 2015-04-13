@@ -28,6 +28,11 @@ namespace fifi.Core
             }
         }
 
+        public int CountValues
+        {
+            get { return values.Count; }
+        }
+
         public string CreatedAt { get; set; }
         public string Gender { get; set; }
         public string EmploymentStatus { get; set; }
