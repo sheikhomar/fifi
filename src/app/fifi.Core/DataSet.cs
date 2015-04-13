@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace fifi.Core
 {
-    public class DataSet
+    public class DataSet : IEnumerable<Profile>
     {
         private IList<Profile> profiles;
         private int dimensions = 0;
@@ -26,6 +26,16 @@ namespace fifi.Core
         public int CountDimensions
         {
             get { return dimensions; }
+        }
+
+        public IEnumerator<Profile> GetEnumerator()
+        {
+            return profiles.GetEnumerator();
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return profiles.GetEnumerator();
         }
     }
 }
