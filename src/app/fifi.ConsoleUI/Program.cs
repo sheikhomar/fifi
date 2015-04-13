@@ -18,13 +18,23 @@ namespace fifi.ConsoleUI
             // TODO: Fancy stuff
             Console.WriteLine("fifi");
             Console.ReadKey();
+
         }
 
         static void TestImport()
         {
             var reader = new StreamReader("UserData.csv");
             var importer = new CsvProfileImporter(reader);
-            importer.Run();
+            
+            var Profiles = importer.Run();
+            foreach (var item in Profiles.Take(22))
+            {
+                foreach (var value in item.Values)
+                {
+                    Console.Write("{0}\t", value);
+                }
+                Console.WriteLine("\n");
+            }
         }
 
         static void TestConfig()

@@ -31,7 +31,7 @@ namespace fifi.Data
           {
               Profile profile = new Profile();
               //profile.CreatedAt = csv.GetField<string>(0);
-              //profile.Gender = csv.GetField<string>(1);
+              profile.Gender = csv.GetField<string>(1);
               ProcessGender(profile, csv.GetField<string>(1), 1, csv.Row);
 
               //profile.EmploymentStatus = csv.GetField<string>(2);
@@ -253,7 +253,7 @@ namespace fifi.Data
           else
               profile.AddValue("Married", 0);
 
-          if ("In a relationsship, but unmarried".Equals(data))
+          if ("In a relationsship, but unmarried".Equals(data) || "In a relationsship".Equals(data) || "but unmarried".Equals(data))
               profile.AddValue("In a relationsship, but unmarried", 1);
           else
               profile.AddValue("In a relationsship, but unmarried", 0);
@@ -286,7 +286,7 @@ namespace fifi.Data
             else
                 profile.AddValue("An MP3-player", 0);
 
-            if (data.Contains("A PC, Mac or laptop"))
+            if (data.Contains("A PC, Mac or laptop") || data.Contains("A PC or laptop") || data.Contains("A PC") || data.Contains("Mac or laptop"))
                 profile.AddValue("A PC, Mac or laptop", 1);
             else
                 profile.AddValue("A PC, Mac or laptop", 0);
@@ -337,7 +337,7 @@ namespace fifi.Data
           else if ("No".Equals(data))
               profile.AddValue("Household Control", 0);
           else if ("Partially".Equals(data))
-              profile.AddValue("Household Control", 1/2);
+              profile.AddValue("Household Control", 0.5);
       }
 
       private void ProcessHouseholdSize(Profile profile, string data, int fieldIndex, int rowIndex)
@@ -394,19 +394,21 @@ namespace fifi.Data
       private void ProcessSalary(Profile profile, string data, int fieldIndex, int rowIndex)
       {
           if ("Less than 750 €".Equals(data))
-              profile.AddValue("Salary", 1/7);
+              profile.AddValue("Salary", 0.1429);
           else if ("750 -1000 €".Equals(data))
-              profile.AddValue("Salary", 2/7);
+              profile.AddValue("Salary", 0.2858);
           else if ("1000 - 1500 €".Equals(data))
-              profile.AddValue("Salary", 3/7);
+              profile.AddValue("Salary", 0.4287);
           else if ("1500 - 2000 €".Equals(data))
-              profile.AddValue("Salary", 4/7);
+              profile.AddValue("Salary", 0.5716);
           else if ("2000 - 3000 €".Equals(data))
-              profile.AddValue("Salary", 5/7);
+              profile.AddValue("Salary", 0.7145);
           else if ("3000 - 4000 €".Equals(data))
-              profile.AddValue("Salary", 6/7);
+              profile.AddValue("Salary", 0.8574);
           else if ("More than 4000 €".Equals(data))
               profile.AddValue("Salary", 1);
+          else
+              profile.AddValue("Salary", 0);
       }
 
       private void ProcessMajorPurchase(Profile profile, string data, int fieldIndex, int rowIndex)
@@ -414,13 +416,13 @@ namespace fifi.Data
           if ("Let your emotions alone decide".Equals(data))
               profile.AddValue("Major Purchase", 0);
           else if ("Let emotions decide more than rational thought".Equals(data))
-              profile.AddValue("Major Purchase", 1/4);
+              profile.AddValue("Major Purchase", 0.25);
           else if ("Let rational thought decide more than emotions".Equals(data))
-              profile.AddValue("Major Purchase", 3/4);
+              profile.AddValue("Major Purchase", 0.75);
           else if ("Let rational thought decide completely".Equals(data))
               profile.AddValue("Major Purchase", 1);
           else if ("Both - 50/50".Equals(data))
-              profile.AddValue("Major Purchase", 2/4);
+              profile.AddValue("Major Purchase", 0.50);
       }
 
       private void ProcessPurchaseDecision(Profile profile, string data, int fieldIndex, int rowIndex)
