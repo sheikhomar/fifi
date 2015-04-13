@@ -48,6 +48,7 @@
     <Compile Include="Algorithms\EuclideanMetric.cs" />
     <Compile Include="Algorithms\KMeans.cs" />
     <Compile Include="Algorithms\Loci.cs" />
+    <Compile Include="DataSet.cs" />
     <Compile Include="Jaccard.cs" />
     <Compile Include="LabeledValue.cs" />
     <Compile Include="Profile.cs" />
