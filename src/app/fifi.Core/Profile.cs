@@ -33,6 +33,11 @@ namespace fifi.Core
             get { return values.Count; }
         }
 
+        public double[] Values
+        {
+            get { return values.Select(v => v.Value).ToArray(); }
+        }
+
         public string CreatedAt { get; set; }
         public string Gender { get; set; }
         public string EmploymentStatus { get; set; }
