@@ -38,15 +38,15 @@ namespace fifi.Data
               ProcessEmploymentStatus(profile, csv.GetField<string>(2), 2, csv.Row);
 
               //profile.ReadingHabits = csv.GetField<string>(3).Split(',');
-              string[] ReadingHabits = csv.GetField<string>(3).Split(',');
+              string[] ReadingHabits = csv.GetField<string>(3).Replace(", ", ",").Split(',');
               ProcessReadingHabits(profile, ReadingHabits, 2, csv.Row);
 
               //profile.BookGenres = csv.GetField<string>(4).Split(',');
-              string[] BookGenres = csv.GetField<string>(4).Split(',');
+              string[] BookGenres = csv.GetField<string>(4).Replace(", ", ",").Split(',');
               ProcessBookGenres(profile, BookGenres, 2, csv.Row);
 
               //profile.FilmGenres = csv.GetField<string>(5).Split(',');
-              string[] FilmGenres = csv.GetField<string>(5).Split(',');
+              string[] FilmGenres = csv.GetField<string>(5).Replace(", ", ",").Split(',');
               ProcessFilmGenres(profile, FilmGenres, 2, csv.Row);
 
               //profile.RelationshipStatus = csv.GetField<string>(6);
@@ -56,7 +56,7 @@ namespace fifi.Data
               ProcessHouseholdSize(profile, csv.GetField<string>(7), 2, csv.Row);
 
               //profile.Gadgets = csv.GetField<string>(8).Split(',');
-              string[] Gadgets = csv.GetField<string>(8).Split(',');
+              string[] Gadgets = csv.GetField<string>(8).Replace(", ", ",").Split(',');
               ProcessGadgets(profile, Gadgets, 2, csv.Row);
 
               //profile.Children = csv.GetField<string>(10);
@@ -126,10 +126,10 @@ namespace fifi.Data
           else
               profile.AddValue("Studying", 0);
 
-          if ("Studying with a study job".Equals(data))
-              profile.AddValue("Studying with a study job", 1);
+          if ("Study job".Equals(data) || "Studying with a study job".Equals(data))
+              profile.AddValue("Study job", 1);
           else
-              profile.AddValue("Studying with a study job", 0);
+              profile.AddValue("Study job", 0);
 
           if ("Retired".Equals(data))
               profile.AddValue("Retired", 1);
@@ -139,115 +139,106 @@ namespace fifi.Data
 
       private void ProcessReadingHabits(Profile profile, string[] data, int fieldIndex, int rowIndex)
       {
-          for (int i = 0; i < data.Length; i++)
-          {
-              if ("Books".Equals(data))
-                  profile.AddValue("Books", 1);
-              else
-                  profile.AddValue("Books", 0);
+            if (data.Contains("Books"))
+                profile.AddValue("Books", 1);
+            else
+                profile.AddValue("Books", 0);
 
-              if ("Magazines".Equals(data))
-                  profile.AddValue("Magazines", 1);
-              else
-                  profile.AddValue("Magazines", 0);
+            if (data.Contains("Magazines"))
+                profile.AddValue("Magazines", 1);
+            else
+                profile.AddValue("Magazines", 0);
 
-              if ("Newspapers".Equals(data))
-                  profile.AddValue("Newspapers", 1);
-              else
-                  profile.AddValue("Newspapers", 0);
+            if (data.Contains("Newspapers"))
+                profile.AddValue("Newspapers", 1);
+            else
+                profile.AddValue("Newspapers", 0);
 
-              if ("Specialist books".Equals(data))
-                  profile.AddValue("Specialist books", 1);
-              else
-                  profile.AddValue("Specialist books", 0);
+            if (data.Contains("Specialist books"))
+                profile.AddValue("Specialist books", 1);
+            else
+                profile.AddValue("Specialist books", 0);
 
-              if ("eBooks".Equals(data))
-                  profile.AddValue("eBooks", 1);
-              else
-                  profile.AddValue("eBooks", 0);
-          }
+            if (data.Contains("eBooks"))
+                profile.AddValue("eBooks", 1);
+            else
+                profile.AddValue("eBooks", 0);
       }
 
       private void ProcessBookGenres(Profile profile, string[] data, int fieldIndex, int rowIndex) 
       {
-          for (int i = 0; i < data.Length; i++)
-          {
-              if ("Novels".Equals(data))
-                  profile.AddValue("Novels", 1);
-              else 
-                  profile.AddValue("Novels", 0);
+            if (data.Contains("Novels"))
+                profile.AddValue("Novels", 1);
+            else 
+                profile.AddValue("Novels", 0);
 
-              if ("Thrillers".Equals(data))
-                  profile.AddValue("Thrillers", 1);
-              else
-                  profile.AddValue("Thrillers", 0);
+            if (data.Contains("Thrillers"))
+                profile.AddValue("Thrillers", 1);
+            else
+                profile.AddValue("Thrillers", 0);
 
-              if ("Comedies".Equals(data))
-                  profile.AddValue("Comedies", 1);
-              else
-                  profile.AddValue("Comedies", 0);
+            if (data.Contains("Comedies"))
+                profile.AddValue("Comedies", 1);
+            else
+                profile.AddValue("Comedies", 0);
 
-              if ("Biographies".Equals(data))
-                  profile.AddValue("Biographies", 1);
-              else
-                  profile.AddValue("Biographies", 0);
+            if (data.Contains("Biographies"))
+                profile.AddValue("Biographies", 1);
+            else
+                profile.AddValue("Biographies", 0);
 
-              if ("Comics".Equals(data))
-                  profile.AddValue("Comics", 1);
-              else
-                  profile.AddValue("Comics", 0);
+            if (data.Contains("Comics"))
+                profile.AddValue("Comics", 1);
+            else
+                profile.AddValue("Comics", 0);
 
-              if ("Scientific articles".Equals(data))
-                  profile.AddValue("Scientific articles", 1);
-              else
-                  profile.AddValue("Scientific articles", 0);
-          }
+            if (data.Contains("Scientific articles"))
+                profile.AddValue("Scientific articles", 1);
+            else
+                profile.AddValue("Scientific articles", 0);
       }
 
       private void ProcessFilmGenres(Profile profile, string[] data, int fieldIndex, int rowIndex)
       {
-          for (int i = 0; i < data.Length; i++)
-          {
-              if ("Crime and gangster".Equals(data))
-                  profile.AddValue("Crime and gangster", 1);
-              else
-                  profile.AddValue("Crime and gangster", 0);
+            if (data.Contains("Crime and gangster"))
+                profile.AddValue("Crime and gangster", 1);
+            else
+                profile.AddValue("Crime and gangster", 0);
 
-              if ("Comedies".Equals(data))
-                  profile.AddValue("Comedies", 1);
-              else
-                  profile.AddValue("Comedies", 0);
+            if (data.Contains("Comedies"))
+                profile.AddValue("Comedies", 1);
+            else
+                profile.AddValue("Comedies", 0);
 
-              if ("Dramas".Equals(data))
-                  profile.AddValue("Dramas", 1);
-              else
-                  profile.AddValue("Dramas", 0);
+            if (data.Contains("Dramas"))
+                profile.AddValue("Dramas", 1);
+            else
+                profile.AddValue("Dramas", 0);
 
-              if ("Sport".Equals(data))
-                  profile.AddValue("Sport", 1);
-              else
-                  profile.AddValue("Sport", 0);
+            if (data.Contains("Sport"))
+                profile.AddValue("Sport", 1);
+            else
+                profile.AddValue("Sport", 0);
 
-              if ("Thrillers".Equals(data))
-                  profile.AddValue("Thrillers", 1);
-              else
-                  profile.AddValue("Thrillers", 0);
+            if (data.Contains("Thrillers"))
+                profile.AddValue("Thrillers", 1);
+            else
+                profile.AddValue("Thrillers", 0);
 
-              if ("Documentaries".Equals(data))
-                  profile.AddValue("Documentaries", 1);
-              else
-                  profile.AddValue("Documentaries", 0);
+            if (data.Contains("Documentaries"))
+                profile.AddValue("Documentaries", 1);
+            else
+                profile.AddValue("Documentaries", 0);
 
-              if ("Romantic films".Equals(data))
-                  profile.AddValue("Romantic films", 1);
-              else
-                  profile.AddValue("Romantic films", 0);
+            if (data.Contains("Romantic films"))
+                profile.AddValue("Romantic films", 1);
+            else
+                profile.AddValue("Romantic films", 0);
 
-              if ("Art film".Equals(data))
-                  profile.AddValue("Art film", 1);
-              else
-                  profile.AddValue("Art film", 0);
-          }
+            if (data.Contains("Art film"))
+                profile.AddValue("Art film", 1);
+            else
+                profile.AddValue("Art film", 0);
       }
 
       private void ProcessRelationshipStatus(Profile profile, string data, int fieldIndex, int rowIndex)
@@ -280,33 +271,30 @@ namespace fifi.Data
 
       private void ProcessGadgets(Profile profile, string[] data, int fieldIndex, int rowIndex)
       {
-          for (int i = 0; i < data.Length; i++)
-          {
-              if ("A smartphone".Equals(data))
-                  profile.AddValue("A smartphone", 1);
-              else
-                  profile.AddValue("A smartphone", 0);
+            if (data.Contains("A smartphone"))
+                profile.AddValue("A smartphone", 1);
+            else
+                profile.AddValue("A smartphone", 0);
 
-              if ("A tablet".Equals(data))
-                  profile.AddValue("A tablet", 1);
-              else
-                  profile.AddValue("A tablet", 0);
+            if (data.Contains("A tablet"))
+                profile.AddValue("A tablet", 1);
+            else
+                profile.AddValue("A tablet", 0);
 
-              if ("An MP3-player".Equals(data))
-                  profile.AddValue("An MP3-player", 1);
-              else
-                  profile.AddValue("An MP3-player", 0);
+            if (data.Contains("An MP3-player"))
+                profile.AddValue("An MP3-player", 1);
+            else
+                profile.AddValue("An MP3-player", 0);
 
-              if ("A PC, Mac or laptop".Equals(data))
-                  profile.AddValue("A PC, Mac or laptop", 1);
-              else
-                  profile.AddValue("A PC, Mac or laptop", 0);
+            if (data.Contains("A PC, Mac or laptop"))
+                profile.AddValue("A PC, Mac or laptop", 1);
+            else
+                profile.AddValue("A PC, Mac or laptop", 0);
 
-              if ("An eBook-reader".Equals(data))
-                  profile.AddValue("An eBook-reader", 1);
-              else
-                  profile.AddValue("An eBook-reader", 0);
-          }
+            if (data.Contains("An eBook-reader"))
+                profile.AddValue("An eBook-reader", 1);
+            else
+                profile.AddValue("An eBook-reader", 0);
       }
 
       private void ProcessHousingType(Profile profile, string data, int fieldIndex, int rowIndex)
