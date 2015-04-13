@@ -11,9 +11,18 @@ namespace fifi.Core.Algorithms
         public Centroid(int dimensions)
         {
             Values = new double[dimensions];
+            GravityCenter = new double[dimensions];
+            Profiles = new List<Profile>();
         }
 
         public double[] Values { get; private set; }
+        public double[] GravityCenter { get; private set; }
+        public IList<Profile> Profiles { get; private set; }
+
+        public void Add(Profile profile)
+        {
+            Profiles.Add(profile);
+        }
 
         public static Centroid GenerateRandom(int dimensions)
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using fifi.Core.Algorithms;
 
 namespace fifi.Core
 {
@@ -37,6 +38,8 @@ namespace fifi.Core
         {
             get { return values.Select(v => v.Value).ToArray(); }
         }
+
+        public Centroid ClosestCentroid { get; set; }
 
         public string CreatedAt { get; set; }
         public string Gender { get; set; }
