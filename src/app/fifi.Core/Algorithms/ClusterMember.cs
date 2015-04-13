@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace fifi.Core.Algorithms
 {
-    public class Cluster
+    public class ClusterMember
     {
-        public Centroid Centroid { get; set; }
-        public IList<ClusterMember> Members { get; set; }
+        public Profile Profile { get; set; }
+        public double Distance { get; set; }
     }
 }

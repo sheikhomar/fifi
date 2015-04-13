@@ -40,7 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\Birch.cs" />
+    <Compile Include="Algorithms\Centroid.cs" />
     <Compile Include="Algorithms\Cluster.cs" />
+    <Compile Include="Algorithms\ClusterMember.cs" />
     <Compile Include="Algorithms\IClusteringAlgorithm.cs" />
     <Compile Include="Algorithms\IDistanceMetric.cs" />
     <Compile Include="Algorithms\EuclideanMetric.cs" />
