@@ -50,24 +50,35 @@ namespace fifi.Data
               ProcessFilmGenres(profile, FilmGenres, 2, csv.Row);
 
               //profile.RelationshipStatus = csv.GetField<string>(6);
+              ProcessRelationshipStatus(profile, csv.GetField<string>(6), 2, csv.Row);
 
               //profile.HouseholdSize = csv.GetField<string>(7);
+              ProcessHouseholdSize(profile, csv.GetField<string>(7), 2, csv.Row);
 
               //profile.Gadgets = csv.GetField<string>(8).Split(',');
+              string[] Gadgets = csv.GetField<string>(8).Split(',');
+              ProcessGadgets(profile, Gadgets, 2, csv.Row);
 
               //profile.Children = csv.GetField<string>(10);
+              ProcessChildren(profile, csv.GetField<string>(10), 2, csv.Row);
 
               //profile.HousingType = csv.GetField<string>(11);
+              ProcessHousingType(profile, csv.GetField<string>(11), 2, csv.Row);
 
               //profile.HouseholdControl = csv.GetField<string>(12);
+              ProcessHouseholdControl(profile, csv.GetField<string>(12), 2, csv.Row);
 
               //profile.Salary = csv.GetField<string>(13);
+              ProcessSalary(profile, csv.GetField<string>(13), 2, csv.Row);
 
               //profile.MajorPurchase = csv.GetField<string>(15);
+              ProcessMajorPurchase(profile, csv.GetField<string>(15), 2, csv.Row);
 
               //profile.PurchaseDecision = csv.GetField<string>(16);
+              ProcessPurchaseDecision(profile, csv.GetField<string>(16), 2, csv.Row);
 
               //profile.BirthYear = csv.GetField<double>(17);
+              ProcessBirthYear(profile, csv.GetField<double>(17), 2, csv.Row);
 
               profiles.Add(profile);
           }
@@ -237,6 +248,34 @@ namespace fifi.Data
               else
                   profile.AddValue("Art film", 0);
           }
+      }
+
+      private void ProcessRelationshipStatus(Profile profile, string data, int fieldIndex, int rowIndex)
+      {
+          if ("Single".Equals(data))
+              profile.AddValue("Single", 1);
+          else
+              profile.AddValue("Single", 0);
+
+          if ("Married".Equals(data))
+              profile.AddValue("Married", 1);
+          else
+              profile.AddValue("Married", 0);
+
+          if ("In a relationsship, but unmarried".Equals(data))
+              profile.AddValue("In a relationsship, but unmarried", 1);
+          else
+              profile.AddValue("In a relationsship, but unmarried", 0);
+
+          if ("It's complicated".Equals(data))
+              profile.AddValue("It's complicated", 1);
+          else
+              profile.AddValue("It's complicated", 0);
+
+          if ("Divorced".Equals(data))
+              profile.AddValue("Divorced", 1);
+          else
+              profile.AddValue("Divorced", 0);
       }
 
       private void ProcessGadgets(Profile profile, string[] data, int fieldIndex, int rowIndex)
