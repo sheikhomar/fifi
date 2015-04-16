@@ -19,7 +19,7 @@ namespace fifi.Core.Algorithms
         {
             // TODO: Check for array bounds.
 
-            double sum = 0;
+            double sum = 0f;
             for (int i = 0; i < point1.Length; i++)
                 sum += Math.Pow(point1[i] - point2[i], 2);
             return Math.Sqrt(sum);
