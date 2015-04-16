@@ -21,15 +21,17 @@ namespace fifi.WinUI
             _chart1.Series.Clear();
             ClusterNumber = 1;
 
-            foreach (MDSCluster.MDSDataPoints listitem in input)
+            foreach (var listitem in input)
             {
                 AddSeries(string.Format("Cluster {0}", ClusterNumber));
-                ClusterNumber++;
 
-                foreach (DataPoint Datanode in listitem)
+
+                foreach (var Datanode in listitem.MDSDataPoints)
                 {
-                    
+                    // Not complete call AddDatapointToSeries(ClusterNumber, Datanode)
                 }
+
+                ClusterNumber++;
             }
             
             
@@ -43,7 +45,8 @@ namespace fifi.WinUI
             _chart1.Series[seriesName].ChartType = SeriesChartType.Point;
         }
 
-        private void AddDatapointToSeries(int seriesNumber, DataPoint node)
+        // Explicit namespace used since fifi already contains a DataPoint class
+        private void AddDatapointToSeries(int seriesNumber, System.Windows.Forms.DataVisualization.Charting.DataPoint node)
         {
             _chart1.Series[seriesNumber].Points.Add(node);
         }
