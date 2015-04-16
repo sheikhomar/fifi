@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using fifi.Core;
 
 namespace fifi.WinUI
 {
@@ -15,25 +16,26 @@ namespace fifi.WinUI
     {
         private Chart _chart1;
 
-        public ScatterPlot(double[][][] input, int numberOfClusters)
+        public ScatterPlot(List<MDSCluster> input)
         {
             _chart1.Series.Clear();
+            ClusterNumber = 1;
 
-            for (int i = 0; i < numberOfClusters; i++)
+            foreach (MDSCluster.MDSDataPoints listitem in input)
             {
-                AddSeries(string.Format("Cluster {0}",i+1));
+                AddSeries(string.Format("Cluster {0}", ClusterNumber));
+                ClusterNumber++;
 
-                for (int j = 0; j < input[i][0].Length; j++)
+                foreach (DataPoint Datanode in listitem)
                 {
-                    DataPoint node = new DataPoint();
-                    node.SetValueXY(input[0][j], input[1][j]);
-
-                    AddDatapointToSeries(i, node);
+                    
                 }
             }
             
             
         }
+
+        private int ClusterNumber;
 
         private void AddSeries(string seriesName)
         {

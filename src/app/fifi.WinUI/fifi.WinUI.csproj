@@ -76,6 +76,24 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\test\fifi.Tests\fifi.Tests.csproj">
+      <Project>{5e99bf28-f90e-4bc9-b5b8-e6615fa0de54}</Project>
+      <Name>fifi.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\fifi.ConsoleUI\fifi.ConsoleUI.csproj">
+      <Project>{1aa72c6e-29f5-4394-938f-771dedb3bd2a}</Project>
+      <Name>fifi.ConsoleUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\fifi.Core\fifi.Core.csproj">
+      <Project>{69240501-bf4e-4b3e-870a-b0405bc5432a}</Project>
+      <Name>fifi.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\fifi.Data\fifi.Data.csproj">
+      <Project>{e39006da-c35a-4b80-a361-c38855a447e2}</Project>
+      <Name>fifi.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

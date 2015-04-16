@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace fifi.Core
 {
-    class MDSCluster
+    public class MDSCluster
     {
         public MDSCluster()
         {
-            List<DataPoint> MDSDataPoints = new List<DataPoint>();
+            MDSDataPoints = new List<DataPoint>();
         }
+
+        public List<DataPoint> MDSDataPoints;
 
         // MDS holdet skal indlæse alle data for et cluster i ovenstående liste.
         // Det de til sidst skal returnere er en liste af MDSClusters -- altså denne klasse.
