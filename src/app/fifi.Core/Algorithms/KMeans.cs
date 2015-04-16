@@ -89,6 +89,11 @@ namespace fifi.Core.Algorithms
         {
             Centroid centroid = cluster.Centroid;
 
+            for (int i = 0; i < centroid.GravityCenter.Length; i++)
+            {
+                centroid.GravityCenter[i] = 0;
+            }
+
             foreach (var member in cluster.Members)
             {
                 var profile = member.Profile;
