@@ -19,9 +19,10 @@ namespace fifi.Data
           this.reader = reader;
       }
 
-      public IList<Profile> Run()
+      public DataSet Run()
       {
-          IList<Profile> profiles = new List<Profile>();
+          DataSet dataSet = new DataSet();
+          //IList<Profile> profiles = new List<Profile>();
 
           var csv = new CsvReader(reader);
           csv.Configuration.Delimiter = ",";
@@ -80,10 +81,10 @@ namespace fifi.Data
               //profile.BirthYear = csv.GetField<double>(17);
               ProcessBirthYear(profile, csv.GetField<double>(17), 2, csv.Row);
 
-              profiles.Add(profile);
+              dataSet.AddItem(profile);
           }
 
-          return profiles;
+          return dataSet;
       }
 
       private void ProcessGender(Profile profile, string data, int fieldIndex, int rowIndex)
