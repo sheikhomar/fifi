@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace fifi.Core.Algorithms
 {
-    public class Cluster
+    public class Cluster : DataPoint
     {
         public Cluster(Centroid centroid)
         {
