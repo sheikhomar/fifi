@@ -9,6 +9,11 @@ namespace fifi.Core
 {
     public class ClusteringResult
     {
+        public ClusteringResult()
+        {
+            Clusters = new List<Cluster>();
+        }
+
         public List<Cluster> Clusters { get; set; }
     }
 }
