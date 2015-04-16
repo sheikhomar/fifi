@@ -13,6 +13,7 @@ namespace fifi.Core
         double[,] jMatrix;
         double[,] scalarProductMatrix;
         
+        
         public MDS(double[,] data)
         {
             distanceMatrix = data;
