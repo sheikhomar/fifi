@@ -30,16 +30,19 @@ namespace fifi.ConsoleUI
             var importer = new CsvProfileImporter(reader);
 
             var dataSet = importer.Run();
-            var k = 1;
+            var k = 5;
             var distanceMetric = new EuclideanMetric();
 
             var kmeans = new KMeans(dataSet, k, distanceMetric);
             var result = kmeans.Generate();
+            var fileName = string.Format("kmeans-output-{0:yyyy-MM-dd_HH_mm_ss}.txt", DateTime.UtcNow);
 
-            FileStream fs = new FileStream("kmeans-output.txt", FileMode.CreateNew);
+
+            FileStream fs = new FileStream(fileName, FileMode.CreateNew);
             StreamWriter writer = new StreamWriter(fs);
+            string codeName = "fisk";
 
-            writer.WriteLine("Test: {0:yyyy-MM-dd HH:mm}", DateTime.Now);
+            writer.WriteLine("Test {1}: {0:yyyy-MM-dd HH:mm}", DateTime.Now,codeName);
             writer.WriteLine("Seed: {0}", Centroid.RandomSeed);
             writer.WriteLine();
 
@@ -47,15 +50,18 @@ namespace fifi.ConsoleUI
             {
                 var cluster = result.Clusters[i];
                 var sumOfId = cluster.Members.Sum(e => e.Profile.Id);
-                var firstId = cluster.Members[0].Profile.Id;
-                var lastId = cluster.Members.Last().Profile.Id;
-                
-                writer.WriteLine("Cluster {0}: total {1}, {2}, {3}", i+1, sumOfId, firstId, lastId);
+                var firstId = "None";
+                var lastId = "None";
 
+                if (cluster.Members.Count > 0)
+                {
+                    firstId = cluster.Members[0].Profile.Id.ToString();
+                    lastId = cluster.Members.Last().Profile.Id.ToString();
+                }
 
-
+                writer.WriteLine("Cluster {0}: member(s) {4,4} || #{1,5}, first {2,4}, last {3,4}", i+1, sumOfId, firstId, lastId,cluster.Members.Count);
             }
-            
+
             writer.Close();
             fs.Close();
 
