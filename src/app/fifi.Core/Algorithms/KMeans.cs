@@ -24,10 +24,15 @@ namespace fifi.Core.Algorithms
           this.distanceMetric = distanceMetric;
       }
 
-      public IList<Cluster> Generate()
+      public ClusteringResult Generate()
       {
-          IList<Cluster> clusters = new List<Cluster>();
+          ClusteringResult result = new ClusteringResult();
+
           IList<Centroid> centroids = GenerateRandomCentroids();
+          foreach (var centroid in centroids)
+          {
+              result.Clusters.Add(new Cluster(centroid));
+          }
 
           for (int i = 0; i < maxIterations; i++)
           {
@@ -39,8 +44,9 @@ namespace fifi.Core.Algorithms
                   {
                       Centroid closestCentroid = null;
                       double minDistance = double.MaxValue;
-                      foreach (var centroid in centroids)
+                      foreach (var cluster in result.Clusters)
                       {
+                          var centroid = cluster.Centroid;
                           double distance = distanceMetric.Calculate(centroid.Values, profile.Values);
                           if (distance < minDistance)
                           {
@@ -49,12 +55,15 @@ namespace fifi.Core.Algorithms
                           }
                       }
 
+                      ClusterMember member = new ClusterMember(profile, minDistance);
+                      
+
                       closestCentroid.Add(profile);
                   }
 
-                  foreach (var centroid in centroids)
+                  foreach (var cluster in result.Clusters)
                   {
-                      if (MoveCentroidIfNeeded(centroid))
+                      if (MoveCentroidIfNeeded(cluster))
                       {
                           centroidMoved = true;
                       }
@@ -63,13 +72,16 @@ namespace fifi.Core.Algorithms
               } while (centroidMoved);
           }
 
-          return clusters;
+          return result;
       }
 
-      private bool MoveCentroidIfNeeded(Centroid centroid)
+      private bool MoveCentroidIfNeeded(Cluster cluster)
       {
-          foreach (var profile in centroid.Profiles)
+          Centroid centroid = cluster.Centroid;
+
+          foreach (var member in cluster.Members)
           {
+              var profile = member.Profile;
               for (int i = 0; i < profile.CountValues; i++)
               {
                   centroid.GravityCenter[i] += profile.Values[i];
@@ -77,7 +89,7 @@ namespace fifi.Core.Algorithms
 
               for (int i = 0; i < centroid.GravityCenter.Length; i++)
               {
-                  centroid.GravityCenter[i] /= centroid.Profiles.Count;
+                  centroid.GravityCenter[i] /= cluster.Members.Count;
               }
           }
 
@@ -100,12 +112,6 @@ namespace fifi.Core.Algorithms
           }
 
           return centroidHasMoved;
-      }
-
-      private bool CentroidsMove()
-      {
-          // TODO: Implement centroids movement detection.
-          return true;
       }
 
       private IList<Centroid> GenerateRandomCentroids()
