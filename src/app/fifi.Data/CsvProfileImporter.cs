@@ -26,11 +26,12 @@ namespace fifi.Data
 
           var csv = new CsvReader(reader);
           csv.Configuration.Delimiter = ",";
-          
 
+          var idCounter = 0;
           while (csv.Read())
           {
               Profile profile = new Profile();
+              profile.Id = idCounter++;
               //profile.CreatedAt = csv.GetField<string>(0);
               profile.Gender = csv.GetField<string>(1);
               ProcessGender(profile, csv.GetField<string>(1), 1, csv.Row);

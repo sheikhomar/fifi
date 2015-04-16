@@ -10,6 +10,7 @@ namespace fifi.Core
     public class Profile : DataPoint
     {
         private IList<LabeledValue> values;
+        public int Id { get; set; }
 
         public Profile()
         {
