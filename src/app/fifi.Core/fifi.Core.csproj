@@ -51,6 +51,7 @@
     <Compile Include="DataSet.cs" />
     <Compile Include="Jaccard.cs" />
     <Compile Include="LabeledValue.cs" />
+    <Compile Include="MDS.cs" />
     <Compile Include="Profile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
