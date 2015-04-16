@@ -22,6 +22,7 @@ namespace fifi.Core
                 else if (var_a[i] == 0 && var_b[i] == 0)
                     negative_both++;
                 else
+                    // TODO: Insert exception
                     Console.WriteLine("Ups, can not compare, ERROR, ERROR");
             }
         }
