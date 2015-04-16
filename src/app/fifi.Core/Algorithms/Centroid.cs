@@ -8,6 +8,7 @@ namespace fifi.Core.Algorithms
 {
     public class Centroid
     {
+        public const int RandomSeed = 100;
         public Centroid(int dimensions)
         {
             Values = new double[dimensions];
@@ -27,7 +28,7 @@ namespace fifi.Core.Algorithms
         public static Centroid GenerateRandom(int dimensions)
         {
             Centroid centroid = new Centroid(dimensions);
-            Random random = new Random();
+            Random random = new Random(RandomSeed);
             for (int i = 0; i < dimensions; i++)
             {
                 centroid.Values[i] = (double)random.Next(0, 100) / 100;
