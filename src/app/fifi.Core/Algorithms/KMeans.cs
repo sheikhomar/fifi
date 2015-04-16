@@ -43,6 +43,7 @@ namespace fifi.Core.Algorithms
                   foreach (var profile in dataSet)
                   {
                       Centroid closestCentroid = null;
+                      Cluster closestCluster = null;
                       double minDistance = double.MaxValue;
                       foreach (var cluster in result.Clusters)
                       {
@@ -52,11 +53,12 @@ namespace fifi.Core.Algorithms
                           {
                               minDistance = distance;
                               closestCentroid = centroid;
+                              closestCluster = cluster;
                           }
                       }
 
                       ClusterMember member = new ClusterMember(profile, minDistance);
-                      
+                      closestCluster.Members.Add(member);
 
                       closestCentroid.Add(profile);
                   }
