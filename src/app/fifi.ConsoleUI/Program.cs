@@ -19,7 +19,8 @@ namespace fifi.ConsoleUI
             RunKMeans();
 
             // TODO: Fancy stuff
-            Console.WriteLine("fifi");
+            Console.WriteLine("FiFi has finished...");
+            Console.WriteLine("Press any key to kill me :)");
             Console.ReadKey();
 
         }
@@ -42,7 +43,7 @@ namespace fifi.ConsoleUI
             StreamWriter writer = new StreamWriter(fs);
             string codeName = "fisk";
 
-            writer.WriteLine("Test {1}: {0:yyyy-MM-dd HH:mm}", DateTime.Now,codeName);
+            writer.WriteLine("Test {1}: {0:yyyy-MM-dd HH:mm}", DateTime.Now, codeName);
             writer.WriteLine("Seed: {0}", Centroid.RandomSeed);
             writer.WriteLine();
 
@@ -58,21 +59,30 @@ namespace fifi.ConsoleUI
                     firstId = cluster.Members[0].Profile.Id.ToString();
                     lastId = cluster.Members.Last().Profile.Id.ToString();
                 }
+                writer.WriteLine("Cluster {0}: member(s) {4,4} || #{1,5}, first {2,4}, last {3,4}", i + 1, sumOfId, firstId, lastId, cluster.Members.Count);
+            }
 
-                writer.WriteLine("Cluster {0}: member(s) {4,4} || #{1,5}, first {2,4}, last {3,4}", i+1, sumOfId, firstId, lastId,cluster.Members.Count);
+            writer.Write("\r\n\r\n");
+
+            for (int valCluster = 0; valCluster < result.Clusters.Count; valCluster++)
+            {
+                writer.WriteLine("Cluster {0} members:", valCluster);
+                for (int valMember = 0; valMember < result.Clusters[valCluster].Members.Count; valMember++)
+                {
+                    writer.WriteLine("Member {0,4}, id {1,3}", valMember, result.Clusters[valCluster].Members[valMember].Profile.Id);
+                }
+                writer.Write("\r\n\r\n");
             }
 
             writer.Close();
             fs.Close();
-
-
         }
 
         static void TestImport()
         {
             var reader = new StreamReader("UserData.csv");
             var importer = new CsvProfileImporter(reader);
-            
+
             var Profiles = importer.Run();
             foreach (var item in Profiles.Take(22))
             {
