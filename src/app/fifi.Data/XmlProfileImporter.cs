@@ -1,4 +1,5 @@
-﻿using System;
+﻿using fifi.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace fifi.Data
 {
   public class XmlProfileImporter : IProfileImporter
   {
-      public IList<Core.Profile> Run()
+      public DataSet Run()
       {
           throw new NotImplementedException();
       }

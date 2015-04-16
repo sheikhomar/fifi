@@ -9,6 +9,6 @@ namespace fifi.Data
 {
   public interface IProfileImporter
   {
-      IList<Profile> Run();
+      DataSet Run();
   }
 }
