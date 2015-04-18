@@ -18,7 +18,7 @@ namespace fifi.ConsoleUI
         {
             var start = DateTime.Now;
 
-            RunKMeans();
+            RunProgram();
 
             var diff = DateTime.Now - start;
 
@@ -29,16 +29,14 @@ namespace fifi.ConsoleUI
 
         }
 
-        static void RunKMeans()
+        static void RunProgram() //and more, cause fuck structure
         {
             var reader = new StreamReader("UserData.csv");
             var importer = new CsvProfileImporter(reader);
-
-
             var dataSet = importer.Run();
-            
 
 
+            //K-means
             var k = 5;
             var distanceMetric = new EuclideanMetric();
 
@@ -47,8 +45,37 @@ namespace fifi.ConsoleUI
             var start = DateTime.Now;
             var result = kmeans.Generate();
 
-            var fileName = string.Format("kmeans-output-{0:yyyy-MM-dd_HH_mm_ss}.txt", DateTime.UtcNow);
 
+            //Matrix
+            ClusterToMatrix distanceMatrix = new ClusterToMatrix(result);
+            List<double[,]> matrices = distanceMatrix.GenerateMatrix();
+
+            int matrixNumber = 0;
+            char rowIndexChar = 'A';
+
+            foreach (var matrix in matrices)
+            {
+                int matrixLength = 6; //(int)Math.Sqrt(matrices[0].Length); //should yeald the row/collum length for a !!symmetrical!! matrix
+                Console.WriteLine("Matrix" + matrixNumber++); //The matrix have no implementation of a unique ID
+                Console.WriteLine("    A  |  B  |  C  |  D  |  E..");
+                for (int row = 0; row < matrixLength; row++)
+                {
+                    Console.Write(rowIndexChar++ + "|");
+                    for (int collum = 0; collum < matrixLength; collum++)
+                    {
+                        Console.Write("{0,5:N2}|",matrix[row,collum]);
+                    }
+
+                    Console.Write("\r\n");
+                }
+                rowIndexChar = 'A';
+                Console.Write("\r\n\r\n");
+            }
+            Console.Write("\r\n\r\n");
+
+
+            //File save
+            var fileName = string.Format("kmeans-output-{0:yyyy-MM-dd_HH_mm_ss}.txt", DateTime.UtcNow);
 
             FileStream fs = new FileStream(fileName, FileMode.CreateNew);
             StreamWriter writer = new StreamWriter(fs);
