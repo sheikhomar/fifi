@@ -38,6 +38,7 @@ namespace fifi.ConsoleUI
             bool printKMeansMembers = false;
             bool matrixList = false;
             bool matrixFull = true;
+            bool mdsRun = true;
 
             var reader = new StreamReader("UserData.csv");
             var importer = new CsvProfileImporter(reader);
@@ -70,6 +71,9 @@ namespace fifi.ConsoleUI
 
             if (matrixFull)
                 MatrixFull(writer, result);
+
+            if (mdsRun)
+                MDSRun(writer, result);
 
             writer.Close();
             fs.Close();
@@ -196,6 +200,42 @@ namespace fifi.ConsoleUI
                 }
                 writer.Write("\r\n");
             }
+            writer.Write("\r\n\r\n");
+        }
+
+        static void MDSRun(StreamWriter writer, ClusteringResult result)
+        {
+            writer.WriteLine("MDS final matrix");
+
+            ClusterToMatrixFull distanceMatrix = new ClusterToMatrixFull(result);
+            double[,] matrix = distanceMatrix.GenerateMatrix();
+
+            MDS mds = new MDS(matrix);
+            double[,] resultMatrix = mds.Calculate(); //a shitty name
+            int limiter = 20;
+
+            if (limiter < resultMatrix.Rank)
+                limiter = resultMatrix.Rank;
+
+            char letter = 'A';
+            writer.WriteLine("   |  A  |  B  |  C  |  D  |  E  |  F  |  G  |  H  |  I  |  J  |");
+            for (int rowIndex = 0; rowIndex < limiter; rowIndex++)
+            {
+                writer.Write(" {0} |", letter++);
+                for (int collumIndex = 0; collumIndex < limiter; collumIndex++)
+                {
+                    writer.Write("{0,5:N2}|", resultMatrix[rowIndex, collumIndex]);
+                }
+                if (letter >= 'z')
+                    letter = 'A';
+                writer.Write("\r\n");
+            }
+            writer.WriteLine("\r\n");
+
+
+            writer.WriteLine("MDS koordinates");
+            //This will be added when we know what structure the final koordinates are in.
+
         }
     }
 }
