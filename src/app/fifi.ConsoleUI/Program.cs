@@ -46,32 +46,38 @@ namespace fifi.ConsoleUI
             var result = kmeans.Generate();
 
 
-            //Matrix
-            ClusterToMatrix distanceMatrix = new ClusterToMatrix(result);
-            List<double[,]> matrices = distanceMatrix.GenerateMatrix();
+            ////Matrix - old test
+            //ClusterToMatrix distanceMatrix = new ClusterToMatrix(result);
+            //List<double[,]> matrices = distanceMatrix.GenerateMatrix();
 
-            int matrixNumber = 0;
-            char rowIndexChar = 'A';
+            //int matrixNumber = 0;
+            //char rowIndexChar = 'A';
 
-            foreach (var matrix in matrices)
-            {
-                int matrixLength = 6; //(int)Math.Sqrt(matrices[0].Length); //should yeald the row/collum length for a !!symmetrical!! matrix
-                Console.WriteLine("Matrix" + matrixNumber++); //The matrix have no implementation of a unique ID
-                Console.WriteLine("    A  |  B  |  C  |  D  |  E..");
-                for (int row = 0; row < matrixLength; row++)
-                {
-                    Console.Write(rowIndexChar++ + "|");
-                    for (int collum = 0; collum < matrixLength; collum++)
-                    {
-                        Console.Write("{0,5:N2}|",matrix[row,collum]);
-                    }
+            //foreach (var matrix in matrices)
+            //{
+            //    int matrixLength = 6; //(int)Math.Sqrt(matrices[0].Length); //should yeald the row/collum length for a !!symmetrical!! matrix
+            //    Console.WriteLine("Matrix" + matrixNumber++); //The matrix have no implementation of a unique ID
+            //    Console.WriteLine("    A  |  B  |  C  |  D  |  E..");
+            //    for (int row = 0; row < matrixLength; row++)
+            //    {
+            //        Console.Write(rowIndexChar++ + "|");
+            //        for (int collum = 0; collum < matrixLength; collum++)
+            //        {
+            //            Console.Write("{0,5:N2}|",matrix[row,collum]);
+            //        }
 
-                    Console.Write("\r\n");
-                }
-                rowIndexChar = 'A';
-                Console.Write("\r\n\r\n");
-            }
-            Console.Write("\r\n\r\n");
+            //        Console.Write("\r\n");
+            //    }
+            //    rowIndexChar = 'A';
+            //    Console.Write("\r\n\r\n");
+            //}
+            //Console.Write("\r\n\r\n");
+
+
+            //Matrix test
+            ClusterToMatrixFull distanceMatrix = new ClusterToMatrixFull(result);
+            double[,] matrix = distanceMatrix.GenerateMatrix();
+
 
 
             //File save
@@ -85,6 +91,7 @@ namespace fifi.ConsoleUI
             writer.WriteLine("Seed: {0}", Centroid.RandomSeed);
             writer.WriteLine();
 
+            //Clusters
             for (int i = 0; i < result.Clusters.Count; i++)
             {
                 var cluster = result.Clusters[i];
@@ -110,6 +117,27 @@ namespace fifi.ConsoleUI
                     writer.WriteLine("Member {0,4}, id {1,3}", valMember, result.Clusters[valCluster].Members[valMember].Profile.Id);
                 }
                 writer.Write("\r\n\r\n");
+            }
+
+            //Distance Matrix
+            int limiter = 20; //For the full, use matrix.Rank;
+            char letter = 'A';
+
+            writer.WriteLine("Matrix print:");
+
+            writer.WriteLine("   |  A  |  B  |  C  |  D  |  E  |  F  |  G  |  H  |  I  |  J  |"); //could do a generate next number (aka string) function
+            for (int rowIndex = 0; rowIndex < limiter; rowIndex++)
+            {
+                writer.Write(" {0} |", letter++);
+                for (int collumIndex = 0; collumIndex < limiter; collumIndex++)
+                {
+                    writer.Write("{0,5:N2}|", matrix[rowIndex, collumIndex]);
+                }
+                if (letter >= 'z')
+                {
+                    letter = 'A';
+                }
+                writer.Write("\r\n");
             }
 
             writer.Close();
