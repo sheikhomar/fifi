@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace fifi.Core
 {
-    class MDS
+    public class MDS
     {
         double[,] distanceMatrix;
         double[,] squaredMatrix;
@@ -19,12 +19,13 @@ namespace fifi.Core
             distanceMatrix = data;
         }
         
-        public void Run()
+        public double[,] Calculate()
         {
             squaredMatrix = squaredDistanceMatrix(distanceMatrix);
             jMatrix = jMatrixCalculator(squaredMatrix);
             scalarProductMatrix = scalarProductMatrixCalculator(squaredMatrix, jMatrix);
 
+            return scalarProductMatrix; //Is this the koordinates, I don't think so....
         }
 
         private double[,] squaredDistanceMatrix(double[,] distanceMatrix)
