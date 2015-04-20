@@ -33,11 +33,11 @@ namespace fifi.ConsoleUI
         {
             //Config
             string codeName = "Panda";
-            bool printKMeans = true;
+            bool printKMeans = false;
             bool printKMeansMembers = false;
             bool matrixList = false;
             bool matrixFull = true;
-            bool mdsRun = true;
+            bool mdsRun = false;
 
             var reader = new StreamReader("UserData.csv");
             var importer = new CsvProfileImporter(reader);
@@ -69,7 +69,7 @@ namespace fifi.ConsoleUI
                 MatrixList(writer, result);
 
             if (matrixFull)
-                MatrixFull(writer, result);
+                MatrixFull(writer, dataCollection, distanceMetric);
 
             if (mdsRun)
                 MDSRun(writer, result);
@@ -186,10 +186,10 @@ namespace fifi.ConsoleUI
         }
 
 
-        static void MatrixFull(StreamWriter writer, ClusteringResult result)
+        static void MatrixFull(StreamWriter writer, DataCollection dataCollection, IDistanceMetric distanceMetric)
         {
             writer.WriteLine("MatrixFull");
-            DistanceMatrix distanceMatrix = new DistanceMatrix(result);
+            DistanceMatrix distanceMatrix = new DistanceMatrix(dataCollection, distanceMetric);
             double[,] matrix = distanceMatrix.GenerateMatrix();
 
             int limiter = 20; //For the full, use matrix.Rank;

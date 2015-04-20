@@ -12,12 +12,12 @@ namespace fifi.Core.Algorithms
         private static Random random = new Random(RandomSeed);
         public Centroid(int dimensions)
         {
-            Values = new double[dimensions];
+            Values = new List<double>();
             GravityCenter = new double[dimensions];
             Profiles = new List<Profile>();
         }
 
-        public double[] Values { get; private set; }
+        public List<double> Values { get; private set; }
         public double[] GravityCenter { get; private set; }
         public IList<Profile> Profiles { get; private set; }
 

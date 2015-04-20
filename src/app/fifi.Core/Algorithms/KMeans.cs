@@ -110,7 +110,7 @@ namespace fifi.Core.Algorithms
 
             bool centroidHasMoved = false;
 
-            for (int i = 0; i < centroid.Values.Length; i++)
+            for (int i = 0; i < centroid.Values.Count; i++)
             {
                 if (centroid.Values[i] != centroid.GravityCenter[i])
                 {
@@ -120,7 +120,7 @@ namespace fifi.Core.Algorithms
 
             if (centroidHasMoved)
             {
-                for (int i = 0; i < centroid.Values.Length; i++)
+                for (int i = 0; i < centroid.Values.Count; i++)
                 {
                     centroid.Values[i] = centroid.GravityCenter[i];
                 }

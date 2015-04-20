@@ -35,9 +35,9 @@ namespace fifi.Core
             get { return values.Count; }
         }
 
-        public double[] Values
+        public List<double> Values
         {
-            get { return values.Select(v => v.Value).ToArray(); }
+            get { return Values;}
         }
 
         public Centroid ClosestCentroid { get; set; }
