@@ -6,3 +6,4 @@ nuget CsvHelper
 
 nuget NUnit
 nuget NUnit.Runners
+nuget MathNet.Numerics
