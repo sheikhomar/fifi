@@ -9,7 +9,7 @@ namespace fifi.Core
     public class DataItem
     {
         public List<double> Values { get; private set; }
-        public int Id { get; set; }
+        public int Id { get; set; } //Not working atm, ID needs to be increased when a new instance is created.
 
         public DataItem()
         {
