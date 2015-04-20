@@ -46,14 +46,10 @@
     <Compile Include="Configuration\Import\ConfigurationSectionHandler.cs" />
     <Compile Include="Configuration\Import\Field.cs" />
     <Compile Include="Configuration\Import\FieldCollection.cs" />
-    <Compile Include="CsvDataExporter.cs" />
     <Compile Include="CsvProfileImporter.cs" />
-    <Compile Include="DataMerger.cs" />
     <Compile Include="IDataExporter.cs" />
     <Compile Include="IProfileImporter.cs" />
-    <Compile Include="LabeledBinaryAnswers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XmlProfileImporter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\fifi.Core\fifi.Core.csproj">
