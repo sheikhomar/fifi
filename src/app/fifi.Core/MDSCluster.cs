@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.DataVisualization.Charting;
+using CDataPoint = System.Windows.Forms.DataVisualization.Charting.DataPoint;
 
 namespace fifi.Core
 {
@@ -10,10 +12,10 @@ namespace fifi.Core
     {
         public MDSCluster()
         {
-            MDSDataPoints = new List<DataPoint>();
+            MDSDataPoints = new List<CDataPoint>();
         }
 
-        public List<DataPoint> MDSDataPoints;
+        public List<CDataPoint> MDSDataPoints;
 
         // MDS holdet skal indlæse alle data for et cluster i ovenstående liste.
         // Det de til sidst skal returnere er en liste af MDSClusters -- altså denne klasse.

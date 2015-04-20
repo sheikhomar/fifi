@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using CDataPoint = System.Windows.Forms.DataVisualization.Charting.DataPoint;
 using fifi.Core;
 
 namespace fifi.WinUI
@@ -18,6 +19,7 @@ namespace fifi.WinUI
 
         public ScatterPlot(List<MDSCluster> input)
         {
+            _chart1 = new Chart();
             _chart1.Series.Clear();
             ClusterNumber = 1;
 
@@ -25,16 +27,13 @@ namespace fifi.WinUI
             {
                 AddSeries(string.Format("Cluster {0}", ClusterNumber));
 
-
                 foreach (var Datanode in listitem.MDSDataPoints)
                 {
-                    // Not complete call AddDatapointToSeries(ClusterNumber, Datanode)
+                    AddDatapointToSeries(ClusterNumber, Datanode);
                 }
 
                 ClusterNumber++;
             }
-            
-            
         }
 
         private int ClusterNumber;
@@ -45,8 +44,8 @@ namespace fifi.WinUI
             _chart1.Series[seriesName].ChartType = SeriesChartType.Point;
         }
 
-        // Explicit namespace used since fifi already contains a DataPoint class
-        private void AddDatapointToSeries(int seriesNumber, System.Windows.Forms.DataVisualization.Charting.DataPoint node)
+
+        private void AddDatapointToSeries(int seriesNumber, CDataPoint node)
         {
             _chart1.Series[seriesNumber].Points.Add(node);
         }
