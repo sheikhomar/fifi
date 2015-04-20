@@ -8,69 +8,44 @@ namespace fifi.Core.Algorithms
 {
     public class DistanceMatrix
     {
-        private IDistanceMetric distanceMetric = new EuclideanMetric();
-        ClusteringResult cluster;
+        private IDistanceMetric distanceMetric;
+        DataCollection dataCollection;
         double[,] matrix;
 
-        public DistanceMatrix(ClusteringResult input)
+        public DistanceMatrix(DataCollection input, IDistanceMetric distanceMetric)
         {
-            this.cluster = input;
+            this.distanceMetric = distanceMetric;
+            this.dataCollection = input;
             this.matrix = GenerateMatrix();
         }
 
 
-
         public double[,] GenerateMatrix()
         {
-            return calculatedMatrix(cluster);
+            return calculatedMatrix(dataCollection);
         }
 
 
-        private double[,] calculatedMatrix(ClusteringResult cluster) //Y U NO work - List<ClusterMember> cluster
+        private double[,] calculatedMatrix(DataCollection dataCollection)
         {
-            int clustersSize = cluster.Clusters.Sum(cster => cster.Members.Count);
-            int clustersCount = cluster.Clusters.Count;
-            
-            double[,] matrix = new double[clustersSize, clustersSize];
+            int dataCollectionSize = dataCollection.Items.Count;
+            double[,] matrix = new double[dataCollectionSize, dataCollectionSize];
             double distance;
 
-            int rowClusterLength;
-            int collumClusterLength;
-
-            int collumClusterOffset = 0;
-            int collumMemberOffset;
-
-            int rowIndex = 0;
-            int collumIndex;
-            
-
             //Nulling the matrix
-            for (int i = 0; i < clustersSize; i++)
+            for (int i = 0; i < dataCollectionSize; i++)
 			{
-                matrix[i, i] = 0;
+                matrix[i, i] = 0D;
 			}
 
-
-            for (int rowCluster = 0; rowCluster < clustersCount; rowCluster++,collumClusterOffset++) //For all Clusters in row   //for cluster
+            for (int row = 0, collumOffset = 1; row < dataCollectionSize; row++, collumOffset++)
 			{
-                rowClusterLength = cluster.Clusters[rowCluster].Members.Count;
-                for (int rowMember = 0; rowMember < rowClusterLength; rowMember++, rowIndex++) //For each member in the specific cluster 
-                {
-                    collumMemberOffset = rowMember+1;
-                    collumIndex = rowMember+1;
-                    for (int collumCluster = collumClusterOffset; collumCluster < clustersCount; collumCluster++) //For all Clusters in collum
-			        {
-			            collumClusterLength = cluster.Clusters[collumCluster].Members.Count;
-                        for (int collumMember = collumMemberOffset; collumMember < collumClusterLength; collumMember++) //For each member in the specific cluster
-			            {
-			                distance = distanceMetric.Calculate(cluster.Clusters[rowCluster].Members[rowMember].Profile.Values, cluster.Clusters[collumCluster].Members[collumMember].Profile.Values);
-                            matrix[rowIndex, collumIndex] = distance;
-                            matrix[collumIndex, rowIndex] = distance;
-                            collumIndex++;
-			            }
-                        collumMemberOffset = 0;
-			        }
-                }
+                for (int collum = collumOffset; collum < dataCollectionSize; collum++)
+			    {
+                    distance = distanceMetric.Calculate(dataCollection.Items[row].Values, dataCollection.Items[collum].Values);
+                    matrix[row, collum] = distance;
+                    matrix[collum, row] = distance;
+			    }
 			}
 
             return matrix;
