@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace fifi.Core.Algorithms
 {
@@ -15,6 +16,6 @@ namespace fifi.Core.Algorithms
         /// <returns>
         ///   Returns the distance between <paramref name="point1"/> and <paramref name="point2"/>.
         /// </returns>
-        double Calculate(double[] point1, double[] point2);
+        double Calculate(List<double> point1, List<double> point2);
     }
 }

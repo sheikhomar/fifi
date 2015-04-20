@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace fifi.Core.Algorithms
 {
@@ -15,12 +16,12 @@ namespace fifi.Core.Algorithms
         /// <returns>
         ///   Returns the Euclidean distance between <paramref name="point1"/> and <paramref name="point2"/>.
         /// </returns>
-        public double Calculate(double[] point1, double[] point2)
+        public double Calculate(List<double> point1, List<double> point2)
         {
-            // TODO: Check for array bounds.
+            // TODO: Check for array bounds / list sizes 
 
             double sum = 0D;
-            for (int i = 0; i < point1.Length; i++)
+            for (int i = 0; i < point1.Count; i++)
                 sum += Math.Pow(point1[i] - point2[i], 2);
             return Math.Sqrt(sum);
         }
