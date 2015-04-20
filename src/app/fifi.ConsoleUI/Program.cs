@@ -20,7 +20,7 @@ namespace fifi.ConsoleUI
             //RunKMeans();
             double[,] Distance = { { 0, 87.0, 284.0, 259, 259 }, { 87.0, 0, 195, 183, 222 }, { 284, 195, 0, 123, 260 }, { 259, 183, 123, 0, 140}, {259, 222, 260, 140, 0 } };
             MDS a = new MDS(Distance);
-            a.Run();
+            a.Calculate();
 
             // TODO: Fancy stuff
             Console.WriteLine("FiFi has finished...");

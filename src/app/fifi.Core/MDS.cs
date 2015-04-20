@@ -23,7 +23,7 @@ namespace fifi.Core
             distanceMatrix = data;
         }
         
-        public double[,] Run()
+        public double[,] Calculate()
         {
             squaredMatrix = squaredDistanceMatrix(distanceMatrix);
             jMatrix = jMatrixCalculator(squaredMatrix);
