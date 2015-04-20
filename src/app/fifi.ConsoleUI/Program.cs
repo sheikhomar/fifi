@@ -38,7 +38,7 @@ namespace fifi.ConsoleUI
             bool printKMeansMembers = false;
             bool matrixList = false;
             bool matrixFull = true;
-            bool mdsRun = false;
+            bool mdsRun = true;
 
             var reader = new StreamReader("UserData.csv");
             var importer = new CsvProfileImporter(reader);
@@ -221,7 +221,7 @@ namespace fifi.ConsoleUI
             double[,] resultMatrix = mds.Calculate(); //a shitty name
             int limiter = 20;
 
-            if (limiter < resultMatrix.Rank)
+            if (limiter > resultMatrix.Rank)
                 limiter = resultMatrix.Rank;
 
             char letter = 'A';
