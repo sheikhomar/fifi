@@ -17,18 +17,12 @@ namespace fifi.ConsoleUI
     {
         static void Main(string[] args)
         {
-            //RunKMeans();
-            double[,] Distance = { { 0, 93.0, 82.0, 133 }, { 93.0, 0, 52, 60 }, { 82, 52, 0, 111 }, { 133, 60, 111, 0} };
-            //double[,] Distance = { { 0, 87.0, 284.0, 259, 259 }, { 87.0, 0, 195, 183, 222 }, { 284, 195, 0, 123, 260 }, { 259, 183, 123, 0, 140 }, { 259, 222, 260, 140, 0 } };
-            MultiDimensionalScaling a = new MultiDimensionalScaling(Distance);
-            a.Calculate();
             var start = DateTime.Now;
 
             RunProgram();
 
-            var diff = DateTime.Now - start;
-
             // TODO: Fancy stuff
+            var diff = DateTime.Now - start;
             Console.WriteLine("FiFi has finished in {0} ms...", diff.TotalMilliseconds);
             Console.WriteLine("Press any key to kill me :)");
             Console.ReadKey();
@@ -116,9 +110,13 @@ namespace fifi.ConsoleUI
 
         static void TestMDS()
         {
-            double[,] Distance = { { 0, 87.0, 284.0, 259, 259 }, { 87.0, 0, 195, 183, 222 }, { 284, 195, 0, 123, 260 }, { 259, 183, 123, 0, 140}, {259, 222, 260, 140, 0 } };
-            MultiDimensionalScaling a = new MultiDimensionalScaling(Distance);
+            double[,] distanceTestOne = { { 0, 87.0, 284.0, 259, 259 }, { 87.0, 0, 195, 183, 222 }, { 284, 195, 0, 123, 260 }, { 259, 183, 123, 0, 140}, {259, 222, 260, 140, 0 } };
+            MultiDimensionalScaling a = new MultiDimensionalScaling(distanceTestOne);
             a.Calculate();
+
+            double[,] distanceTestTwo = { { 0, 93.0, 82.0, 133 }, { 93.0, 0, 52, 60 }, { 82, 52, 0, 111 }, { 133, 60, 111, 0} };
+            MultiDimensionalScaling b = new MultiDimensionalScaling(distanceTestTwo);
+            b.Calculate();
         }
 
 
@@ -157,7 +155,6 @@ namespace fifi.ConsoleUI
         }
 
 
-
         static void MatrixList(StreamWriter writer, ClusteringResult result)
         {
             writer.WriteLine("MatrixList");
@@ -169,7 +166,7 @@ namespace fifi.ConsoleUI
 
             foreach (var matrix in matrices)
             {
-                int matrixLength = 6; //(int)Math.Sqrt(matrices[0].Length); //should yeald the row/collum length for a !!symmetrical!! matrix
+                int matrixLength = 6;
                 writer.WriteLine("Matrix" + matrixNumber++); //The matrix have no implementation of a unique ID
                 writer.WriteLine("    A  |  B  |  C  |  D  |  E..");
                 for (int row = 0; row < matrixLength; row++)
@@ -217,37 +214,44 @@ namespace fifi.ConsoleUI
 
         static void MDSRun(StreamWriter writer, ClusteringResult result)
         {
-            writer.WriteLine("MDS final matrix");
+            writer.WriteLine("MDS coordinates");
 
             DistanceMatrix distanceMatrix = new DistanceMatrix(result);
             double[,] matrix = distanceMatrix.GenerateMatrix();
 
-            MultiDimensionalScaling mds = new MultiDimensionalScaling(matrix);
+            var mds = new MultiDimensionalScaling(matrix);
             double[,] resultMatrix = mds.Calculate(); //a shitty name
             int limiter = 20;
 
-            if (limiter > resultMatrix.Rank)
-                limiter = resultMatrix.Rank;
+            int matrixFullLength = resultMatrix.Length / resultMatrix.Rank;
+
+            if (limiter > matrixFullLength)
+                limiter = matrixFullLength;
 
             char letter = 'A';
-            writer.WriteLine("   |  A  |  B  |  C  |  D  |  E  |  F  |  G  |  H  |  I  |  J  |");
-            for (int rowIndex = 0; rowIndex < limiter; rowIndex++)
+
+            //Print file index
+            writer.Write("    ");
+            for (int rowIndex = 0; rowIndex < limiter; rowIndex++, letter++)
+            {
+                if (letter >= 'z')
+                    letter = 'A';
+                writer.Write("  {0}  |", letter);
+            }
+            writer.WriteLine();
+
+            //Print the coordinates
+            letter = 'X';
+            for (int rowIndex = 0; rowIndex < 2; rowIndex++)
             {
                 writer.Write(" {0} |", letter++);
                 for (int collumIndex = 0; collumIndex < limiter; collumIndex++)
                 {
                     writer.Write("{0,5:N2}|", resultMatrix[rowIndex, collumIndex]);
                 }
-                if (letter >= 'z')
-                    letter = 'A';
                 writer.Write("\r\n");
             }
             writer.WriteLine("\r\n");
-
-
-            writer.WriteLine("MDS koordinates");
-            //This will be added when we know what structure the final koordinates are in.
-
         }
     }
 }
