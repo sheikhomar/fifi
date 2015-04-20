@@ -20,7 +20,7 @@ namespace fifi.Core.Algorithms
 
 
 
-        private double[,] GenerateMatrix()
+        public double[,] GenerateMatrix()
         {
             return calculatedMatrix(cluster);
         }
