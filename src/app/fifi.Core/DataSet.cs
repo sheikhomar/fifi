@@ -28,6 +28,11 @@ namespace fifi.Core
             get { return dimensions; }
         }
 
+        public Profile this[int index] 
+        {
+            get { return this.profiles[index]; }
+        }
+
         public IEnumerator<Profile> GetEnumerator()
         {
             return profiles.GetEnumerator();
