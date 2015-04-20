@@ -17,9 +17,9 @@ namespace fifi.WinUI
     {
         private Chart _chart1;
 
-        public ScatterPlot(List<MDSCluster> input)
+        public ScatterPlot(List<MDSCluster> input, Chart winFormChart)
         {
-            _chart1 = new Chart();
+            _chart1 = winFormChart;
             _chart1.Series.Clear();
             ClusterNumber = 1;
 
@@ -47,18 +47,12 @@ namespace fifi.WinUI
 
         private void AddDatapointToSeries(int seriesNumber, CDataPoint node)
         {
-            _chart1.Series[seriesNumber].Points.Add(node);
+            _chart1.Series[seriesNumber-1].Points.Add(node);
         }
 
         public Chart Draw()
         {
             return _chart1;
-        }
-
-
-        public void ChangeColors(Color backgroundColor)
-        {
-            _chart1.BackColor = backgroundColor;
         }
     }
 }

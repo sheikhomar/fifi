@@ -6,20 +6,21 @@ using System.Threading.Tasks;
 
 namespace fifi.Core.Algorithms
 {
-    public class ClusterToMatrixFull
+    public class DistanceMatrix
     {
         private IDistanceMetric distanceMetric = new EuclideanMetric();
         ClusteringResult cluster;
+        double[,] matrix;
 
-
-        public ClusterToMatrixFull(ClusteringResult input)
+        public DistanceMatrix(ClusteringResult input)
         {
             this.cluster = input;
+            this.matrix = GenerateMatrix();
         }
 
 
 
-        public double[,] GenerateMatrix()
+        private double[,] GenerateMatrix()
         {
             return calculatedMatrix(cluster);
         }
