@@ -66,7 +66,7 @@ namespace fifi.Core.Algorithms
                     ClusterMember member = new ClusterMember(dataItem, minDistance);
                     closestCluster.Members.Add(member);
 
-                    closestCentroid.Add(dataItem);
+                    //closestCentroid.Add(dataItem);
                 }
                 centroidMoved = false;
 

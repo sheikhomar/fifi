@@ -14,17 +14,17 @@ namespace fifi.Core.Algorithms
         {
             Values = new List<double>();
             GravityCenter = new double[dimensions];
-            DataItem = new List<DataItem>();
+            //DataItem = new List<DataItem>();
         }
 
         public List<double> Values { get; private set; }
         public double[] GravityCenter { get; private set; }
-        public IList<DataItem> DataItem { get; private set; }
+        //public IList<DataItem> DataItem { get; private set; }
 
-        public void Add(DataItem profile)
-        {
-            DataItem.Add(profile);
-        }
+        //public void Add(DataItem profile)
+        //{
+        //    DataItem.Add(profile);
+        //}
 
         public static Centroid GenerateRandom(int dimensions)
         {
