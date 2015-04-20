@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace fifi.Core
 {
-    public class DataPoint
+    public class DataItem
     {
         public List<double> Values { get; private set; }
-        public DataItem Item { get; set; }
 
-        public DataPoint()
+        public DataItem()
         {
             Values = new List<double>();
         }

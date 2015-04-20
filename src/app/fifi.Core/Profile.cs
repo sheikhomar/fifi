@@ -7,7 +7,7 @@ using fifi.Core.Algorithms;
 
 namespace fifi.Core
 {
-    public class Profile : DataPoint
+    public class Profile
     {
         private IList<LabeledValue> values;
         public int Id { get; set; }
