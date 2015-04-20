@@ -14,5 +14,10 @@ namespace fifi.Core
         {
             Values = new List<double>();
         }
+
+        public void AddValue(double value)
+        {
+            Values.Add(value);
+        }
     }
 }

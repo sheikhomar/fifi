@@ -14,5 +14,10 @@ namespace fifi.Core
         {
             Items = new List<DataItem>();
         }
+
+        public void AddItem(DataItem value)
+        {
+            Items.Add(value);
+        }
     }
 }
