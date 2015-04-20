@@ -11,7 +11,7 @@ using CDataPoint = System.Windows.Forms.DataVisualization.Charting.DataPoint;
 
 namespace fifi.Core
 {
-    public class MDS
+    public class MultiDimensionalScaling
     {
         double[,] distanceMatrix;
         double[,] squaredMatrix;
@@ -20,7 +20,7 @@ namespace fifi.Core
         double[,] result;
         List<CDataPoint> L = new List<CDataPoint>();
         
-        public MDS(double[,] data)
+        public MultiDimensionalScaling(double[,] data)
         {
             distanceMatrix = data;
         }

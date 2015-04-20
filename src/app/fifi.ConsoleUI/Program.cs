@@ -20,7 +20,7 @@ namespace fifi.ConsoleUI
             //RunKMeans();
             double[,] Distance = { { 0, 93.0, 82.0, 133 }, { 93.0, 0, 52, 60 }, { 82, 52, 0, 111 }, { 133, 60, 111, 0} };
             //double[,] Distance = { { 0, 87.0, 284.0, 259, 259 }, { 87.0, 0, 195, 183, 222 }, { 284, 195, 0, 123, 260 }, { 259, 183, 123, 0, 140 }, { 259, 222, 260, 140, 0 } };
-            MDS a = new MDS(Distance);
+            MultiDimensionalScaling a = new MultiDimensionalScaling(Distance);
             a.Calculate();
             var start = DateTime.Now;
 
@@ -117,7 +117,7 @@ namespace fifi.ConsoleUI
         static void TestMDS()
         {
             double[,] Distance = { { 0, 87.0, 284.0, 259, 259 }, { 87.0, 0, 195, 183, 222 }, { 284, 195, 0, 123, 260 }, { 259, 183, 123, 0, 140}, {259, 222, 260, 140, 0 } };
-            MDS a = new MDS(Distance);
+            MultiDimensionalScaling a = new MultiDimensionalScaling(Distance);
             a.Calculate();
         }
 
@@ -222,7 +222,7 @@ namespace fifi.ConsoleUI
             DistanceMatrix distanceMatrix = new DistanceMatrix(result);
             double[,] matrix = distanceMatrix.GenerateMatrix();
 
-            MDS mds = new MDS(matrix);
+            MultiDimensionalScaling mds = new MultiDimensionalScaling(matrix);
             double[,] resultMatrix = mds.Calculate(); //a shitty name
             int limiter = 20;
 
