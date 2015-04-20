@@ -32,23 +32,22 @@ namespace fifi.ConsoleUI
         static void RunProgram()
         {
             //Config
-            string codeName = "Panda";
-            bool printKMeans = false;
+            string codeName = "Out-Abe";
+            bool printKMeans = true;
             bool printKMeansMembers = false;
-            bool matrixList = false;
-            bool matrixFull = true;
-            bool mdsRun = false;
+            bool distanceMatrix = true;
+            bool multiDimensionalScaling = true;
 
             var reader = new StreamReader("UserData.csv");
             var importer = new CsvProfileImporter(reader);
-            var dataSet = importer.Run();
+            var dataCollection = importer.Run();
 
             //Algo//
             //KMeans
             var k = 5;
             var distanceMetric = new EuclideanMetric();
 
-            var kmeans = new KMeans(dataSet, k, distanceMetric);
+            var kmeans = new KMeans(dataCollection, k, distanceMetric);
 
             var start = DateTime.Now;
             var result = kmeans.Generate();
@@ -65,35 +64,32 @@ namespace fifi.ConsoleUI
             if (printKMeans)
                 PrintKMeans(writer, result, printKMeansMembers);
 
-            if (matrixList) //Old matrix test
-                MatrixList(writer, result);
+            if (distanceMatrix)
+                DistanceMatrix(writer, dataCollection, distanceMetric);
 
-            if (matrixFull)
-                MatrixFull(writer, dataCollection, distanceMetric);
-
-            if (mdsRun)
-                MDSRun(writer, result);
+            if (multiDimensionalScaling)
+                MultiDimensionalScaling(writer, dataCollection, distanceMetric);
 
             writer.Close();
             fs.Close();
         }
 
 
-        static void TestImport()
-        {
-            var reader = new StreamReader("UserData.csv");
-            var importer = new CsvProfileImporter(reader);
+        //static void TestImport() //Needs update to fit the new structure
+        //{
+        //    var reader = new StreamReader("UserData.csv");
+        //    var importer = new CsvProfileImporter(reader);
 
-            var Profiles = importer.Run();
-            foreach (var item in Profiles.Take(22))
-            {
-                foreach (var value in item.Values)
-                {
-                    Console.Write("{0}\t", value);
-                }
-                Console.WriteLine("\n");
-            }
-        }
+        //    var Profiles = importer.Run();
+        //    foreach (var item in Profiles.Take(22))
+        //    {
+        //        foreach (var value in item.Values)
+        //        {
+        //            Console.Write("{0}\t", value);
+        //        }
+        //        Console.WriteLine("\n");
+        //    }
+        //}
 
         static void TestConfig()
         {
@@ -127,14 +123,14 @@ namespace fifi.ConsoleUI
             for (int i = 0; i < result.Clusters.Count; i++)
             {
                 var cluster = result.Clusters[i];
-                var sumOfId = cluster.Members.Sum(e => e.Profile.Id);
+                var sumOfId = cluster.Members.Sum(e => e.DataItem.Id);
                 var firstId = "None";
                 var lastId = "None";
 
                 if (cluster.Members.Count > 0)
                 {
-                    firstId = cluster.Members[0].Profile.Id.ToString();
-                    lastId = cluster.Members.Last().Profile.Id.ToString();
+                    firstId = cluster.Members[0].DataItem.Id.ToString();
+                    lastId = cluster.Members.Last().DataItem.Id.ToString();
                 }
                 writer.WriteLine("Cluster {0}: member(s) {4,4} || #{1,5}, first {2,4}, last {3,4}", i + 1, sumOfId, firstId, lastId, cluster.Members.Count);
             }
@@ -147,7 +143,7 @@ namespace fifi.ConsoleUI
                     writer.WriteLine("Cluster {0} members:", valCluster);
                     for (int valMember = 0; valMember < result.Clusters[valCluster].Members.Count; valMember++)
                     {
-                        writer.WriteLine("Member {0,4}, id {1,3}", valMember, result.Clusters[valCluster].Members[valMember].Profile.Id);
+                        writer.WriteLine("Member {0,4}, id {1,3}", valMember, result.Clusters[valCluster].Members[valMember].DataItem.Id);
                     }
                     writer.Write("\r\n\r\n");
                 }
@@ -155,38 +151,7 @@ namespace fifi.ConsoleUI
         }
 
 
-        static void MatrixList(StreamWriter writer, ClusteringResult result)
-        {
-            writer.WriteLine("MatrixList");
-            ClusterToMatrix distanceMatrix = new ClusterToMatrix(result);
-            List<double[,]> matrices = distanceMatrix.GenerateMatrix();
-
-            int matrixNumber = 0;
-            char rowIndexChar = 'A';
-
-            foreach (var matrix in matrices)
-            {
-                int matrixLength = 6;
-                writer.WriteLine("Matrix" + matrixNumber++); //The matrix have no implementation of a unique ID
-                writer.WriteLine("    A  |  B  |  C  |  D  |  E..");
-                for (int row = 0; row < matrixLength; row++)
-                {
-                    writer.Write(rowIndexChar++ + "|");
-                    for (int collum = 0; collum < matrixLength; collum++)
-                    {
-                        writer.Write("{0,5:N2}|", matrix[row, collum]);
-                    }
-
-                    writer.Write("\r\n");
-                }
-                rowIndexChar = 'A';
-                writer.Write("\r\n\r\n");
-            }
-            writer.Write("\r\n\r\n");
-        }
-
-
-        static void MatrixFull(StreamWriter writer, DataCollection dataCollection, IDistanceMetric distanceMetric)
+        static void DistanceMatrix(StreamWriter writer, DataCollection dataCollection, IDistanceMetric distanceMetric)
         {
             writer.WriteLine("MatrixFull");
             DistanceMatrix distanceMatrix = new DistanceMatrix(dataCollection, distanceMetric);
@@ -212,11 +177,11 @@ namespace fifi.ConsoleUI
             writer.Write("\r\n\r\n");
         }
 
-        static void MDSRun(StreamWriter writer, ClusteringResult result)
+        static void MultiDimensionalScaling(StreamWriter writer, DataCollection dataCollection, IDistanceMetric distanceMetric)
         {
             writer.WriteLine("MDS coordinates");
 
-            DistanceMatrix distanceMatrix = new DistanceMatrix(result);
+            DistanceMatrix distanceMatrix = new DistanceMatrix(dataCollection, distanceMetric);
             double[,] matrix = distanceMatrix.GenerateMatrix();
 
             var mds = new MultiDimensionalScaling(matrix);
