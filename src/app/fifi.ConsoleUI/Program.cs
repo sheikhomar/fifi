@@ -187,7 +187,7 @@ namespace fifi.ConsoleUI
         static void MatrixFull(StreamWriter writer, ClusteringResult result)
         {
             writer.WriteLine("MatrixFull");
-            ClusterToMatrixFull distanceMatrix = new ClusterToMatrixFull(result);
+            DistanceMatrix distanceMatrix = new DistanceMatrix(result);
             double[,] matrix = distanceMatrix.GenerateMatrix();
 
             int limiter = 20; //For the full, use matrix.Rank;
@@ -214,7 +214,7 @@ namespace fifi.ConsoleUI
         {
             writer.WriteLine("MDS final matrix");
 
-            ClusterToMatrixFull distanceMatrix = new ClusterToMatrixFull(result);
+            DistanceMatrix distanceMatrix = new DistanceMatrix(result);
             double[,] matrix = distanceMatrix.GenerateMatrix();
 
             MDS mds = new MDS(matrix);
