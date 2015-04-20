@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
 using MathNet.Numerics.LinearAlgebra.Factorization;
-
+using System.Windows.Forms.DataVisualization.Charting;
+using CDataPoint = System.Windows.Forms.DataVisualization.Charting.DataPoint;
 
 namespace fifi.Core
 {
@@ -17,6 +18,7 @@ namespace fifi.Core
         double[,] jMatrix;
         double[,] scalarProductMatrix;
         double[,] result;
+        List<CDataPoint> L = new List<CDataPoint>();
         
         public MDS(double[,] data)
         {
@@ -86,22 +88,45 @@ namespace fifi.Core
             return tempScalarProductMatrix;
         }
 
+        private Tuple<int, int> findLargestValueIndex(double[] valueArray)
+        {
+            int largestValue = 0, secondLargestValue = 1;
+            int counter = 1;
+            while (counter < valueArray.Length)
+            {
+                if (valueArray[counter] >= valueArray[largestValue]) 
+                {
+                    secondLargestValue = largestValue;
+                    largestValue = counter;   
+                }
+                else if (valueArray[counter] > valueArray[secondLargestValue])
+                    secondLargestValue = counter;
+                counter++;
+            }
+            Tuple<int, int> result = new Tuple<int, int>(largestValue, secondLargestValue);
+            return result;
+        }
+
         private double[,] eigenCalculator(double[,] scalarProductMatrix)
         {
             var convertedMatrix = DenseMatrix.OfArray(scalarProductMatrix);
             var eigen = convertedMatrix.Evd();
 
             double[] valueArray = eigen.EigenValues.Select(x => x.Real).ToArray();
-            double[,] valueResult = { {Math.Sqrt(valueArray[0]), 0}, {0, Math.Sqrt(valueArray[1])} };
+            Tuple<int, int> largestValueIndex = findLargestValueIndex(valueArray);
+            double[,] valueResult = { {Math.Sqrt(valueArray[largestValueIndex.Item1]), 0}, {0, Math.Sqrt(valueArray[largestValueIndex.Item2])} };
 
             double[,] vectorArray = eigen.EigenVectors.ToArray();
             double[,] vectorResult = new double[2, scalarProductMatrix.GetLength(0)];
 
-            for (int row = 0; row < 2; row++)
+            for (int row = 0; row < vectorArray.GetLength(0); row++)
             {
                 for (int col = 0; col < vectorArray.GetLength(0); col++)
                 {
-                    vectorResult[row, col] = vectorArray[col, row];
+                    if (largestValueIndex.Item1 == col)
+                        vectorResult[0, row] = vectorArray[row, col];
+                    else if (largestValueIndex.Item2 == col)
+                        vectorResult[1, row] = vectorArray[row, col];
                 }
             }
 
