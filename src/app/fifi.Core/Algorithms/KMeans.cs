@@ -12,13 +12,13 @@ namespace fifi.Core.Algorithms
     public class KMeans : IClusteringAlgorithm
     {
         private int k;
-        private DataSet dataSet;
+        private DataCollection dataCollection;
         private int maxIterations;
         private IDistanceMetric distanceMetric;
 
-        public KMeans(DataSet dataSet, int k, IDistanceMetric distanceMetric, int maxIterations = 100)
+        public KMeans(DataCollection dataCollection, int k, IDistanceMetric distanceMetric, int maxIterations = 100)
         {
-            this.dataSet = dataSet;
+            this.dataCollection = dataCollection;
             this.k = k;
             this.maxIterations = maxIterations;
             this.distanceMetric = distanceMetric;
@@ -46,8 +46,7 @@ namespace fifi.Core.Algorithms
                     cluster.Members.Clear();
                 }
 
-
-                foreach (var profile in dataSet)
+                foreach (var dataItem in dataCollection)
                 {
                     Centroid closestCentroid = null;
                     Cluster closestCluster = null;
@@ -55,7 +54,7 @@ namespace fifi.Core.Algorithms
                     foreach (var cluster in result.Clusters)
                     {
                         var centroid = cluster.Centroid;
-                        double distance = distanceMetric.Calculate(centroid.Values, profile.Values);
+                        double distance = distanceMetric.Calculate(centroid.Values, dataItem.Values);
                         if (distance < minDistance)
                         {
                             minDistance = distance;
@@ -64,10 +63,10 @@ namespace fifi.Core.Algorithms
                         }
                     }
 
-                    ClusterMember member = new ClusterMember(profile, minDistance);
+                    ClusterMember member = new ClusterMember(dataItem, minDistance);
                     closestCluster.Members.Add(member);
 
-                    closestCentroid.Add(profile);
+                    closestCentroid.Add(dataItem);
                 }
                 centroidMoved = false;
 
@@ -96,10 +95,10 @@ namespace fifi.Core.Algorithms
 
             foreach (var member in cluster.Members)
             {
-                var profile = member.Profile;
-                for (int i = 0; i < profile.CountValues; i++)
+                var dataItem = member.DataItem;
+                for (int i = 0; i < dataItem.Values.Count; i++)
                 {
-                    centroid.GravityCenter[i] += profile.Values[i];
+                    centroid.GravityCenter[i] += dataItem.Values[i];
                 }
             }
 
@@ -133,7 +132,7 @@ namespace fifi.Core.Algorithms
         {
             IList<Centroid> centroids = new List<Centroid>();
 
-            int dimensions = dataSet.CountDimensions;
+            int dimensions = dataCollection.Items[0].Values.Count; //If the items does not have the same ammout of values, this might break :=)
 
             for (int i = 0; i < k; i++)
             {
