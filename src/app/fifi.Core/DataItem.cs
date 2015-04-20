@@ -9,6 +9,7 @@ namespace fifi.Core
     public class DataItem
     {
         public List<double> Values { get; private set; }
+        public int Id { get; set; }
 
         public DataItem()
         {

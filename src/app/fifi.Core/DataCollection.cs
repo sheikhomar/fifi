@@ -19,5 +19,10 @@ namespace fifi.Core
         {
             Items.Add(value);
         }
+
+        public IEnumerator<DataItem> GetEnumerator()
+        {
+            return Items.GetEnumerator();
+        }
     }
 }
