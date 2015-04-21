@@ -107,7 +107,6 @@ namespace fifi.WinUI
                 ComputeAxisInterval(_chart1.ChartAreas[0].AxisX.Maximum - _chart1.ChartAreas[0].AxisX.Minimum);
             _chart1.ChartAreas[0].AxisY.Interval = 
                 ComputeAxisInterval(_chart1.ChartAreas[0].AxisY.Maximum - _chart1.ChartAreas[0].AxisY.Minimum);
-            #endregion
 
         }
 
