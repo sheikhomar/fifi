@@ -8,7 +8,7 @@ using fifi.Core;
 
 namespace fifi.Core
 {
-    class TempOutlierDetection
+    public class TempOutlierDetection
     {
         ClusteringResult input;
         double AverageDistance = 0;
@@ -34,7 +34,7 @@ namespace fifi.Core
             {
                 AverageDistance += Member.Distance;
             }
-            return AverageDistance;
+            return AverageDistance/Cluster.Members.Count;
         }
 
         private void FindOutliers(Cluster Cluster)

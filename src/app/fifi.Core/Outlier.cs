@@ -7,15 +7,18 @@ using fifi.Core.Algorithms;
 
 namespace fifi.Core
 {
-    class Outlier
+    public class Outlier
     {
-        Centroid belongingCluster;
-        ClusterMember identifiableDataPoint;
+        public Centroid belongingCluster;
+        public ClusterMember identifiableDataPoint;
 
         public Outlier(ClusterMember inputDataPoint, Centroid inputBelongingCluster)
         {
             this.identifiableDataPoint = inputDataPoint;
             this.belongingCluster = inputBelongingCluster;
         }
+
+
+
     }
 }
