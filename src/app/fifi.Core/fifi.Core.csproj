@@ -62,11 +62,9 @@
     <Compile Include="IdentifiableDataPoint.cs" />
     <Compile Include="IdentifiableDataPointCollection.cs" />
     <Compile Include="Jaccard.cs" />
-    <Compile Include="LabeledValue.cs" />
     <Compile Include="MultiDimensionalScaling.cs" />
     <Compile Include="MDSCluster.cs" />
     <Compile Include="Outlier.cs" />
-    <Compile Include="Profile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TempOutlier.cs" />
     <Compile Include="TempOutlierDetection.cs" />
