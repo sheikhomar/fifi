@@ -8,13 +8,13 @@ namespace fifi.Core.Algorithms
 {
     public class ClusterMember
     {
-        public ClusterMember(IdentifiableDataPoint dataItem, double distance)
+        public ClusterMember(IdentifiableDataPoint identifiableDataPoint, double distance)
         {
-            DataItem = dataItem;
+            ItemIdentifiableDataPoint = identifiableDataPoint;
             Distance = distance;
         }
 
-        public IdentifiableDataPoint DataItem { get; private set; }
+        public IdentifiableDataPoint ItemIdentifiableDataPoint { get; private set; }
         public double Distance { get; private set; }
     }
 }
