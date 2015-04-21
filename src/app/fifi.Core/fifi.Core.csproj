@@ -57,10 +57,8 @@
     <Compile Include="Algorithms\KMeans.cs" />
     <Compile Include="Algorithms\Loci.cs" />
     <Compile Include="ClusteringResult.cs" />
-    <Compile Include="DataItem.cs" />
     <Compile Include="DataItemAttribute.cs" />
     <Compile Include="DataPoint.cs" />
-    <Compile Include="DataSet.cs" />
     <Compile Include="IdentifiableDataPoint.cs" />
     <Compile Include="IdentifiableDataPointCollection.cs" />
     <Compile Include="Jaccard.cs" />
