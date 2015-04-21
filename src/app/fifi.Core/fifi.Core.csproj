@@ -68,6 +68,7 @@
     <Compile Include="Outlier.cs" />
     <Compile Include="Profile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TempOutlier.cs" />
     <Compile Include="TempOutlierDetection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

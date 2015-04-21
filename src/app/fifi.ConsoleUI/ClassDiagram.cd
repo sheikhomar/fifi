@@ -28,11 +28,6 @@
     <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="fifi.Data.CsvProfileImporter" Collapsed="true">
-    <Position X="5.5" Y="5.75" Width="1.5" />
-    <TypeIdentifier />
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="fifi.Data.CsvDataExporter" Collapsed="true">
     <Position X="0.5" Y="5.75" Width="1.5" />
     <TypeIdentifier />
