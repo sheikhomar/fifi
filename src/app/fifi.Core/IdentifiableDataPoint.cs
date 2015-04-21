@@ -16,5 +16,10 @@ namespace fifi.Core
 
         public int Id { get; private set; }
         public IList<DataItemAttribute> Attributes { get; private set; }
+
+        public void AddAttribute(string name, double value)
+        {
+            Attributes.Add(new DataItemAttribute(name, value));
+        }
     }
 }
