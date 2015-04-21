@@ -118,7 +118,7 @@ namespace fifi.Core.Algorithms
         {
             IList<Centroid> centroids = new List<Centroid>();
 
-            int dimensions = dataCollection.Items[0].Dimensions; //If the items does not have the same ammout of values, this might break :=)
+            int dimensions = dataCollection[0].Dimensions; //If the items does not have the same ammout of values, this might break :=)
 
             for (int i = 0; i < k; i++)
             {

@@ -6,23 +6,47 @@ using System.Threading.Tasks;
 
 namespace fifi.Core
 {
-    public class IdentifiableDataPointCollection
+    public class IdentifiableDataPointCollection : IEnumerable<IdentifiableDataPoint>
     {
-        public List<IdentifiableDataPoint> Items { get; private set; }
+        private IList<IdentifiableDataPoint> items;
+        private int itemDimensions;
 
         public IdentifiableDataPointCollection()
         {
-            Items = new List<IdentifiableDataPoint>();
+            items = new List<IdentifiableDataPoint>();
         }
 
         public void AddItem(IdentifiableDataPoint value)
         {
-            Items.Add(value);
+            if (itemDimensions == 0)
+                itemDimensions = value.Dimensions;
+
+            items.Add(value);
+        }
+
+        public int Count
+        {
+            get { return items.Count; }
+        }
+
+        public int ItemDimensions
+        {
+            get { return itemDimensions; }
+        }
+
+        public IdentifiableDataPoint this[int index]
+        {
+            get { return this.items[index]; }
         }
 
         public IEnumerator<IdentifiableDataPoint> GetEnumerator()
         {
-            return Items.GetEnumerator();
+            return items.GetEnumerator();
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return items.GetEnumerator();
         }
     }
 }

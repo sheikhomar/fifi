@@ -10,7 +10,7 @@ using System.IO;
 namespace fifi.Tests.Data
 {
     [TestFixture]
-    public class CsvProfileImporterTests
+    public class CsvDataImporterTests
     {
         private IdentifiableDataPointCollection results;
 
@@ -18,21 +18,21 @@ namespace fifi.Tests.Data
         public void Setup()
         {
             var reader = new StringReader(Resources.SampleData);
-            var importer = new CsvProfileImporter(reader);
+            var importer = new CsvDataImporter(reader);
             results = importer.Run();
         }
 
         [Test]
         public void ShouldImportAllLines()
         {
-            //Assert.AreEqual(results.Count, 2);
+            Assert.AreEqual(results.Count, 2);
         }
 
         [Test]
         public void ShouldParseGenderCorrectly()
         {
-            //Assert.AreEqual(results[0]["Gender"].Value, 1);
-            //Assert.AreEqual(results[1]["Gender"].Value, 0);
+            Assert.AreEqual(results[0]["Gender"].Value, 1);
+            Assert.AreEqual(results[1]["Gender"].Value, 0);
         }
     }
 }

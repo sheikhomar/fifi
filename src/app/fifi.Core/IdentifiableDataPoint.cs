@@ -22,5 +22,10 @@ namespace fifi.Core
             Attributes.Add(new DataPointAttribute(name, value));
             this[Attributes.Count - 1] = value;
         }
+
+        public DataPointAttribute this[string name]
+        {
+            get { return Attributes.Where(v => v.Name == name).FirstOrDefault(); }
+        }
     }
 }
