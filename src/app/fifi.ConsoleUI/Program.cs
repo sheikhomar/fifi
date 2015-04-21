@@ -188,7 +188,7 @@ namespace fifi.ConsoleUI
             DistanceMatrix distanceMatrix = new DistanceMatrix(dataCollection, distanceMetric);
             double[,] matrix = distanceMatrix.GenerateMatrix();
 
-            var mds = new MultiDimensionalScaling(matrix);
+            var mds = new MultiDimensionalScaling2(matrix);
             double[,] resultMatrix = mds.Calculate(); //a shitty name
             int limiter = 20;
 

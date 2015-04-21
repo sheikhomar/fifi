@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MathNet.Numerics.LinearAlgebra;
-using MathNet.Numerics.LinearAlgebra.Double;
-using MathNet.Numerics.LinearAlgebra.Factorization;
 using System.Windows.Forms.DataVisualization.Charting;
 using CDataPoint = System.Windows.Forms.DataVisualization.Charting.DataPoint;
 
@@ -20,8 +17,6 @@ namespace fifi.Core
         {
             matrix.GetSetMatrix = data;
         }
-
-        
 
         public double[,] Calculate()
         {
@@ -80,45 +75,5 @@ namespace fifi.Core
             }
             return resultMatrix;
         }
-
-        /*private double[,] eigenCalculator(double[,] scalarProductMatrix)
-        {
-            var convertedMatrix = DenseMatrix.OfArray(scalarProductMatrix);
-            var eigen = convertedMatrix.Evd();
-
-            double[] valueArray = eigen.EigenValues.Select(x => x.Real).ToArray();
-            Tuple<int, int> largestValueIndex = findLargestValueIndex(valueArray);
-            double[,] valueResult = { { Math.Sqrt(valueArray[largestValueIndex.Item1]), 0 }, { 0, Math.Sqrt(valueArray[largestValueIndex.Item2]) } };
-
-            double[,] vectorArray = eigen.EigenVectors.ToArray();
-            double[,] vectorResult = new double[2, scalarProductMatrix.GetLength(0)];
-
-            for (int row = 0; row < vectorArray.GetLength(0); row++)
-            {
-                for (int col = 0; col < vectorArray.GetLength(0); col++)
-                {
-                    if (largestValueIndex.Item1 == col)
-                        vectorResult[0, row] = vectorArray[row, col];
-                    else if (largestValueIndex.Item2 == col)
-                        vectorResult[1, row] = vectorArray[row, col];
-                }
-            }
-
-            var valueResultMatrix = DenseMatrix.OfArray(valueResult);
-            var vectorResultMatrix = DenseMatrix.OfArray(vectorResult);
-            var ResultMatrix = valueResultMatrix.Multiply(vectorResultMatrix);
-            double[,] returnResult = ResultMatrix.ToArray();
-            double[,] final = new double[returnResult.GetLength(0), returnResult.GetLength(1)];
-
-            for (int row = 0; row < returnResult.GetLength(0); row++)
-            {
-                for (int col = 0; col < returnResult.GetLength(1); col++)
-                {
-                    final[row, col] = returnResult[row, col];
-                }
-            }
-
-            return final;
-        }*/
     }
 }

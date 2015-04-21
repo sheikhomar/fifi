@@ -60,9 +60,11 @@ namespace fifi.Core
         {
             var convertedMatrix = DenseMatrix.OfArray(matrix);
             var eigenInfo = convertedMatrix.Evd();
-
-            Tuple<int, int> largestEigenvalues = FindLargestEigenvalues(eigenInfo.EigenValues.Select(x => x.Real).ToArray());
-            double[,] eigenvalueMatrix = { { Math.Sqrt(largestEigenvalues.Item1), 0 }, { 0, Math.Sqrt(largestEigenvalues.Item2) } };
+            
+            Tuple<int, int> largestTwoEigenvalues = FindLargestTwoEigenvalues(eigenInfo.EigenValues.Select(x => x.Real).ToArray());
+            //double[,] eigenvalueMatrix2 = { { Math.Sqrt(largestEigenvalues.Item1), 0 }, { 0, Math.Sqrt(largestEigenvalues.Item2) } };
+            double[] eigenvalueMatrixInput = { Math.Sqrt(largestTwoEigenvalues.Item1), 0, 0, Math.Sqrt(largestTwoEigenvalues.Item2) };
+            Matrix eigenvalueMatrix = GenerateFullSquaredCustomMatrix(eigenvalueMatrixInput);
             
             double[,] vectorArray = eigenInfo.EigenVectors.ToArray();
             double[,] vectorResult = new double[2, matrix.GetLength(1)];
@@ -71,14 +73,14 @@ namespace fifi.Core
             {
                 for (int col = 0; col < vectorArray.GetLength(0); col++)
                 {
-                    if (largestEigenvalues.Item1 == col)
+                    if (largestTwoEigenvalues.Item1 == col)
                         vectorResult[0, row] = vectorArray[row, col];
-                    else if (largestEigenvalues.Item2 == col)
+                    else if (largestTwoEigenvalues.Item2 == col)
                         vectorResult[1, row] = vectorArray[row, col];
                 }
             }
 
-            var valueResultMatrix = DenseMatrix.OfArray(eigenvalueMatrix);
+            var valueResultMatrix = DenseMatrix.OfArray(eigenvalueMatrix.GetSetMatrix);
             var vectorResultMatrix = DenseMatrix.OfArray(vectorResult);
             var ResultMatrix = valueResultMatrix.Multiply(vectorResultMatrix);
             double[,] returnResult = ResultMatrix.ToArray();
@@ -94,7 +96,7 @@ namespace fifi.Core
             return final;
         }
 
-        private Tuple<int, int> FindLargestEigenvalues(double[] valueArray)
+        private Tuple<int, int> FindLargestTwoEigenvalues(double[] valueArray)
         {
             int largestValue = 0, secondLargestValue = 1;
             int counter = 1;
@@ -142,6 +144,19 @@ namespace fifi.Core
                 }
             }
             return customMatrix;
+        }
+
+        private Matrix GenerateFullSquaredCustomMatrix(double[] inputValues)
+        {
+            Matrix returnMatrix = new Matrix(inputValues.Length / 2, inputValues.Length / 2);
+            for (int row = 0, inputValueCounter = 0; row < inputValues.Length / 2; row++)
+            {
+                for (int col = 0; col < inputValues.Length / 2; col++, inputValueCounter++)
+                {
+                    returnMatrix[row, col] = inputValues[inputValueCounter];
+                }
+            }
+            return returnMatrix;
         }
     }
 }
