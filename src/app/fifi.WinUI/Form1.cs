@@ -61,7 +61,7 @@ namespace fifi.WinUI
         private void Test()
         {
             var reader = new StreamReader("UserData.csv");
-            var importer = new CsvProfileImporter(reader);
+            var importer = new CsvDataImporter(reader);
             var dataCollection = importer.Run();
             var k = 5;
             var distanceMetric = new EuclideanMetric();
