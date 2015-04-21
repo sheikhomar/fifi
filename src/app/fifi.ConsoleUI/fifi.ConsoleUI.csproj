@@ -48,6 +48,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="ClassDiagram.cd" />
+    <None Include="UserData.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\fifi.Core\fifi.Core.csproj">
