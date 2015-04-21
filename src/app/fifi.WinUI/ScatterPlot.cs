@@ -36,6 +36,7 @@ namespace fifi.WinUI
             }
 
             SetAxisScales(ClusterNumber);
+            StyleChart();
 
         }
 
@@ -95,7 +96,7 @@ namespace fifi.WinUI
             }
             #endregion
 
-            #region Assign axis boundaries based on 
+            #region Assign axis boundaries based on results
             _chart1.ChartAreas[0].AxisX.Maximum = Math.Ceiling(XMax);
             _chart1.ChartAreas[0].AxisX.Minimum = Math.Floor(XMin);
             _chart1.ChartAreas[0].AxisY.Maximum = Math.Ceiling(YMax);
@@ -104,47 +105,11 @@ namespace fifi.WinUI
 
         }
 
-        private void SetAxisScales2(int NumberOfSeries)
+        private void StyleChart()
         {
-            double XMax = double.MinValue;
-            double XMin = double.MaxValue;
-            double YMax = double.MinValue;
-            double YMin = double.MaxValue;
-
-            for (int i = 0; i < NumberOfSeries - 1; i++)
-            {
-                foreach (var node in _chart1.Series[i].Points)
-                {
-                    if (node.XValue > XMax)
-                    {
-                        XMax = node.XValue;
-                    }
-
-                    if (node.XValue < XMin)
-                    {
-                        XMin = node.XValue;
-                    }
-
-                    // Y-values are checked after X-values. MDS datapoints only contain 1 Y-value
-                    if (node.YValues[0] > YMax)
-                    {
-                        YMax = node.YValues[0];
-                    }
-
-                    if (node.YValues[0] < YMin)
-                    {
-                        YMin = node.YValues[0];
-                    }
-                }
-            }
-
-            _chart1.ChartAreas[0].AxisX.Maximum = Math.Ceiling(XMax);
-            _chart1.ChartAreas[0].AxisX.Minimum = Math.Floor(XMin);
-            _chart1.ChartAreas[0].AxisY.Maximum = Math.Ceiling(YMax);
-            _chart1.ChartAreas[0].AxisY.Minimum = Math.Floor(YMin);
-
+            _chart1.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.LightGray;
+            _chart1.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.LightGray;
         }
-
 
     }
 }
