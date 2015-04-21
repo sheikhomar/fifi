@@ -8,19 +8,19 @@ namespace fifi.Core
 {
     public class IdentifiableDataPointCollection
     {
-        public List<DataItem> Items { get; private set; }
+        public List<IdentifiableDataPoint> Items { get; private set; }
 
         public IdentifiableDataPointCollection()
         {
-            Items = new List<DataItem>();
+            Items = new List<IdentifiableDataPoint>();
         }
 
-        public void AddItem(DataItem value)
+        public void AddItem(IdentifiableDataPoint value)
         {
             Items.Add(value);
         }
 
-        public IEnumerator<DataItem> GetEnumerator()
+        public IEnumerator<IdentifiableDataPoint> GetEnumerator()
         {
             return Items.GetEnumerator();
         }

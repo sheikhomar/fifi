@@ -39,7 +39,7 @@ namespace fifi.ConsoleUI
             bool multiDimensionalScaling = true;
 
             var reader = new StreamReader("UserData.csv");
-            var importer = new CsvProfileImporter(reader);
+            var importer = new CsvDataImporter(reader);
             var dataCollection = importer.Run();
 
             //Algo//
