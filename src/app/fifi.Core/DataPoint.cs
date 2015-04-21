@@ -27,6 +27,13 @@ namespace fifi.Core
         /// <summary>
         /// Copies all elements from another DataPoint.
         /// </summary>
+        /// 
+
+        public void SetCoordinates(double[] value)
+        {
+            Coordinates = value;
+        }
+
         public void CopyFrom(DataPoint another)
         {
             if (another.Dimensions != this.Dimensions)
