@@ -9,6 +9,6 @@ namespace fifi.Data
 {
   public interface IProfileImporter
   {
-      DataCollection Run();
+      IdentifiableDataPointCollection Run();
   }
 }

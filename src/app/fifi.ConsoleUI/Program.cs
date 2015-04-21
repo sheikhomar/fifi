@@ -151,7 +151,7 @@ namespace fifi.ConsoleUI
         }
 
 
-        static void DistanceMatrix(StreamWriter writer, DataCollection dataCollection, IDistanceMetric distanceMetric)
+        static void DistanceMatrix(StreamWriter writer, IdentifiableDataPointCollection dataCollection, IDistanceMetric distanceMetric)
         {
             writer.WriteLine("MatrixFull");
             DistanceMatrix distanceMatrix = new DistanceMatrix(dataCollection, distanceMetric);
@@ -177,7 +177,7 @@ namespace fifi.ConsoleUI
             writer.Write("\r\n\r\n");
         }
 
-        static void MultiDimensionalScaling(StreamWriter writer, DataCollection dataCollection, IDistanceMetric distanceMetric)
+        static void MultiDimensionalScaling(StreamWriter writer, IdentifiableDataPointCollection dataCollection, IDistanceMetric distanceMetric)
         {
             writer.WriteLine("MDS coordinates");
 

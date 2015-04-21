@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace fifi.Core
 {
-    public class DataItemAttribute
+    public class DataPointAttribute
     {
-        public DataItemAttribute(string name, double value)
+        public DataPointAttribute(string name, double value)
         {
             Name = name;
             Value = value;

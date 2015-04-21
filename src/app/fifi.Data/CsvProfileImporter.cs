@@ -19,9 +19,9 @@ namespace fifi.Data
           this.reader = reader;
       }
 
-      public DataCollection Run()
+      public IdentifiableDataPointCollection Run()
       {
-          DataCollection dataCollection = new DataCollection();
+          IdentifiableDataPointCollection dataCollection = new IdentifiableDataPointCollection();
           //IList<Profile> profiles = new List<Profile>();
 
           var csv = new CsvReader(reader);

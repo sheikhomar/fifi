@@ -12,11 +12,11 @@ namespace fifi.Core.Algorithms
     public class KMeans : IClusteringAlgorithm
     {
         private int k;
-        private DataCollection dataCollection;
+        private IdentifiableDataPointCollection dataCollection;
         private int maxIterations;
         private IDistanceMetric distanceMetric;
 
-        public KMeans(DataCollection dataCollection, int k, IDistanceMetric distanceMetric, int maxIterations = 100)
+        public KMeans(IdentifiableDataPointCollection dataCollection, int k, IDistanceMetric distanceMetric, int maxIterations = 100)
         {
             this.dataCollection = dataCollection;
             this.k = k;

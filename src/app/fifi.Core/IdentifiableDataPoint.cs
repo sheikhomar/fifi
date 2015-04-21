@@ -11,15 +11,15 @@ namespace fifi.Core
         public IdentifiableDataPoint(int id, int dimensions) : base(dimensions)
         {
             Id = id;
-            Attributes = new List<DataItemAttribute>();
+            Attributes = new List<DataPointAttribute>();
         }
 
         public int Id { get; private set; }
-        public IList<DataItemAttribute> Attributes { get; private set; }
+        public IList<DataPointAttribute> Attributes { get; private set; }
 
         public void AddAttribute(string name, double value)
         {
-            Attributes.Add(new DataItemAttribute(name, value));
+            Attributes.Add(new DataPointAttribute(name, value));
         }
     }
 }
