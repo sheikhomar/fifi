@@ -28,7 +28,7 @@ namespace fifi.Core.Algorithms
 
         private double[,] calculatedMatrix(IdentifiableDataPointCollection dataCollection)
         {
-            int dataCollectionSize = dataCollection.Items.Count;
+            int dataCollectionSize = dataCollection.Count;
             double[,] matrix = new double[dataCollectionSize, dataCollectionSize];
             double distance;
 
@@ -42,7 +42,7 @@ namespace fifi.Core.Algorithms
 			{
                 for (int collum = collumOffset; collum < dataCollectionSize; collum++)
 			    {
-                    distance = distanceMetric.Calculate(dataCollection.Items[row], dataCollection.Items[collum]);
+                    distance = distanceMetric.Calculate(dataCollection[row], dataCollection[collum]);
                     matrix[row, collum] = distance;
                     matrix[collum, row] = distance;
 			    }

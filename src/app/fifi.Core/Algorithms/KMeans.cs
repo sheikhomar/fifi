@@ -104,7 +104,7 @@ namespace fifi.Core.Algorithms
             DataPoint gravityCenter = new DataPoint(dimension);
             foreach (var member in cluster.Members)
             {
-                var profile = member.DataItem;
+                var profile = member.Member;
                 for (int i = 0; i < dimension; i++)
                     gravityCenter[i] += profile.Coordinates[i];
             }
@@ -118,7 +118,7 @@ namespace fifi.Core.Algorithms
         {
             IList<Centroid> centroids = new List<Centroid>();
 
-            int dimensions = dataCollection.Items[0].Dimensions; //If the items does not have the same ammout of values, this might break :=)
+            int dimensions = dataCollection[0].Dimensions; //If the items does not have the same ammout of values, this might break :=)
 
             for (int i = 0; i < k; i++)
             {
