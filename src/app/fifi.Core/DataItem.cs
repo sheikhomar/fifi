@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace fifi.Core
 {
-    public class DataItem
+    public class DataItem : IdentifiableDataPoint
     {
         public List<double> Values { get; private set; }
         public int Id { get; set; } //Not working atm, ID needs to be increased when a new instance is created.
 
-        public DataItem()
+        public DataItem() : base(1, 30)
         {
             Values = new List<double>();
         }

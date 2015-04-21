@@ -16,6 +16,6 @@ namespace fifi.Core.Algorithms
         /// <returns>
         ///   Returns the distance between <paramref name="point1"/> and <paramref name="point2"/>.
         /// </returns>
-        double Calculate(List<double> point1, List<double> point2);
+        double Calculate(DataPoint point1, DataPoint point2);
     }
 }

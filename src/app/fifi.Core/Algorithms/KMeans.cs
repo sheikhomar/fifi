@@ -54,7 +54,7 @@ namespace fifi.Core.Algorithms
                     foreach (var cluster in result.Clusters)
                     {
                         var centroid = cluster.Centroid;
-                        double distance = distanceMetric.Calculate(centroid.Values, dataItem.Values);
+                        double distance = distanceMetric.Calculate(centroid, dataItem);
                         if (distance < minDistance)
                         {
                             minDistance = distance;
@@ -65,8 +65,6 @@ namespace fifi.Core.Algorithms
 
                     ClusterMember member = new ClusterMember(dataItem, minDistance);
                     closestCluster.Members.Add(member);
-
-                    //closestCentroid.Add(dataItem);
                 }
                 centroidMoved = false;
 
@@ -88,46 +86,34 @@ namespace fifi.Core.Algorithms
         {
             Centroid centroid = cluster.Centroid;
 
-            for (int i = 0; i < centroid.GravityCenter.Length; i++)
-            {
-                centroid.GravityCenter[i] = 0;
-            }
+            DataPoint gravityCenter = CalculateGravityCenter(cluster);
 
-            foreach (var member in cluster.Members)
-            {
-                var dataItem = member.DataItem;
-                for (int i = 0; i < dataItem.Values.Count; i++)
-                {
-                    centroid.GravityCenter[i] += dataItem.Values[i];
-                }
-            }
+            bool hasCentroidMoved = !gravityCenter.Equals(centroid);
 
-            for (int i = 0; i < centroid.GravityCenter.Length; i++)
-            {
-                centroid.GravityCenter[i] /= cluster.Members.Count;
-            }
+            if (hasCentroidMoved)
+                centroid.CopyFrom(gravityCenter);
 
-            bool centroidHasMoved = false;
-
-            for (int i = 0; i < centroid.Values.Count; i++)
-            {
-                if (centroid.Values[i] != centroid.GravityCenter[i])
-                {
-                    centroidHasMoved = true;
-                }
-            }
-
-            if (centroidHasMoved)
-            {
-                for (int i = 0; i < centroid.Values.Count; i++)
-                {
-                    centroid.Values[i] = centroid.GravityCenter[i];
-                }
-            }
-
-            return centroidHasMoved;
+            return hasCentroidMoved;
         }
 
+        private DataPoint CalculateGravityCenter(Cluster cluster)
+        {
+            Centroid centroid = cluster.Centroid;
+            int dimension = centroid.Dimensions;
+
+            DataPoint gravityCenter = new DataPoint(dimension);
+            foreach (var member in cluster.Members)
+            {
+                var profile = member.DataItem;
+                for (int i = 0; i < dimension; i++)
+                    gravityCenter[i] += profile.Coordinates[i];
+            }
+
+            for (int i = 0; i < dimension; i++)
+                gravityCenter[i] /= cluster.Members.Count;
+
+            return gravityCenter;
+        }
         private IList<Centroid> GenerateRandomCentroids()
         {
             IList<Centroid> centroids = new List<Centroid>();

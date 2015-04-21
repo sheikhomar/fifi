@@ -42,7 +42,7 @@ namespace fifi.Core.Algorithms
 			{
                 for (int collum = collumOffset; collum < dataCollectionSize; collum++)
 			    {
-                    distance = distanceMetric.Calculate(dataCollection.Items[row].Values, dataCollection.Items[collum].Values);
+                    distance = distanceMetric.Calculate(dataCollection.Items[row], dataCollection.Items[collum]);
                     matrix[row, collum] = distance;
                     matrix[collum, row] = distance;
 			    }
