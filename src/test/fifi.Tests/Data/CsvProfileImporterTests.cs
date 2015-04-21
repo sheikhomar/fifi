@@ -12,7 +12,7 @@ namespace fifi.Tests.Data
     [TestFixture]
     public class CsvProfileImporterTests
     {
-        private DataSet results;
+        private DataCollection results;
 
         [SetUp]
         public void Setup()

@@ -13,27 +13,27 @@ namespace fifi.Tests.Core.Algorithms
     {
         private EuclideanMetric metric;
 
-        [SetUp]
-        public void Setup()
-        {
-            metric = new EuclideanMetric();
-        }
+    //    [SetUp]
+    //    public void Setup()
+    //    {
+    //        metric = new EuclideanMetric();
+    //    }
 
-        [Test]
-        public void ShouldCalculateDistanceFromSamePoint()
-        {
-            var a = new double[] { 1, 2 };
-            var result = metric.Calculate(a, a);
-            Assert.AreEqual(0f, result);
-        }
+    //    [Test]
+    //    public void ShouldCalculateDistanceFromSamePoint()
+    //    {
+    //        var a = new double[] { 1, 2 };
+    //        var result = metric.Calculate(a, a);
+    //        Assert.AreEqual(0f, result);
+    //    }
 
-        [Test]
-        public void ShouldCalculateDistanceFromDifferentPoints()
-        {
-            var a = new double[] { 1, 2, 6 };
-            var b = new double[] { 2, 4, 8 };
-            var result = metric.Calculate(a, b);
-            Assert.AreEqual(3.0f, result);
-        }
+    //    [Test]
+    //    public void ShouldCalculateDistanceFromDifferentPoints()
+    //    {
+    //        var a = new double[] { 1, 2, 6 };
+    //        var b = new double[] { 2, 4, 8 };
+    //        var result = metric.Calculate(a, b);
+    //        Assert.AreEqual(3.0f, result);
+    //    }
     }
 }

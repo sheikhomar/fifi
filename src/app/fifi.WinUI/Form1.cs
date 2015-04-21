@@ -62,14 +62,14 @@ namespace fifi.WinUI
         {
             var reader = new StreamReader("UserData.csv");
             var importer = new CsvProfileImporter(reader);
-            var dataSet = importer.Run();
+            var dataCollection = importer.Run();
             var k = 5;
             var distanceMetric = new EuclideanMetric();
 
-            var kmeans = new KMeans(dataSet, k, distanceMetric);
+            var kmeans = new KMeans(dataCollection, k, distanceMetric);
             var result = kmeans.Generate();
 
-            DistanceMatrix distanceMatrix = new DistanceMatrix(result);
+            DistanceMatrix distanceMatrix = new DistanceMatrix(dataCollection, distanceMetric);
             double[,] matrix = distanceMatrix.GenerateMatrix();
 
             var mds = new MultiDimensionalScaling(matrix);
