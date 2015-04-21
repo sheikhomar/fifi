@@ -37,6 +37,7 @@ namespace fifi.ConsoleUI
             bool printKMeansMembers = false;
             bool distanceMatrix = true;
             bool multiDimensionalScaling = true;
+            bool OutlierDetection = true;
 
             var reader = new StreamReader("UserData.csv");
             var importer = new CsvDataImporter(reader);
@@ -70,11 +71,17 @@ namespace fifi.ConsoleUI
             if (multiDimensionalScaling)
                 MultiDimensionalScaling(writer, dataCollection, distanceMetric);
 
+            if (OutlierDetection)
+                //OutlierDetectionMethod(writer, result);
+
             writer.Close();
             fs.Close();
         }
 
-
+        private void OutlierDetectionMethod(StreamWriter writer, ClusteringResult result)
+        {
+            ;
+        }
         //static void TestImport() //Needs update to fit the new structure
         //{
         //    var reader = new StreamReader("UserData.csv");
