@@ -32,7 +32,7 @@ namespace fifi.ConsoleUI
         static void RunProgram()
         {
             //Config
-            string codeName = "Out-Abe";
+            string codeName = "Out-Bille";
             bool printKMeans = true;
             bool printKMeansMembers = false;
             bool distanceMatrix = true;
