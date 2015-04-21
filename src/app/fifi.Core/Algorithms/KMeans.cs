@@ -104,7 +104,7 @@ namespace fifi.Core.Algorithms
             DataPoint gravityCenter = new DataPoint(dimension);
             foreach (var member in cluster.Members)
             {
-                var profile = member.ItemIdentifiableDataPoint;
+                var profile = member.Member;
                 for (int i = 0; i < dimension; i++)
                     gravityCenter[i] += profile.Coordinates[i];
             }

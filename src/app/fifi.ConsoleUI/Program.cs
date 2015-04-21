@@ -124,14 +124,14 @@ namespace fifi.ConsoleUI
             for (int i = 0; i < result.Clusters.Count; i++)
             {
                 var cluster = result.Clusters[i];
-                var sumOfId = cluster.Members.Sum(e => e.ItemIdentifiableDataPoint.Id);
+                var sumOfId = cluster.Members.Sum(e => e.Member.Id);
                 var firstId = "None";
                 var lastId = "None";
 
                 if (cluster.Members.Count > 0)
                 {
-                    firstId = cluster.Members[0].ItemIdentifiableDataPoint.Id.ToString();
-                    lastId = cluster.Members.Last().ItemIdentifiableDataPoint.Id.ToString();
+                    firstId = cluster.Members[0].Member.Id.ToString();
+                    lastId = cluster.Members.Last().Member.Id.ToString();
                 }
                 writer.WriteLine("Cluster {0}: member(s) {4,4} || #{1,5}, first {2,4}, last {3,4}", i + 1, sumOfId, firstId, lastId, cluster.Members.Count);
             }
@@ -144,7 +144,7 @@ namespace fifi.ConsoleUI
                     writer.WriteLine("Cluster {0} members:", valCluster);
                     for (int valMember = 0; valMember < result.Clusters[valCluster].Members.Count; valMember++)
                     {
-                        writer.WriteLine("Member {0,4}, id {1,3}", valMember, result.Clusters[valCluster].Members[valMember].ItemIdentifiableDataPoint.Id);
+                        writer.WriteLine("Member {0,4}, id {1,3}", valMember, result.Clusters[valCluster].Members[valMember].Member.Id);
                     }
                     writer.Write("\r\n\r\n");
                 }
