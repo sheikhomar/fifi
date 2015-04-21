@@ -8,11 +8,15 @@ namespace fifi.Core
 {
     public class DataPoint
     {
+        public DataPoint(int dimensions)
         {
+            Coordinates = new double[dimensions];
+            Dimensions = dimensions;
         }
 
         public double[] Coordinates { get; private set; }
 
+        public int Dimensions { get; private set; }
 
         public double this[int index]
         {
@@ -25,7 +29,10 @@ namespace fifi.Core
         /// </summary>
         public void CopyFrom(DataPoint another)
         {
+            if (another.Dimensions != this.Dimensions)
+                throw new ArgumentException("Dimensions mismatch.", "another");
 
+            for (int i = 0; i < this.Dimensions; i++)
                 this[i] = another[i];
         }
 
@@ -34,7 +41,9 @@ namespace fifi.Core
             DataPoint other = obj as DataPoint;
             if (other != null)
             {
+                if (other.Dimensions == this.Dimensions)
                 {
+                    for (int i = 0; i < this.Dimensions; i++)
                     {
                         if (other[i] != this[i])
                         {
