@@ -103,12 +103,41 @@ namespace fifi.WinUI
             _chart1.ChartAreas[0].AxisY.Minimum = Math.Floor(YMin);
             #endregion
 
+            #region Compute intervals as 1/10th of span of values
+            _chart1.ChartAreas[0].AxisX.Interval = 
+                ComputeAxisInterval(_chart1.ChartAreas[0].AxisX.Maximum - _chart1.ChartAreas[0].AxisX.Minimum);
+            _chart1.ChartAreas[0].AxisY.Interval = 
+                ComputeAxisInterval(_chart1.ChartAreas[0].AxisY.Maximum - _chart1.ChartAreas[0].AxisY.Minimum);
+            
+            #endregion
+
         }
 
         private void StyleChart()
         {
             _chart1.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.LightGray;
             _chart1.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.LightGray;
+        }
+
+        private double ComputeAxisInterval(double difference)
+        {
+            double intervalValue = 1;
+
+            while (difference < 1 || difference >= 10)
+            {
+                if (difference >= 10)
+                {
+                    difference /= 10;
+                    intervalValue *= 10;
+                }
+                else
+                {
+                    difference *= 10;
+                    intervalValue /= 10;
+                }
+            }
+
+            return intervalValue;
         }
 
     }
