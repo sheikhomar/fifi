@@ -103,12 +103,10 @@ namespace fifi.WinUI
             _chart1.ChartAreas[0].AxisY.Minimum = Math.Floor(YMin);
             #endregion
 
-            #region Compute intervals as 1/10th of span of values
             _chart1.ChartAreas[0].AxisX.Interval = 
                 ComputeAxisInterval(_chart1.ChartAreas[0].AxisX.Maximum - _chart1.ChartAreas[0].AxisX.Minimum);
             _chart1.ChartAreas[0].AxisY.Interval = 
                 ComputeAxisInterval(_chart1.ChartAreas[0].AxisY.Maximum - _chart1.ChartAreas[0].AxisY.Minimum);
-            
             #endregion
 
         }
