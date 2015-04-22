@@ -60,10 +60,11 @@ namespace fifi.Core
         {
             var convertedMatrix = DenseMatrix.OfArray(matrix);
             var eigenInfo = convertedMatrix.Evd();
-            
-            Tuple<int, int> largestTwoEigenvalues = FindLargestTwoEigenvalues(eigenInfo.EigenValues.Select(x => x.Real).ToArray());
+
+            double[] eigenvalueArray = eigenInfo.EigenValues.Select(x => x.Real).ToArray();
+            Tuple<int, int> largestTwoEigenvalues = FindLargestTwoEigenvalues(eigenvalueArray);
             //double[,] eigenvalueMatrix2 = { { Math.Sqrt(largestEigenvalues.Item1), 0 }, { 0, Math.Sqrt(largestEigenvalues.Item2) } };
-            double[] eigenvalueMatrixInput = { Math.Sqrt(largestTwoEigenvalues.Item1), 0, 0, Math.Sqrt(largestTwoEigenvalues.Item2) };
+            double[] eigenvalueMatrixInput = { Math.Sqrt(eigenvalueArray[largestTwoEigenvalues.Item1]), 0, 0, Math.Sqrt(eigenvalueArray[largestTwoEigenvalues.Item2]) };
             Matrix eigenvalueMatrix = GenerateFullSquaredCustomMatrix(eigenvalueMatrixInput);
             
             double[,] vectorArray = eigenInfo.EigenVectors.ToArray();
