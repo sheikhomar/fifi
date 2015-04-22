@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace fifi.Core
 {
-    class Matrix
+    public class Matrix
     {
         double[,] matrix;
 
