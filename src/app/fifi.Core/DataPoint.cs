@@ -14,6 +14,12 @@ namespace fifi.Core
             Dimensions = dimensions;
         }
 
+        public DataPoint(double[] coordinates)
+        {
+            Coordinates = coordinates;
+            Dimensions = Coordinates.Length; 
+        }
+
         public double[] Coordinates { get; private set; }
 
         public int Dimensions { get; private set; }
@@ -27,13 +33,6 @@ namespace fifi.Core
         /// <summary>
         /// Copies all elements from another DataPoint.
         /// </summary>
-        /// 
-
-        public void SetCoordinates(double[] value)
-        {
-            Coordinates = value;
-        }
-
         public void CopyFrom(DataPoint another)
         {
             if (another.Dimensions != this.Dimensions)
