@@ -15,6 +15,7 @@ namespace fifi.Core
 
         public MultiDimensionalScaling2(double[,] data)
         {
+            matrix = new Matrix(data.GetLength(0), data.GetLength(1));
             matrix.GetSetMatrix = data;
         }
 
