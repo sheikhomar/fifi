@@ -14,8 +14,10 @@ using fifi.Core.Algorithms;
 
 namespace fifi.WinUI
 {
-    class ScatterPlot
+    public class ScatterPlot
     {
+        private ScatterPlotUtility _utility = new ScatterPlotUtility();
+
         private Chart _chart1;
 
         public ScatterPlot(List<DrawableDataPoint> input, Chart winFormChart)
@@ -48,8 +50,8 @@ namespace fifi.WinUI
             return _chart1;
         }
 
+        #region Private methods called by constructor to construct and style chart
 
-        // Private methods called by constructor to construct and style chart
         private void AddSeries(string seriesName)
         {
             _chart1.Series.Add(seriesName);
@@ -97,17 +99,17 @@ namespace fifi.WinUI
             }
             #endregion
 
+            _chart1.ChartAreas[0].AxisX.Interval = 
+                _utility.ComputeAxisInterval(_chart1.ChartAreas[0].AxisX.Maximum - _chart1.ChartAreas[0].AxisX.Minimum);
+            _chart1.ChartAreas[0].AxisY.Interval = 
+                _utility.ComputeAxisInterval(_chart1.ChartAreas[0].AxisY.Maximum - _chart1.ChartAreas[0].AxisY.Minimum);
+
             #region Assign axis boundaries based on results
             _chart1.ChartAreas[0].AxisX.Maximum = Math.Ceiling(XMax);
             _chart1.ChartAreas[0].AxisX.Minimum = Math.Floor(XMin);
             _chart1.ChartAreas[0].AxisY.Maximum = Math.Ceiling(YMax);
             _chart1.ChartAreas[0].AxisY.Minimum = Math.Floor(YMin);
             #endregion
-
-            _chart1.ChartAreas[0].AxisX.Interval = 
-                ComputeAxisInterval(_chart1.ChartAreas[0].AxisX.Maximum - _chart1.ChartAreas[0].AxisX.Minimum);
-            _chart1.ChartAreas[0].AxisY.Interval = 
-                ComputeAxisInterval(_chart1.ChartAreas[0].AxisY.Maximum - _chart1.ChartAreas[0].AxisY.Minimum);
 
         }
 
@@ -117,26 +119,7 @@ namespace fifi.WinUI
             _chart1.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.LightGray;
         }
 
-        private double ComputeAxisInterval(double difference)
-        {
-            double intervalValue = 1;
-
-            while (difference < 1 || difference >= 10)
-            {
-                if (difference >= 10)
-                {
-                    difference /= 10;
-                    intervalValue *= 10;
-                }
-                else
-                {
-                    difference *= 10;
-                    intervalValue /= 10;
-                }
-            }
-
-            return intervalValue;
-        }
+        #endregion
 
     }
 }

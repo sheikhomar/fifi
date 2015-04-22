@@ -54,6 +54,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScatterPlot.cs" />
+    <Compile Include="ScatterPlotUtility.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -83,10 +84,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\test\fifi.Tests\fifi.Tests.csproj">
-      <Project>{5e99bf28-f90e-4bc9-b5b8-e6615fa0de54}</Project>
-      <Name>fifi.Tests</Name>
-    </ProjectReference>
     <ProjectReference Include="..\fifi.ConsoleUI\fifi.ConsoleUI.csproj">
       <Project>{1aa72c6e-29f5-4394-938f-771dedb3bd2a}</Project>
       <Name>fifi.ConsoleUI</Name>
