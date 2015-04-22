@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using CDataPoint = System.Windows.Forms.DataVisualization.Charting.DataPoint;
 using fifi.Core;
+using fifi.Core.Algorithms;
 
 namespace fifi.WinUI
 {
@@ -17,18 +18,19 @@ namespace fifi.WinUI
     {
         private Chart _chart1;
 
-        public ScatterPlot(List<MDSCluster> input, Chart winFormChart)
+        public ScatterPlot(List<DrawableDataPoint> input, Chart winFormChart)
         {
             _chart1 = winFormChart;
             _chart1.Series.Clear();
             ClusterNumber = 1;
 
-            foreach (var listitem in input)
+            foreach (var grouping in input.GroupBy(e => e.Group))
             {
-                AddSeries(string.Format("Cluster {0}", ClusterNumber));
+                AddSeries(grouping.Key);
 
-                foreach (var Datanode in listitem.MDSDataPoints)
+                foreach (var dataPoint in grouping)
                 {
+                    CDataPoint Datanode = new CDataPoint(dataPoint.X, dataPoint.Y);
                     AddDatapointToSeries(ClusterNumber, Datanode);
                 }
 
@@ -37,7 +39,6 @@ namespace fifi.WinUI
 
             SetAxisScales(ClusterNumber);
             StyleChart();
-
         }
 
         private int ClusterNumber;
