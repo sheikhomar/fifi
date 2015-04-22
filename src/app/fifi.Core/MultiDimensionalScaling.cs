@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.Numerics.LinearAlgebra.Double;
 using MathNet.Numerics.LinearAlgebra.Factorization;
-using System.Windows.Forms.DataVisualization.Charting;
-using CDataPoint = System.Windows.Forms.DataVisualization.Charting.DataPoint;
 
 namespace fifi.Core
 {
@@ -18,7 +16,6 @@ namespace fifi.Core
         double[,] jMatrix;
         double[,] scalarProductMatrix;
         double[,] result;
-        List<CDataPoint> L = new List<CDataPoint>();
         
         public MultiDimensionalScaling(double[,] data)
         {

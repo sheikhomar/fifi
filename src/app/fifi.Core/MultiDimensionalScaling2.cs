@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms.DataVisualization.Charting;
-using CDataPoint = System.Windows.Forms.DataVisualization.Charting.DataPoint;
 
 namespace fifi.Core
 {
     public class MultiDimensionalScaling2
     {
-        List<CDataPoint> L = new List<CDataPoint>();
         Matrix matrix;
 
         public MultiDimensionalScaling2(double[,] data)
