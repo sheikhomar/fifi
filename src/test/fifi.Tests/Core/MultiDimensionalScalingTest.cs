@@ -89,5 +89,18 @@ namespace fifi.Tests.Core
                 }
             }
         }
+
+        /*[Test]
+        public void ThrowExceptionItShould()
+        {
+            double[,] mdsInput = null;
+            MultiDimensionalScaling mdsResult = new MultiDimensionalScaling(mdsInput);
+            ExpectedExceptionAttribute fisk = new ExpectedExceptionAttribute();
+            if (fisk.ExpectedExceptionName == "ArgumentNullException")
+            {
+                //something something
+            }
+            Assert.Throws<ArgumentNullException>(() => { mdsResult.Calculate(); });
+        */
     }
 }

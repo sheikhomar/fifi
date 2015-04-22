@@ -16,16 +16,15 @@ namespace fifi.Core
         public MultiDimensionalScaling(double[,] data)
         {
             matrix = new Matrix(data.GetLength(0), data.GetLength(1));
-            if (data == null)
-                throw new ArgumentNullException("Can't run MDS on empty data!");
-            else if (data.GetLength(0) != data.GetLength(1))
-                throw new RankException("Can't run MDS. The inserted matrix have to be an n x n matrix.");
-            else
-                matrix.GetSetMatrix = data;
+            matrix.GetSetMatrix = data;
         }
 
         public double[,] Calculate()
         {
+            if (matrix == null)
+                throw new ArgumentNullException("Can't run MDS on empty data!");
+            else if (matrix.FirstDimension != matrix.SecondDimension)
+                throw new RankException("Can't run MDS. The inserted matrix have to be an n x n matrix.");
             matrix.SquaredValues();
             Matrix jMatrix = JMatrixGenerator();
             Matrix scalarProductMatrix = ScalarProductMatrixGenerator(jMatrix);
