@@ -15,5 +15,21 @@ namespace fifi.Core
         }
 
         public List<Cluster> Clusters { get; set; }
+
+        public Cluster FindCluster(IdentifiableDataPoint dataPoint)
+        {
+            foreach (var cluster in Clusters)
+            {
+                foreach (var clusterMember in cluster.Members)
+                {
+                    if (clusterMember.Member.Equals(dataPoint))
+                    {
+                        return cluster;
+                    }
+                }
+            }
+
+            return null;
+        }
     }
 }
