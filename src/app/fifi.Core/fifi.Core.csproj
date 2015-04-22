@@ -63,7 +63,6 @@
     <Compile Include="Jaccard.cs" />
     <Compile Include="Matrix.cs" />
     <Compile Include="MultiDimensionalScaling.cs" />
-    <Compile Include="MultiDimensionalScaling2.cs" />
     <Compile Include="Outlier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TempOutlierDetection.cs" />

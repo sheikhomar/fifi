@@ -36,7 +36,7 @@ namespace fifi.WinUI
             DistanceMatrix distanceMatrix = new DistanceMatrix(dataCollection, distanceMetric);
             double[,] matrix = distanceMatrix.GenerateMatrix();
 
-            var mds = new MultiDimensionalScaling2(matrix);
+            var mds = new MultiDimensionalScaling(matrix);
             double[,] resultMatrix = mds.Calculate(); //a shitty name
 
             List<DrawableDataPoint> drawableDataPoints = new List<DrawableDataPoint>();

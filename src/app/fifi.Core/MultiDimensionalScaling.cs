@@ -11,171 +11,119 @@ namespace fifi.Core
 {
     public class MultiDimensionalScaling
     {
-        double[,] distanceMatrix;
-        double[,] squaredMatrix;
-        double[,] jMatrix;
-        double[,] scalarProductMatrix;
-        double[,] result;
-        
+        Matrix matrix;
+
         public MultiDimensionalScaling(double[,] data)
         {
-            distanceMatrix = data;
+            matrix = new Matrix(data.GetLength(0), data.GetLength(1));
+            matrix.GetSetMatrix = data;
         }
-        
+
         public double[,] Calculate()
         {
-            squaredMatrix = squaredDistanceMatrix(distanceMatrix);
-            jMatrix = jMatrixCalculator(squaredMatrix);
-            scalarProductMatrix = scalarProductMatrixCalculator(squaredMatrix, jMatrix);
-            result = eigenCalculator(scalarProductMatrix);
-            return result;
+            matrix.SquaredValues();
+            Matrix jMatrix = JMatrixGenerator();
+            Matrix scalarProductMatrix = ScalarProductMatrixGenerator(jMatrix);
+            return TwoDCoordinateGenerator(scalarProductMatrix).GetSetMatrix;
         }
 
-        private double[,] squaredDistanceMatrix(double[,] distanceMatrix)
+        private Matrix JMatrixGenerator()
         {
-            for (int row = 0; row < distanceMatrix.GetLength(0); row++)
+            double dimensionScaling = Math.Pow(matrix.FirstDimension, -1);
+            Matrix jMatrix = new Matrix(matrix.FirstDimension, matrix.SecondDimension);
+            Matrix identityMatrix = matrix.IdentityMatrixGenerator(matrix.FirstDimension);
+            Matrix oneMatrix = matrix.OnesMatrixGenerator(matrix.FirstDimension);
+
+            for (int row = 0; row < matrix.FirstDimension; row++)
             {
-                for (int col = 0; col < distanceMatrix.GetLength(1); col++)
+                for (int col = 0; col < matrix.SecondDimension; col++)
                 {
-                    distanceMatrix[row, col] *= distanceMatrix[row, col];
+                    jMatrix[row, col] = identityMatrix[row, col] - (oneMatrix[row, col] * dimensionScaling);
                 }
             }
-            return distanceMatrix;
+            return jMatrix;
         }
 
-        private double[,] jMatrixCalculator(double[,] squaredMatrix)
+        private Matrix ScalarProductMatrixGenerator(Matrix jMatrix)
         {
-            double[,] identityMatrix = identityMatrixGenerator(squaredMatrix.GetLength(1));
-            double[,] tempJMatrix = new double[squaredMatrix.GetLength(0), squaredMatrix.GetLength(1)];
-            double[,] oneMatrix = new double[squaredMatrix.GetLength(0), squaredMatrix.GetLength(1)];
-            double dimensionScaling = Math.Pow(squaredMatrix.GetLength(0), -1);
+            Matrix resultMatrix = new Matrix(matrix.FirstDimension, matrix.SecondDimension);
 
-            for (int row = 0; row < squaredMatrix.GetLength(0); row++)
+            for (int row = 0; row < matrix.FirstDimension; row++)
             {
-                for (int col = 0; col < squaredMatrix.GetLength(1); col++)
+                for (int col = 0; col < matrix.SecondDimension; col++)
                 {
-                    oneMatrix[row, col] = 1;
+                    resultMatrix[row, col] = -(0.5) * jMatrix[row, col];
                 }
             }
-
-            for (int row = 0; row < squaredMatrix.GetLength(0); row++)
-            {
-                for (int col = 0; col < squaredMatrix.GetLength(1); col++)
-                {
-                    tempJMatrix[row, col] = identityMatrix[row, col] - (oneMatrix[row, col] * dimensionScaling);
-                }
-            }
-            return tempJMatrix;
+            resultMatrix = MatrixMultiplier(resultMatrix, matrix);
+            resultMatrix = MatrixMultiplier(resultMatrix, jMatrix);
+            return resultMatrix;
         }
 
-        private double[,] scalarProductMatrixCalculator(double[,] squaredMatrix, double[,] jMatrix)
+        private Matrix TwoDCoordinateGenerator(Matrix scalarProductMatrix)
         {
-            double [,] tempScalarProductMatrix = new double[squaredMatrix.GetLength(0), squaredMatrix.GetLength(1)];
-            double [,] tempArray = new double[squaredMatrix.GetLength(0), squaredMatrix.GetLength(1)];
+            Matrix<double> convertedMatrix = DenseMatrix.OfArray(scalarProductMatrix.GetSetMatrix);
+            var eigenInfo = convertedMatrix.Evd();
 
-            for (int row = 0; row < squaredMatrix.GetLength(0); row++)
+            /* Eigenvalue calculator */
+            double[] eigenvalueArray = eigenInfo.EigenValues.Select(x => x.Real).ToArray();
+            Tuple<int, int> largestTwoEigenvalues = FindLargestTwoEigenvalues(eigenvalueArray);
+            double[,] eigenvalueMatrixUnconverted = { { Math.Sqrt(eigenvalueArray[largestTwoEigenvalues.Item1]), 0 }, { 0, Math.Sqrt(eigenvalueArray[largestTwoEigenvalues.Item2]) } };
+            Matrix<double> eigenvalueMatrix = Matrix<double>.Build.DenseOfArray(eigenvalueMatrixUnconverted);
+
+            /* Eigenvector calculator */
+            Matrix<double> eigenvectorMatrix = Matrix<double>.Build.Dense(2, matrix.SecondDimension);
+            double[] firstEigenvector = eigenInfo.EigenVectors.Column(largestTwoEigenvalues.Item1).ToArray();
+            double[] secondEigenvector = eigenInfo.EigenVectors.Column(largestTwoEigenvalues.Item2).ToArray();
+            double[] eigenvector = firstEigenvector;
+            for (int row = 0; row < 2; row++)
             {
-                for (int col = 0; col < squaredMatrix.GetLength(1); col++)
+                for (int col = 0; col < eigenvectorMatrix.ColumnCount; col++)
                 {
-                    tempScalarProductMatrix[row, col] = -(0.5) * jMatrix[row, col];
+                    eigenvectorMatrix[row, col] = eigenvector[col];
                 }
+                eigenvector = secondEigenvector;
             }
-            tempArray = matrixMultiplier(tempScalarProductMatrix, squaredMatrix);
-            tempScalarProductMatrix = matrixMultiplier(tempArray, jMatrix);
-            return tempScalarProductMatrix;
+
+            Matrix resultMatrix = new Matrix(eigenvalueMatrix.RowCount, eigenvectorMatrix.ColumnCount);
+            resultMatrix.GetSetMatrix = eigenvalueMatrix.Multiply(eigenvectorMatrix).ToArray();
+            return resultMatrix;
         }
 
-        private Tuple<int, int> findLargestValueIndex(double[] valueArray)
+        private Tuple<int, int> FindLargestTwoEigenvalues(double[] valueArray)
         {
             int largestValue = 0, secondLargestValue = 1;
             int counter = 1;
             while (counter < valueArray.Length)
             {
-                if (valueArray[counter] >= valueArray[largestValue]) 
+                if (valueArray[counter] > valueArray[secondLargestValue])
+                    secondLargestValue = counter;
+                else if (valueArray[counter] >= valueArray[largestValue])
                 {
                     secondLargestValue = largestValue;
-                    largestValue = counter;   
+                    largestValue = counter;
                 }
-                else if (valueArray[counter] > valueArray[secondLargestValue])
-                    secondLargestValue = counter;
                 counter++;
             }
             Tuple<int, int> result = new Tuple<int, int>(largestValue, secondLargestValue);
             return result;
         }
 
-        private double[,] eigenCalculator(double[,] scalarProductMatrix)
+        private Matrix MatrixMultiplier(Matrix firstMatrix, Matrix secondMatrix)
         {
-            var convertedMatrix = DenseMatrix.OfArray(scalarProductMatrix);
-            var eigen = convertedMatrix.Evd();
+            Matrix resultMatrix = new Matrix(firstMatrix.FirstDimension, secondMatrix.SecondDimension);
 
-            double[] valueArray = eigen.EigenValues.Select(x => x.Real).ToArray();
-            Tuple<int, int> largestValueIndex = findLargestValueIndex(valueArray);
-            double[,] valueResult = { {Math.Sqrt(valueArray[largestValueIndex.Item1]), 0}, {0, Math.Sqrt(valueArray[largestValueIndex.Item2])} };
-
-            double[,] vectorArray = eigen.EigenVectors.ToArray();
-            double[,] vectorResult = new double[2, scalarProductMatrix.GetLength(0)];
-
-            for (int row = 0; row < vectorArray.GetLength(0); row++)
+            for (int row = 0; row < resultMatrix.FirstDimension; row++)
             {
-                for (int col = 0; col < vectorArray.GetLength(0); col++)
+                for (int col = 0; col < resultMatrix.SecondDimension; col++)
                 {
-                    if (largestValueIndex.Item1 == col)
-                        vectorResult[0, row] = vectorArray[row, col];
-                    else if (largestValueIndex.Item2 == col)
-                        vectorResult[1, row] = vectorArray[row, col];
-                }
-            }
-
-            var valueResultMatrix = DenseMatrix.OfArray(valueResult);
-            var vectorResultMatrix = DenseMatrix.OfArray(vectorResult);
-            var ResultMatrix = valueResultMatrix.Multiply(vectorResultMatrix);
-            double[,] returnResult = ResultMatrix.ToArray();
-            double[,] final = new double[returnResult.GetLength(0), returnResult.GetLength(1)];
-
-            for (int row = 0; row < returnResult.GetLength(0); row++)
-            {
-                for (int col = 0; col < returnResult.GetLength(1); col++)
-                {
-                    final[row, col] = returnResult[row, col];
-                }
-            }
-
-            return final;
-        }
-
-        private double[,] matrixMultiplier(double[,] matrixA, double[,] matrixB) 
-        {
-            double[,] resultMatrix = new double[matrixA.GetLength(0), matrixA.GetLength(1)];
-
-            for (int row = 0; row < matrixA.GetLength(0); row++)
-            {
-                for (int col = 0; col < matrixA.GetLength(1); col++)
-                {
-                    for (int inner = 0; inner < matrixA.GetLength(0); inner++)
+                    for (int inner = 0; inner < resultMatrix.FirstDimension; inner++)
                     {
-                        resultMatrix[row, col] += matrixA[row, inner] * matrixB[inner, col];
+                        resultMatrix[row, col] += firstMatrix[row, inner] * secondMatrix[inner, col];
                     }
                 }
             }
             return resultMatrix;
-        }
-
-        private double[,] identityMatrixGenerator(int size)
-        {
-            double[,] identityMatrix = new double[size, size];
-
-            for (int row = 0; row < squaredMatrix.GetLength(0); row++)
-            {
-                for (int col = 0; col < squaredMatrix.GetLength(1); col++)
-                {
-                    if (row == col)
-                        identityMatrix[row, col] = 1;
-                    else
-                        identityMatrix[row, col] = 0;
-                }
-            }
-            return identityMatrix;
         }
     }
 }
