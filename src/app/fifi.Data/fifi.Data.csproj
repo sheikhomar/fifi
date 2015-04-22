@@ -46,7 +46,10 @@
     <Compile Include="Configuration\Import\ConfigurationSectionHandler.cs" />
     <Compile Include="Configuration\Import\Field.cs" />
     <Compile Include="Configuration\Import\FieldCollection.cs" />
+    <Compile Include="Configuration\Import\FieldValue.cs" />
+    <Compile Include="Configuration\Import\FieldValueCollection.cs" />
     <Compile Include="CsvDataImporter.cs" />
+    <Compile Include="CsvDynamicDataImporter.cs" />
     <Compile Include="IDataExporter.cs" />
     <Compile Include="IProfileImporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

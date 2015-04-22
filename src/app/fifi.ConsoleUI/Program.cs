@@ -19,7 +19,8 @@ namespace fifi.ConsoleUI
         {
             var start = DateTime.Now;
 
-            RunProgram();
+            //RunProgram();
+            TestImport();
 
             // TODO: Fancy stuff
             var diff = DateTime.Now - start;
@@ -27,6 +28,14 @@ namespace fifi.ConsoleUI
             Console.WriteLine("Press any key to kill me :)");
             Console.ReadKey();
 
+        }
+
+        static void TestImport()
+        {
+            var reader = new StreamReader("UserData.csv");
+            CsvDynamicDataImporter importer = new CsvDynamicDataImporter(reader);
+            importer.Run();
+            reader.Close();
         }
 
         static void RunProgram()
