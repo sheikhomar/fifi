@@ -45,6 +45,9 @@ namespace fifi.Core
 
         public override bool Equals(object obj)
         {
+            if (ReferenceEquals(obj, this))
+                return true;
+
             DataPoint other = obj as DataPoint;
             if (other != null)
             {
