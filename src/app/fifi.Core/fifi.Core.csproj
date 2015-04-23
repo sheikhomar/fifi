@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Algorithms\Birch.cs" />
     <Compile Include="Algorithms\Centroid.cs" />
+    <Compile Include="Algorithms\DimensionsMismatchExceptions.cs" />
     <Compile Include="Algorithms\Cluster.cs" />
     <Compile Include="Algorithms\ClusterMember.cs" />
     <Compile Include="Algorithms\DistanceMatrix.cs" />

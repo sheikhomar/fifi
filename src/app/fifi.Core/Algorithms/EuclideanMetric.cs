@@ -19,10 +19,20 @@ namespace fifi.Core.Algorithms
         public double Calculate(DataPoint point1, DataPoint point2)
         {
             // TODO: Check for array bounds / list sizes 
+            if (point1.Dimensions != point2.Dimensions)
+            {
+                throw new DimensionsMismatchExceptions(point1, point2);
+            }
 
             double sum = 0D;
             for (int i = 0; i < point1.Dimensions; i++)
                 sum += Math.Pow(point1[i] - point2[i], 2);
+
+            if (double.IsNaN(sum) || double.IsInfinity(sum))
+            {
+                throw new OverflowException("Overflow in the calculated result. Please ensure that the sum of all coordinates for each point does not exceed the square root value of a doubles' maxValue");
+            }
+
             return Math.Sqrt(sum);
         }
     }
