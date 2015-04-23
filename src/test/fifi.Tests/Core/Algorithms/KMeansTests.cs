@@ -107,10 +107,10 @@ namespace fifi.Tests.Core.Algorithms
             double[] _centroid2 = {1, 1, 0.16, 1, 1};
 
             Assert.AreEqual(_centroid1[0], result.Clusters[2].Centroid.Coordinates[0]);
-//            Assert.AreEqual(_centroid1[1], result.Clusters[2].Centroid.Coordinates[1]);
+            Assert.AreEqual(_centroid1[1], result.Clusters[2].Centroid.Coordinates[1]);
             Assert.AreEqual(_centroid1[2], result.Clusters[2].Centroid.Coordinates[2]);
-//          Assert.AreEqual(_centroid1[3], result.Clusters[2].Centroid.Coordinates[3]);
-//            Assert.AreEqual(_centroid1[4], result.Clusters[2].Centroid.Coordinates[4]);
+            Assert.AreEqual(_centroid1[3], result.Clusters[2].Centroid.Coordinates[3]);
+            Assert.AreEqual(_centroid1[4], result.Clusters[2].Centroid.Coordinates[4]);
 
         }
 
@@ -121,14 +121,17 @@ namespace fifi.Tests.Core.Algorithms
             var p1 = new IdentifiableDataPoint(0, 1);
             var p2 = new IdentifiableDataPoint(1, 1);
             var p3 = new IdentifiableDataPoint(2, 1);
+            var p4 = new IdentifiableDataPoint(3, 1);
 
             p1.AddAttribute("Gender", 1);
             p2.AddAttribute("Gender", 0);
             p3.AddAttribute("Gender", 1);
+            p4.AddAttribute("Gender", 1);
 
             dataSet.AddItem(p1);
             dataSet.AddItem(p2);
             dataSet.AddItem(p3);
+            dataSet.AddItem(p4);
 
             var kmeans2 = new KMeans(dataSet, 3, new EuclideanMetric());
 
@@ -146,24 +149,31 @@ namespace fifi.Tests.Core.Algorithms
             var p1 = new IdentifiableDataPoint(0, 2);
             var p2 = new IdentifiableDataPoint(1, 2);
             var p3 = new IdentifiableDataPoint(2, 2);
+            var p4 = new IdentifiableDataPoint(3, 2);
 
             p1.AddAttribute("Gender", 1);
             p1.AddAttribute("Income", 1);
+
             p2.AddAttribute("Gender", 0);
             p2.AddAttribute("Income", 0.1429);
+            
             p3.AddAttribute("Gender", 1);
             p3.AddAttribute("Income", 0.2858);
+
+            p4.AddAttribute("Gender", 1);
+            p4.AddAttribute("Income", 1);
 
             dataSet.AddItem(p1);
             dataSet.AddItem(p2);
             dataSet.AddItem(p3);
+            dataSet.AddItem(p4);
 
             var kmeans2 = new KMeans(dataSet, 3, new EuclideanMetric());
 
             var result2 = kmeans2.Generate();
 
             Assert.AreEqual(1, result2.Clusters[0].Members.Count);
-            Assert.AreEqual(1, result2.Clusters[1].Members.Count);
+            Assert.AreEqual(2, result2.Clusters[1].Members.Count);
             Assert.AreEqual(1, result2.Clusters[2].Members.Count);
         }
 
@@ -174,17 +184,24 @@ namespace fifi.Tests.Core.Algorithms
             var p1 = new IdentifiableDataPoint(0, 2);
             var p2 = new IdentifiableDataPoint(1, 2);
             var p3 = new IdentifiableDataPoint(2, 2);
+            var p4 = new IdentifiableDataPoint(3, 2);
 
             p1.AddAttribute("Gender", 1);
             p1.AddAttribute("Income", 1);
+
             p2.AddAttribute("Gender", 0);
             p2.AddAttribute("Income", 0.1429);
+            
             p3.AddAttribute("Gender", 1);
             p3.AddAttribute("Income", 0.2858);
-
+            
+            p4.AddAttribute("Gender", 1);
+            p4.AddAttribute("Income", 1);
+            
             dataSet.AddItem(p1);
             dataSet.AddItem(p2);
             dataSet.AddItem(p3);
+            dataSet.AddItem(p4);
 
             var kmeans2 = new KMeans(dataSet, 3, new EuclideanMetric());
 
@@ -207,20 +224,28 @@ namespace fifi.Tests.Core.Algorithms
             var p1 = new IdentifiableDataPoint(0, 3);
             var p2 = new IdentifiableDataPoint(1, 3);
             var p3 = new IdentifiableDataPoint(2, 3);
+            var p4 = new IdentifiableDataPoint(3, 3);
 
             p1.AddAttribute("Gender", 1);
             p1.AddAttribute("Income", 1);
             p1.AddAttribute("Age", 0.16);
+            
             p2.AddAttribute("Gender", 0);
             p2.AddAttribute("Income", 0.1429);
             p2.AddAttribute("Age", 0.16);
+
             p3.AddAttribute("Gender", 1);
             p3.AddAttribute("Income", 0.2858);
             p3.AddAttribute("Age", 0.16);
-
+            
+            p4.AddAttribute("Gender", 1);
+            p4.AddAttribute("Income", 1);
+            p4.AddAttribute("Age", 0.16);
+            
             dataSet.AddItem(p1);
             dataSet.AddItem(p2);
             dataSet.AddItem(p3);
+            dataSet.AddItem(p4);
 
             var kmeans2 = new KMeans(dataSet, 3, new EuclideanMetric());
 
@@ -230,6 +255,97 @@ namespace fifi.Tests.Core.Algorithms
             Assert.AreEqual(1, result2.Clusters[1].Members.Count);
             Assert.AreEqual(1, result2.Clusters[2].Members.Count);
 
+        }
+
+        [Test]
+        public void KMeansClusteringWorksOnFourDimensions()
+        {
+            var dataSet = new IdentifiableDataPointCollection();
+            var p1 = new IdentifiableDataPoint(0, 4);
+            var p2 = new IdentifiableDataPoint(1, 4);
+            var p3 = new IdentifiableDataPoint(2, 4);
+            var p4 = new IdentifiableDataPoint(3, 4);
+
+            p1.AddAttribute("Gender", 1);
+            p1.AddAttribute("Income", 1);
+            p1.AddAttribute("Age", 0.16);
+            p1.AddAttribute("Purchase", 0.5);
+
+            p2.AddAttribute("Gender", 0);
+            p2.AddAttribute("Income", 0.1429);
+            p2.AddAttribute("Age", 0.16);
+            p2.AddAttribute("Purchase", 1);
+
+            p3.AddAttribute("Gender", 1);
+            p3.AddAttribute("Income", 0.2858);
+            p3.AddAttribute("Age", 0.16);
+            p3.AddAttribute("Purchase", 1);
+
+            p4.AddAttribute("Gender", 1);
+            p4.AddAttribute("Income", 1);
+            p4.AddAttribute("Age", 0.16);
+            p4.AddAttribute("Purchase", 1);
+
+
+            dataSet.AddItem(p1);
+            dataSet.AddItem(p2);
+            dataSet.AddItem(p3);
+            dataSet.AddItem(p4);
+
+            var kmeans2 = new KMeans(dataSet, 3, new EuclideanMetric());
+
+            var result2 = kmeans2.Generate();
+
+            Assert.AreEqual(1, result2.Clusters[0].Members.Count);
+            Assert.AreEqual(1, result2.Clusters[1].Members.Count);
+            Assert.AreEqual(1, result2.Clusters[2].Members.Count);
+        }
+
+        [Test]
+        public void KMeansClusteringWorksOnFiveDimensions()
+        {
+            var dataSet = new IdentifiableDataPointCollection();
+            var p1 = new IdentifiableDataPoint(0, 5);
+            var p2 = new IdentifiableDataPoint(1, 5);
+            var p3 = new IdentifiableDataPoint(2, 5);
+            var p4 = new IdentifiableDataPoint(3, 5);
+
+            p1.AddAttribute("Gender", 1);
+            p1.AddAttribute("Income", 1);
+            p1.AddAttribute("Age", 0.16);
+            p1.AddAttribute("Purchase", 0.5);
+            p1.AddAttribute("Control", 1);
+
+            p2.AddAttribute("Gender", 0);
+            p2.AddAttribute("Income", 0.1429);
+            p2.AddAttribute("Age", 0.16);
+            p2.AddAttribute("Purchase", 1);
+            p1.AddAttribute("Control", 0);
+
+            p3.AddAttribute("Gender", 1);
+            p3.AddAttribute("Income", 0.2858);
+            p3.AddAttribute("Age", 0.16);
+            p3.AddAttribute("Purchase", 1);
+            p1.AddAttribute("Control", 1);
+
+            p4.AddAttribute("Gender", 1);
+            p4.AddAttribute("Income", 1);
+            p4.AddAttribute("Age", 0.16);
+            p4.AddAttribute("Purchase", 1);
+            p1.AddAttribute("Control", 0.5);
+
+            dataSet.AddItem(p1);
+            dataSet.AddItem(p2);
+            dataSet.AddItem(p3);
+            dataSet.AddItem(p4);
+
+            var kmeans2 = new KMeans(dataSet, 3, new EuclideanMetric());
+
+            var result2 = kmeans2.Generate();
+
+            Assert.AreEqual(1, result2.Clusters[0].Members.Count);
+            Assert.AreEqual(1, result2.Clusters[1].Members.Count);
+            Assert.AreEqual(1, result2.Clusters[2].Members.Count);
         }
     }
 }
