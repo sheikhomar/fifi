@@ -47,6 +47,7 @@
     <Compile Include="Core\Algorithms\DistanceMatrixTest.cs" />
     <Compile Include="Core\Algorithms\EuclideanMetricTests.cs" />
     <Compile Include="Core\Algorithms\KMeansTests.cs" />
+    <Compile Include="Core\DataPointTests.cs" />
     <Compile Include="Core\MultiDimensionalScalingTest.cs" />
     <Compile Include="Data\CsvDataImporterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
