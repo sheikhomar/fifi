@@ -100,9 +100,9 @@ namespace fifi.WinUI
             #endregion
 
             _chart1.ChartAreas[0].AxisX.Interval = 
-                _utility.ComputeAxisInterval(_chart1.ChartAreas[0].AxisX.Maximum - _chart1.ChartAreas[0].AxisX.Minimum);
+                _utility.ComputeAxisInterval(_chart1.ChartAreas[0].AxisX.Maximum, _chart1.ChartAreas[0].AxisX.Minimum);
             _chart1.ChartAreas[0].AxisY.Interval = 
-                _utility.ComputeAxisInterval(_chart1.ChartAreas[0].AxisY.Maximum - _chart1.ChartAreas[0].AxisY.Minimum);
+                _utility.ComputeAxisInterval(_chart1.ChartAreas[0].AxisY.Maximum, _chart1.ChartAreas[0].AxisY.Minimum);
 
             #region Assign axis boundaries based on results
             _chart1.ChartAreas[0].AxisX.Maximum = Math.Ceiling(XMax);

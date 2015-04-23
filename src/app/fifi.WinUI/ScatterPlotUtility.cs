@@ -8,8 +8,9 @@ namespace fifi.WinUI
 {
     public class ScatterPlotUtility
     {
-        public double ComputeAxisInterval(double difference)
+        public double ComputeAxisInterval(double AxisMax, double AxisMin)
         {
+            double difference = AxisMax - AxisMin;
             double intervalValue = 1;
 
             while (difference < 1 || difference >= 10)
