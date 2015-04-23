@@ -58,6 +58,7 @@
     <Compile Include="DataItemAttribute.cs" />
     <Compile Include="DataPoint.cs" />
     <Compile Include="DrawableDataPoint.cs" />
+    <Compile Include="GenerateIdentifiableDataPointCollection.cs" />
     <Compile Include="IdentifiableDataPoint.cs" />
     <Compile Include="IdentifiableDataPointCollection.cs" />
     <Compile Include="Jaccard.cs" />

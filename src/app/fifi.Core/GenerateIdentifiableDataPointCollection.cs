@@ -38,50 +38,39 @@ namespace fifi.Tests
 
             for (int i = 0; i < collectionSize; i++)
             {
-                if ((i%10) < 9)
-                {
-                    dataCollection[i].AddAttribute("Gender", 1d);
-                }
-                else
-                {
-                    dataCollection[i].AddAttribute("Gender", 0d);                    
-                }
-
+                dataCollection[i].AddAttribute("Gender", 1d);
                 if ((i % 10) < 4)
                 {
                     dataCollection[i].AddAttribute("Income", 1d);
                 }
-                else if ((i%10) < 9)
+                else
                 {
                     dataCollection[i].AddAttribute("Income", 0.2858d);
                 }
-                else
-                {
-                    dataCollection[i].AddAttribute("Income", 0.1429d);
-                }
-
                 dataCollection[i].AddAttribute("Age", 0.16d);
-                
                 if ((i % 10) < 2 || (i % 10) > 3)
                 {
                     dataCollection[i].AddAttribute("Purchase", 1d);
                 }
-                else 
+                else
                 {
                     dataCollection[i].AddAttribute("Purchase", 0.5d);
                 }
-
                 if ((i % 10) < 2)
                 {
                     dataCollection[i].AddAttribute("Control", 0.5d);
                 }
-                else if ((i%10) == 9)
-                {
-                    dataCollection[i].AddAttribute("Control", 0d);
-                }
                 else
                 {
                     dataCollection[i].AddAttribute("Control", 1d);
+                }
+                if ((i % 10) == 9)
+                {
+                    dataCollection[i].AddAttribute("Gender", 0d);
+                    dataCollection[i].AddAttribute("Income", 0.1429d);
+                    dataCollection[i].AddAttribute("Age", 0.16d);
+                    dataCollection[i].AddAttribute("Purchase", 1d);
+                    dataCollection[i].AddAttribute("Control", 0d);
                 }
             }
             return dataCollection;
