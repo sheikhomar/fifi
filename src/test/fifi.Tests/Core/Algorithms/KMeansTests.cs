@@ -139,7 +139,6 @@ namespace fifi.Tests.Core.Algorithms
 
             Assert.AreEqual(2, result2.Clusters[0].Members.Count);
             Assert.AreEqual(1, result2.Clusters[1].Members.Count);
-            Assert.AreEqual(0, result2.Clusters[2].Members.Count);
         }
 
         [Test]
