@@ -13,7 +13,7 @@ namespace fifi.Tests.Core.Algorithms
     {
 
         [Test]
-        public void sometest()
+        public void Should()
         {
 
         }

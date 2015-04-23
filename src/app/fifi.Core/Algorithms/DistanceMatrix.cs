@@ -19,12 +19,10 @@ namespace fifi.Core.Algorithms
             matrix = GenerateMatrix();
         }
 
-
         public Matrix GenerateMatrix()
         {
             return calculatedMatrix(dataCollection);
         }
-
 
         private Matrix calculatedMatrix(IdentifiableDataPointCollection dataCollection)
         {
