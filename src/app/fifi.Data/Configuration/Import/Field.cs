@@ -7,6 +7,8 @@ namespace fifi.Data.Configuration.Import
         const string AttributeIndex = "index";
         const string AttributeType = "type";
         const string AttributeCategory = "category";
+        const string AttributeMinValue = "minValue";
+        const string AttributeMaxValue = "maxValue";
 
         [ConfigurationProperty(AttributeIndex, IsRequired = true)]
         public int Index
@@ -16,9 +18,9 @@ namespace fifi.Data.Configuration.Import
         }
 
         [ConfigurationProperty(AttributeType, IsRequired = true)]
-        public string Type
+        public FieldType Type
         {
-            get { return (string)this[AttributeType]; }
+            get { return (FieldType)this[AttributeType]; }
             set { this[AttributeType] = value; }
         }
 
@@ -35,6 +37,20 @@ namespace fifi.Data.Configuration.Import
         public FieldValueCollection Values
         {
             get { return (FieldValueCollection)this["values"]; }
+        }
+
+        [ConfigurationProperty(AttributeMinValue, IsRequired = false)]
+        public double MinValue
+        {
+            get { return (double)this[AttributeMinValue]; }
+            set { this[AttributeMinValue] = value; }
+        }
+
+        [ConfigurationProperty(AttributeMaxValue, IsRequired = false)]
+        public double MaxValue
+        {
+            get { return (double)this[AttributeMaxValue]; }
+            set { this[AttributeMaxValue] = value; }
         }
     }
 }
