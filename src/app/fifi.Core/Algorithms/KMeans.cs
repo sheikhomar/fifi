@@ -28,7 +28,7 @@ namespace fifi.Core.Algorithms
                 .Take(k)
                 .Select(dataPoint => dataPoint.Copy())
                 .ToList();
-            if (k > 1)
+            if (k < 1)
             {
                 throw new ArgumentException("Clusters cannot be generated for less than one centroid");
             }

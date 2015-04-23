@@ -30,7 +30,7 @@ namespace fifi.Tests.Core.Algorithms
         public void KMeansDataPointCheck()
         {
             Assert.AreEqual(dataCollection[0].Attributes[0].Value, dataCollection[1].Attributes[0].Value);
-            Assert.AreNotEqual(dataCollection[0].Attributes[0].Value, dataCollection[9].Attributes[0].Value);
+            Assert.AreEqual(dataCollection[0].Attributes[0].Value, dataCollection[9].Attributes[0].Value);
 
             Assert.AreEqual(dataCollection[0].Attributes[1].Value, dataCollection[1].Attributes[1].Value);
             Assert.AreNotEqual(dataCollection[0].Attributes[1].Value, dataCollection[9].Attributes[1].Value);
