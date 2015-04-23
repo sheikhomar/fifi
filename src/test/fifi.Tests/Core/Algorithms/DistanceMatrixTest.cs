@@ -11,10 +11,13 @@ namespace fifi.Tests.Core.Algorithms
     [TestFixture]
     class DistanceMatrixTest
     {
+        private int collectionSize;
 
         [Test]
-        public void Should()
+        public void ShouldReturnCorrectDistanceMatrix()
         {
+            collectionSize = 10;
+
 
         }
     }
