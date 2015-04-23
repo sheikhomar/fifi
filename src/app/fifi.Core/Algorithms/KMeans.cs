@@ -95,7 +95,6 @@ namespace fifi.Core.Algorithms
 
             return hasCentroidMoved;
         }
-
         private DataPoint CalculateGravityCenter(Cluster cluster)
         {
             Centroid centroid = cluster.Centroid;

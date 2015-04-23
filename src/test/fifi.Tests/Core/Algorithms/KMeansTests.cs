@@ -22,6 +22,7 @@ namespace fifi.Tests.Core.Algorithms
         private IdentifiableDataPoint dataPoint;
         private DataPointAttribute dataPointAttribute;
 
+
         [SetUp]
         public void SetUp()
         {
@@ -30,7 +31,7 @@ namespace fifi.Tests.Core.Algorithms
         }
 
         [Test]
-        public void CalculateKMeansClustersSimple()
+        public void KMeansDataPointCheck()
         {
             id = 1;
             int dimentions = 5;
@@ -80,7 +81,21 @@ namespace fifi.Tests.Core.Algorithms
             dataCollection[9].AddAttribute("Control", 0d);
 
             Assert.AreEqual(dataCollection[0].Attributes[0].Value, dataCollection[1].Attributes[0].Value);
+            Assert.AreNotEqual(dataCollection[0].Attributes[0].Value, dataCollection[9].Attributes[0].Value);
+            
+            Assert.AreEqual(dataCollection[0].Attributes[1].Value, dataCollection[1].Attributes[1].Value);
+            Assert.AreNotEqual(dataCollection[0].Attributes[1].Value, dataCollection[9].Attributes[1].Value);
+            Assert.AreNotEqual(dataCollection[0].Attributes[1].Value, dataCollection[4].Attributes[1].Value);
+            
+            Assert.AreEqual(dataCollection[0].Attributes[2].Value, dataCollection[1].Attributes[2].Value);
+            Assert.AreEqual(dataCollection[0].Attributes[2].Value, dataCollection[9].Attributes[2].Value);
+            
+            Assert.AreEqual(dataCollection[0].Attributes[3].Value, dataCollection[1].Attributes[3].Value);
+            Assert.AreNotEqual(dataCollection[0].Attributes[3].Value, dataCollection[3].Attributes[3].Value);
+            Assert.AreEqual(dataCollection[0].Attributes[3].Value, dataCollection[9].Attributes[3].Value);
 
+            Assert.AreNotEqual(dataCollection[0].Attributes[4].Value, dataCollection[2].Attributes[4].Value);
+            Assert.AreNotEqual(dataCollection[0].Attributes[4].Value, dataCollection[9].Attributes[4].Value);
         }
 
         [Test]
