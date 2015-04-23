@@ -61,6 +61,7 @@ namespace fifi.WinUI
 
         private void AddDatapointToSeries(int seriesNumber, CDataPoint node)
         {
+            node.ToolTip = string.Format("Cluster {0}\n" + "X: {1}\n" + "Y: {2}", seriesNumber, node.XValue, node.YValues[0]);
             _chart1.Series[seriesNumber - 1].Points.Add(node);
         }
 
