@@ -139,7 +139,7 @@ namespace fifi.ConsoleUI
 
         static void PrintKMeans(StreamWriter writer, ClusteringResult result, bool printMembers)
         {
-            writer.WriteLine("KMeans clusters with seed {0}", Centroid.RandomSeed);
+            writer.WriteLine("KMeans clusters with seed {0}", Cluster.RandomSeed);
 
             for (int i = 0; i < result.Clusters.Count; i++)
             {

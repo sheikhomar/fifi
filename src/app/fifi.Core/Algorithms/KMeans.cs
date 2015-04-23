@@ -28,7 +28,7 @@ namespace fifi.Core.Algorithms
         {
             ClusteringResult result = new ClusteringResult();
 
-            IList<Centroid> centroids = GenerateRandomCentroids();
+            IList<DataPoint> centroids = GenerateRandomCentroids();
             foreach (var centroid in centroids)
             {
                 result.Clusters.Add(new Cluster(centroid));
@@ -48,7 +48,6 @@ namespace fifi.Core.Algorithms
 
                 foreach (var dataItem in dataCollection)
                 {
-                    Centroid closestCentroid = null;
                     Cluster closestCluster = null;
                     double minDistance = double.MaxValue;
                     foreach (var cluster in result.Clusters)
@@ -58,7 +57,6 @@ namespace fifi.Core.Algorithms
                         if (distance < minDistance)
                         {
                             minDistance = distance;
-                            closestCentroid = centroid;
                             closestCluster = cluster;
                         }
                     }
@@ -84,7 +82,7 @@ namespace fifi.Core.Algorithms
 
         private bool MoveCentroidIfNeeded(Cluster cluster)
         {
-            Centroid centroid = cluster.Centroid;
+            DataPoint centroid = cluster.Centroid;
 
             DataPoint gravityCenter = CalculateGravityCenter(cluster);
 
@@ -97,7 +95,7 @@ namespace fifi.Core.Algorithms
         }
         private DataPoint CalculateGravityCenter(Cluster cluster)
         {
-            Centroid centroid = cluster.Centroid;
+            DataPoint centroid = cluster.Centroid;
             int dimension = centroid.Dimensions;
 
             DataPoint gravityCenter = new DataPoint(dimension);
@@ -113,16 +111,13 @@ namespace fifi.Core.Algorithms
 
             return gravityCenter;
         }
-        private IList<Centroid> GenerateRandomCentroids()
+        private IList<DataPoint> GenerateRandomCentroids()
         {
-            IList<Centroid> centroids = new List<Centroid>();
-
-            int dimensions = dataCollection[0].Dimensions; //If the items does not have the same ammout of values, this might break :=)
+            var centroids = new List<DataPoint>();
+            int dimensions = dataCollection.ItemDimensions; //If the items does not have the same ammout of values, this might break :=)
 
             for (int i = 0; i < k; i++)
-            {
-                centroids.Add(Centroid.GenerateRandom(dimensions));
-            }
+                centroids.Add(Cluster.GenerateRandomCentroid(dimensions));
 
             return centroids;
         }

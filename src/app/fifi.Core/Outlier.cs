@@ -9,10 +9,10 @@ namespace fifi.Core
 {
     public class Outlier
     {
-        public Centroid belongingCluster;
+        public DataPoint belongingCluster;
         public ClusterMember identifiableDataPoint;
 
-        public Outlier(ClusterMember inputDataPoint, Centroid inputBelongingCluster)
+        public Outlier(ClusterMember inputDataPoint, DataPoint inputBelongingCluster)
         {
             this.identifiableDataPoint = inputDataPoint;
             this.belongingCluster = inputBelongingCluster;
