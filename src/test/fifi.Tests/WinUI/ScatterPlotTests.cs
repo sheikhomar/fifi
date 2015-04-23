@@ -15,18 +15,10 @@ namespace fifi.Tests.WinUI
     class ScatterPlotTests
     {
         
-        #region Old broken test
-        /*
-        [TestCase(100, 0, 2, 0, 100)]
-        [TestCase(99, 0, 2, 0, 10)]
-        [TestCase(55, 0, 2, 0, 10)]
-        [TestCase(10.1, 0, 10.1, 0, 10)]
-        [TestCase(10, 0, 2, 0, 1)]
-        [TestCase(9.9, 0, 2, 0, 10)]
-        //[TestCase(5, 0, 2, 0, 1)]
-        //[TestCase(1, 0, 2, 0, 0.1)]
-        public void ScatterPlot_AxisIntervalTester_IntervalSetAsClosestTenthOfDifference(double XMax, double XMin, double YMax, 
-            double YMin, double ExpectedXInterval)
+        [TestCase(10.1, 0, 8.1, 0, 11, 0, 9, 0)]
+        [TestCase(5.85, 0.65, 16.2, -0.62, 6, 0, 17, -1)]
+        public void ScatterPlot_AxisMinMaxTester_MinMaxProperlyRoundedTest(double XMax, double XMin, double YMax, 
+            double YMin, double ExpectedXMax, double ExpectedXMin, double ExpectedYMax, double ExpectedYMin)
         {
             // Arrange
             List<DrawableDataPoint> list = new List<DrawableDataPoint>();
@@ -65,12 +57,11 @@ namespace fifi.Tests.WinUI
             ScatterPlot Plot = new ScatterPlot(list, chart1);
 
             // Assert
-            Assert.AreEqual(ExpectedXInterval, chart1.ChartAreas[0].AxisX.Interval);
+            Assert.AreEqual(ExpectedXMax, chart1.ChartAreas[0].AxisX.Maximum);
+            Assert.AreEqual(ExpectedXMin, chart1.ChartAreas[0].AxisX.Minimum);
+            Assert.AreEqual(ExpectedYMax, chart1.ChartAreas[0].AxisY.Maximum);
+            Assert.AreEqual(ExpectedYMin, chart1.ChartAreas[0].AxisY.Minimum);
         
         }
-        */
-        #endregion
-
-
     }
 }
