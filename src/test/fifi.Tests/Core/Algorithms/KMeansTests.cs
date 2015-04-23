@@ -14,14 +14,8 @@ namespace fifi.Tests.Core.Algorithms
     public class KMeansTests
     {
 
-        private static int k = 3;
-        private int id;
         private IdentifiableDataPointCollection dataCollection;
-        private int maxIterations = 100;
         private IDistanceMetric distanceMetric;
-        private IdentifiableDataPoint dataPoint;
-        private DataPointAttribute dataPointAttribute;
-
 
         [SetUp]
         public void SetUp()
@@ -465,5 +459,34 @@ namespace fifi.Tests.Core.Algorithms
             Assert.AreEqual(_centroid3, result2.Clusters[2].Centroid.Coordinates);
 
         }
+
+        [Test]
+        public void CalculateWithZeroClusters()
+        {
+            var dataSet = new IdentifiableDataPointCollection();
+            var p1 = new IdentifiableDataPoint(0, 1);
+            var p2 = new IdentifiableDataPoint(1, 1);
+            var p3 = new IdentifiableDataPoint(2, 1);
+            var p4 = new IdentifiableDataPoint(3, 1);
+
+            p1.AddAttribute("Gender", 1);
+
+            p2.AddAttribute("Gender", 0);
+            
+            p3.AddAttribute("Gender", 1);
+
+            p4.AddAttribute("Gender", 1);
+
+            dataSet.AddItem(p1);
+            dataSet.AddItem(p2);
+            dataSet.AddItem(p3);
+            dataSet.AddItem(p4);
+
+            var kmeans2 = new KMeans(dataSet, 0, new EuclideanMetric());
+
+            Assert.Throws<ArgumentException>(() => kmeans2.Generate() );
+        }
+
+
     }
 }
