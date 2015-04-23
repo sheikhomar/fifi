@@ -66,7 +66,7 @@ namespace fifi.Tests.Core.Algorithms
             dataSet.AddItem(p3);
             dataSet.AddItem(p4);
 
-            var kmeans2 = new KMeans(dataSet, 3, new EuclideanMetric());
+            var kmeans2 = new KMeans(dataSet, new []{0, 1}, new EuclideanMetric());
 
             var result2 = kmeans2.Generate();
 
@@ -97,18 +97,15 @@ namespace fifi.Tests.Core.Algorithms
             dataSet.AddItem(p3);
             dataSet.AddItem(p4);
 
-            var kmeans2 = new KMeans(dataSet, 3, new EuclideanMetric());
+            var kmeans2 = new KMeans(dataSet, new [] {0, 1} , new EuclideanMetric());
 
             var result2 = kmeans2.Generate();
             double[] _centroid1 = { 1 };
-            double[] _centroid2 = { 1 };
-            double[] _centroid3 = { 0 };
-
+            double[] _centroid2 = { 0 };
 
             Assert.AreEqual(_centroid1, result2.Clusters[0].Centroid.Coordinates);
             Assert.AreEqual(_centroid2, result2.Clusters[1].Centroid.Coordinates);
-            Assert.AreEqual(_centroid3, result2.Clusters[2].Centroid.Coordinates);
-
+           
         }
 
 
@@ -138,12 +135,12 @@ namespace fifi.Tests.Core.Algorithms
             dataSet.AddItem(p3);
             dataSet.AddItem(p4);
 
-            var kmeans2 = new KMeans(dataSet, 3, new EuclideanMetric());
+            var kmeans2 = new KMeans(dataSet, new []{0, 1, 2}, new EuclideanMetric());
 
             var result2 = kmeans2.Generate();
 
-            Assert.AreEqual(1, result2.Clusters[0].Members.Count);
-            Assert.AreEqual(2, result2.Clusters[1].Members.Count);
+            Assert.AreEqual(2, result2.Clusters[0].Members.Count);
+            Assert.AreEqual(1, result2.Clusters[1].Members.Count);
             Assert.AreEqual(1, result2.Clusters[2].Members.Count);
         }
 
@@ -173,17 +170,17 @@ namespace fifi.Tests.Core.Algorithms
             dataSet.AddItem(p3);
             dataSet.AddItem(p4);
 
-            var kmeans2 = new KMeans(dataSet, 3, new EuclideanMetric());
+            var kmeans2 = new KMeans(dataSet, new []{0, 1, 2}, new EuclideanMetric());
 
             var result2 = kmeans2.Generate();
-            double[] _centroid1 = new double[] { 1, 0.2858 };
-            double[] _centroid2 = new double[] { 1, 1 };
-            double[] _centroid3 = new double[] { 0, 0.1429 };
+            double[] _centroid1 = { 1, 0.2858 };
+            double[] _centroid2 = { 1, 1 };
+            double[] _centroid3 = { 0, 0.1429 };
 
 
-            Assert.AreEqual(_centroid1, result2.Clusters[0].Centroid.Coordinates);
-            Assert.AreEqual(_centroid2, result2.Clusters[1].Centroid.Coordinates);
-            Assert.AreEqual(_centroid3, result2.Clusters[2].Centroid.Coordinates);
+            Assert.AreEqual(_centroid2, result2.Clusters[0].Centroid.Coordinates);
+            Assert.AreEqual(_centroid3, result2.Clusters[1].Centroid.Coordinates);
+            Assert.AreEqual(_centroid1, result2.Clusters[2].Centroid.Coordinates);
 
         }
 
@@ -217,12 +214,12 @@ namespace fifi.Tests.Core.Algorithms
             dataSet.AddItem(p3);
             dataSet.AddItem(p4);
 
-            var kmeans2 = new KMeans(dataSet, 3, new EuclideanMetric());
+            var kmeans2 = new KMeans(dataSet, new []{0, 1, 2}, new EuclideanMetric());
 
             var result2 = kmeans2.Generate();
 
-            Assert.AreEqual(1, result2.Clusters[0].Members.Count);
-            Assert.AreEqual(2, result2.Clusters[1].Members.Count);
+            Assert.AreEqual(2, result2.Clusters[0].Members.Count);
+            Assert.AreEqual(1, result2.Clusters[1].Members.Count);
             Assert.AreEqual(1, result2.Clusters[2].Members.Count);
 
         }
@@ -257,12 +254,12 @@ namespace fifi.Tests.Core.Algorithms
             dataSet.AddItem(p3);
             dataSet.AddItem(p4);
 
-            var kmeans2 = new KMeans(dataSet, 3, new EuclideanMetric());
+            var kmeans2 = new KMeans(dataSet, new []{0, 1, 2}, new EuclideanMetric());
 
             var result2 = kmeans2.Generate();
-            double[] _centroid1 = { 1, 0.2858, 0.16 };
-            double[] _centroid2 = { 1, 1, 0.16 };
-            double[] _centroid3 = { 0, 0.1429, 0.16 };
+            double[] _centroid1 = { 1, 1, 0.16 };
+            double[] _centroid2 = { 0, 0.1429, 0.16 };
+            double[] _centroid3 = { 1, 0.2858, 0.16 };
 
             Assert.AreEqual(_centroid1, result2.Clusters[0].Centroid.Coordinates);
             Assert.AreEqual(_centroid2, result2.Clusters[1].Centroid.Coordinates);
@@ -305,12 +302,12 @@ namespace fifi.Tests.Core.Algorithms
             dataSet.AddItem(p3);
             dataSet.AddItem(p4);
 
-            var kmeans2 = new KMeans(dataSet, 3, new EuclideanMetric());
+            var kmeans2 = new KMeans(dataSet, new []{0, 1, 2}, new EuclideanMetric());
 
             var result2 = kmeans2.Generate();
 
-            Assert.AreEqual(1, result2.Clusters[0].Members.Count);
-            Assert.AreEqual(2, result2.Clusters[1].Members.Count);
+            Assert.AreEqual(2, result2.Clusters[0].Members.Count);
+            Assert.AreEqual(1, result2.Clusters[1].Members.Count);
             Assert.AreEqual(1, result2.Clusters[2].Members.Count);
         }
 
@@ -326,17 +323,17 @@ namespace fifi.Tests.Core.Algorithms
             p1.AddAttribute("Gender", 1);
             p1.AddAttribute("Income", 1);
             p1.AddAttribute("Age", 0.16);
-            p4.AddAttribute("Purchase", 1);
+            p1.AddAttribute("Purchase", 1);
 
             p2.AddAttribute("Gender", 0);
             p2.AddAttribute("Income", 0.1429);
             p2.AddAttribute("Age", 0.16);
-            p4.AddAttribute("Purchase", 1);
+            p2.AddAttribute("Purchase", 1);
 
             p3.AddAttribute("Gender", 1);
             p3.AddAttribute("Income", 0.2858);
             p3.AddAttribute("Age", 0.16);
-            p4.AddAttribute("Purchase", 1);
+            p3.AddAttribute("Purchase", 1);
 
             p4.AddAttribute("Gender", 1);
             p4.AddAttribute("Income", 1);
@@ -348,12 +345,12 @@ namespace fifi.Tests.Core.Algorithms
             dataSet.AddItem(p3);
             dataSet.AddItem(p4);
 
-            var kmeans2 = new KMeans(dataSet, 3, new EuclideanMetric());
+            var kmeans2 = new KMeans(dataSet, new []{0, 1, 2}, new EuclideanMetric());
 
             var result2 = kmeans2.Generate();
-            double[] _centroid1 = { 1, 0.2858, 0.16, 1 };
-            double[] _centroid2 = { 1, 1, 0.16, 0.75, };
-            double[] _centroid3 = { 0, 0.1429, 0.16, 1 };
+            double[] _centroid3 = { 1, 0.2858, 0.16, 1 };
+            double[] _centroid1 = { 1, 1, 0.16, 0.75, };
+            double[] _centroid2 = { 0, 0.1429, 0.16, 1 };
 
             Assert.AreEqual(_centroid1, result2.Clusters[0].Centroid.Coordinates);
             Assert.AreEqual(_centroid2, result2.Clusters[1].Centroid.Coordinates);
@@ -380,31 +377,31 @@ namespace fifi.Tests.Core.Algorithms
             p2.AddAttribute("Income", 0.1429);
             p2.AddAttribute("Age", 0.16);
             p2.AddAttribute("Purchase", 1);
-            p1.AddAttribute("Control", 0);
+            p2.AddAttribute("Control", 0);
 
             p3.AddAttribute("Gender", 1);
             p3.AddAttribute("Income", 0.2858);
             p3.AddAttribute("Age", 0.16);
             p3.AddAttribute("Purchase", 1);
-            p1.AddAttribute("Control", 1);
+            p3.AddAttribute("Control", 1);
 
             p4.AddAttribute("Gender", 1);
             p4.AddAttribute("Income", 1);
             p4.AddAttribute("Age", 0.16);
             p4.AddAttribute("Purchase", 1);
-            p1.AddAttribute("Control", 0.5);
+            p4.AddAttribute("Control", 0.5);
 
             dataSet.AddItem(p1);
             dataSet.AddItem(p2);
             dataSet.AddItem(p3);
             dataSet.AddItem(p4);
 
-            var kmeans2 = new KMeans(dataSet, 3, new EuclideanMetric());
+            var kmeans2 = new KMeans(dataSet, new []{0, 1, 2}, new EuclideanMetric());
 
             var result2 = kmeans2.Generate();
 
-            Assert.AreEqual(1, result2.Clusters[0].Members.Count);
-            Assert.AreEqual(2, result2.Clusters[1].Members.Count);
+            Assert.AreEqual(2, result2.Clusters[0].Members.Count);
+            Assert.AreEqual(1, result2.Clusters[1].Members.Count);
             Assert.AreEqual(1, result2.Clusters[2].Members.Count);
         }
 
@@ -420,33 +417,33 @@ namespace fifi.Tests.Core.Algorithms
             p1.AddAttribute("Gender", 1);
             p1.AddAttribute("Income", 1);
             p1.AddAttribute("Age", 0.16);
-            p4.AddAttribute("Purchase", 0.5);
+            p1.AddAttribute("Purchase", 0.5);
             p1.AddAttribute("Control", 1);
 
             p2.AddAttribute("Gender", 0);
             p2.AddAttribute("Income", 0.1429);
             p2.AddAttribute("Age", 0.16);
-            p4.AddAttribute("Purchase", 1);
-            p1.AddAttribute("Control", 0);
+            p2.AddAttribute("Purchase", 1);
+            p2.AddAttribute("Control", 0);
 
             p3.AddAttribute("Gender", 1);
             p3.AddAttribute("Income", 0.2858);
             p3.AddAttribute("Age", 0.16);
-            p4.AddAttribute("Purchase", 1);
-            p1.AddAttribute("Control", 1);
+            p3.AddAttribute("Purchase", 1);
+            p3.AddAttribute("Control", 1);
 
             p4.AddAttribute("Gender", 1);
             p4.AddAttribute("Income", 1);
             p4.AddAttribute("Age", 0.16);
             p4.AddAttribute("Purchase", 1);
-            p1.AddAttribute("Control", 0.5);
+            p4.AddAttribute("Control", 0.5);
 
             dataSet.AddItem(p1);
             dataSet.AddItem(p2);
             dataSet.AddItem(p3);
             dataSet.AddItem(p4);
 
-            var kmeans2 = new KMeans(dataSet, 3, new EuclideanMetric());
+            var kmeans2 = new KMeans(dataSet, new []{0, 1, 2}, new EuclideanMetric());
 
             var result2 = kmeans2.Generate();
             double[] _centroid1 = { 1, 0.2858, 0.16, 1, 1 };
@@ -454,9 +451,9 @@ namespace fifi.Tests.Core.Algorithms
             double[] _centroid3 = { 0, 0.1429, 0.16, 1, 0 };
 
 
-            Assert.AreEqual(_centroid1, result2.Clusters[0].Centroid.Coordinates);
-            Assert.AreEqual(_centroid2, result2.Clusters[1].Centroid.Coordinates);
-            Assert.AreEqual(_centroid3, result2.Clusters[2].Centroid.Coordinates);
+            Assert.AreEqual(_centroid2, result2.Clusters[0].Centroid.Coordinates);
+            Assert.AreEqual(_centroid3, result2.Clusters[1].Centroid.Coordinates);
+            Assert.AreEqual(_centroid1, result2.Clusters[2].Centroid.Coordinates);
 
         }
 
@@ -482,9 +479,7 @@ namespace fifi.Tests.Core.Algorithms
             dataSet.AddItem(p3);
             dataSet.AddItem(p4);
 
-            var kmeans2 = new KMeans(dataSet, 0, new EuclideanMetric());
-
-            Assert.Throws<ArgumentException>(() => kmeans2.Generate() );
+            Assert.Throws<ArgumentException>(() => new KMeans(dataSet, 0, new EuclideanMetric()) );
         }
 
         [Test]
