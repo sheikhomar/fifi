@@ -120,11 +120,15 @@ namespace fifi.ConsoleUI
         static void TestMDS()
         {
             double[,] distanceTestOne = { { 0, 87.0, 284.0, 259, 259 }, { 87.0, 0, 195, 183, 222 }, { 284, 195, 0, 123, 260 }, { 259, 183, 123, 0, 140}, {259, 222, 260, 140, 0 } };
-            MultiDimensionalScaling a = new MultiDimensionalScaling(distanceTestOne);
+            Matrix distanceTestOneMatrix = new Matrix(distanceTestOne.GetLength(0), distanceTestOne.GetLength(1)); 
+            distanceTestOneMatrix.GetSetMatrix = distanceTestOne;
+            MultiDimensionalScaling a = new MultiDimensionalScaling(distanceTestOneMatrix);
             a.Calculate();
 
-            double[,] distanceTestTwo = { { 0, 93.0, 82.0, 133 }, { 93.0, 0, 52, 60 }, { 82, 52, 0, 111 }, { 133, 60, 111, 0} };
-            MultiDimensionalScaling b = new MultiDimensionalScaling(distanceTestTwo);
+            double[,] distanceTestTwo = { { 0, 93.0, 82.0, 133 }, { 93.0, 0, 52, 60 }, { 82, 52, 0, 111 }, { 133, 60, 111, 0 } };
+            Matrix distanceTestTwoMatrix = new Matrix(distanceTestTwo.GetLength(0), distanceTestTwo.GetLength(1));
+            distanceTestTwoMatrix.GetSetMatrix = distanceTestTwo;
+            MultiDimensionalScaling b = new MultiDimensionalScaling(distanceTestTwoMatrix);
             b.Calculate();
         }
 
@@ -168,7 +172,7 @@ namespace fifi.ConsoleUI
         {
             writer.WriteLine("MatrixFull");
             DistanceMatrix distanceMatrix = new DistanceMatrix(dataCollection, distanceMetric);
-            double[,] matrix = distanceMatrix.GenerateMatrix();
+            Matrix matrix = distanceMatrix.GenerateMatrix();
 
             int limiter = 20; //For the full, use matrix.Rank;
             char letter = 'A';
@@ -195,13 +199,13 @@ namespace fifi.ConsoleUI
             writer.WriteLine("MDS coordinates");
 
             DistanceMatrix distanceMatrix = new DistanceMatrix(dataCollection, distanceMetric);
-            double[,] matrix = distanceMatrix.GenerateMatrix();
+            Matrix matrix = distanceMatrix.GenerateMatrix();
 
             var mds = new MultiDimensionalScaling(matrix);
-            double[,] resultMatrix = mds.Calculate(); //a shitty name
+            Matrix resultMatrix = mds.Calculate(); //a shitty name
             int limiter = 20;
 
-            int matrixFullLength = resultMatrix.Length / resultMatrix.Rank;
+            int matrixFullLength = resultMatrix.FirstDimension / resultMatrix.SecondDimension;
 
             if (limiter > matrixFullLength)
                 limiter = matrixFullLength;

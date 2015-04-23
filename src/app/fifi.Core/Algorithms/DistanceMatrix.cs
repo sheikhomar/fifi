@@ -10,7 +10,7 @@ namespace fifi.Core.Algorithms
     {
         private IDistanceMetric distanceMetric;
         IdentifiableDataPointCollection dataCollection;
-        double[,] matrix;
+        Matrix matrix;
 
         public DistanceMatrix(IdentifiableDataPointCollection input, IDistanceMetric distanceMetric)
         {
@@ -20,16 +20,16 @@ namespace fifi.Core.Algorithms
         }
 
 
-        public double[,] GenerateMatrix()
+        public Matrix GenerateMatrix()
         {
             return calculatedMatrix(dataCollection);
         }
 
 
-        private double[,] calculatedMatrix(IdentifiableDataPointCollection dataCollection)
+        private Matrix calculatedMatrix(IdentifiableDataPointCollection dataCollection)
         {
             int dataCollectionSize = dataCollection.Count;
-            double[,] matrix = new double[dataCollectionSize, dataCollectionSize];
+            Matrix matrix = new Matrix(dataCollectionSize, dataCollectionSize);
             double distance;
 
             //Nulling the matrix

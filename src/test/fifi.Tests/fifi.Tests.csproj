@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Algorithms\DistanceMatrixTest.cs" />
     <Compile Include="Core\Algorithms\EuclideanMetricTests.cs" />
     <Compile Include="Core\Algorithms\KMeansTests.cs" />
     <Compile Include="Core\MultiDimensionalScalingTest.cs" />

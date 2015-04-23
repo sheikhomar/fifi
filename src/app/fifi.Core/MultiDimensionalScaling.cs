@@ -13,22 +13,22 @@ namespace fifi.Core
     {
         Matrix matrix;
 
-        public MultiDimensionalScaling(double[,] data)
+        public MultiDimensionalScaling(Matrix data)
         {
             if (data == null)
                 throw new ArgumentNullException("Can't run MDS on empty data!");
-            else if (data.GetLength(0) != data.GetLength(1))
+            else if (data.FirstDimension != data.SecondDimension)
                 throw new RankException("Can't run MDS. The inserted matrix have to be an n x n matrix.");
-            matrix = new Matrix(data.GetLength(0), data.GetLength(1));
-            matrix.GetSetMatrix = data;
+            matrix = new Matrix(data.FirstDimension, data.SecondDimension);
+            matrix = data;
         }
 
-        public double[,] Calculate()
+        public Matrix Calculate()
         {
             matrix.SquaredValues();
             Matrix jMatrix = JMatrixGenerator();
             Matrix scalarProductMatrix = ScalarProductMatrixGenerator(jMatrix);
-            return TwoDCoordinateGenerator(scalarProductMatrix).GetSetMatrix;
+            return TwoDCoordinateGenerator(scalarProductMatrix);
         }
 
         private Matrix JMatrixGenerator()

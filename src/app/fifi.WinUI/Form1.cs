@@ -34,17 +34,17 @@ namespace fifi.WinUI
             var result = kmeans.Generate();
 
             DistanceMatrix distanceMatrix = new DistanceMatrix(dataCollection, distanceMetric);
-            double[,] matrix = distanceMatrix.GenerateMatrix();
+            Matrix matrix = distanceMatrix.GenerateMatrix();
 
             var mds = new MultiDimensionalScaling(matrix);
-            double[,] resultMatrix = mds.Calculate(); //a shitty name
+            Matrix CoordinateMatrix = mds.Calculate();
 
             List<DrawableDataPoint> drawableDataPoints = new List<DrawableDataPoint>();
 
-            for (int row = 0; row < resultMatrix.GetLength(1); row++)
+            for (int row = 0; row < CoordinateMatrix.SecondDimension; row++)
             {
-                double x = resultMatrix[0, row];
-                double y = resultMatrix[1, row];
+                double x = CoordinateMatrix[0, row];
+                double y = CoordinateMatrix[1, row];
                 var dataPoint = dataCollection[row];
                 var cluster = result.FindCluster(dataPoint);
                 drawableDataPoints.Add(new DrawableDataPoint(cluster, x, y));

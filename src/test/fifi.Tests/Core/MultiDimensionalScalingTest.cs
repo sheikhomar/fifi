@@ -19,10 +19,14 @@ namespace fifi.Tests.Core
                                    { 284, 195, 0, 123, 260 }, 
                                    { 259, 183, 123, 0, 140 }, 
                                    { 259, 222, 260, 140, 0 } };
+            Matrix mdsInputMatrix = new Matrix(mdsInput.GetLength(0), mdsInput.GetLength(1));
+            mdsInputMatrix.GetSetMatrix = mdsInput;
             double[,] expectedRes = { { 163.278, 82.341, -95.441, -95.675, -54.504 }, 
                                       { 1.044, -34.181, -115.548, 7.617, 141.184 } };
-            MultiDimensionalScaling mdsResult = new MultiDimensionalScaling(mdsInput);
-            double[,] givenMDSResult = mdsResult.Calculate();
+            Matrix expectedResMatrix = new Matrix(expectedRes.GetLength(0), expectedRes.GetLength(1));
+            expectedResMatrix.GetSetMatrix = expectedRes;
+            MultiDimensionalScaling mdsResult = new MultiDimensionalScaling(mdsInputMatrix);
+            Matrix givenMDSResult = mdsResult.Calculate();
             double difference;
 
             for (int row = 0; row < expectedRes.GetLength(0); row++)
@@ -45,10 +49,14 @@ namespace fifi.Tests.Core
                                    { 93, 0, 52, 60 }, 
                                    { 82, 52, 0, 111 }, 
                                    { 133, 60, 111, 0 } };
+            Matrix mdsInputMatrix = new Matrix(mdsInput.GetLength(0), mdsInput.GetLength(1));
+            mdsInputMatrix.GetSetMatrix = mdsInput;
             double[,] expectedRes = { { -62.815, 18.44, -24.948, 69.422 }, 
                                       { -32.947, 12.032, 39.693, -18.778 } };
-            MultiDimensionalScaling mdsResult = new MultiDimensionalScaling(mdsInput);
-            double[,] givenMDSResult = mdsResult.Calculate();
+            Matrix expectedResMatrix = new Matrix(expectedRes.GetLength(0), expectedRes.GetLength(1));
+            expectedResMatrix.GetSetMatrix = expectedRes;
+            MultiDimensionalScaling mdsResult = new MultiDimensionalScaling(mdsInputMatrix);
+            Matrix givenMDSResult = mdsResult.Calculate();
             double difference;
 
             for (int row = 0; row < expectedRes.GetLength(0); row++)
@@ -71,10 +79,14 @@ namespace fifi.Tests.Core
                                    { 0.5946, 0, 0.6486, 0.7222 }, 
                                    { 0.6571, 0.6486, 0, 0.6452 }, 
                                    { 0.5517, 0.7222, 0.6452, 0 } };
+            Matrix mdsInputMatrix = new Matrix(mdsInput.GetLength(0), mdsInput.GetLength(1));
+            mdsInputMatrix.GetSetMatrix = mdsInput;
             double[,] expectedRes = { { -0.084, 0.36, 0.073, -0.349 }, 
                                       { -0.227, -0.148, 0.389, -0.016 } };
-            MultiDimensionalScaling mdsResult = new MultiDimensionalScaling(mdsInput);
-            double[,] givenMDSResult = mdsResult.Calculate();
+            Matrix expectedResMatrix = new Matrix(expectedRes.GetLength(0), expectedRes.GetLength(1));
+            expectedResMatrix.GetSetMatrix = expectedRes;
+            MultiDimensionalScaling mdsResult = new MultiDimensionalScaling(mdsInputMatrix);
+            Matrix givenMDSResult = mdsResult.Calculate();
             double difference;
 
             for (int row = 0; row < expectedRes.GetLength(0); row++)
@@ -100,7 +112,9 @@ namespace fifi.Tests.Core
         public void ThrowRankExceptionItShould()
         {
             double[,] mdsInput = { { 2, 3, 4, 5 }, { 3, 4, 5, 6 } };
-            Assert.Catch<RankException>(() => { new MultiDimensionalScaling(mdsInput); });
+            Matrix mdsInputMatrix = new Matrix(mdsInput.GetLength(0), mdsInput.GetLength(1));
+            mdsInputMatrix.GetSetMatrix = mdsInput;
+            Assert.Catch<RankException>(() => { new MultiDimensionalScaling(mdsInputMatrix); });
         }
     }
 }
