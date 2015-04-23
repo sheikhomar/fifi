@@ -19,8 +19,8 @@ namespace fifi.ConsoleUI
         {
             var start = DateTime.Now;
 
-            //RunProgram();
-            TestImport();
+            RunProgram();
+            //TestImport();
 
             // TODO: Fancy stuff
             var diff = DateTime.Now - start;
@@ -46,8 +46,9 @@ namespace fifi.ConsoleUI
             bool printKMeansMembers = false;
             bool distanceMatrix = true;
             bool multiDimensionalScaling = true;
-            bool outlierDetection = true;
+            bool outlierDetection = false;
             bool outlierDetectionPrintmembers = false;
+            bool outlierDetection2 = true;
 
             var reader = new StreamReader("UserData.csv");
             var importer = new CsvDataImporter(reader);
@@ -83,6 +84,9 @@ namespace fifi.ConsoleUI
 
             if (outlierDetection)
                 OutlierDetectionMethod(writer, result, outlierDetectionPrintmembers);
+
+            if (outlierDetection2)
+                OutlierDetectionMethod2(writer, result, outlierDetectionPrintmembers, dataCollection);
 
             writer.Close();
             fs.Close();
@@ -259,6 +263,31 @@ namespace fifi.ConsoleUI
             double ratio = members / numbOutliers;
 
             writer.WriteLine("\r\nThis run's outlier-ratio is {0} (Members:{1}, Outliers:{2})",ratio,members,numbOutliers);
+        }
+
+        static void OutlierDetectionMethod2(StreamWriter writer, ClusteringResult result, bool outlierDetectionPrintmembers, IdentifiableDataPointCollection data)
+        {
+            var outlierDetection = new TempOutlierDetection2(result, data);
+
+            var outliers = outlierDetection.Calculate();
+            int numbOutliers = outliers.Count;
+
+            writer.WriteLine("OutlierDetection");
+            writer.WriteLine("Number of outliers = " + numbOutliers);
+
+            if (outlierDetectionPrintmembers)
+            {
+                writer.WriteLine("\r\nOutlier members are:");
+                for (int index = 0; index < outliers.Count; index++)
+                {
+                    writer.WriteLine("Outlier[{0}] belongs to cluster {1} as member {2} ", index, outliers[index].belongingCluster, index, outliers[index].identifiableDataPoint);
+                }
+            }
+
+            int members = result.Clusters.Sum(cster => cster.Members.Count);
+            double ratio = members / numbOutliers;
+
+            writer.WriteLine("\r\nThis run's outlier-ratio is {0} (Members:{1}, Outliers:{2})", ratio, members, numbOutliers);
         }
     }
 }
