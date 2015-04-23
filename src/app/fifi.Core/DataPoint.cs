@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,18 +56,23 @@ namespace fifi.Core
 
             DataPoint other = obj as DataPoint;
             if (other != null)
+                return Equals(other);
+
+            return false;
+        }
+
+        public bool Equals(DataPoint other)
+        {
+            if (other.Dimensions == Dimensions)
             {
-                if (other.Dimensions == this.Dimensions)
+                for (int i = 0; i < Dimensions; i++)
                 {
-                    for (int i = 0; i < this.Dimensions; i++)
+                    if (other[i] != this[i])
                     {
-                        if (other[i] != this[i])
-                        {
-                            return false;
-                        }
+                        return false;
                     }
-                    return true;
                 }
+                return true;
             }
 
             return false;
