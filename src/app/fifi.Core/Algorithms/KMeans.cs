@@ -15,6 +15,7 @@ namespace fifi.Core.Algorithms
         private IdentifiableDataPointCollection dataCollection;
         private int maxIterations;
         private IDistanceMetric distanceMetric;
+        private IList<DataPoint> centroids;
 
         public KMeans(IdentifiableDataPointCollection dataCollection, int k, IDistanceMetric distanceMetric, int maxIterations = 100)
         {
@@ -22,13 +23,32 @@ namespace fifi.Core.Algorithms
             this.k = k;
             this.maxIterations = maxIterations;
             this.distanceMetric = distanceMetric;
+            this.centroids = dataCollection
+                .OrderBy(dataPoint => Guid.NewGuid()) // Random order
+                .Take(k)
+                .Select(dataPoint => dataPoint.Copy())
+                .ToList();
+        }
+
+        public KMeans(IdentifiableDataPointCollection dataCollection, int[] centroidIndicies, IDistanceMetric distanceMetric, int maxIterations = 100)
+        {
+            this.dataCollection = dataCollection;
+            this.maxIterations = maxIterations;
+            this.distanceMetric = distanceMetric;
+
+            if (centroidIndicies.Length != centroidIndicies.Distinct().Count())
+                throw new ArgumentException(
+                    "Array contains dublicate indicies, which is not allowed.", "centroidIndicies");
+
+            this.centroids = centroidIndicies
+                .Select(index => this.dataCollection[index].Copy())
+                .ToList();
         }
 
         public ClusteringResult Generate()
         {
             ClusteringResult result = new ClusteringResult();
 
-            IList<DataPoint> centroids = GenerateRandomCentroids();
             foreach (var centroid in centroids)
             {
                 result.Clusters.Add(new Cluster(centroid));
@@ -66,6 +86,8 @@ namespace fifi.Core.Algorithms
                 }
                 centroidMoved = false;
 
+                result.Clusters.RemoveAll(cluster => cluster.Members.Count == 0);
+
                 foreach (var cluster in result.Clusters)
                 {
                     if (MoveCentroidIfNeeded(cluster))
@@ -76,6 +98,8 @@ namespace fifi.Core.Algorithms
                     centroidMoved = false;
 
             } while (centroidMoved);
+
+
 
             return result;
         }
@@ -110,16 +134,6 @@ namespace fifi.Core.Algorithms
                 gravityCenter[i] /= cluster.Members.Count;
 
             return gravityCenter;
-        }
-        private IList<DataPoint> GenerateRandomCentroids()
-        {
-            var centroids = new List<DataPoint>();
-            int dimensions = dataCollection.ItemDimensions; //If the items does not have the same ammout of values, this might break :=)
-
-            for (int i = 0; i < k; i++)
-                centroids.Add(Cluster.GenerateRandomCentroid(dimensions));
-
-            return centroids;
         }
     }
 }
