@@ -15,8 +15,8 @@ namespace fifi.Core.Algorithms
         public DistanceMatrix(IdentifiableDataPointCollection input, IDistanceMetric distanceMetric)
         {
             this.distanceMetric = distanceMetric;
-            this.dataCollection = input;
-            this.matrix = GenerateMatrix();
+            dataCollection = input;
+            matrix = GenerateMatrix();
         }
 
 
@@ -31,12 +31,6 @@ namespace fifi.Core.Algorithms
             int dataCollectionSize = dataCollection.Count;
             Matrix matrix = new Matrix(dataCollectionSize, dataCollectionSize);
             double distance;
-
-            //Nulling the matrix
-            for (int i = 0; i < dataCollectionSize; i++)
-			{
-                matrix[i, i] = 0D;
-			}
 
             for (int row = 0, collumOffset = 1; row < dataCollectionSize; row++, collumOffset++)
 			{
