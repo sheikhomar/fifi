@@ -36,22 +36,11 @@ namespace fifi.WinUI
             DistanceMatrix distanceMatrix = new DistanceMatrix(dataCollection, distanceMetric);
             Matrix matrix = distanceMatrix.GenerateMatrix();
 
-            var mds = new MultiDimensionalScaling(matrix);
-            Matrix CoordinateMatrix = mds.Calculate();
+            MultiDimensionalScaling mds = new MultiDimensionalScaling(matrix);
+            Matrix coordinateMatrix = mds.Calculate();
 
-            List<DrawableDataPoint> drawableDataPoints = new List<DrawableDataPoint>();
+            List<DrawableDataPoint> drawableDataPoints = MakeClusterAndCoordinatesDrawable(coordinateMatrix, result, dataCollection);
 
-            for (int row = 0; row < CoordinateMatrix.SecondDimension; row++)
-            {
-                double x = CoordinateMatrix[0, row];
-                double y = CoordinateMatrix[1, row];
-                var dataPoint = dataCollection[row];
-                var cluster = result.FindCluster(dataPoint);
-                drawableDataPoints.Add(new DrawableDataPoint(cluster, x, y));
-            }
-
-            drawableDataPoints = drawableDataPoints.OrderBy(d => d.Group).ToList();
-            
             var scatterPlot = new ScatterPlot(drawableDataPoints, chart1);
             scatterPlot.Draw();
 
@@ -59,6 +48,20 @@ namespace fifi.WinUI
 
             area.AxisX.Crossing = 0;
             area.AxisY.Crossing = 0;
+        }
+
+        private List<DrawableDataPoint> MakeClusterAndCoordinatesDrawable(Matrix coordinateMatrix, ClusteringResult clusters, IdentifiableDataPointCollection dataCollection)
+        {
+            List<DrawableDataPoint> drawableDataPoints = new List<DrawableDataPoint>();
+
+            for (int col = 0; col < coordinateMatrix.SecondDimension; col++)
+            {
+                double x = coordinateMatrix[0, col];
+                double y = coordinateMatrix[1, col];
+                var cluster = clusters.FindCluster(dataCollection[col]);
+                drawableDataPoints.Add(new DrawableDataPoint(cluster, x, y));
+            }
+            return drawableDataPoints.OrderBy(d => d.Group).ToList();
         }
     }
 }
