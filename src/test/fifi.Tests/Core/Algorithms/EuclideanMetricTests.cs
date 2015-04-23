@@ -12,7 +12,6 @@ namespace fifi.Tests.Core.Algorithms
     [TestFixture]
     public class EuclideanMetricTests
     {
-        private static int dimensions = 5;
         private EuclideanMetric metric;
         private DataPoint dataPointA;
         private DataPoint dataPointB;
@@ -61,12 +60,44 @@ namespace fifi.Tests.Core.Algorithms
         }
 
 
-        //[Test]
-        //public void 
-      
-        //test ideas:
-        // close to 0, close to max, medium results, swapping A and B should yeild the same, differnt array size (this will result in an error)
-        //Notes: I somehow need to make the below coordinate definition work with our test runs... Several people suggest TestCaseSource - but I can't get a result with that?!
+        [Test]
+        public void CalculateWithDifferntDimensionSize()
+        {
+            var coordinatesA = new double[] { 0, 0, 0, 0, 0 };
+            dataPointA = new DataPoint(coordinatesA);
+            var coordinatesB = new double[] { 1, 1, 1, 1, 1, 1 };
+            dataPointB = new DataPoint(coordinatesB);
+
+            var ex = Assert.Throws<DimensionsMismatchExceptions>(() => metric.Calculate(dataPointA, dataPointB));
+
+            Assert.AreEqual(ex.Data["pointA Dimensions"], dataPointA.Dimensions);
+            Assert.AreEqual(ex.Data["pointB Dimensions"], dataPointB.Dimensions);
+        }
+
+
+        [Test]
+        public void CalculateWithOverflowCausedByCoordinates()
+        {
+            var coordinatesA = new double[] { double.MaxValue };
+            dataPointA = new DataPoint(coordinatesA);
+            var coordinatesB = new double[] { 0 };
+            dataPointB = new DataPoint(coordinatesB);
+
+            Assert.Throws<OverflowException>(() => metric.Calculate(dataPointA, dataPointB));
+        }
+
+        [Test]
+        public void CalculateWithOverflowCausedByDimensionsSum()
+        {
+            double halfFullDouble = double.MaxValue / 2;
+
+            var coordinatesA = new double[6] { halfFullDouble, halfFullDouble, halfFullDouble, halfFullDouble, halfFullDouble, halfFullDouble};
+            dataPointA = new DataPoint(coordinatesA);
+            var coordinatesB = new double[6] { 0, 0, 0, 0, 0, 0 };
+            dataPointB = new DataPoint(coordinatesB);
+
+            Assert.Throws<OverflowException>(() => metric.Calculate(dataPointA, dataPointB));
+        }
 
     }
 }
