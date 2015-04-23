@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using fifi.Core;
 using fifi.Core.Algorithms;
 
-namespace fifi.Tests
+namespace fifi.Core
 {
     public class GenerateIdentifiableDataPointCollection
     {

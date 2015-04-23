@@ -49,7 +49,6 @@
     <Compile Include="Core\Algorithms\KMeansTests.cs" />
     <Compile Include="Core\MultiDimensionalScalingTest.cs" />
     <Compile Include="Data\CsvDataImporterTests.cs" />
-    <Compile Include="GenerateIdentifiableDataPointCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
