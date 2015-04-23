@@ -19,6 +19,9 @@ namespace fifi.Core.Algorithms
 
         public KMeans(IdentifiableDataPointCollection dataCollection, int k, IDistanceMetric distanceMetric, int maxIterations = 100)
         {
+            if (k < 1)
+                throw new ArgumentException("Clusters cannot be generated for less than one centroid");
+        
             this.dataCollection = dataCollection;
             this.k = k;
             this.maxIterations = maxIterations;
@@ -28,11 +31,8 @@ namespace fifi.Core.Algorithms
                 .Take(k)
                 .Select(dataPoint => dataPoint.Copy())
                 .ToList();
-            if (k < 1)
-            {
-                throw new ArgumentException("Clusters cannot be generated for less than one centroid");
-            }
 
+            EnsureDistinctCentroid();
         }
 
         public KMeans(IdentifiableDataPointCollection dataCollection, int[] centroidIndicies, IDistanceMetric distanceMetric, int maxIterations = 100)
@@ -48,7 +48,10 @@ namespace fifi.Core.Algorithms
             this.centroids = centroidIndicies
                 .Select(index => this.dataCollection[index].Copy())
                 .ToList();
+
+            EnsureDistinctCentroid();
         }
+
 
         public ClusteringResult Generate()
         {
@@ -107,6 +110,23 @@ namespace fifi.Core.Algorithms
 
 
             return result;
+        }
+
+        private void EnsureDistinctCentroid()
+        {
+            for (int i = 0; i < centroids.Count; i++)
+            {
+                for (int j = i+1; j < centroids.Count; j++)
+                {
+                    if (centroids[i].Equals(centroids[j]))
+                    {
+                        // We can avoid this exception by implementing
+                        // a method that looks for new centroids if this.centroids
+                        // contains duplicate DataPoints.
+                        throw new InvalidOperationException("Centroids contains duplicate data points.");
+                    }
+                }
+            }
         }
 
         private bool MoveCentroidIfNeeded(Cluster cluster)

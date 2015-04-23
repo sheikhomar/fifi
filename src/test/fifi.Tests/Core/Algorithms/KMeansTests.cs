@@ -487,6 +487,30 @@ namespace fifi.Tests.Core.Algorithms
             Assert.Throws<ArgumentException>(() => kmeans2.Generate() );
         }
 
+        [Test]
+        public void CentroidsHaveDistinctValues()
+        {
+            var dataSet = new IdentifiableDataPointCollection();
+            var p1 = new IdentifiableDataPoint(0, 2);
+            var p2 = new IdentifiableDataPoint(1, 2);
+            var p3 = new IdentifiableDataPoint(2, 2);
 
+            p1.AddAttribute("Gender", 1);
+            p1.AddAttribute("Income", 1);
+
+            p2.AddAttribute("Gender", 1);
+            p2.AddAttribute("Income", 1);
+
+            p3.AddAttribute("Gender", 0);
+            p3.AddAttribute("Income", 0);
+
+
+            dataSet.AddItem(p1);
+            dataSet.AddItem(p2);
+            dataSet.AddItem(p3);
+
+            Assert.Throws<InvalidOperationException>(() => new KMeans(dataSet, new []{0,1}, new EuclideanMetric()));
+            
+        }
     }
 }
