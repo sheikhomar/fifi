@@ -90,17 +90,17 @@ namespace fifi.Tests.Core
             }
         }
 
-        /*[Test]
-        public void ThrowExceptionItShould()
+        [Test]
+        public void ThrowArgumentNullExceptionItShould()
         {
-            double[,] mdsInput = null;
-            MultiDimensionalScaling mdsResult = new MultiDimensionalScaling(mdsInput);
-            ExpectedExceptionAttribute fisk = new ExpectedExceptionAttribute();
-            if (fisk.ExpectedExceptionName == "ArgumentNullException")
-            {
-                //something something
-            }
-            Assert.Throws<ArgumentNullException>(() => { mdsResult.Calculate(); });
-        */
+            Assert.Catch<ArgumentNullException>(() => { new MultiDimensionalScaling(null); });
+        }
+
+        [Test]
+        public void ThrowRankExceptionItShould()
+        {
+            double[,] mdsInput = { { 2, 3, 4, 5 }, { 3, 4, 5, 6 } };
+            Assert.Catch<RankException>(() => { new MultiDimensionalScaling(mdsInput); });
+        }
     }
 }

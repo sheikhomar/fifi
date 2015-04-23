@@ -15,16 +15,16 @@ namespace fifi.Core
 
         public MultiDimensionalScaling(double[,] data)
         {
+            if (data == null)
+                throw new ArgumentNullException("Can't run MDS on empty data!");
+            else if (data.GetLength(0) != data.GetLength(1))
+                throw new RankException("Can't run MDS. The inserted matrix have to be an n x n matrix.");
             matrix = new Matrix(data.GetLength(0), data.GetLength(1));
             matrix.GetSetMatrix = data;
         }
 
         public double[,] Calculate()
         {
-            if (matrix == null)
-                throw new ArgumentNullException("Can't run MDS on empty data!");
-            else if (matrix.FirstDimension != matrix.SecondDimension)
-                throw new RankException("Can't run MDS. The inserted matrix have to be an n x n matrix.");
             matrix.SquaredValues();
             Matrix jMatrix = JMatrixGenerator();
             Matrix scalarProductMatrix = ScalarProductMatrixGenerator(jMatrix);
@@ -96,7 +96,7 @@ namespace fifi.Core
 
         private Tuple<int, int> FindLargestTwoEigenvalues(double[] valueArray)
         {
-            int largestValue = 0, secondLargestValue = default(int);
+            int largestValue = 0, secondLargestValue = 1;
             int counter = 1;
             while (counter < valueArray.Length)
             {
@@ -105,8 +105,6 @@ namespace fifi.Core
                     secondLargestValue = largestValue;
                     largestValue = counter;
                 }
-                else if (counter == 1)
-                    secondLargestValue = counter;
                 else if (valueArray[counter] > valueArray[secondLargestValue])
                     secondLargestValue = counter;
                 counter++;
