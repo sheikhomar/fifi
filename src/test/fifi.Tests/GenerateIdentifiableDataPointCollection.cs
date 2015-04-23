@@ -18,7 +18,6 @@ namespace fifi.Tests
         public GenerateIdentifiableDataPointCollection(int size)
         {
             collectionSize = size;
-            Generate();
         }
 
         public IdentifiableDataPointCollection Generate()
