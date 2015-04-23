@@ -27,5 +27,13 @@ namespace fifi.Core
         {
             get { return Attributes.Where(v => v.Name == name).FirstOrDefault(); }
         }
+
+        public override string ToString()
+        {
+            var builder = new StringBuilder();
+            foreach (var attr in Attributes)
+                builder.AppendFormat("[{0}: {1}] ", attr.Name, attr.Value);
+            return builder.ToString();
+        }
     }
 }
