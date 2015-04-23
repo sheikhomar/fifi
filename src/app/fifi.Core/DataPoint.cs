@@ -42,6 +42,14 @@ namespace fifi.Core
                 this[i] = another[i];
         }
 
+        public DataPoint Copy()
+        {
+            DataPoint dataPoint = new DataPoint(Dimensions);
+            for (int i = 0; i < Dimensions; i++)
+                dataPoint[i] = this[i];
+            return dataPoint;
+        }
+
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(obj, this))
