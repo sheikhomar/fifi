@@ -2,7 +2,7 @@ using System.Configuration;
 
 namespace fifi.Data.Configuration.Import
 {
-    public class FieldValue : ConfigurationElement
+    public class FieldValue : ConfigurationElement, IFieldValue
     {
         const string AttributeName = "name";
         const string AttributeValue = "value";

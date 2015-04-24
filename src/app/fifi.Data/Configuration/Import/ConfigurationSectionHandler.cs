@@ -1,9 +1,12 @@
-﻿using System.Configuration;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
+using System.Linq;
 
 namespace fifi.Data.Configuration.Import
 {
-    public class ConfigurationSectionHandler : ConfigurationSection
+    public class ConfigurationSectionHandler : ConfigurationSection, IConfiguration
     {
         [ConfigurationProperty("fields")]
         [ConfigurationCollection(typeof(FieldCollection),
@@ -39,5 +42,19 @@ namespace fifi.Data.Configuration.Import
                 return sum;
             }
         }
+
+        #region IConfiguration Implementation
+
+        int IConfiguration.DimensionCount
+        {
+            get { return DimensionCount; }
+        }
+
+        IFieldCollection IConfiguration.Fields
+        {
+            get { return Fields; }
+        }
+
+        #endregion
     }
 }

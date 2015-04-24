@@ -3,7 +3,7 @@ using System.Configuration;
 
 namespace fifi.Data.Configuration.Import
 {
-    public class FieldValueCollection : ConfigurationElementCollection
+    public class FieldValueCollection : ConfigurationElementCollection, IFieldValueCollection
     {
         protected override ConfigurationElement CreateNewElement()
         {

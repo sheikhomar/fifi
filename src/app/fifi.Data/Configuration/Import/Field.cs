@@ -1,8 +1,11 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Configuration;
 
 namespace fifi.Data.Configuration.Import
 {
-    public class Field : ConfigurationElement
+    public class Field : ConfigurationElement, IField
     {
         const string AttributeIndex = "index";
         const string AttributeType = "type";
@@ -52,5 +55,40 @@ namespace fifi.Data.Configuration.Import
             get { return (double)this[AttributeMaxValue]; }
             set { this[AttributeMaxValue] = value; }
         }
+
+        #region IField Implementation
+
+        int IField.Index
+        {
+            get { return Index; }
+        }
+
+        FieldType IField.Type
+        {
+            get { return Type; }
+        }
+
+        string IField.Category
+        {
+            get { return Category; }
+        }
+
+        IFieldValueCollection IField.Values
+        {
+            get { return Values; }
+        }
+
+        double IField.MinValue
+        {
+            get { return MinValue; }
+        }
+
+        double IField.MaxValue
+        {
+            get { return MaxValue; }
+        }
+
+        #endregion
+
     }
 }

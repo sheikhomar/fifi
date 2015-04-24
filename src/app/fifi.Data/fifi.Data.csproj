@@ -49,6 +49,11 @@
     <Compile Include="Configuration\Import\FieldType.cs" />
     <Compile Include="Configuration\Import\FieldValue.cs" />
     <Compile Include="Configuration\Import\FieldValueCollection.cs" />
+    <Compile Include="Configuration\Import\IConfiguration.cs" />
+    <Compile Include="Configuration\Import\IField.cs" />
+    <Compile Include="Configuration\Import\IFieldCollection.cs" />
+    <Compile Include="Configuration\Import\IFieldValue.cs" />
+    <Compile Include="Configuration\Import\IFieldValueCollection.cs" />
     <Compile Include="CsvDataImporter.cs" />
     <Compile Include="CsvDynamicDataImporter.cs" />
     <Compile Include="IDataExporter.cs" />
