@@ -21,5 +21,19 @@ namespace fifi.Tests.Core
             Assert.Throws<NumberOfDimensionsExceededException>(() => _datapoint.AddAttribute("", 0));
         }
 
+        [Test]
+        public void AddAttributesShouldCheckBound1()
+        {
+            IdentifiableDataPoint _datapoint = new IdentifiableDataPoint(0, 5);
+
+            _datapoint.AddAttribute("Hej", 27);
+            _datapoint.AddAttribute("Hej", 23);
+            _datapoint.AddAttribute("Hej", 24);
+            _datapoint.AddAttribute("Hej", 25);
+            _datapoint.AddAttribute("Hej", 27);
+
+            Assert.Pass("Passes because no Exception was thrown.");
+        }
+
     }
 }

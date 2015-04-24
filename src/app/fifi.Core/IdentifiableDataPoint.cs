@@ -19,6 +19,12 @@ namespace fifi.Core
 
         public void AddAttribute(string name, double value)
         {
+
+            if (Dimensions == Attributes.Count)
+            {
+                throw new NumberOfDimensionsExceededException("hej");
+            }
+
             Attributes.Add(new DataPointAttribute(name, value));
             this[Attributes.Count - 1] = value;
         }

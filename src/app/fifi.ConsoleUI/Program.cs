@@ -48,7 +48,7 @@ namespace fifi.ConsoleUI
             bool multiDimensionalScaling = true;
             bool outlierDetection = false;
             bool outlierDetectionPrintmembers = false;
-            bool outlierDetection2 = true;
+            bool outlierDetection2 = false;
 
             var reader = new StreamReader("UserData.csv");
             var importer = new CsvDataImporter(reader);
