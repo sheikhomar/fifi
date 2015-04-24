@@ -21,7 +21,7 @@ namespace fifi.Data.Configuration.Import
             return fieldValue.Name;
         }
 
-        public double? GetAssignedValue(string stringValue)
+        public double? GetDoubleValueFor(string stringValue)
         {
             foreach (FieldValue fv in this)
                 if (fv.Name.Equals(stringValue))

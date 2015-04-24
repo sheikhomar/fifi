@@ -13,16 +13,16 @@ namespace fifi.Data
         private TextReader reader;
         private IConfiguration config;
         private string fieldDelimiter;
-        private string valueDelimiter;
 
-        public CsvDynamicDataImporter(TextReader reader, 
-            string fieldDelimiter = ",", string valueDelimiter = ",", bool removeWhitespace = true)
+        public CsvDynamicDataImporter(TextReader reader)
         {
             this.reader = reader;
             this.config = (ConfigurationSectionHandler)ConfigurationManager.GetSection("csvDataImport");
-            this.FieldDelimiter = fieldDelimiter;
-            this.ValueDelimiter = valueDelimiter;
-            this.RemoveWhiteSpace = removeWhitespace;
+
+            // Assign default values
+            this.RemoveWhiteSpace = true;
+            this.FieldDelimiter = ",";
+            this.ValueDelimiter = ',';
         }
 
         public string FieldDelimiter
@@ -36,16 +36,7 @@ namespace fifi.Data
             }
         }
 
-        public string ValueDelimiter
-        {
-            get { return valueDelimiter; }
-            set
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Value delimiter cannot be null or whitespace.");
-                valueDelimiter = value;
-            }
-        }
+        public char ValueDelimiter { get; set; }
 
         public bool RemoveWhiteSpace { get; set; }
 
@@ -59,14 +50,14 @@ namespace fifi.Data
             var idCounter = 0;
             while (csv.Read())
             {
-                IdentifiableDataPoint dataPoint = ParseRowIntoDataPoint(csv, idCounter++);
+                IdentifiableDataPoint dataPoint = ParseRow(csv, idCounter++);
                 dataSet.AddItem(dataPoint);
             }
 
             return dataSet;
         }
 
-        private IdentifiableDataPoint ParseRowIntoDataPoint(CsvReader csv, int id)
+        private IdentifiableDataPoint ParseRow(CsvReader csv, int id)
         {
             IdentifiableDataPoint dataItem = new IdentifiableDataPoint(id, config.DimensionCount);
             foreach (IField field in config.Fields)
@@ -74,26 +65,26 @@ namespace fifi.Data
                 switch (field.Type)
                 {
                     case FieldType.BinaryValue:
-                        LoadBinaryField(field, csv, dataItem);
+                        ParseBinaryField(field, csv, dataItem);
                         break;
                     case FieldType.MultipleBinaryFields:
-                        LoadMultipleBinaryField(field, csv, dataItem);
+                        ParseMultipleBinaryField(field, csv, dataItem);
                         break;
                     case FieldType.MultipleChoiceMultipleBinaryFields:
-                        LoadMultipleChoiceBinaryField(field, csv, dataItem);
+                        ParseMultipleChoiceBinaryField(field, csv, dataItem);
                         break;
                     case FieldType.NumericField:
-                        LoadNumericField(field, csv, dataItem);
+                        ParseNumericField(field, csv, dataItem);
                         break;
                     default:
-                        throw new InvalidOperationException("New unexpected field type.");
+                        throw new InvalidOperationException("Unknown field type.");
                 }
             }
 
             return dataItem;
         }
 
-        private void LoadNumericField(IField field, CsvReader csv, IdentifiableDataPoint dataItem)
+        private void ParseNumericField(IField field, CsvReader csv, IdentifiableDataPoint dataItem)
         {
             double valueInDataField = csv.GetField<double>(field.Index);
             double difference = field.MaxValue - field.MinValue;
@@ -102,12 +93,15 @@ namespace fifi.Data
         }
 
 
-        private void LoadMultipleChoiceBinaryField(IField field, CsvReader csv, IdentifiableDataPoint profile)
+        private void ParseMultipleChoiceBinaryField(IField field, CsvReader csv, IdentifiableDataPoint profile)
         {
-            string valueInDataField = csv.GetField<string>(field.Index);
-            string[] array = valueInDataField.Replace(", ", ",").Split(',');
+            string label = csv.GetField<string>(field.Index);
+            if (RemoveWhiteSpace)
+                label = label.Trim();
 
-            foreach (FieldValue possibleFieldValue in field.Values)
+            string[] array = label.Split(ValueDelimiter).Select(l => l.Trim()).ToArray();
+
+            foreach (IFieldValue possibleFieldValue in field.Values)
             {
                 if (array.Contains(possibleFieldValue.Name))
                 {
@@ -120,13 +114,15 @@ namespace fifi.Data
             }
         }
 
-        private void LoadMultipleBinaryField(IField field, CsvReader csv, IdentifiableDataPoint profile)
+        private void ParseMultipleBinaryField(IField field, CsvReader csv, IdentifiableDataPoint profile)
         {
-            string valueInDataField = csv.GetField<string>(field.Index);
+            string label = csv.GetField<string>(field.Index);
+            if (RemoveWhiteSpace)
+                label = label.Trim();
 
-            foreach (FieldValue possibleFieldValue in field.Values)
+            foreach (IFieldValue possibleFieldValue in field.Values)
             {
-                if (possibleFieldValue.Name.Equals(valueInDataField))
+                if (possibleFieldValue.Name.Equals(label))
                 {
                     profile.AddAttribute(possibleFieldValue.Name, 1);
                 }
@@ -137,10 +133,10 @@ namespace fifi.Data
             }
         }
 
-        private void LoadBinaryField(IField field, CsvReader csv, IdentifiableDataPoint profile)
+        private void ParseBinaryField(IField field, CsvReader csv, IdentifiableDataPoint profile)
         {
-            string stringValue = csv.GetField<string>(field.Index);
-            double? translatedField = field.Values.GetAssignedValue(stringValue);
+            string label = csv.GetField<string>(field.Index);
+            double? translatedField = field.Values.GetDoubleValueFor(label);
 
             if (translatedField.HasValue)
             {

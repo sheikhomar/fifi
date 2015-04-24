@@ -4,6 +4,6 @@ namespace fifi.Data.Configuration.Import
 {
     public interface IFieldValueCollection : IEnumerable<IFieldValue>
     {
-        double? GetAssignedValue(string stringValue);
+        double? GetDoubleValueFor(string stringValue);
     }
 }
