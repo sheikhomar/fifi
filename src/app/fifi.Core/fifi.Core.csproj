@@ -62,6 +62,8 @@
     <Compile Include="IdentifiableDataPoint.cs" />
     <Compile Include="IdentifiableDataPointCollection.cs" />
     <Compile Include="Jaccard.cs" />
+    <Compile Include="LocalOutlierFactor.cs" />
+    <Compile Include="LocalOutlierFactorPoint.cs" />
     <Compile Include="Matrix.cs" />
     <Compile Include="MultiDimensionalScaling.cs" />
     <Compile Include="NumberOfDimensionsExceededException.cs" />
