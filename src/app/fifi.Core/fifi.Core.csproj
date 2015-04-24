@@ -44,8 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Algorithms\Birch.cs" />
-    <Compile Include="Algorithms\DimensionsMismatchExceptions.cs" />
+    <Compile Include="Exceptions\DimensionsMismatchExceptions.cs" />
     <Compile Include="Algorithms\Cluster.cs" />
     <Compile Include="Algorithms\ClusterMember.cs" />
     <Compile Include="Algorithms\DistanceMatrix.cs" />
@@ -60,17 +59,17 @@
     <Compile Include="GenerateIdentifiableDataPointCollection.cs" />
     <Compile Include="IdentifiableDataPoint.cs" />
     <Compile Include="IdentifiableDataPointCollection.cs" />
-    <Compile Include="Jaccard.cs" />
     <Compile Include="LocalOutlierFactor.cs" />
     <Compile Include="LocalOutlierFactorPoint.cs" />
     <Compile Include="Matrix.cs" />
     <Compile Include="MultiDimensionalScaling.cs" />
-    <Compile Include="NumberOfDimensionsExceededException.cs" />
+    <Compile Include="Exceptions\NumberOfDimensionsExceededException.cs" />
     <Compile Include="Outlier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TempOutlierDetection.cs" />
     <Compile Include="TempOutlierDetection2.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
