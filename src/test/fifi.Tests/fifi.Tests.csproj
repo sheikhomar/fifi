@@ -52,6 +52,12 @@
     <Compile Include="Core\Algorithms\KMeansTests.cs" />
     <Compile Include="Core\DataPointTests.cs" />
     <Compile Include="Core\MultiDimensionalScalingTest.cs" />
+    <Compile Include="Data\CsvDynamicDataImporterTests.cs" />
+    <Compile Include="Data\MockConfiguration.cs" />
+    <Compile Include="Data\MockField.cs" />
+    <Compile Include="Data\MockFieldCollection.cs" />
+    <Compile Include="Data\MockFieldValue.cs" />
+    <Compile Include="Data\MockFieldValueCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -82,14 +88,13 @@
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\SampleData.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
