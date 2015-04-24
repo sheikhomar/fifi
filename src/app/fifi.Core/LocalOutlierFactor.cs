@@ -51,7 +51,7 @@ namespace fifi.Core
 
                 foreach (var id in person.DistanceToNeighbours)
                 {
-                    sumOfReachDistK += 
+                    
                 }
             }
         }
@@ -61,7 +61,7 @@ namespace fifi.Core
             
         }
 
-        private void LocalOutlierFactor()
+        private void CalcLocalOutlierFactor()
         {
             
         }
