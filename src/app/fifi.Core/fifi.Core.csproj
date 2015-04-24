@@ -55,7 +55,6 @@
     <Compile Include="Algorithms\KMeans.cs" />
     <Compile Include="Algorithms\Loci.cs" />
     <Compile Include="ClusteringResult.cs" />
-    <Compile Include="DataItemAttribute.cs" />
     <Compile Include="DataPoint.cs" />
     <Compile Include="DrawableDataPoint.cs" />
     <Compile Include="GenerateIdentifiableDataPointCollection.cs" />

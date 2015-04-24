@@ -11,35 +11,21 @@ namespace fifi.Core
         public IdentifiableDataPoint(int id, int dimensions) : base(dimensions)
         {
             Id = id;
-            Attributes = new List<DataPointAttribute>();
+            Attributes = new List<string>();
         }
 
         public int Id { get; private set; }
-        public IList<DataPointAttribute> Attributes { get; private set; }
+        public List<string> Attributes { get; private set; }
 
         public void AddAttribute(string name, double value)
         {
-
-            if (Dimensions == Attributes.Count)
+            if (Dimensions <= Attributes.Count)
             {
-                throw new NumberOfDimensionsExceededException("hej");
+                throw new NumberOfDimensionsExceededException("Cannot add more attributes as the original allowed dimension size has been reached.");
             }
 
-            Attributes.Add(new DataPointAttribute(name, value));
-            this[Attributes.Count - 1] = value;
-        }
-
-        public DataPointAttribute this[string name]
-        {
-            get { return Attributes.Where(v => v.Name == name).FirstOrDefault(); }
-        }
-
-        public override string ToString()
-        {
-            var builder = new StringBuilder();
-            foreach (var attr in Attributes)
-                builder.AppendFormat("[{0}: {1}] ", attr.Name, attr.Value);
-            return builder.ToString();
+            this.Coordinates[this.Attributes.Count] = value;
+            Attributes.Add(name);
         }
     }
 }
