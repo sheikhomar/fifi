@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 
@@ -20,9 +21,14 @@ namespace fifi.Data.Configuration.Import
             return field.Index;
         }
 
-        public IEnumerator<IField> GetEnumerator()
+        IEnumerator<IField> IEnumerable<IField>.GetEnumerator()
         {
-            throw new NotImplementedException();
+            IEnumerator enumerator = GetEnumerator();
+            enumerator.Reset();
+            while (enumerator.MoveNext())
+            {
+                yield return enumerator.Current as IField;
+            };
         }
     }
 }

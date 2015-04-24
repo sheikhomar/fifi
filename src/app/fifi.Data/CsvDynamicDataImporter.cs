@@ -11,7 +11,7 @@ namespace fifi.Data
     public class CsvDynamicDataImporter : IProfileImporter
     {
         private TextReader reader;
-        private ConfigurationSectionHandler config;
+        private IConfiguration config;
         private string fieldDelimiter;
         private string valueDelimiter;
 
@@ -69,7 +69,7 @@ namespace fifi.Data
         private IdentifiableDataPoint ParseRowIntoDataPoint(CsvReader csv, int id)
         {
             IdentifiableDataPoint dataItem = new IdentifiableDataPoint(id, config.DimensionCount);
-            foreach (Field field in config.Fields)
+            foreach (IField field in config.Fields)
             {
                 switch (field.Type)
                 {
@@ -93,7 +93,7 @@ namespace fifi.Data
             return dataItem;
         }
 
-        private void LoadNumericField(Field field, CsvReader csv, IdentifiableDataPoint dataItem)
+        private void LoadNumericField(IField field, CsvReader csv, IdentifiableDataPoint dataItem)
         {
             double valueInDataField = csv.GetField<double>(field.Index);
             double difference = field.MaxValue - field.MinValue;
@@ -102,7 +102,7 @@ namespace fifi.Data
         }
 
 
-        private void LoadMultipleChoiceBinaryField(Field field, CsvReader csv, IdentifiableDataPoint profile)
+        private void LoadMultipleChoiceBinaryField(IField field, CsvReader csv, IdentifiableDataPoint profile)
         {
             string valueInDataField = csv.GetField<string>(field.Index);
             string[] array = valueInDataField.Replace(", ", ",").Split(',');
@@ -120,7 +120,7 @@ namespace fifi.Data
             }
         }
 
-        private void LoadMultipleBinaryField(Field field, CsvReader csv, IdentifiableDataPoint profile)
+        private void LoadMultipleBinaryField(IField field, CsvReader csv, IdentifiableDataPoint profile)
         {
             string valueInDataField = csv.GetField<string>(field.Index);
 
@@ -137,7 +137,7 @@ namespace fifi.Data
             }
         }
 
-        private void LoadBinaryField(Field field, CsvReader csv, IdentifiableDataPoint profile)
+        private void LoadBinaryField(IField field, CsvReader csv, IdentifiableDataPoint profile)
         {
             string stringValue = csv.GetField<string>(field.Index);
             double? translatedField = field.Values.GetAssignedValue(stringValue);

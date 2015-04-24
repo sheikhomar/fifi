@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Configuration;
 
 namespace fifi.Data.Configuration.Import
@@ -26,6 +28,16 @@ namespace fifi.Data.Configuration.Import
                     return fv.Value;
              
             return null;
+        }
+
+        IEnumerator<IFieldValue> IEnumerable<IFieldValue>.GetEnumerator()
+        {
+            IEnumerator enumerator = GetEnumerator();
+            enumerator.Reset();
+            while (enumerator.MoveNext())
+            {
+                yield return enumerator.Current as IFieldValue;
+            }
         }
     }
 }
