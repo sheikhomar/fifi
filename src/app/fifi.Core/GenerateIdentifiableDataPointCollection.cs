@@ -37,7 +37,7 @@ namespace fifi.Core
 
             for (int i = 0; i < collectionSize; i++)
             {
-                if ((i%10) > 9)
+                if ((i%10) < 9)
                 {
                     dataCollection[i].AddAttribute("Gender", 1d);
                 }

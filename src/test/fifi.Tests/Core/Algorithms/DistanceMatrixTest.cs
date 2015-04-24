@@ -44,9 +44,9 @@ namespace fifi.Tests.Core.Algorithms
                 for (int col = 0; col < distanceMatrix.SecondDimension; col++)
                 {
                     difference = distanceMatrix[row, col] - expectedMatrix[row, col];
-                    if (!(difference < 0.5 && difference > -0.5))
+                    if (!(difference < 0.01 && difference > -0.01))
                     {
-                        Assert.Fail("{0}, row = {1}, col = {2}", difference, row, col);
+                        Assert.Fail("{0}, row = {1}, col = {2}, actual value {3}, previous value {4}", difference, row, col, distanceMatrix[row, col], distanceMatrix[row, col -1]);
                     }
                 }
             }
