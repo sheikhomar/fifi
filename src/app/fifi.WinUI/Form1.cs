@@ -25,7 +25,7 @@ namespace fifi.WinUI
         private void Test()
         {
             var reader = new StreamReader("UserData.csv");
-            var importer = new CsvDataImporter(reader);
+            var importer = new CsvDynamicDataImporter(reader);
             var dataCollection = importer.Run();
             var k = 4;
             var distanceMetric = new EuclideanMetric();

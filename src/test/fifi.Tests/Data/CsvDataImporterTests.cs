@@ -18,7 +18,7 @@ namespace fifi.Tests.Data
         public void Setup()
         {
             var reader = new StringReader(Resources.SampleData);
-            var importer = new CsvDataImporter(reader);
+            var importer = new CsvDynamicDataImporter(reader);
             results = importer.Run();
         }
 
