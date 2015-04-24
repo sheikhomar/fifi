@@ -1,5 +1,4 @@
 using System;
-using System.Configuration;
 using System.IO;
 using System.Linq;
 using CsvHelper;
@@ -14,10 +13,10 @@ namespace fifi.Data
         private IConfiguration config;
         private string fieldDelimiter;
 
-        public CsvDynamicDataImporter(TextReader reader)
+        public CsvDynamicDataImporter(TextReader reader, IConfiguration config)
         {
             this.reader = reader;
-            this.config = (ConfigurationSectionHandler)ConfigurationManager.GetSection("csvDataImport");
+            this.config = config;
 
             // Assign default values
             this.RemoveWhiteSpace = true;

@@ -32,9 +32,11 @@ namespace fifi.ConsoleUI
 
         static void TestImport()
         {
+            IConfiguration configuration =
+                (ConfigurationSectionHandler) ConfigurationManager.GetSection("csvDataImport");
             var reader = new StreamReader("UserData.csv");
-            CsvDynamicDataImporter importer = new CsvDynamicDataImporter(reader);
-            importer.Run();
+            CsvDynamicDataImporter importer = new CsvDynamicDataImporter(reader, configuration);
+            var dataSet = importer.Run();
             reader.Close();
         }
 
@@ -50,8 +52,10 @@ namespace fifi.ConsoleUI
             bool outlierDetectionPrintmembers = false;
             bool outlierDetection2 = false;
 
+            IConfiguration configuration =
+                (ConfigurationSectionHandler)ConfigurationManager.GetSection("csvDataImport");
             var reader = new StreamReader("UserData.csv");
-            var importer = new CsvDataImporter(reader);
+            var importer = new CsvDynamicDataImporter(reader, configuration);
             var dataCollection = importer.Run();
 
             //Algo//
