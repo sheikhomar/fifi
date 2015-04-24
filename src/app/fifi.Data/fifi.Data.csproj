@@ -57,7 +57,7 @@
     <Compile Include="CsvDataImporter.cs" />
     <Compile Include="CsvDynamicDataImporter.cs" />
     <Compile Include="IDataExporter.cs" />
-    <Compile Include="IProfileImporter.cs" />
+    <Compile Include="IDataImporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

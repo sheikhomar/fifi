@@ -10,7 +10,7 @@ using fifi.Core;
 
 namespace fifi.Data
 {
-    public class CsvDataImporter : IProfileImporter
+    public class CsvDataImporter : IDataImporter
     {
         private TextReader reader;
 

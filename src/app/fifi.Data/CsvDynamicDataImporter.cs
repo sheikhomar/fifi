@@ -8,7 +8,7 @@ using fifi.Data.Configuration.Import;
 
 namespace fifi.Data
 {
-    public class CsvDynamicDataImporter : IProfileImporter
+    public class CsvDynamicDataImporter : IDataImporter
     {
         private TextReader reader;
         private IConfiguration config;
