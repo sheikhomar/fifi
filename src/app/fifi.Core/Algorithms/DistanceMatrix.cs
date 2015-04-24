@@ -14,6 +14,12 @@ namespace fifi.Core.Algorithms
 
         public DistanceMatrix(IdentifiableDataPointCollection input, IDistanceMetric distanceMetric)
         {
+            if (input == null)
+                throw new ArgumentNullException("Can't create DistanceMatrix on empty IdentifiableDataPointCollection!");
+            else if (distanceMetric == null)
+                throw new ArgumentNullException("Can't create DistanceMatrix on empty IDistanceMetric!");
+            else if (input.Count<IdentifiableDataPoint>() <= 0)
+                throw new IndexOutOfRangeException("To many members on the list or 0, it has to be in the range of int and larger than 0");
             this.distanceMetric = distanceMetric;
             dataCollection = input;
             matrix = GenerateMatrix();

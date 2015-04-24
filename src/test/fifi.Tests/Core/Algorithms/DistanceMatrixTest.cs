@@ -26,7 +26,7 @@ namespace fifi.Tests.Core.Algorithms
         }
 
         [Test]
-        public void ShouldReturnCorrectDistanceMatrix()
+        public void DistanceMatrixShouldReturnCorrectDistanceMatrix()
         {
             double difference;
             collectionSize = 10;
@@ -44,14 +44,68 @@ namespace fifi.Tests.Core.Algorithms
                 for (int col = 0; col < distanceMatrix.SecondDimension; col++)
                 {
                     difference = distanceMatrix[row, col] - expectedMatrix[row, col];
-                    if (!(difference < 0.01 && difference > -0.01))
+                    if (!(difference < 0.01 && difference > -0.01 && distanceMatrix[row, col] >= 0))
                     {
-                        Assert.Fail("{0}, row = {1}, col = {2}, actual value {3}, previous value {4}", difference, row, col, distanceMatrix[row, col], distanceMatrix[row, col -1]);
+                        Assert.Fail("{0}, row = {1}, col = {2}", difference, row, col);
                     }
                 }
             }
         }
 
+        [Test]
+        public void DistanceMatrixShouldReturnLargerCorrectDistanceMatrix()
+        {
+            double difference;
+            collectionSize = 111;
+
+            distanceMetric = new EuclideanMetric();
+            generatedDataCollection = new GenerateIdentifiableDataPointCollection(collectionSize);
+            dataCollection = generatedDataCollection.Generate();
+
+            distanceM = new DistanceMatrix(dataCollection, distanceMetric);
+            distanceMatrix = distanceM.GenerateMatrix();
+            expectedMatrix = ExpectedMatrix();
+
+            for (int row = 0; row < distanceMatrix.FirstDimension; row++)
+            {
+                for (int col = 0; col < distanceMatrix.SecondDimension; col++)
+                {
+                    difference = distanceMatrix[row, col] - expectedMatrix[row, col];
+                    if (!(difference < 0.01 && difference > -0.01 && distanceMatrix[row, col] >= 0))
+                    {
+                        Assert.Fail("{0}, row = {1}, col = {2}", difference, row, col);
+                    }
+                }
+            }
+        }
+
+        [Test]
+        public void DistanceMatrixThrowArgumentNullExceptionItShouldOnCollection()
+        {
+            distanceMetric = new EuclideanMetric();
+            Assert.Catch<ArgumentNullException>(() => { new DistanceMatrix(null, distanceMetric); });
+        }
+
+        [Test]
+        public void DistanceMatrixThrowArgumentNullExceptionItShouldOnDistanceMetric()
+        {
+            collectionSize = 111;
+            generatedDataCollection = new GenerateIdentifiableDataPointCollection(collectionSize);
+            dataCollection = generatedDataCollection.Generate();
+            Assert.Catch<ArgumentNullException>(() => { new DistanceMatrix(dataCollection, null); });
+        }
+
+        [Test]
+        public void DistanceMatrixThrowIndexOutOfRangeExceptionItShouldOnCollectionMembers()
+        {
+            collectionSize = -1;
+            distanceMetric = new EuclideanMetric();
+            generatedDataCollection = new GenerateIdentifiableDataPointCollection(collectionSize);
+            dataCollection = generatedDataCollection.Generate();
+            Assert.Catch<IndexOutOfRangeException>(() => { new DistanceMatrix(dataCollection, distanceMetric); });
+        }
+
+        #region Hardcoded matrix and ExpectedMatrix function
         private Matrix ExpectedMatrix()
         {
             Matrix expectedMatrix = new Matrix(collectionSize, collectionSize);
@@ -78,5 +132,6 @@ namespace fifi.Tests.Core.Algorithms
 
             return expectedMatrix;
         }
+        #endregion
     }
 }

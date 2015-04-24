@@ -12,7 +12,7 @@ namespace fifi.Tests.Core
     class MultiDimensionalScalingTest
     {
         [Test]
-        public void ReturnCorrectFiveTimesFiveMatrixItShould()
+        public void MDSReturnCorrectFiveTimesFiveMatrixItShould()
         {
             double[,] mdsInput = { { 0, 87, 284, 259, 259 }, 
                                    { 87, 0, 195, 183, 222 }, 
@@ -43,7 +43,7 @@ namespace fifi.Tests.Core
         }
 
         [Test]
-        public void ReturnCorrectFourTimesFourMatrixItShould()
+        public void MDSReturnCorrectFourTimesFourMatrixItShould()
         {
             double[,] mdsInput = { { 0, 93, 82, 133 }, 
                                    { 93, 0, 52, 60 }, 
@@ -73,7 +73,7 @@ namespace fifi.Tests.Core
         }
 
         [Test]
-        public void ReturnCorrectFourProfilesTimesFourProfilesMatrixItShould()
+        public void MDSReturnCorrectFourProfilesTimesFourProfilesMatrixItShould()
         {
             double[,] mdsInput = { { 0, 0.5946, 0.6571, 0.5517 }, 
                                    { 0.5946, 0, 0.6486, 0.7222 }, 
@@ -103,13 +103,13 @@ namespace fifi.Tests.Core
         }
 
         [Test]
-        public void ThrowArgumentNullExceptionItShould()
+        public void MDSThrowArgumentNullExceptionItShould()
         {
             Assert.Catch<ArgumentNullException>(() => { new MultiDimensionalScaling(null); });
         }
 
         [Test]
-        public void ThrowRankExceptionItShould()
+        public void MDSThrowRankExceptionItShould()
         {
             double[,] mdsInput = { { 2, 3, 4, 5 }, { 3, 4, 5, 6 } };
             Matrix mdsInputMatrix = new Matrix(mdsInput.GetLength(0), mdsInput.GetLength(1));
