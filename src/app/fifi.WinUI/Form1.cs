@@ -60,8 +60,12 @@ namespace fifi.WinUI
             {
                 double x = coordinateMatrix[0, col];
                 double y = coordinateMatrix[1, col];
-                var cluster = clusters.FindCluster(dataCollection[col]);
-                drawableDataPoints.Add(new DrawableDataPoint(cluster, x, y));
+                IdentifiableDataPoint dataPoint = dataCollection[col];
+                DrawableDataPoint drawableDataPoint = new DrawableDataPoint(dataPoint, x, y);
+                Cluster cluster = clusters.FindCluster(dataPoint);
+                if (cluster != null)
+                    drawableDataPoint.Group = string.Format("Cluster {0}", cluster.Id);
+                drawableDataPoints.Add(drawableDataPoint);
             }
             return drawableDataPoints.OrderBy(d => d.Group).ToList();
         }

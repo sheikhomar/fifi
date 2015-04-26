@@ -28,7 +28,7 @@ namespace fifi.WinUI
 
             foreach (var grouping in input.GroupBy(e => e.Group))
             {
-                AddSeries(grouping.Key);
+                AddSeries(grouping.Key ?? "Empty");
 
                 foreach (var dataPoint in grouping)
                 {

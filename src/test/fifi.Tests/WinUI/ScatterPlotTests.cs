@@ -23,8 +23,8 @@ namespace fifi.Tests.WinUI
         {
             // Arrange
             List<DrawableDataPoint> list = new List<DrawableDataPoint>();
-            DrawableDataPoint data1 = new DrawableDataPoint(new fifi.Core.Algorithms.Cluster(new fifi.Core.DataPoint(4)), XMax, YMax);
-            DrawableDataPoint data2 = new DrawableDataPoint(new fifi.Core.Algorithms.Cluster(new fifi.Core.DataPoint(4)), XMin, YMin);
+            DrawableDataPoint data1 = new DrawableDataPoint(new IdentifiableDataPoint(1, 4), XMax, YMax);
+            DrawableDataPoint data2 = new DrawableDataPoint(new IdentifiableDataPoint(2, 4), XMin, YMin);
             list.Add(data1);
             list.Add(data2);
             Chart chart1 = new Chart();
