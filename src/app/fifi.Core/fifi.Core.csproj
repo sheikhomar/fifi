@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataConversionTask.cs" />
     <Compile Include="Exceptions\DimensionsMismatchExceptions.cs" />
     <Compile Include="Algorithms\Cluster.cs" />
     <Compile Include="Algorithms\ClusterMember.cs" />
