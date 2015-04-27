@@ -44,10 +44,10 @@ namespace fifi.ConsoleUI
         {
             //Config
             string codeName = "Out-Bille";
-            bool printKMeans = true;
+            bool printKMeans = false;
             bool printKMeansMembers = false;
-            bool distanceMatrix = true;
-            bool multiDimensionalScaling = true;
+            bool distanceMatrix = false;
+            bool multiDimensionalScaling = false;
             bool outlierDetection = false;
             bool outlierDetectionPrintmembers = false;
             bool outlierDetection2 = false;
@@ -55,7 +55,7 @@ namespace fifi.ConsoleUI
 
             IConfiguration configuration =
                 (ConfigurationSectionHandler)ConfigurationManager.GetSection("csvDataImport");
-            var reader = new StreamReader("DataTestMarc.csv");
+            var reader = new StreamReader("UserData.csv");
             var importer = new CsvDynamicDataImporter(reader, configuration);
             var dataCollection = importer.Run();
 
@@ -94,7 +94,7 @@ namespace fifi.ConsoleUI
                 OutlierDetectionMethod2(writer, result, outlierDetectionPrintmembers, dataCollection);
 
             if (localOutlierFactor)
-                LocalOutlierFactorD(2, dataCollection, distanceMetric);
+                LocalOutlierFactorD(4, dataCollection, distanceMetric);
 
             writer.Close();
             fs.Close();
