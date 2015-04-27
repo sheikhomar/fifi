@@ -51,10 +51,11 @@ namespace fifi.ConsoleUI
             bool outlierDetection = false;
             bool outlierDetectionPrintmembers = false;
             bool outlierDetection2 = false;
+            bool localOutlierFactor = true;
 
             IConfiguration configuration =
                 (ConfigurationSectionHandler)ConfigurationManager.GetSection("csvDataImport");
-            var reader = new StreamReader("UserData.csv");
+            var reader = new StreamReader("DataTestMarc.csv");
             var importer = new CsvDynamicDataImporter(reader, configuration);
             var dataCollection = importer.Run();
 
@@ -91,6 +92,9 @@ namespace fifi.ConsoleUI
 
             if (outlierDetection2)
                 OutlierDetectionMethod2(writer, result, outlierDetectionPrintmembers, dataCollection);
+
+            if (localOutlierFactor)
+                LocalOutlierFactorD(2, dataCollection, distanceMetric);
 
             writer.Close();
             fs.Close();
@@ -292,6 +296,19 @@ namespace fifi.ConsoleUI
             double ratio = members / numbOutliers;
 
             writer.WriteLine("\r\nThis run's outlier-ratio is {0} (Members:{1}, Outliers:{2})", ratio, members, numbOutliers);
+        }
+
+        static void LocalOutlierFactorD(int kNeighbours, IdentifiableDataPointCollection dataCollection, IDistanceMetric distanceMetric)
+        {
+            DistanceMatrix distanceMatrix = new DistanceMatrix(dataCollection, distanceMetric);
+            Matrix matrix = distanceMatrix.GenerateMatrix();
+            var outlierDetection = new LocalOutlierFactor(matrix, kNeighbours);
+            outlierDetection.Run();
+
+            foreach (var person in outlierDetection.ResultList)
+            {
+                Console.WriteLine("Person: {0} has the Local Outlier Factor of {1}", person.ID, person.LocalOutlierFactor);
+            }
         }
     }
 }

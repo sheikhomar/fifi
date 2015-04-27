@@ -9,7 +9,7 @@ namespace fifi.Core
     {
         Matrix DistanceMatrix;
         private int KNeighbours;
-        List<LocalOutlierFactorPoint> ResultList = new List<LocalOutlierFactorPoint>();
+        public List<LocalOutlierFactorPoint> ResultList = new List<LocalOutlierFactorPoint>();
 
         public LocalOutlierFactor(Matrix distanceMatrix, int kNeighbours)
         {
@@ -41,6 +41,7 @@ namespace fifi.Core
                 person.DistanceToNeighbours = person.DistanceToNeighbours.Take(KNeighbours).ToList();
 
                 person.KDistance = person.DistanceToNeighbours[KNeighbours - 1].Item2;
+                person.ID = row;
 
                 ResultList.Add(person);
             }

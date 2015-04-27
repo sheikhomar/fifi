@@ -9,5 +9,6 @@ namespace fifi.Core
         public double LocalReachabilityDensity;
         public double LocalOutlierFactor;
         public double KDistance;
+        public int ID;
     }
 }
