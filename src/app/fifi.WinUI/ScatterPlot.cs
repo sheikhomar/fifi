@@ -33,7 +33,8 @@ namespace fifi.WinUI
                 foreach (var dataPoint in grouping)
                 {
                     CDataPoint Datanode = new CDataPoint(dataPoint.X, dataPoint.Y);
-                    AddDatapointToSeries(ClusterNumber, Datanode);
+                    
+                    AddDatapointToSeries(ClusterNumber, Datanode, dataPoint.Origin.Id);
                 }
 
                 ClusterNumber++;
@@ -59,9 +60,9 @@ namespace fifi.WinUI
         }
 
 
-        private void AddDatapointToSeries(int seriesNumber, CDataPoint node)
+        private void AddDatapointToSeries(int seriesNumber, CDataPoint node, int iD)
         {
-            node.ToolTip = string.Format("Cluster {0}\n" + "X: {1}\n" + "Y: {2}", seriesNumber, node.XValue, node.YValues[0]);
+            node.ToolTip = string.Format("Cluster {0}\n" + "ID: {1}\n" + "X: {2}\n" + "Y: {3}", seriesNumber, iD, node.XValue, node.YValues[0]);
             _chart1.Series[seriesNumber - 1].Points.Add(node);
         }
 
