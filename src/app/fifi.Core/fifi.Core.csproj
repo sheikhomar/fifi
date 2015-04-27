@@ -53,11 +53,9 @@
     <Compile Include="Algorithms\IDistanceMetric.cs" />
     <Compile Include="Algorithms\EuclideanMetric.cs" />
     <Compile Include="Algorithms\KMeans.cs" />
-    <Compile Include="Algorithms\Loci.cs" />
     <Compile Include="ClusteringResult.cs" />
     <Compile Include="DataPoint.cs" />
     <Compile Include="DrawableDataPoint.cs" />
-    <Compile Include="GenerateIdentifiableDataPointCollection.cs" />
     <Compile Include="IdentifiableDataPoint.cs" />
     <Compile Include="IdentifiableDataPointCollection.cs" />
     <Compile Include="LocalOutlierFactor.cs" />
