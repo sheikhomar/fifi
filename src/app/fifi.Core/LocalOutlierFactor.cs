@@ -21,7 +21,7 @@ namespace fifi.Core
         {
             DistanceToKthNeighbour(DistanceMatrix);
             CalcLocalReachabilityDensity();
-
+            CalcLocalOutlierFactor();
         }
 
         private void DistanceToKthNeighbour(Matrix distanceMatrix)
