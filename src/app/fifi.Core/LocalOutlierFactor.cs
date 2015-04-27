@@ -20,7 +20,7 @@ namespace fifi.Core
         public void Run()
         {
             DistanceToKthNeighbour(DistanceMatrix);
-            LocalReachabilityDensity(KNeighbours);
+            CalcLocalReachabilityDensity();
 
         }
 
@@ -39,31 +39,68 @@ namespace fifi.Core
                 }
                 person.DistanceToNeighbours.Sort();
                 person.DistanceToNeighbours = person.DistanceToNeighbours.Take(KNeighbours).ToList();
+
+                person.KDistance = person.DistanceToNeighbours[KNeighbours - 1].Item2;
+
                 ResultList.Add(person);
             }
         }
 
-        private void LocalReachabilityDensity(int kNeighbours)
+        private void CalcLocalReachabilityDensity()
         {
+            double sumOfReachDistK;
+
+            double cardinality = KNeighbours;
+
             foreach (var person in ResultList)
             {
-                double sumOfReachDistK = 0;
+                sumOfReachDistK = CalcSumOfReachDistK(person);
 
-                foreach (var id in person.DistanceToNeighbours)
-                {
-                    
-                }
+                person.LocalReachabilityDensity = 1 / (sumOfReachDistK / cardinality);
             }
         }
 
-        private void CalcReachDistK(LocalOutlierFactorPoint person)
+        private double CalcSumOfReachDistK(LocalOutlierFactorPoint person)
         {
-            
+            double sum = 0;
+
+            double KDistNeighbour;
+
+
+            foreach (var neighbour in person.DistanceToNeighbours)
+            {
+                KDistNeighbour = ResultList[neighbour.Item1].KDistance;
+
+                sum += Math.Max(KDistNeighbour, neighbour.Item2);
+            }
+
+            return sum;
         }
 
         private void CalcLocalOutlierFactor()
         {
-            
+            double sumOfLocalReachabilityDensity;
+
+            double cardinality = KNeighbours;
+
+            foreach (var person in ResultList)
+            {
+                sumOfLocalReachabilityDensity = CalcSumOfLocalReachabilityDensity(person);
+
+                person.LocalOutlierFactor = (sumOfLocalReachabilityDensity / cardinality) / person.LocalReachabilityDensity;
+            }
+        }
+
+        private double CalcSumOfLocalReachabilityDensity(LocalOutlierFactorPoint person)
+        {
+            double sum = 0;
+
+            foreach (var neighbour in person.DistanceToNeighbours)
+            {
+                sum += ResultList[neighbour.Item1].LocalReachabilityDensity;
+            }
+
+            return sum;
         }
     }
 }

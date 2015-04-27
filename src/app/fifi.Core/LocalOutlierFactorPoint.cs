@@ -7,5 +7,7 @@ namespace fifi.Core
     {
         public List<Tuple<int, double>> DistanceToNeighbours = new List<Tuple<int, double>>();
         public double LocalReachabilityDensity;
+        public double LocalOutlierFactor;
+        public double KDistance;
     }
 }
