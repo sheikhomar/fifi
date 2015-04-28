@@ -8,5 +8,6 @@ namespace fifi.Core.Algorithms
 {
   public interface IClusteringAlgorithm
   {
+      ClusteringResult Calculate();
   }
 }

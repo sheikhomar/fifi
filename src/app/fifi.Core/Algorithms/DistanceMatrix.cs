@@ -9,8 +9,8 @@ namespace fifi.Core.Algorithms
     public class DistanceMatrix
     {
         private IDistanceMetric distanceMetric;
-        IdentifiableDataPointCollection dataCollection;
-        Matrix matrix;
+        private IdentifiableDataPointCollection dataCollection;
+        private Matrix matrix;
 
         public DistanceMatrix(IdentifiableDataPointCollection input, IDistanceMetric distanceMetric)
         {

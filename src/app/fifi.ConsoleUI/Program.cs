@@ -67,7 +67,7 @@ namespace fifi.ConsoleUI
             var kmeans = new KMeans(dataCollection, k, distanceMetric);
 
             var start = DateTime.Now;
-            var result = kmeans.Generate();
+            var result = kmeans.Calculate();
             //Other alogs 
 
 

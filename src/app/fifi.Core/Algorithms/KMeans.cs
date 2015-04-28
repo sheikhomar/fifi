@@ -53,7 +53,7 @@ namespace fifi.Core.Algorithms
         }
 
 
-        public ClusteringResult Generate()
+        public ClusteringResult Calculate()
         {
             ClusteringResult result = new ClusteringResult();
 

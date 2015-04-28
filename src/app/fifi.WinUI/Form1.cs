@@ -33,7 +33,7 @@ namespace fifi.WinUI
             var distanceMetric = new EuclideanMetric();
 
             var kmeans = new KMeans(dataCollection, k, distanceMetric);
-            var result = kmeans.Generate();
+            var result = kmeans.Calculate();
 
             DistanceMatrix distanceMatrix = new DistanceMatrix(dataCollection, distanceMetric);
             Matrix matrix = distanceMatrix.GenerateMatrix();
