@@ -12,6 +12,11 @@ namespace fifi.Core
 
         public Matrix(int row, int colum)
         {
+            if (row <= 0 || colum <= 0)
+            {
+                throw new ArgumentException("Cannot create a matrix with 0 or less collums and rows");
+            }
+            
             matrix = new double[row, colum];
         }
 

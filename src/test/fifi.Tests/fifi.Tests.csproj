@@ -51,6 +51,7 @@
     <Compile Include="Core\Algorithms\EuclideanMetricTests.cs" />
     <Compile Include="Core\Algorithms\KMeansTests.cs" />
     <Compile Include="Core\DataPointTests.cs" />
+    <Compile Include="Core\MatrixTest.cs" />
     <Compile Include="Core\MultiDimensionalScalingTest.cs" />
     <Compile Include="Data\CsvDynamicDataImporterTests.cs" />
     <Compile Include="Data\MockConfiguration.cs" />
