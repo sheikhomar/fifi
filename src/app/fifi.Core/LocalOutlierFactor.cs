@@ -38,9 +38,14 @@ namespace fifi.Core
                         person.DistanceToNeighbours.Add(Tuple.Create<int, double>(col, DistanceMatrix.GetSetMatrix[row, col]));
                 }
                 person.DistanceToNeighbours.Sort();
-                person.DistanceToNeighbours = person.DistanceToNeighbours.Take(KNeighbours).ToList();
+                int neighboursToTake = KNeighbours;
+                while (person.DistanceToNeighbours[neighboursToTake - 1] == person.DistanceToNeighbours[neighboursToTake])
+                {
+                    neighboursToTake++;
+                }
+                person.DistanceToNeighbours = person.DistanceToNeighbours.Take(neighboursToTake).ToList();
 
-                person.KDistance = person.DistanceToNeighbours[KNeighbours - 1].Item2;
+                person.KDistance = person.DistanceToNeighbours[neighboursToTake - 1].Item2;
                 person.ID = row;
 
                 ResultList.Add(person);
