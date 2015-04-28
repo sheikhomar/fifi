@@ -103,12 +103,6 @@ namespace fifi.Tests.Core
         }
 
         [Test]
-        public void MDSThrowArgumentNullExceptionItShould()
-        {
-            Assert.Catch<ArgumentNullException>(() => { new MultiDimensionalScaling(null); });
-        }
-
-        [Test]
         public void MDSThrowRankExceptionItShould()
         {
             double[,] mdsInput = { { 2, 3, 4, 5 }, { 3, 4, 5, 6 } };

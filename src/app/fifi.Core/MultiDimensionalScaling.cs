@@ -15,9 +15,7 @@ namespace fifi.Core
 
         public MultiDimensionalScaling(Matrix data)
         {
-            if (data == null)
-                throw new ArgumentNullException("Can't run MDS on empty data!");
-            else if (data.Row != data.Collum)
+            if (data.Row != data.Collum)
                 throw new RankException("Can't run MDS. The inserted matrix have to be an n x n matrix.");
             matrix = new Matrix(data.Row, data.Collum);
             matrix = data;
