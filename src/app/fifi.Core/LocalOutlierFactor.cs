@@ -39,7 +39,7 @@ namespace fifi.Core
                 }
                 person.DistanceToNeighbours.Sort();
                 int neighboursToTake = KNeighbours;
-                while (person.DistanceToNeighbours[neighboursToTake - 1] == person.DistanceToNeighbours[neighboursToTake])
+                while (person.DistanceToNeighbours[neighboursToTake - 1].Item2 == person.DistanceToNeighbours[neighboursToTake].Item2)
                 {
                     neighboursToTake++;
                 }
