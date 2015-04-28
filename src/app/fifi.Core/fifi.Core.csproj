@@ -46,13 +46,13 @@
   <ItemGroup>
     <Compile Include="DataConversionTask.cs" />
     <Compile Include="Exceptions\DimensionsMismatchExceptions.cs" />
-    <Compile Include="Algorithms\Cluster.cs" />
-    <Compile Include="Algorithms\ClusterMember.cs" />
-    <Compile Include="Algorithms\DistanceMatrix.cs" />
-    <Compile Include="Algorithms\IClusteringAlgorithm.cs" />
-    <Compile Include="Algorithms\IDistanceMetric.cs" />
-    <Compile Include="Algorithms\EuclideanMetric.cs" />
-    <Compile Include="Algorithms\KMeans.cs" />
+    <Compile Include="Cluster.cs" />
+    <Compile Include="ClusterMember.cs" />
+    <Compile Include="DistanceMatrix.cs" />
+    <Compile Include="IClusteringAlgorithm.cs" />
+    <Compile Include="IDistanceMetric.cs" />
+    <Compile Include="EuclideanMetric.cs" />
+    <Compile Include="KMeans.cs" />
     <Compile Include="ClusteringResult.cs" />
     <Compile Include="DataPoint.cs" />
     <Compile Include="DrawableDataPoint.cs" />
