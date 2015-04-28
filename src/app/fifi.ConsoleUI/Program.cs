@@ -44,10 +44,10 @@ namespace fifi.ConsoleUI
         {
             //Config
             string codeName = "Out-Bille";
-            bool printKMeans = false;
+            bool printKMeans = true;
             bool printKMeansMembers = false;
-            bool distanceMatrix = false;
-            bool multiDimensionalScaling = false;
+            bool distanceMatrix = true;
+            bool multiDimensionalScaling = true;
             bool outlierDetection = false;
             bool outlierDetectionPrintmembers = false;
             bool outlierDetection2 = false;
@@ -193,9 +193,9 @@ namespace fifi.ConsoleUI
             for (int rowIndex = 0; rowIndex < limiter; rowIndex++)
             {
                 writer.Write(" {0} |", letter++);
-                for (int collumIndex = 0; collumIndex < limiter; collumIndex++)
+                for (int columnIndex = 0; columnIndex < limiter; columnIndex++)
                 {
-                    writer.Write("{0,5:N2}|", matrix[rowIndex, collumIndex]);
+                    writer.Write("{0,5:N2}|", matrix[rowIndex, columnIndex]);
                 }
                 if (letter >= 'z')
                 {
@@ -217,16 +217,15 @@ namespace fifi.ConsoleUI
             Matrix resultMatrix = mds.Calculate(); //a shitty name
             int limiter = 20;
 
-            int matrixFullLength = resultMatrix.Row / resultMatrix.Collum;
 
-            if (limiter > matrixFullLength)
-                limiter = matrixFullLength;
+            if (limiter > resultMatrix.Column)
+                limiter = resultMatrix.Column;
 
             char letter = 'A';
 
             //Print file index
             writer.Write("    ");
-            for (int rowIndex = 0; rowIndex < limiter; rowIndex++, letter++)
+            for (int columnIndex = 0; columnIndex < limiter; columnIndex++, letter++)
             {
                 if (letter >= 'z')
                     letter = 'A';
@@ -239,9 +238,9 @@ namespace fifi.ConsoleUI
             for (int rowIndex = 0; rowIndex < 2; rowIndex++)
             {
                 writer.Write(" {0} |", letter++);
-                for (int collumIndex = 0; collumIndex < limiter; collumIndex++)
+                for (int columnIndex = 0; columnIndex < limiter; columnIndex++)
                 {
-                    writer.Write("{0,5:N2}|", resultMatrix[rowIndex, collumIndex]);
+                    writer.Write("{0,5:N2}|", resultMatrix[rowIndex, columnIndex]);
                 }
                 writer.Write("\r\n");
             }
