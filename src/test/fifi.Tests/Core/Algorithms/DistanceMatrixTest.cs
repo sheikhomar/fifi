@@ -39,9 +39,9 @@ namespace fifi.Tests.Core.Algorithms
             distanceMatrix = distanceM.GenerateMatrix();
             expectedMatrix = ExpectedMatrix();
 
-            for (int row = 0; row < distanceMatrix.FirstDimension; row++)
+            for (int row = 0; row < distanceMatrix.Row; row++)
             {
-                for (int col = 0; col < distanceMatrix.SecondDimension; col++)
+                for (int col = 0; col < distanceMatrix.Collum; col++)
                 {
                     difference = distanceMatrix[row, col] - expectedMatrix[row, col];
                     if (!(difference < 0.01 && difference > -0.01 && distanceMatrix[row, col] >= 0))
@@ -66,9 +66,9 @@ namespace fifi.Tests.Core.Algorithms
             distanceMatrix = distanceM.GenerateMatrix();
             expectedMatrix = ExpectedMatrix();
 
-            for (int row = 0; row < distanceMatrix.FirstDimension; row++)
+            for (int row = 0; row < distanceMatrix.Row; row++)
             {
-                for (int col = 0; col < distanceMatrix.SecondDimension; col++)
+                for (int col = 0; col < distanceMatrix.Collum; col++)
                 {
                     difference = distanceMatrix[row, col] - expectedMatrix[row, col];
                     if (!(difference < 0.01 && difference > -0.01 && distanceMatrix[row, col] >= 0))

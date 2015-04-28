@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace fifi.Core.Algorithms
 {
-    public class DistanceMatrix
-    {
+    public class DistanceMatrix : Matrix
+     {
         private IDistanceMetric distanceMetric;
         private IdentifiableDataPointCollection dataCollection;
         private Matrix matrix;
 
-        public DistanceMatrix(IdentifiableDataPointCollection input, IDistanceMetric distanceMetric)
+        public DistanceMatrix(IdentifiableDataPointCollection input, IDistanceMetric distanceMetric) : base (input.Count, input.Count)
         {
             if (input == null)
                 throw new ArgumentNullException("Can't create DistanceMatrix on empty IdentifiableDataPointCollection!");

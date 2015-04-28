@@ -64,7 +64,7 @@ namespace fifi.Core
 
             List<DrawableDataPoint> drawableDataPoints = new List<DrawableDataPoint>();
 
-            for (int col = 0; col < coordinateMatrix.SecondDimension; col++)
+            for (int col = 0; col < coordinateMatrix.Collum; col++)
             {
                 double x = coordinateMatrix[0, col];
                 double y = coordinateMatrix[1, col];

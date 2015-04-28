@@ -17,9 +17,9 @@ namespace fifi.Core
         {
             if (data == null)
                 throw new ArgumentNullException("Can't run MDS on empty data!");
-            else if (data.FirstDimension != data.SecondDimension)
+            else if (data.Row != data.Collum)
                 throw new RankException("Can't run MDS. The inserted matrix have to be an n x n matrix.");
-            matrix = new Matrix(data.FirstDimension, data.SecondDimension);
+            matrix = new Matrix(data.Row, data.Collum);
             matrix = data;
         }
 
@@ -33,14 +33,14 @@ namespace fifi.Core
 
         private Matrix JMatrixGenerator()
         {
-            double dimensionScaling = Math.Pow(matrix.FirstDimension, -1);
-            Matrix jMatrix = new Matrix(matrix.FirstDimension, matrix.SecondDimension);
-            Matrix identityMatrix = matrix.IdentityMatrixGenerator(matrix.FirstDimension);
-            Matrix oneMatrix = matrix.OnesMatrixGenerator(matrix.FirstDimension);
+            double dimensionScaling = Math.Pow(matrix.Row, -1);
+            Matrix jMatrix = new Matrix(matrix.Row, matrix.Collum);
+            Matrix identityMatrix = matrix.IdentityMatrixGenerator(matrix.Row);
+            Matrix oneMatrix = matrix.OnesMatrixGenerator(matrix.Row);
 
-            for (int row = 0; row < matrix.FirstDimension; row++)
+            for (int row = 0; row < matrix.Row; row++)
             {
-                for (int col = 0; col < matrix.SecondDimension; col++)
+                for (int col = 0; col < matrix.Collum; col++)
                 {
                     jMatrix[row, col] = identityMatrix[row, col] - (oneMatrix[row, col] * dimensionScaling);
                 }
@@ -50,11 +50,11 @@ namespace fifi.Core
 
         private Matrix ScalarProductMatrixGenerator(Matrix jMatrix)
         {
-            Matrix resultMatrix = new Matrix(matrix.FirstDimension, matrix.SecondDimension);
+            Matrix resultMatrix = new Matrix(matrix.Row, matrix.Collum);
 
-            for (int row = 0; row < matrix.FirstDimension; row++)
+            for (int row = 0; row < matrix.Row; row++)
             {
-                for (int col = 0; col < matrix.SecondDimension; col++)
+                for (int col = 0; col < matrix.Collum; col++)
                 {
                     resultMatrix[row, col] = -(0.5) * jMatrix[row, col];
                 }
@@ -76,7 +76,7 @@ namespace fifi.Core
             Matrix<double> eigenvalueMatrix = Matrix<double>.Build.DenseOfArray(eigenvalueMatrixUnconverted);
 
             /* Eigenvector calculator */
-            Matrix<double> eigenvectorMatrix = Matrix<double>.Build.Dense(2, matrix.SecondDimension);
+            Matrix<double> eigenvectorMatrix = Matrix<double>.Build.Dense(2, matrix.Collum);
             double[] firstEigenvector = eigenInfo.EigenVectors.Column(largestTwoEigenvalues.Item1).ToArray();
             double[] secondEigenvector = eigenInfo.EigenVectors.Column(largestTwoEigenvalues.Item2).ToArray();
             double[] eigenvector = firstEigenvector;
@@ -115,13 +115,13 @@ namespace fifi.Core
 
         private Matrix MatrixMultiplier(Matrix firstMatrix, Matrix secondMatrix)
         {
-            Matrix resultMatrix = new Matrix(firstMatrix.FirstDimension, secondMatrix.SecondDimension);
+            Matrix resultMatrix = new Matrix(firstMatrix.Row, secondMatrix.Collum);
 
-            for (int row = 0; row < resultMatrix.FirstDimension; row++)
+            for (int row = 0; row < resultMatrix.Row; row++)
             {
-                for (int col = 0; col < resultMatrix.SecondDimension; col++)
+                for (int col = 0; col < resultMatrix.Collum; col++)
                 {
-                    for (int inner = 0; inner < resultMatrix.FirstDimension; inner++)
+                    for (int inner = 0; inner < resultMatrix.Row; inner++)
                     {
                         resultMatrix[row, col] += firstMatrix[row, inner] * secondMatrix[inner, col];
                     }

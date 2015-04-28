@@ -27,21 +27,21 @@ namespace fifi.Core
             set { matrix = value; }
         }
 
-        public int FirstDimension 
+        public int Row 
         {
             get { return matrix.GetLength(0); } 
         }
 
-        public int SecondDimension
+        public int Collum
         {
             get { return matrix.GetLength(1); }
         }
 
         public void SquaredValues()
         {
-            for (int row = 0; row < FirstDimension; row++)
+            for (int row = 0; row < Row; row++)
             {
-                for (int col = 0; col < SecondDimension; col++)
+                for (int col = 0; col < Collum; col++)
                 {
                     matrix[row, col] *= matrix[row, col];
                 }

@@ -22,18 +22,5 @@ namespace fifi.Core.Algorithms
         public DataPoint Centroid { get; private set; }
         public IList<ClusterMember> Members { get; private set; }
         public int Id { get; private set; }
-
-
-        public static DataPoint GenerateRandomCentroid(int dimensions)
-        {
-            var centroid = new DataPoint(dimensions);
-
-            for (int i = 0; i < dimensions; i++)
-            {
-                centroid[i] = (double)random.Next(0, 100) / 100;
-            }
-
-            return centroid;
-        }
     }
 }

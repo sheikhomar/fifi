@@ -217,7 +217,7 @@ namespace fifi.ConsoleUI
             Matrix resultMatrix = mds.Calculate(); //a shitty name
             int limiter = 20;
 
-            int matrixFullLength = resultMatrix.FirstDimension / resultMatrix.SecondDimension;
+            int matrixFullLength = resultMatrix.Row / resultMatrix.Collum;
 
             if (limiter > matrixFullLength)
                 limiter = matrixFullLength;
