@@ -32,13 +32,13 @@ namespace fifi.Core.Algorithms
             Matrix matrix = new Matrix(dataCollectionSize, dataCollectionSize);
             double distance;
 
-            for (int row = 0, collumOffset = 1; row < dataCollectionSize; row++, collumOffset++)
+            for (int row = 0, columnOffset = 1; row < dataCollectionSize; row++, columnOffset++)
 			{
-                for (int collum = collumOffset; collum < dataCollectionSize; collum++)
+                for (int column = columnOffset; column < dataCollectionSize; column++)
 			    {
-                    distance = distanceMetric.Calculate(dataCollection[row], dataCollection[collum]);
-                    matrix[row, collum] = distance;
-                    matrix[collum, row] = distance;
+                    distance = distanceMetric.Calculate(dataCollection[row], dataCollection[column]);
+                    matrix[row, column] = distance;
+                    matrix[column, row] = distance;
 			    }
 			}
 

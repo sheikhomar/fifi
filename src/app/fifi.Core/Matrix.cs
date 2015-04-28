@@ -10,14 +10,14 @@ namespace fifi.Core
     {
         double[,] matrix;
 
-        public Matrix(int row, int colum)
+        public Matrix(int row, int column)
         {
-            if (row <= 0 || colum <= 0)
+            if (row <= 0 || column <= 0)
             {
-                throw new ArgumentException("Cannot create a matrix with 0 or less collums and rows");
+                throw new ArgumentException("Cannot create a matrix with 0 or less columns and rows");
             }
             
-            matrix = new double[row, colum];
+            matrix = new double[row, column];
         }
 
         public double this[int row, int colum]
@@ -37,7 +37,7 @@ namespace fifi.Core
             get { return matrix.GetLength(0); } 
         }
 
-        public int Collum
+        public int Column
         {
             get { return matrix.GetLength(1); }
         }
@@ -46,7 +46,7 @@ namespace fifi.Core
         {
             for (int row = 0; row < Row; row++)
             {
-                for (int col = 0; col < Collum; col++)
+                for (int col = 0; col < Column; col++)
                 {
                     matrix[row, col] *= matrix[row, col];
                 }
