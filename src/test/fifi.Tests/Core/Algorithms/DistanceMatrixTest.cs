@@ -80,29 +80,12 @@ namespace fifi.Tests.Core.Algorithms
         }
 
         [Test]
-        public void DistanceMatrixThrowArgumentNullExceptionItShouldOnCollection()
-        {
-            distanceMetric = new EuclideanMetric();
-            Assert.Catch<ArgumentNullException>(() => { new DistanceMatrix(null, distanceMetric); });
-        }
-
-        [Test]
         public void DistanceMatrixThrowArgumentNullExceptionItShouldOnDistanceMetric()
         {
             collectionSize = 111;
             generatedDataCollection = new GenerateIdentifiableDataPointCollection(collectionSize);
             dataCollection = generatedDataCollection.Generate();
             Assert.Catch<ArgumentNullException>(() => { new DistanceMatrix(dataCollection, null); });
-        }
-
-        [Test]
-        public void DistanceMatrixThrowIndexOutOfRangeExceptionItShouldOnCollectionMembers()
-        {
-            collectionSize = -1;
-            distanceMetric = new EuclideanMetric();
-            generatedDataCollection = new GenerateIdentifiableDataPointCollection(collectionSize);
-            dataCollection = generatedDataCollection.Generate();
-            Assert.Catch<IndexOutOfRangeException>(() => { new DistanceMatrix(dataCollection, distanceMetric); });
         }
 
         #region Hardcoded matrix and ExpectedMatrix function
