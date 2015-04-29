@@ -26,8 +26,8 @@ namespace fifi.WinUI
             this.loadingImage.Size = this.chart.Size;
             grpAlgorithmSettings.Enabled = false;
 
-            // Loading chart stolen from https://dribbble.com/shots/1420523-Loading-Chart
-            //this.loadingImage.Image = Resources.Loading;
+            // Resources.Loading is stolen from https://dribbble.com/shots/1420523-Loading-Chart
+            this.loadingImage.Image = Resources.Loading2;
         }
 
         public DataVisualizationForm(IdentifiableDataPointCollection dataSet, IDistanceMetric distanceMetric) 
