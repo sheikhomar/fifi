@@ -17,18 +17,21 @@ namespace fifi.WinUI
         private readonly IdentifiableDataPointCollection dataSet;
         private readonly DataConversionTask dataConversionTask;
         private readonly IDistanceMetric distanceMetric;
+        private List<DrawableDataPoint> chartDataSource;
 
         public DataVisualizationForm()
         {
             InitializeComponent();
             this.loadingImage.Location = this.chart.Location;
             this.loadingImage.Size = this.chart.Size;
+            grpAlgorithmSettings.Enabled = false;
 
             // Loading chart stolen from https://dribbble.com/shots/1420523-Loading-Chart
-            this.loadingImage.Image = Resources.Loading;
+            //this.loadingImage.Image = Resources.Loading;
         }
 
-        public DataVisualizationForm(IdentifiableDataPointCollection dataSet, IDistanceMetric distanceMetric) : this()
+        public DataVisualizationForm(IdentifiableDataPointCollection dataSet, IDistanceMetric distanceMetric) 
+            : this()
         {
             this.dataSet = dataSet;
             this.distanceMetric = distanceMetric;
@@ -45,13 +48,16 @@ namespace fifi.WinUI
         private void DataConversionTask_Success(object sender, IEnumerable<DrawableDataPoint> result)
         {
             loadingImage.Visible = false;
-            var scatterPlot = new ScatterPlot(result.ToList(), chart);
+            chartDataSource = result.ToList();
+            var scatterPlot = new ScatterPlot(chartDataSource, chart);
             scatterPlot.Draw();
 
             ChartArea area = chart.ChartAreas[0];
 
             area.AxisX.Crossing = 0;
             area.AxisY.Crossing = 0;
+
+            grpAlgorithmSettings.Enabled = true;
         }
 
         private void DataConversionTask_Failure(object sender, IEnumerable<Exception> errors)
@@ -68,6 +74,27 @@ namespace fifi.WinUI
         private void DataVisualizationForm_Shown(object sender, EventArgs e)
         {
             dataConversionTask.Start(dataSet, distanceMetric);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (chartDataSource != null)
+            {
+                int k = Convert.ToInt32(numericUpDown1.Value);
+                var kmeans = new KMeans(this.dataSet, k, distanceMetric);
+                var result = kmeans.Calculate();
+                foreach (var dataPoint in chartDataSource)
+                {
+                    Cluster cluster = result.FindCluster(dataPoint.Origin);
+                    if (cluster != null)
+                    {
+                        dataPoint.Group = string.Format("Cluster {0}", cluster.Id);
+                    }
+                }
+                chartDataSource = chartDataSource.OrderBy(item => item.Group).ToList();
+                var scatterPlot = new ScatterPlot(chartDataSource, chart);
+                scatterPlot.Draw();
+            }
         }
     }
 }
