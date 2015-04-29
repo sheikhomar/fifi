@@ -57,10 +57,8 @@ namespace fifi.Core.Algorithms
         {
             ClusteringResult result = new ClusteringResult();
 
-            foreach (var centroid in centroids)
-            {
-                result.Clusters.Add(new Cluster(centroid));
-            }
+            for (int i = 0; i < centroids.Count; i++)
+                result.Clusters.Add(new Cluster(i + 1, centroids[i]));
 
             bool centroidMoved = false;
             int count = 0;

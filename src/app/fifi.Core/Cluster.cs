@@ -10,13 +10,11 @@ namespace fifi.Core.Algorithms
     {
         public const int RandomSeed = 100;
         private static Random random = new Random(RandomSeed);
-        private static int _id = 1;
-
-        public Cluster(DataPoint centroid)
+        public Cluster(int id, DataPoint centroid)
         {
             Centroid = centroid;
             Members = new List<ClusterMember>();
-            Id = _id++;
+            Id = id;
         }
 
         public DataPoint Centroid { get; private set; }
