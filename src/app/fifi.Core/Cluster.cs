@@ -8,8 +8,6 @@ namespace fifi.Core.Algorithms
 {
     public class Cluster
     {
-        public const int RandomSeed = 100;
-        private static Random random = new Random(RandomSeed);
         public Cluster(int id, DataPoint centroid)
         {
             Centroid = centroid;
