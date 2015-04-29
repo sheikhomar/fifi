@@ -43,7 +43,7 @@ namespace fifi.ConsoleUI
         static void RunProgram()
         {
             //Config
-            string codeName = "Out-Bille";
+            string codeName = "Out-Cikade";
             bool printKMeans = true;
             bool printKMeansMembers = false;
             bool distanceMatrix = true;
@@ -98,50 +98,6 @@ namespace fifi.ConsoleUI
 
             writer.Close();
             fs.Close();
-        }
-
-        //static void TestImport() //Needs update to fit the new structure
-        //{
-        //    var reader = new StreamReader("UserData.csv");
-        //    var importer = new CsvProfileImporter(reader);
-
-        //    var Profiles = importer.Run();
-        //    foreach (var item in Profiles.Take(22))
-        //    {
-        //        foreach (var value in item.Values)
-        //        {
-        //            Console.Write("{0}\t", value);
-        //        }
-        //        Console.WriteLine("\n");
-        //    }
-        //}
-
-        static void TestConfig()
-        {
-            ConfigurationSectionHandler v = new ConfigurationSectionHandler();
-
-            var filtersSection = (ConfigurationSectionHandler)ConfigurationManager.GetSection("csvDataImport");
-            foreach (Field field in filtersSection.Fields)
-            {
-                Console.WriteLine("Field index {0} and type: {1}", field.Index, field.Type);
-            }
-
-        }
-
-
-        static void TestMDS()
-        {
-            double[,] distanceTestOne = { { 0, 87.0, 284.0, 259, 259 }, { 87.0, 0, 195, 183, 222 }, { 284, 195, 0, 123, 260 }, { 259, 183, 123, 0, 140}, {259, 222, 260, 140, 0 } };
-            Matrix distanceTestOneMatrix = new Matrix(distanceTestOne.GetLength(0), distanceTestOne.GetLength(1)); 
-            distanceTestOneMatrix.GetSetMatrix = distanceTestOne;
-            MultiDimensionalScaling a = new MultiDimensionalScaling(distanceTestOneMatrix);
-            a.Calculate();
-
-            double[,] distanceTestTwo = { { 0, 93.0, 82.0, 133 }, { 93.0, 0, 52, 60 }, { 82, 52, 0, 111 }, { 133, 60, 111, 0 } };
-            Matrix distanceTestTwoMatrix = new Matrix(distanceTestTwo.GetLength(0), distanceTestTwo.GetLength(1));
-            distanceTestTwoMatrix.GetSetMatrix = distanceTestTwo;
-            MultiDimensionalScaling b = new MultiDimensionalScaling(distanceTestTwoMatrix);
-            b.Calculate();
         }
 
 
@@ -308,6 +264,50 @@ namespace fifi.ConsoleUI
             {
                 Console.WriteLine("Person: {0} has the Local Outlier Factor of {1}", person.ID, person.LocalOutlierFactor);
             }
+        }
+
+        //static void TestImport() //Needs update to fit the new structure
+        //{
+        //    var reader = new StreamReader("UserData.csv");
+        //    var importer = new CsvProfileImporter(reader);
+
+        //    var Profiles = importer.Run();
+        //    foreach (var item in Profiles.Take(22))
+        //    {
+        //        foreach (var value in item.Values)
+        //        {
+        //            Console.Write("{0}\t", value);
+        //        }
+        //        Console.WriteLine("\n");
+        //    }
+        //}
+
+        static void TestConfig()
+        {
+            ConfigurationSectionHandler v = new ConfigurationSectionHandler();
+
+            var filtersSection = (ConfigurationSectionHandler)ConfigurationManager.GetSection("csvDataImport");
+            foreach (Field field in filtersSection.Fields)
+            {
+                Console.WriteLine("Field index {0} and type: {1}", field.Index, field.Type);
+            }
+
+        }
+
+
+        static void TestMDS()
+        {
+            double[,] distanceTestOne = { { 0, 87.0, 284.0, 259, 259 }, { 87.0, 0, 195, 183, 222 }, { 284, 195, 0, 123, 260 }, { 259, 183, 123, 0, 140 }, { 259, 222, 260, 140, 0 } };
+            Matrix distanceTestOneMatrix = new Matrix(distanceTestOne.GetLength(0), distanceTestOne.GetLength(1));
+            distanceTestOneMatrix.GetSetMatrix = distanceTestOne;
+            MultiDimensionalScaling a = new MultiDimensionalScaling(distanceTestOneMatrix);
+            a.Calculate();
+
+            double[,] distanceTestTwo = { { 0, 93.0, 82.0, 133 }, { 93.0, 0, 52, 60 }, { 82, 52, 0, 111 }, { 133, 60, 111, 0 } };
+            Matrix distanceTestTwoMatrix = new Matrix(distanceTestTwo.GetLength(0), distanceTestTwo.GetLength(1));
+            distanceTestTwoMatrix.GetSetMatrix = distanceTestTwo;
+            MultiDimensionalScaling b = new MultiDimensionalScaling(distanceTestTwoMatrix);
+            b.Calculate();
         }
     }
 }
