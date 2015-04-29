@@ -57,9 +57,7 @@ namespace fifi.Core
             TaskRunnerArgumentSet options = arg as TaskRunnerArgumentSet;
 
             DistanceMatrix distanceMatrix = new DistanceMatrix(options.Data, options.DistanceMetric);
-            Matrix matrix = distanceMatrix.GenerateMatrix();
-
-            MultiDimensionalScaling mds = new MultiDimensionalScaling(matrix);
+            MultiDimensionalScaling mds = new MultiDimensionalScaling(distanceMatrix);
             Matrix coordinateMatrix = mds.Calculate();
 
             List<DrawableDataPoint> drawableDataPoints = new List<DrawableDataPoint>();

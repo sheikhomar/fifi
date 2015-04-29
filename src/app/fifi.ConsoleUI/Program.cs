@@ -140,8 +140,7 @@ namespace fifi.ConsoleUI
         static void DistanceMatrix(StreamWriter writer, IdentifiableDataPointCollection dataCollection, IDistanceMetric distanceMetric)
         {
             writer.WriteLine("MatrixFull");
-            DistanceMatrix distanceMatrix = new DistanceMatrix(dataCollection, distanceMetric);
-            Matrix matrix = distanceMatrix.GenerateMatrix();
+            DistanceMatrix matrix = new DistanceMatrix(dataCollection, distanceMetric);
 
             int limiter = 20; //For the full, use matrix.Rank;
             char letter = 'A';
@@ -168,9 +167,8 @@ namespace fifi.ConsoleUI
             writer.WriteLine("MDS coordinates");
 
             DistanceMatrix distanceMatrix = new DistanceMatrix(dataCollection, distanceMetric);
-            Matrix matrix = distanceMatrix.GenerateMatrix();
 
-            var mds = new MultiDimensionalScaling(matrix);
+            var mds = new MultiDimensionalScaling(distanceMatrix);
             Matrix resultMatrix = mds.Calculate(); //a shitty name
             int limiter = 20;
 
@@ -257,8 +255,7 @@ namespace fifi.ConsoleUI
         static void LocalOutlierFactorD(int kNeighbours, IdentifiableDataPointCollection dataCollection, IDistanceMetric distanceMetric)
         {
             DistanceMatrix distanceMatrix = new DistanceMatrix(dataCollection, distanceMetric);
-            Matrix matrix = distanceMatrix.GenerateMatrix();
-            var outlierDetection = new LocalOutlierFactor(matrix, kNeighbours);
+            var outlierDetection = new LocalOutlierFactor(distanceMatrix, kNeighbours);
             outlierDetection.Run();
 
             foreach (var person in outlierDetection.ResultList)

@@ -35,8 +35,7 @@ namespace fifi.Tests.Core.Algorithms
             generatedDataCollection = new GenerateIdentifiableDataPointCollection(collectionSize);
             dataCollection = generatedDataCollection.Generate();
 
-            distanceM = new DistanceMatrix(dataCollection, distanceMetric);
-            distanceMatrix = distanceM.GenerateMatrix();
+            distanceMatrix = new DistanceMatrix(dataCollection, distanceMetric);
             expectedMatrix = ExpectedMatrix();
 
             for (int row = 0; row < distanceMatrix.Row; row++)
@@ -62,8 +61,7 @@ namespace fifi.Tests.Core.Algorithms
             generatedDataCollection = new GenerateIdentifiableDataPointCollection(collectionSize);
             dataCollection = generatedDataCollection.Generate();
 
-            distanceM = new DistanceMatrix(dataCollection, distanceMetric);
-            distanceMatrix = distanceM.GenerateMatrix();
+            distanceMatrix = new DistanceMatrix(dataCollection, distanceMetric);
             expectedMatrix = ExpectedMatrix();
 
             for (int row = 0; row < distanceMatrix.Row; row++)
