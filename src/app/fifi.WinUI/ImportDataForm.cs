@@ -75,9 +75,6 @@ namespace fifi.WinUI
             ToggleUserInputControls(true);
 
             Result = task.Result;
-            MessageBox.Show("Data imported! Count=" + Result.Count, "Data import successful", MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-
             DataVisualizationForm form = new DataVisualizationForm(Result, new EuclideanMetric());
             form.Show();
         }
