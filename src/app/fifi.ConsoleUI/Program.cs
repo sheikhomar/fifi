@@ -17,6 +17,7 @@ namespace fifi.ConsoleUI
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Welcome to FiFi-DS MMXV");
             var start = DateTime.Now;
 
             RunProgram();

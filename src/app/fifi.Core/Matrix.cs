@@ -8,7 +8,7 @@ namespace fifi.Core
 {
     public class Matrix
     {
-        double[,] matrix;
+        private double[,] matrix;
 
         public Matrix(int row, int column)
         {
@@ -82,19 +82,6 @@ namespace fifi.Core
                 }
             }
             return customMatrix;
-        }
-
-        private Matrix GenerateFullSquaredCustomMatrix(double[] inputValues)
-        {
-            Matrix returnMatrix = new Matrix(inputValues.Length / 2, inputValues.Length / 2);
-            for (int row = 0, inputValueCounter = 0; row < inputValues.Length / 2; row++)
-            {
-                for (int col = 0; col < inputValues.Length / 2; col++, inputValueCounter++)
-                {
-                    returnMatrix[row, col] = inputValues[inputValueCounter];
-                }
-            }
-            return returnMatrix;
         }
     }
 }
