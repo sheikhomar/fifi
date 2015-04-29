@@ -4,6 +4,7 @@ using System.Linq;
 using CsvHelper;
 using fifi.Core;
 using fifi.Data.Configuration.Import;
+using System.Threading;
 
 namespace fifi.Data
 {
@@ -143,7 +144,8 @@ namespace fifi.Data
             }
             else
             {
-                throw new InvalidDataException("Data contains invalid field value.");
+                var msg = string.Format("Data contains invalid value at row {0} field index {1}.", csv.Row, field.Index);
+                throw new InvalidDataException(msg);
             }
         }
     }
