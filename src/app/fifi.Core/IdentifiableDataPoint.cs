@@ -16,6 +16,20 @@ namespace fifi.Core
 
         public int Id { get; private set; }
         public List<string> Attributes { get; private set; }
+        public double this[string attributeName]
+        {
+            get
+            {
+                int index = Attributes.IndexOf(attributeName);
+                if (index < 0)
+                {
+                    string msg = string.Format("Attribute with the name '{0}' does not exists.", attributeName);
+                    throw new ArgumentException(msg, "attributeName");
+                }
+
+                return this[index];
+            }
+        }
 
         public void AddAttribute(string name, double value)
         {
