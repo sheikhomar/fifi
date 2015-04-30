@@ -2,9 +2,9 @@ namespace fifi.Data.Configuration.Import
 {
     public enum FieldType
     {
-        BinaryValue,
+        Scalar,
         MultipleBinaryFields,
         MultipleChoiceMultipleBinaryFields,
-        NumericField
+        Numeric
     }
 }

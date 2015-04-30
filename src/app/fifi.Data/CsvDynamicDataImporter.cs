@@ -64,7 +64,7 @@ namespace fifi.Data
             {
                 switch (field.Type)
                 {
-                    case FieldType.BinaryValue:
+                    case FieldType.Scalar:
                         ParseBinaryField(field, csv, dataItem);
                         break;
                     case FieldType.MultipleBinaryFields:
@@ -73,7 +73,7 @@ namespace fifi.Data
                     case FieldType.MultipleChoiceMultipleBinaryFields:
                         ParseMultipleChoiceBinaryField(field, csv, dataItem);
                         break;
-                    case FieldType.NumericField:
+                    case FieldType.Numeric:
                         ParseNumericField(field, csv, dataItem);
                         break;
                     default:

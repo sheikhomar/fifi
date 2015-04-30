@@ -26,8 +26,8 @@ namespace fifi.Data.Configuration.Import
                 {
                     switch (field.Type)
                     {
-                        case FieldType.BinaryValue:
-                        case FieldType.NumericField:
+                        case FieldType.Scalar:
+                        case FieldType.Numeric:
                             sum++;
                             break;
                         case FieldType.MultipleBinaryFields:
