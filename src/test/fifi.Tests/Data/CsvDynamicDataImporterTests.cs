@@ -37,8 +37,24 @@ namespace fifi.Tests.Data
             return new MockField
             {
                 Index = index,
-                Category = "Employment",
+                Category = "", // Not used
                 Type = FieldType.MultipleBinaryFields,
+                Values = fieldValues2
+            };
+        }
+        private MockField GenerateBookField(int index)
+        {
+            var fieldValues2 = new MockFieldValueCollection
+            {
+                new MockFieldValue {Name = "Books" },
+                new MockFieldValue {Name = "Magazines" },
+                new MockFieldValue {Name = "Specialist books" }
+            };
+            return new MockField
+            {
+                Index = index,
+                Category = "", // Not used
+                Type = FieldType.MultipleChoiceMultipleBinaryFields,
                 Values = fieldValues2
             };
         }
@@ -49,11 +65,12 @@ namespace fifi.Tests.Data
             var fields = new MockFieldCollection
             {
                 GenerateGenderField(1),
-                GenerateEmploymentStatusField(2)
+                GenerateEmploymentStatusField(2),
+                GenerateBookField(3)
             };
             var config = new MockConfiguration
             {
-                DimensionCount = 4,
+                DimensionCount = 7,
                 Fields = fields
             };
 
@@ -84,6 +101,17 @@ namespace fifi.Tests.Data
             Assert.AreEqual(0, dataSet[1]["Study job"]);
             Assert.AreEqual(1, dataSet[1]["Full time"]);
             Assert.AreEqual(0, dataSet[1]["Unemployed"]);
+        }
+
+        [Test]
+        public void ShouldParseMultipleChoiceMultipleBinaryFieldsCorrectly()
+        {
+            Assert.AreEqual(1, dataSet[0]["Books"]);
+            Assert.AreEqual(1, dataSet[0]["Magazines"]);
+            Assert.AreEqual(1, dataSet[0]["Specialist books"]);
+            Assert.AreEqual(0, dataSet[1]["Books"]);
+            Assert.AreEqual(1, dataSet[1]["Magazines"]);
+            Assert.AreEqual(0, dataSet[1]["Specialist books"]);
         }
     }
 }
