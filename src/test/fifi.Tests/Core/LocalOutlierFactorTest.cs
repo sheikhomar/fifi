@@ -1,4 +1,4 @@
-using System.Drawing.Drawing2D;
+using fifi.Core;
 using NUnit.Framework;
 
 namespace fifi.Data
@@ -12,11 +12,24 @@ namespace fifi.Data
         [SetUp]
         public void SetUp()
         {
-            distanceMatrix = new Matrix();
-            kNeighbors = 5;
+            distanceMatrix = new Matrix(5,5);
         }
 
         [Test]
-        public void 
+        public void Calculate()
+        {
+            double[,] LOFInput = { { 0, 87, 284, 259, 270 }, 
+                                   { 87, 0, 195, 183, 222 }, 
+                                   { 284, 195, 0, 123, 260 }, 
+                                   { 259, 183, 123, 0, 140 }, 
+                                   { 270, 222, 260, 140, 0 } };
+            distanceMatrix.GetSetMatrix = LOFInput;
+            kNeighbors = 3;
+            LocalOutlierFactor LOF = new LocalOutlierFactor(distanceMatrix, kNeighbors);
+            LOF.Run();
+            double hej = LOF.ResultList[0].LocalOutlierFactor;
+            Assert.AreEqual(, LOF.ResultList[0].LocalOutlierFactor);
+
+        }
     }
 }
