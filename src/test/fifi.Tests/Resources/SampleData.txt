@@ -1,3 +1,4 @@
-Timestamp,Gender:,What is your employment status?,"What do you read, if any?","Which book genres do you like, if any?","Which film genres do you like, if any?",What is your relationship status?,"Including yourself, how many people live in your household?","Which gadgets do you possess, if any?",How do you live?,How many children do you have?,What kind of residence do you live in?,Are you in charge of the housekeeping?,What is your monthly income before taxes?,,"The last time you made a major purchase, did you:",What is most important to you when you purchase a product?,Year of birth:,,,,,"What are your previous experience with fake profiles, if any?"
-1/12/2014 11:00:00,Male,Study job,"Books, Magazines, Specialist books","Novels, Thrillers, Scientific articles","Thrillers, Documentaries, Romantic films",Single,I live alone,"A smartphone, An MP3-player, A PC or laptop",,None,In an apartment,Yes,750 -1000 ?,,Let rational thought decide more than emotions,Test results and reviews,1975,,,,,
-7/8/2014 12:00:00,Female,Full time,Magazines,Scientific articles,"Magazines, Documentaries",Married,Four or more,"A smartphone, A PC, Mac or laptop",,None,In an apartment,Partially,Less than 750 ?,,Both - 50/50,The price,1990,,,,,
+Timestamp,Gender,Employment status,"What do you read, if any?",Year of birth
+Male,   Study job ,"  Books, Magazines, Specialist books", 1975
+Female, Full time,           Magazines,                    1990
+Female, Study job,                    ,                    2000

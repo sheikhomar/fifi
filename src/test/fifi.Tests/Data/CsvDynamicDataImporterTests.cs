@@ -58,19 +58,31 @@ namespace fifi.Tests.Data
                 Values = fieldValues2
             };
         }
+        private MockField GenerateNumericField(int index)
+        {
+            return new MockField
+            {
+                Index = index,
+                Category = "Age",
+                Type = FieldType.Numeric,
+                MinValue = 1900,
+                MaxValue = 2000
+            };
+        }
 
         [SetUp]
         public void SetUp()
         {
             var fields = new MockFieldCollection
             {
-                GenerateGenderField(1),
-                GenerateEmploymentStatusField(2),
-                GenerateBookField(3)
+                GenerateGenderField(0),
+                GenerateEmploymentStatusField(1),
+                GenerateBookField(2),
+                GenerateNumericField(3)
             };
             var config = new MockConfiguration
             {
-                DimensionCount = 7,
+                DimensionCount = 8,
                 Fields = fields
             };
 
@@ -82,7 +94,7 @@ namespace fifi.Tests.Data
         [Test]
         public void ShouldImportAllLines()
         {
-            Assert.AreEqual(2, dataSet.Count);
+            Assert.AreEqual(3, dataSet.Count);
         }
 
         [Test]
@@ -90,6 +102,7 @@ namespace fifi.Tests.Data
         {
             Assert.AreEqual(0.234, dataSet[0]["Gender"]);
             Assert.AreEqual(1.134, dataSet[1]["Gender"]);
+            Assert.AreEqual(1.134, dataSet[2]["Gender"]);
         }
 
         [Test]
@@ -101,6 +114,9 @@ namespace fifi.Tests.Data
             Assert.AreEqual(0, dataSet[1]["Study job"]);
             Assert.AreEqual(1, dataSet[1]["Full time"]);
             Assert.AreEqual(0, dataSet[1]["Unemployed"]);
+            Assert.AreEqual(1, dataSet[2]["Study job"]);
+            Assert.AreEqual(0, dataSet[2]["Full time"]);
+            Assert.AreEqual(0, dataSet[2]["Unemployed"]);
         }
 
         [Test]
@@ -112,6 +128,17 @@ namespace fifi.Tests.Data
             Assert.AreEqual(0, dataSet[1]["Books"]);
             Assert.AreEqual(1, dataSet[1]["Magazines"]);
             Assert.AreEqual(0, dataSet[1]["Specialist books"]);
+            Assert.AreEqual(0, dataSet[2]["Books"]);
+            Assert.AreEqual(0, dataSet[2]["Magazines"]);
+            Assert.AreEqual(0, dataSet[2]["Specialist books"]);
+        }
+
+        [Test]
+        public void ShouldParseNumericFieldsCorrectly()
+        {
+            Assert.AreEqual(0.75, dataSet[0]["Age"]);
+            Assert.AreEqual(0.9,  dataSet[1]["Age"]);
+            Assert.AreEqual(1,    dataSet[2]["Age"]);
         }
     }
 }
