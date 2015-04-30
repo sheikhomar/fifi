@@ -70,8 +70,7 @@ namespace fifi.Tests.Data
             };
         }
 
-        [SetUp]
-        public void SetUp()
+        private IConfiguration SetupMockConfiguration()
         {
             var fields = new MockFieldCollection
             {
@@ -80,12 +79,17 @@ namespace fifi.Tests.Data
                 GenerateBookField(2),
                 GenerateNumericField(3)
             };
-            var config = new MockConfiguration
+            return new MockConfiguration
             {
                 DimensionCount = 8,
                 Fields = fields
             };
+        }
 
+        [SetUp]
+        public void SetUp()
+        {
+            var config = SetupMockConfiguration();
             var reader = new StringReader(Resources.SampleData);
             var importer = new CsvDynamicDataImporter(reader, config);
             dataSet = importer.Run();
