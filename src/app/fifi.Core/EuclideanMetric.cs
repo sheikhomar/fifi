@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace fifi.Core.Algorithms
+namespace fifi.Core
 {
     /// <summary>
     /// Represents Euclidean distance metric. 

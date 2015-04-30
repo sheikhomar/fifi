@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using fifi.Core;
-using fifi.Core.Algorithms;
 using fifi.Data;
 using fifi.Data.Configuration.Import;
 

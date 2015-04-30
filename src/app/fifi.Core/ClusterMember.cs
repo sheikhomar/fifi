@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace fifi.Core.Algorithms
+namespace fifi.Core
 {
     public class ClusterMember
     {

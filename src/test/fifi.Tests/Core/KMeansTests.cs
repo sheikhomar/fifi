@@ -5,7 +5,6 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using fifi.Core;
-using fifi.Core.Algorithms;
 using NUnit.Framework;
 
 namespace fifi.Tests.Core.Algorithms

@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using fifi.Core;
-using fifi.Core.Algorithms;
 
 namespace fifi.Tests.Core
 {

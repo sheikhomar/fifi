@@ -1,5 +1,5 @@
 ﻿using System;
-using fifi.Core.Algorithms;
+using fifi.Core;
 
 namespace fifi.Core
 {

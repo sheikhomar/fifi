@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using CDataPoint = System.Windows.Forms.DataVisualization.Charting.DataPoint;
 using fifi.Core;
-using fifi.Core.Algorithms;
 
 namespace fifi.WinUI
 {

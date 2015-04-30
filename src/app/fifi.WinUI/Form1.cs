@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Configuration;
 using fifi.Data;
 using fifi.Data.Configuration.Import;
-using fifi.Core.Algorithms;
 using fifi.Core;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;

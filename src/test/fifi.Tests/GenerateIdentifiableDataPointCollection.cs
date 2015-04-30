@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using fifi.Core;
-using fifi.Core.Algorithms;
 
 namespace fifi.Core
 {

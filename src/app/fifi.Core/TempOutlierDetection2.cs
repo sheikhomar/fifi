@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using fifi.Core.Algorithms;
+using fifi.Core;
 using MathNet.Numerics;
 
 namespace fifi.Core

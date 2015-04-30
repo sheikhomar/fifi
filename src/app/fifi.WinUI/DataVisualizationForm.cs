@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using fifi.Core;
-using fifi.Core.Algorithms;
 using fifi.WinUI.Properties;
 
 namespace fifi.WinUI
