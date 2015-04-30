@@ -16,7 +16,7 @@ namespace fifi.WinUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new OutlierDetectForm());
+            Application.Run(new ImportDataForm());
         }
     }
 }
