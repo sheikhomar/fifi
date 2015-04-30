@@ -19,9 +19,6 @@ namespace fifi.WinUI
 
         private Chart _chart1;
 
-        private Stack<Color> _colorStack = new Stack<Color>();
-        private Stack<CDataPoint> _pointStack = new Stack<CDataPoint>();
-
         public ScatterPlot(List<DrawableDataPoint> input, Chart winFormChart)
         {
             _chart1 = winFormChart;
@@ -45,7 +42,6 @@ namespace fifi.WinUI
             SetAxisScales(ClusterNumber);
             StyleChart();
 
-            
         }
 
         private int ClusterNumber;
@@ -66,8 +62,8 @@ namespace fifi.WinUI
 
         private void AddDatapointToSeries(int seriesNumber, CDataPoint node, DrawableDataPoint originalObject)
         {
-            node.ToolTip = string.Format("Cluster {0}\n" + "ID: {1}\n" + "X: {2}\n" + "Y: {3}",
-                seriesNumber, originalObject.Origin.Id, node.XValue, node.YValues[0]);
+            node.ToolTip = string.Format("Cluster {0}\n" + "ID: {1}\n",
+                seriesNumber, originalObject.Origin.Id);
             node.Tag = originalObject;
 
             _chart1.Series[seriesNumber - 1].Points.Add(node);
@@ -135,14 +131,19 @@ namespace fifi.WinUI
             // Her skal laves eventhandling
         }
 
+        #region Point Highlighting
+        private Stack<Color> _colorStack = new Stack<Color>();
+        private Stack<CDataPoint> _pointStack = new Stack<CDataPoint>();
+
         private void HighlightPoint(CDataPoint inputPoint)
         {
-            // If a previous point was highlighted and stored, restore it's original color
-            if (_pointStack.Count > 0)                          // ER DET HER RIGTIG HÅNDTERING OMAR?
+            // If a previous point was highlighted and stored, restore its original color and size
+            if (_pointStack.Count > 0)
             {
                 CDataPoint localPoint = _pointStack.Pop();
-                localPoint.Color = _colorStack.Pop();
-                localPoint.IsValueShownAsLabel = false;
+                localPoint.MarkerBorderColor = _colorStack.Pop();
+                localPoint.MarkerBorderWidth /= 2;
+                localPoint.MarkerSize /= 2;
             }
 
             // Save point-to-be-highlighted's information on stacks
@@ -150,9 +151,11 @@ namespace fifi.WinUI
             _pointStack.Push(inputPoint);
 
             // Highlight inputPoint
-            inputPoint.Color = Color.Magenta;
-            inputPoint.IsValueShownAsLabel = true;
+            inputPoint.MarkerBorderColor = Color.Black;
+            inputPoint.MarkerBorderWidth *= 2;
+            inputPoint.MarkerSize *= 2;
         }
+        #endregion
 
     }
 }
