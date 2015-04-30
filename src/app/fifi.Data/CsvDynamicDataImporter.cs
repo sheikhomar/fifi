@@ -144,8 +144,8 @@ namespace fifi.Data
             }
             else
             {
-                var msg = string.Format("Data contains invalid value at row {0} field index {1}.", csv.Row, field.Index);
-                throw new InvalidDataException(msg);
+                
+                throw new InvalidFieldValueException(csv.Row, field.Index);
             }
         }
     }

@@ -56,6 +56,7 @@
     <Compile Include="Configuration\Import\IFieldValueCollection.cs" />
     <Compile Include="CsvDynamicDataImporter.cs" />
     <Compile Include="IDataImporter.cs" />
+    <Compile Include="InvalidFieldValueException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -55,6 +55,7 @@
     <Compile Include="Core\MatrixTest.cs" />
     <Compile Include="Core\MultiDimensionalScalingTest.cs" />
     <Compile Include="Data\CsvDynamicDataImporterTests.cs" />
+    <Compile Include="Data\CsvDynamicDataImporterWithFaultyTests.cs" />
     <Compile Include="Data\MockConfiguration.cs" />
     <Compile Include="Data\MockField.cs" />
     <Compile Include="Data\MockFieldCollection.cs" />
