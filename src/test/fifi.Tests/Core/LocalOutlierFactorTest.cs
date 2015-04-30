@@ -28,7 +28,7 @@ namespace fifi.Data
             LocalOutlierFactor LOF = new LocalOutlierFactor(distanceMatrix, kNeighbors);
             LOF.Run();
             double hej = LOF.ResultList[0].LocalOutlierFactor;
-            Assert.AreEqual(, LOF.ResultList[0].LocalOutlierFactor);
+            Assert.AreEqual(1, LOF.ResultList[0].LocalOutlierFactor);
 
         }
     }
