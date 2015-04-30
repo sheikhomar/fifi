@@ -19,6 +19,9 @@ namespace fifi.WinUI
 
         private Chart _chart1;
 
+        private Stack<Color> _colorStack = new Stack<Color>();
+        private Stack<CDataPoint> _pointStack = new Stack<CDataPoint>();
+
         public ScatterPlot(List<DrawableDataPoint> input, Chart winFormChart)
         {
             _chart1 = winFormChart;
@@ -33,7 +36,7 @@ namespace fifi.WinUI
                 {
                     CDataPoint Datanode = new CDataPoint(dataPoint.X, dataPoint.Y);
                     
-                    AddDatapointToSeries(ClusterNumber, Datanode, dataPoint.Origin.Id);
+                    AddDatapointToSeries(ClusterNumber, Datanode, dataPoint);
                 }
 
                 ClusterNumber++;
@@ -41,6 +44,8 @@ namespace fifi.WinUI
 
             SetAxisScales(ClusterNumber);
             StyleChart();
+
+            
         }
 
         private int ClusterNumber;
@@ -59,9 +64,12 @@ namespace fifi.WinUI
         }
 
 
-        private void AddDatapointToSeries(int seriesNumber, CDataPoint node, int iD)
+        private void AddDatapointToSeries(int seriesNumber, CDataPoint node, DrawableDataPoint originalObject)
         {
-            node.ToolTip = string.Format("Cluster {0}\n" + "ID: {1}\n" + "X: {2}\n" + "Y: {3}", seriesNumber, iD, node.XValue, node.YValues[0]);
+            node.ToolTip = string.Format("Cluster {0}\n" + "ID: {1}\n" + "X: {2}\n" + "Y: {3}",
+                seriesNumber, originalObject.Origin.Id, node.XValue, node.YValues[0]);
+            node.Tag = originalObject;
+
             _chart1.Series[seriesNumber - 1].Points.Add(node);
         }
 
@@ -121,6 +129,30 @@ namespace fifi.WinUI
         }
 
         #endregion
+
+        private void PointClicked()
+        {
+            // Her skal laves eventhandling
+        }
+
+        private void HighlightPoint(CDataPoint inputPoint)
+        {
+            // If a previous point was highlighted and stored, restore it's original color
+            if (_pointStack.Count > 0)                          // ER DET HER RIGTIG HÅNDTERING OMAR?
+            {
+                CDataPoint localPoint = _pointStack.Pop();
+                localPoint.Color = _colorStack.Pop();
+                localPoint.IsValueShownAsLabel = false;
+            }
+
+            // Save point-to-be-highlighted's information on stacks
+            _colorStack.Push(inputPoint.Color);
+            _pointStack.Push(inputPoint);
+
+            // Highlight inputPoint
+            inputPoint.Color = Color.Magenta;
+            inputPoint.IsValueShownAsLabel = true;
+        }
 
     }
 }
