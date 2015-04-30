@@ -65,7 +65,7 @@ namespace fifi.Data
                 switch (field.Type)
                 {
                     case FieldType.Scalar:
-                        ParseBinaryField(field, csv, dataItem);
+                        ParseScalarField(field, csv, dataItem);
                         break;
                     case FieldType.MultipleBinaryFields:
                         ParseMultipleBinaryField(field, csv, dataItem);
@@ -86,7 +86,10 @@ namespace fifi.Data
 
         private void ParseNumericField(IField field, CsvReader csv, IdentifiableDataPoint dataItem)
         {
-            double valueInDataField = csv.GetField<double>(field.Index);
+            double valueInDataField;
+            if (!csv.TryGetField(field.Index, out valueInDataField))
+                throw new InvalidNumericValueException(csv.Row, field.Index);
+
             double difference = field.MaxValue - field.MinValue;
             double normalizedValue = (valueInDataField - field.MinValue) / difference;
             dataItem.AddAttribute(field.Category, normalizedValue);
@@ -133,7 +136,7 @@ namespace fifi.Data
             }
         }
 
-        private void ParseBinaryField(IField field, CsvReader csv, IdentifiableDataPoint profile)
+        private void ParseScalarField(IField field, CsvReader csv, IdentifiableDataPoint profile)
         {
             string label = csv.GetField<string>(field.Index);
             double? translatedField = field.Values.GetDoubleValueFor(label);
