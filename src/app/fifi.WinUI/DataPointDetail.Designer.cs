@@ -34,30 +34,37 @@
             this.ColField = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColPercent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblID
             // 
             this.lblID.AutoSize = true;
-            this.lblID.Location = new System.Drawing.Point(3, 11);
+            this.lblID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblID.Location = new System.Drawing.Point(0, 20);
             this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(28, 13);
+            this.lblID.Size = new System.Drawing.Size(21, 13);
             this.lblID.TabIndex = 1;
-            this.lblID.Text = "lblID";
+            this.lblID.Text = "ID:";
             // 
             // dataGridView1
             // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColSimilarity,
             this.ColField,
             this.ColValue,
             this.ColPercent});
-            this.dataGridView1.Location = new System.Drawing.Point(3, 37);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 36);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(319, 192);
+            this.dataGridView1.Size = new System.Drawing.Size(391, 218);
             this.dataGridView1.TabIndex = 3;
             // 
             // ColSimilarity
@@ -86,20 +93,31 @@
             // 
             // ColPercent
             // 
-            this.ColPercent.DataPropertyName = "Percent";
-            this.ColPercent.HeaderText = "Percentage";
+            this.ColPercent.DataPropertyName = "FormatedPercent";
+            this.ColPercent.HeaderText = "% similar with centroid";
             this.ColPercent.Name = "ColPercent";
             this.ColPercent.ReadOnly = true;
-            this.ColPercent.Width = 75;
+            this.ColPercent.Width = 140;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(-1, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 20);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Details";
             // 
             // DataPointDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.lblID);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.label1);
             this.Name = "DataPointDetail";
-            this.Size = new System.Drawing.Size(325, 234);
+            this.Size = new System.Drawing.Size(397, 257);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -110,6 +128,7 @@
 
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColSimilarity;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColField;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColValue;

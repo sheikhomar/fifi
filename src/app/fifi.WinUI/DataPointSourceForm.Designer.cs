@@ -44,7 +44,7 @@
             // 
             // dataPointDetail1
             // 
-            this.dataPointDetail1.Location = new System.Drawing.Point(13, 42);
+            this.dataPointDetail1.Location = new System.Drawing.Point(12, 41);
             this.dataPointDetail1.Name = "dataPointDetail1";
             this.dataPointDetail1.Size = new System.Drawing.Size(325, 234);
             this.dataPointDetail1.TabIndex = 1;

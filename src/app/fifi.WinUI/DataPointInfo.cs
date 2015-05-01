@@ -16,5 +16,7 @@ namespace fifi.WinUI
         public double Value { get; set; }
 
         public double Percent { get; set; }
+
+        public string FormatedPercent { get { return string.Format("{0,2:N0}", Percent); } }
     }
 }

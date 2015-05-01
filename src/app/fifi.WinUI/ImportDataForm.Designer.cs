@@ -85,6 +85,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(336, 21);
             this.comboBox1.TabIndex = 3;
+            this.comboBox1.Text = "Colon";
             // 
             // label2
             // 
@@ -117,10 +118,13 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(336, 21);
             this.comboBox2.TabIndex = 5;
+            this.comboBox2.Text = "Colon";
             // 
             // chkRemoveWhitespace
             // 
             this.chkRemoveWhitespace.AutoSize = true;
+            this.chkRemoveWhitespace.Checked = true;
+            this.chkRemoveWhitespace.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkRemoveWhitespace.Location = new System.Drawing.Point(94, 114);
             this.chkRemoveWhitespace.Name = "chkRemoveWhitespace";
             this.chkRemoveWhitespace.Size = new System.Drawing.Size(123, 17);

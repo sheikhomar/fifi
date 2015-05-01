@@ -40,10 +40,6 @@ namespace fifi.WinUI
             dataConversionTask.Failure += DataConversionTask_Failure;
         }
 
-        private void DataVisualizationForm_Load(object sender, System.EventArgs e)
-        {
-        }
-
         private void DataConversionTask_Success(object sender, IEnumerable<DrawableDataPoint> result)
         {
             loadingImage.Visible = false;
@@ -94,6 +90,12 @@ namespace fifi.WinUI
                 var scatterPlot = new ScatterPlot(chartDataSource, chart);
                 scatterPlot.Draw();
             }
+        }
+
+        private void chart_Click(object sender, EventArgs e)
+        {
+            Random ran = new Random();
+            dataPointDetail1.GenerateDetails(dataSet[ran.Next(0, 150)], dataSet[ran.Next(0, 150)]);
         }
     }
 }

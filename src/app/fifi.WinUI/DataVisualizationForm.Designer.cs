@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.grpAlgorithmSettings = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.btnGenerateClusters = new System.Windows.Forms.Button();
             this.loadingImage = new System.Windows.Forms.PictureBox();
+            this.dataPointDetail1 = new fifi.WinUI.DataPointDetail();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             this.grpAlgorithmSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -50,20 +51,21 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chart.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Center;
             this.chart.BackImageWrapMode = System.Windows.Forms.DataVisualization.Charting.ChartImageWrapMode.Unscaled;
-            chartArea2.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart.Legends.Add(legend1);
             this.chart.Location = new System.Drawing.Point(11, 85);
             this.chart.Margin = new System.Windows.Forms.Padding(2);
             this.chart.Name = "chart";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart.Series.Add(series2);
-            this.chart.Size = new System.Drawing.Size(893, 507);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart.Series.Add(series1);
+            this.chart.Size = new System.Drawing.Size(490, 507);
             this.chart.TabIndex = 1;
             this.chart.Text = "chart1";
+            this.chart.Click += new System.EventHandler(this.chart_Click);
             // 
             // grpAlgorithmSettings
             // 
@@ -134,17 +136,26 @@
             this.loadingImage.TabIndex = 0;
             this.loadingImage.TabStop = false;
             // 
+            // dataPointDetail1
+            // 
+            this.dataPointDetail1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataPointDetail1.Location = new System.Drawing.Point(506, 86);
+            this.dataPointDetail1.Name = "dataPointDetail1";
+            this.dataPointDetail1.Size = new System.Drawing.Size(398, 505);
+            this.dataPointDetail1.TabIndex = 3;
+            // 
             // DataVisualizationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(916, 603);
+            this.Controls.Add(this.dataPointDetail1);
             this.Controls.Add(this.loadingImage);
             this.Controls.Add(this.grpAlgorithmSettings);
             this.Controls.Add(this.chart);
             this.Name = "DataVisualizationForm";
             this.Text = "VisualizeForm";
-            this.Load += new System.EventHandler(this.DataVisualizationForm_Load);
             this.Shown += new System.EventHandler(this.DataVisualizationForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
             this.grpAlgorithmSettings.ResumeLayout(false);
@@ -163,5 +174,6 @@
         private System.Windows.Forms.Button btnGenerateClusters;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private DataPointDetail dataPointDetail1;
     }
 }
