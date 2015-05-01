@@ -15,6 +15,7 @@ namespace fifi.WinUI
 {
     public partial class OutlierDetectForm : Form
     {
+        IdentifiableDataPointCollection identifiableDataPointCollection;
         private DistanceMatrix distanceMatrix;
         private List<LocalOutlierFactorItem> itemList;
         private Dictionary<int, LocalOutlierFactorItem> idLookUptable;
@@ -29,17 +30,18 @@ namespace fifi.WinUI
                (ConfigurationSectionHandler)ConfigurationManager.GetSection("csvDataImport");
             var reader = new StreamReader("UserData.csv");
             var importer = new CsvDynamicDataImporter(reader, configuration);
-            var dataCollection = importer.Run();
+            this.identifiableDataPointCollection = importer.Run();
 
             var distanceMetric = new EuclideanMetric();
-            distanceMatrix = new DistanceMatrix(dataCollection, distanceMetric);
+            distanceMatrix = new DistanceMatrix(identifiableDataPointCollection, distanceMetric);
 
             CreateItemList();
             idLookUptable = itemList.ToDictionary(item => item.Id);
         }
 
-        public OutlierDetectForm(DistanceMatrix distanceMatrix, int k, int limit)
+        public OutlierDetectForm(IdentifiableDataPointCollection identifiableDataPointCollection, DistanceMatrix distanceMatrix, int k, int limit)
         {
+            this.identifiableDataPointCollection = identifiableDataPointCollection;
             this.distanceMatrix = distanceMatrix;
             CreateItemList();
         }
@@ -50,15 +52,34 @@ namespace fifi.WinUI
             dataGridView1.DataSource = itemList.OrderByDescending(point => point.LocalOutlierFactor).Take(limit).ToList();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                var liveItemList = (List<LocalOutlierFactorItem>)dataGridView1.DataSource;
+                var markedItem = idLookUptable[liveItemList[e.RowIndex].Id];
+                markedItem.UpdateIcon();
+
+                dataGridView1.UpdateCellValue(e.ColumnIndex, e.RowIndex);
+            }
+            if (e.ColumnIndex > 0)
+            {
+                var liveItemList = (List<LocalOutlierFactorItem>)dataGridView1.DataSource;
+                var markedItem = idLookUptable[liveItemList[e.RowIndex].Id];
+
+                //Todo send this id to someone.
+
+                dataPointDetail1.GenerateDetails(new IdentifiableDataPoint(e.ColumnIndex, 5), new IdentifiableDataPoint(e.ColumnIndex, 5));
+            }
         }
+
 
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {

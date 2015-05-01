@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.columnIcon = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.columnIcon = new System.Windows.Forms.DataGridViewImageColumn();
             this.columnProfile = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comlumnLocalOutlierFactor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,6 +37,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
+            this.dataPointDetail1 = new fifi.WinUI.DataPointDetail();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -55,16 +56,17 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(235, 361);
+            this.dataGridView1.Size = new System.Drawing.Size(297, 361);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // columnIcon
             // 
+            this.columnIcon.DataPropertyName = "Image";
             this.columnIcon.HeaderText = "Icon";
+            this.columnIcon.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
             this.columnIcon.Name = "columnIcon";
             this.columnIcon.ReadOnly = true;
-            this.columnIcon.Width = 50;
             // 
             // columnProfile
             // 
@@ -154,11 +156,19 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Limiter:";
             // 
+            // dataPointDetail1
+            // 
+            this.dataPointDetail1.Location = new System.Drawing.Point(315, 3);
+            this.dataPointDetail1.Name = "dataPointDetail1";
+            this.dataPointDetail1.Size = new System.Drawing.Size(464, 402);
+            this.dataPointDetail1.TabIndex = 6;
+            // 
             // OutlierDetectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(671, 417);
+            this.ClientSize = new System.Drawing.Size(791, 417);
+            this.Controls.Add(this.dataPointDetail1);
             this.Controls.Add(this.numericUpDown2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
@@ -184,9 +194,10 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn columnIcon;
+        private System.Windows.Forms.DataGridViewImageColumn columnIcon;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnProfile;
         private System.Windows.Forms.DataGridViewTextBoxColumn comlumnLocalOutlierFactor;
+        private DataPointDetail dataPointDetail1;
 
 
     }
