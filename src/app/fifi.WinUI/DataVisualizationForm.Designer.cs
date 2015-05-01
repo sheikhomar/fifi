@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.grpAlgorithmSettings = new System.Windows.Forms.GroupBox();
             this.cbClusteringAlgo = new System.Windows.Forms.ComboBox();
@@ -42,10 +42,14 @@
             this.btnGenerateClusters = new System.Windows.Forms.Button();
             this.loadingImage = new System.Windows.Forms.PictureBox();
             this.dataPointDetail1 = new fifi.WinUI.DataPointDetail();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             this.grpAlgorithmSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numberOfClusters)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadingImage)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // chart
@@ -55,17 +59,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chart.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Center;
             this.chart.BackImageWrapMode = System.Windows.Forms.DataVisualization.Charting.ChartImageWrapMode.Unscaled;
-            chartArea2.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart.Legends.Add(legend1);
             this.chart.Location = new System.Drawing.Point(11, 165);
             this.chart.Margin = new System.Windows.Forms.Padding(2);
             this.chart.Name = "chart";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart.Series.Add(series1);
             this.chart.Size = new System.Drawing.Size(490, 427);
             this.chart.TabIndex = 1;
             this.chart.Text = "chart1";
@@ -83,7 +87,7 @@
             this.grpAlgorithmSettings.Controls.Add(this.btnGenerateClusters);
             this.grpAlgorithmSettings.Location = new System.Drawing.Point(12, 12);
             this.grpAlgorithmSettings.Name = "grpAlgorithmSettings";
-            this.grpAlgorithmSettings.Size = new System.Drawing.Size(892, 148);
+            this.grpAlgorithmSettings.Size = new System.Drawing.Size(489, 148);
             this.grpAlgorithmSettings.TabIndex = 2;
             this.grpAlgorithmSettings.TabStop = false;
             this.grpAlgorithmSettings.Text = "Clustering algorithm settings";
@@ -192,11 +196,43 @@
             this.dataPointDetail1.Size = new System.Drawing.Size(398, 425);
             this.dataPointDetail1.TabIndex = 3;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Location = new System.Drawing.Point(508, 13);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(396, 147);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Aditional actions";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(218, 52);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(140, 42);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Close";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(41, 52);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(140, 42);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Detect Outliers";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // DataVisualizationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(916, 603);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataPointDetail1);
             this.Controls.Add(this.loadingImage);
             this.Controls.Add(this.grpAlgorithmSettings);
@@ -209,6 +245,7 @@
             this.grpAlgorithmSettings.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numberOfClusters)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadingImage)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -226,5 +263,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbDistanceAlgo;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }
