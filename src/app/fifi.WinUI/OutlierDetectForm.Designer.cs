@@ -47,6 +47,9 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columnIcon,
@@ -63,7 +66,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 14);
+            this.label1.Location = new System.Drawing.Point(12, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 1;
@@ -72,7 +75,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(72, 12);
+            this.numericUpDown1.Location = new System.Drawing.Point(78, 16);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             50,
             0,
@@ -94,7 +97,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(239, 3);
+            this.button1.Location = new System.Drawing.Point(239, 7);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(70, 35);
             this.button1.TabIndex = 3;
@@ -104,7 +107,7 @@
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(185, 12);
+            this.numericUpDown2.Location = new System.Drawing.Point(178, 16);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             50,
             0,
@@ -127,7 +130,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(139, 14);
+            this.label2.Location = new System.Drawing.Point(132, 18);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 4;
@@ -135,6 +138,8 @@
             // 
             // dataPointDetail1
             // 
+            this.dataPointDetail1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataPointDetail1.Location = new System.Drawing.Point(315, 3);
             this.dataPointDetail1.Name = "dataPointDetail1";
             this.dataPointDetail1.Size = new System.Drawing.Size(464, 402);
@@ -181,7 +186,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "OutlierDetectForm";
-            this.Text = "Form2";
+            this.Text = "Outlier detection";
             this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
