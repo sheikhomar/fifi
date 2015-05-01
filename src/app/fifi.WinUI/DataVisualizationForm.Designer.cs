@@ -38,6 +38,10 @@
             this.btnGenerateClusters = new System.Windows.Forms.Button();
             this.loadingImage = new System.Windows.Forms.PictureBox();
             this.dataPointDetail1 = new fifi.WinUI.DataPointDetail();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             this.grpAlgorithmSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -55,14 +59,14 @@
             this.chart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart.Legends.Add(legend1);
-            this.chart.Location = new System.Drawing.Point(11, 85);
+            this.chart.Location = new System.Drawing.Point(11, 165);
             this.chart.Margin = new System.Windows.Forms.Padding(2);
             this.chart.Name = "chart";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart.Series.Add(series1);
-            this.chart.Size = new System.Drawing.Size(490, 507);
+            this.chart.Size = new System.Drawing.Size(490, 427);
             this.chart.TabIndex = 1;
             this.chart.Text = "chart1";
             this.chart.Click += new System.EventHandler(this.chart_Click);
@@ -71,12 +75,16 @@
             // 
             this.grpAlgorithmSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpAlgorithmSettings.Controls.Add(this.comboBox2);
+            this.grpAlgorithmSettings.Controls.Add(this.label3);
+            this.grpAlgorithmSettings.Controls.Add(this.comboBox1);
+            this.grpAlgorithmSettings.Controls.Add(this.label2);
             this.grpAlgorithmSettings.Controls.Add(this.label1);
             this.grpAlgorithmSettings.Controls.Add(this.numericUpDown1);
             this.grpAlgorithmSettings.Controls.Add(this.btnGenerateClusters);
             this.grpAlgorithmSettings.Location = new System.Drawing.Point(12, 12);
             this.grpAlgorithmSettings.Name = "grpAlgorithmSettings";
-            this.grpAlgorithmSettings.Size = new System.Drawing.Size(892, 68);
+            this.grpAlgorithmSettings.Size = new System.Drawing.Size(892, 148);
             this.grpAlgorithmSettings.TabIndex = 2;
             this.grpAlgorithmSettings.TabStop = false;
             this.grpAlgorithmSettings.Text = "Clustering algorithm settings";
@@ -84,15 +92,15 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 33);
+            this.label1.Location = new System.Drawing.Point(6, 85);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 13);
+            this.label1.Size = new System.Drawing.Size(95, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "k-value";
+            this.label1.Text = "Number of clusters";
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(67, 31);
+            this.numericUpDown1.Location = new System.Drawing.Point(136, 83);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             50,
             0,
@@ -114,11 +122,11 @@
             // 
             // btnGenerateClusters
             // 
-            this.btnGenerateClusters.Location = new System.Drawing.Point(120, 28);
+            this.btnGenerateClusters.Location = new System.Drawing.Point(9, 115);
             this.btnGenerateClusters.Name = "btnGenerateClusters";
             this.btnGenerateClusters.Size = new System.Drawing.Size(112, 23);
             this.btnGenerateClusters.TabIndex = 0;
-            this.btnGenerateClusters.Text = "k-means";
+            this.btnGenerateClusters.Text = "Generate clusters";
             this.btnGenerateClusters.UseVisualStyleBackColor = true;
             this.btnGenerateClusters.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -129,7 +137,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.loadingImage.BackColor = System.Drawing.Color.White;
             this.loadingImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.loadingImage.Location = new System.Drawing.Point(12, 86);
+            this.loadingImage.Location = new System.Drawing.Point(12, 207);
             this.loadingImage.Name = "loadingImage";
             this.loadingImage.Size = new System.Drawing.Size(26, 28);
             this.loadingImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -140,10 +148,44 @@
             // 
             this.dataPointDetail1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataPointDetail1.Location = new System.Drawing.Point(506, 86);
+            this.dataPointDetail1.Location = new System.Drawing.Point(506, 166);
             this.dataPointDetail1.Name = "dataPointDetail1";
-            this.dataPointDetail1.Size = new System.Drawing.Size(398, 505);
+            this.dataPointDetail1.Size = new System.Drawing.Size(398, 425);
             this.dataPointDetail1.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 29);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(124, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Distance-matrix algorithm";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(136, 26);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 5;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(136, 53);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 56);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(98, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Clustering algorithm";
             // 
             // DataVisualizationForm
             // 
@@ -175,5 +217,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private DataPointDetail dataPointDetail1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label2;
     }
 }
