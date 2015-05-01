@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace fifi.Core
 {
@@ -9,12 +6,20 @@ namespace fifi.Core
     {
         public DataPoint(int dimensions)
         {
+            if (dimensions < 1)
+                throw new ArgumentException("Dimensions must be larger than zero.", "dimensions");
+
             Coordinates = new double[dimensions];
             Dimensions = dimensions;
         }
 
         public DataPoint(double[] coordinates)
         {
+            if (coordinates == null)
+                throw new ArgumentNullException("coordinates");
+            if (coordinates.Length == 0)
+                throw new ArgumentException("Coordinates cannot be zero.", "coordinates");
+
             Coordinates = coordinates;
             Dimensions = Coordinates.Length; 
         }
@@ -25,8 +30,16 @@ namespace fifi.Core
 
         public double this[int index]
         {
-            get { return Coordinates[index]; }
-            set { Coordinates[index] = value; }
+            get
+            {
+                EnsureIndexIsWithinBounds(index);
+                return Coordinates[index];
+            }
+            set
+            {
+                EnsureIndexIsWithinBounds(index);
+                Coordinates[index] = value;
+            }
         }
 
         /// <summary>
@@ -34,10 +47,13 @@ namespace fifi.Core
         /// </summary>
         public void CopyFrom(DataPoint another)
         {
-            if (another.Dimensions != this.Dimensions)
-                throw new ArgumentException("Dimensions mismatch.", "another");
+            if (another == null)
+                throw  new ArgumentNullException("another");
 
-            for (int i = 0; i < this.Dimensions; i++)
+            if (Dimensions != another.Dimensions)
+                throw new DimensionsMismatchExceptions(this, another);
+
+            for (int i = 0; i < Dimensions; i++)
                 this[i] = another[i];
         }
 
@@ -51,9 +67,6 @@ namespace fifi.Core
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(obj, this))
-                return true;
-
             DataPoint other = obj as DataPoint;
             if (other != null)
                 return Equals(other);
@@ -63,11 +76,14 @@ namespace fifi.Core
 
         public bool Equals(DataPoint other)
         {
+            if (ReferenceEquals(other, this))
+                return true;
+
             if (other.Dimensions == Dimensions)
             {
                 for (int i = 0; i < Dimensions; i++)
                 {
-                    if (other[i] != this[i])
+                    if (Math.Abs(other[i] - this[i]) > 0.0000001)
                     {
                         return false;
                     }
@@ -76,6 +92,12 @@ namespace fifi.Core
             }
 
             return false;
+        }
+
+        private void EnsureIndexIsWithinBounds(int index)
+        {
+            if (index < 0 || index >= Dimensions)
+                throw new ArgumentException("Index is out of bounds.", "index");
         }
     }
 }
