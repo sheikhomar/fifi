@@ -13,6 +13,13 @@ namespace fifi.WinUI
 
     public class LocalOutlierFactorItem
     {
+        public LocalOutlierFactorItem(int id, double localOutlierFactor, IconType icon = IconType.None)
+        {
+            Id = id;
+            LocalOutlierFactor = localOutlierFactor;
+            Icon = icon;
+        }
+        
         public IconType Icon { get; set; }
         public int Id { get; set; }
         public double LocalOutlierFactor { get; set; }

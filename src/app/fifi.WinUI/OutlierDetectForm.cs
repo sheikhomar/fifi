@@ -16,6 +16,10 @@ namespace fifi.WinUI
     public partial class OutlierDetectForm : Form
     {
         private DistanceMatrix distanceMatrix;
+        private List<LocalOutlierFactorItem> itemList;
+        private Dictionary<int, LocalOutlierFactorItem> idLookUptable;
+        private int kValue { get { return (int)numericUpDown1.Value; } }
+        private int limit { get { return (int)numericUpDown2.Value; } }
 
         public OutlierDetectForm()
         {
@@ -29,17 +33,21 @@ namespace fifi.WinUI
 
             var distanceMetric = new EuclideanMetric();
             distanceMatrix = new DistanceMatrix(dataCollection, distanceMetric);
+
+            CreateItemList();
+            idLookUptable = itemList.ToDictionary(item => item.Id);
         }
 
         public OutlierDetectForm(DistanceMatrix distanceMatrix, int k, int limit)
         {
             this.distanceMatrix = distanceMatrix;
+            CreateItemList();
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
             dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.DataSource = GenerateSortedLocalOutlierList();
+            dataGridView1.DataSource = itemList.OrderByDescending(point => point.LocalOutlierFactor).Take(limit).ToList();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -54,20 +62,48 @@ namespace fifi.WinUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = GenerateSortedLocalOutlierList();
+            UpdateLocalOutlierItemList();
+            dataGridView1.DataSource = itemList.OrderByDescending(point => point.LocalOutlierFactor).Take(limit).ToList(); ;
         }
 
-        private List<LocalOutlierFactorPoint> GenerateSortedLocalOutlierList()
+
+        private void CreateItemList()
+        {
+            this.itemList = new List<LocalOutlierFactorItem>();
+            var localOutlierPointList = CreateLocalOutlierPointList();
+
+            foreach (var item in localOutlierPointList)
+            {
+                itemList.Add(new LocalOutlierFactorItem(item.ID, item.LocalOutlierFactor));
+            }
+        }
+
+
+        private List<LocalOutlierFactorPoint> CreateLocalOutlierPointList()
         {
             var localOutlierFactor = new LocalOutlierFactor(distanceMatrix, kValue);
             localOutlierFactor.Run();
 
-            var localOutlierList = localOutlierFactor.ResultList;
-
-            return localOutlierList.OrderByDescending(point => point.LocalOutlierFactor).Take(limit).ToList();
+            return localOutlierFactor.ResultList;
         }
 
-        private int kValue { get { return (int)numericUpDown1.Value; } }
-        private int limit { get { return (int)numericUpDown2.Value; } }
+
+        private void UpdateLocalOutlierItemList()
+        {
+            var localOutlierPointList = CreateLocalOutlierPointList();
+
+            foreach (var point in localOutlierPointList)
+            {
+                if (idLookUptable.ContainsKey(point.ID))
+                {
+                    var item = idLookUptable[point.ID];
+                    item.LocalOutlierFactor = point.LocalOutlierFactor;
+                }
+                else
+                {
+                    throw new Exception("ID not found");
+                }
+            }
+        }
     }
 }
