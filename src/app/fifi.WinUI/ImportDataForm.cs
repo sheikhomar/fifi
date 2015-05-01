@@ -74,7 +74,7 @@ namespace fifi.WinUI
             ToggleUserInputControls(true);
 
             Result = task.Result;
-            DataVisualizationForm form = new DataVisualizationForm(Result, new EuclideanMetric());
+            DataVisualizationForm form = new DataVisualizationForm(Result);
             form.Show();
         }
 

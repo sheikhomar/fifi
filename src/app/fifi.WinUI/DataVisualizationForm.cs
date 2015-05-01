@@ -15,8 +15,10 @@ namespace fifi.WinUI
     {
         private readonly IdentifiableDataPointCollection dataSet;
         private readonly DataConversionTask dataConversionTask;
-        private readonly IDistanceMetric distanceMetric;
+        private IDistanceMetric distanceMetric;
         private List<DrawableDataPoint> chartDataSource;
+        private ClusteringResult clusterResult;
+        private KMeans kmeans;
 
         public DataVisualizationForm()
         {
@@ -29,11 +31,11 @@ namespace fifi.WinUI
             this.loadingImage.Image = Resources.Loading2;
         }
 
-        public DataVisualizationForm(IdentifiableDataPointCollection dataSet, IDistanceMetric distanceMetric) 
+        public DataVisualizationForm(IdentifiableDataPointCollection dataSet) 
             : this()
         {
             this.dataSet = dataSet;
-            this.distanceMetric = distanceMetric;
+            distanceMetric = new EuclideanMetric();
 
             dataConversionTask = new DataConversionTask();
             dataConversionTask.Success += DataConversionTask_Success;
@@ -75,12 +77,33 @@ namespace fifi.WinUI
         {
             if (chartDataSource != null)
             {
-                int k = Convert.ToInt32(numericUpDown1.Value);
-                var kmeans = new KMeans(this.dataSet, k, distanceMetric);
-                var result = kmeans.Calculate();
+                /* Choosing distance algorithm */
+                switch (cbDistanceAlgo.Text)
+                {
+                    case "Euclidian distance": distanceMetric = new EuclideanMetric(); break;
+                    default: distanceMetric = new EuclideanMetric(); break;
+                }
+
+                /* Choosing number of clusters */
+                int clusterNumbers = Convert.ToInt32(numberOfClusters.Value);
+
+                /* Choosing clustering algorithm */
+                switch (cbClusteringAlgo.Text)
+                {
+                    case "K-means": 
+                        kmeans = new KMeans(this.dataSet, clusterNumbers, distanceMetric);
+                        clusterResult = kmeans.Calculate();
+                        break;
+                    default:
+                        kmeans = new KMeans(this.dataSet, clusterNumbers, distanceMetric);
+                        clusterResult = kmeans.Calculate();
+                        break;
+                }
+
+                /* Executing scatterplot */
                 foreach (var dataPoint in chartDataSource)
                 {
-                    Cluster cluster = result.FindCluster(dataPoint.Origin);
+                    Cluster cluster = clusterResult.FindCluster(dataPoint.Origin);
                     if (cluster != null)
                     {
                         dataPoint.Group = string.Format("Cluster {0}", cluster.Id);
@@ -89,13 +112,11 @@ namespace fifi.WinUI
                 chartDataSource = chartDataSource.OrderBy(item => item.Group).ToList();
                 var scatterPlot = new ScatterPlot(chartDataSource, chart);
                 scatterPlot.Draw();
-            }
-        }
 
-        private void chart_Click(object sender, EventArgs e)
-        {
-            Random ran = new Random();
-            dataPointDetail1.GenerateDetails(dataSet[ran.Next(0, 150)], dataSet[ran.Next(0, 150)]);
+                /* Show datapoint details */
+                Random ran = new Random();
+                dataPointDetail1.GenerateDetails(dataSet[ran.Next(0, 150)], dataSet[ran.Next(0, 150)]);
+            }
         }
     }
 }

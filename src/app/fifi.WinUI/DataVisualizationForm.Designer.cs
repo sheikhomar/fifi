@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.grpAlgorithmSettings = new System.Windows.Forms.GroupBox();
+            this.cbClusteringAlgo = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbDistanceAlgo = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numberOfClusters = new System.Windows.Forms.NumericUpDown();
             this.btnGenerateClusters = new System.Windows.Forms.Button();
             this.loadingImage = new System.Windows.Forms.PictureBox();
             this.dataPointDetail1 = new fifi.WinUI.DataPointDetail();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             this.grpAlgorithmSettings.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numberOfClusters)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadingImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,32 +55,31 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chart.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Center;
             this.chart.BackImageWrapMode = System.Windows.Forms.DataVisualization.Charting.ChartImageWrapMode.Unscaled;
-            chartArea1.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart.Legends.Add(legend2);
             this.chart.Location = new System.Drawing.Point(11, 165);
             this.chart.Margin = new System.Windows.Forms.Padding(2);
             this.chart.Name = "chart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart.Series.Add(series2);
             this.chart.Size = new System.Drawing.Size(490, 427);
             this.chart.TabIndex = 1;
             this.chart.Text = "chart1";
-            this.chart.Click += new System.EventHandler(this.chart_Click);
             // 
             // grpAlgorithmSettings
             // 
             this.grpAlgorithmSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpAlgorithmSettings.Controls.Add(this.comboBox2);
+            this.grpAlgorithmSettings.Controls.Add(this.cbClusteringAlgo);
             this.grpAlgorithmSettings.Controls.Add(this.label3);
-            this.grpAlgorithmSettings.Controls.Add(this.comboBox1);
+            this.grpAlgorithmSettings.Controls.Add(this.cbDistanceAlgo);
             this.grpAlgorithmSettings.Controls.Add(this.label2);
             this.grpAlgorithmSettings.Controls.Add(this.label1);
-            this.grpAlgorithmSettings.Controls.Add(this.numericUpDown1);
+            this.grpAlgorithmSettings.Controls.Add(this.numberOfClusters);
             this.grpAlgorithmSettings.Controls.Add(this.btnGenerateClusters);
             this.grpAlgorithmSettings.Location = new System.Drawing.Point(12, 12);
             this.grpAlgorithmSettings.Name = "grpAlgorithmSettings";
@@ -88,6 +87,46 @@
             this.grpAlgorithmSettings.TabIndex = 2;
             this.grpAlgorithmSettings.TabStop = false;
             this.grpAlgorithmSettings.Text = "Clustering algorithm settings";
+            // 
+            // cbClusteringAlgo
+            // 
+            this.cbClusteringAlgo.FormattingEnabled = true;
+            this.cbClusteringAlgo.Items.AddRange(new object[] {
+            "K-means"});
+            this.cbClusteringAlgo.Location = new System.Drawing.Point(136, 53);
+            this.cbClusteringAlgo.Name = "cbClusteringAlgo";
+            this.cbClusteringAlgo.Size = new System.Drawing.Size(121, 21);
+            this.cbClusteringAlgo.TabIndex = 7;
+            this.cbClusteringAlgo.Text = "K-means";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 56);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(98, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Clustering algorithm";
+            // 
+            // cbDistanceAlgo
+            // 
+            this.cbDistanceAlgo.FormattingEnabled = true;
+            this.cbDistanceAlgo.Items.AddRange(new object[] {
+            "Euclidian distance"});
+            this.cbDistanceAlgo.Location = new System.Drawing.Point(136, 26);
+            this.cbDistanceAlgo.Name = "cbDistanceAlgo";
+            this.cbDistanceAlgo.Size = new System.Drawing.Size(121, 21);
+            this.cbDistanceAlgo.TabIndex = 5;
+            this.cbDistanceAlgo.Text = "Euclidian distance";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 29);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(124, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Distance-matrix algorithm";
             // 
             // label1
             // 
@@ -98,23 +137,23 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Number of clusters";
             // 
-            // numericUpDown1
+            // numberOfClusters
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(136, 83);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.numberOfClusters.Location = new System.Drawing.Point(136, 83);
+            this.numberOfClusters.Maximum = new decimal(new int[] {
             50,
             0,
             0,
             0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.numberOfClusters.Minimum = new decimal(new int[] {
             2,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(47, 20);
-            this.numericUpDown1.TabIndex = 2;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.numberOfClusters.Name = "numberOfClusters";
+            this.numberOfClusters.Size = new System.Drawing.Size(47, 20);
+            this.numberOfClusters.TabIndex = 2;
+            this.numberOfClusters.Value = new decimal(new int[] {
             5,
             0,
             0,
@@ -137,7 +176,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.loadingImage.BackColor = System.Drawing.Color.White;
             this.loadingImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.loadingImage.Location = new System.Drawing.Point(12, 207);
+            this.loadingImage.Location = new System.Drawing.Point(12, 166);
             this.loadingImage.Name = "loadingImage";
             this.loadingImage.Size = new System.Drawing.Size(26, 28);
             this.loadingImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -153,40 +192,6 @@
             this.dataPointDetail1.Size = new System.Drawing.Size(398, 425);
             this.dataPointDetail1.TabIndex = 3;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 29);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(124, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Distance-matrix algorithm";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(136, 26);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 5;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(136, 53);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 7;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 56);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(98, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Clustering algorithm";
-            // 
             // DataVisualizationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -197,12 +202,12 @@
             this.Controls.Add(this.grpAlgorithmSettings);
             this.Controls.Add(this.chart);
             this.Name = "DataVisualizationForm";
-            this.Text = "VisualizeForm";
+            this.Text = "Display clusters";
             this.Shown += new System.EventHandler(this.DataVisualizationForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
             this.grpAlgorithmSettings.ResumeLayout(false);
             this.grpAlgorithmSettings.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numberOfClusters)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadingImage)).EndInit();
             this.ResumeLayout(false);
 
@@ -215,11 +220,11 @@
         private System.Windows.Forms.PictureBox loadingImage;
         private System.Windows.Forms.Button btnGenerateClusters;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numberOfClusters;
         private DataPointDetail dataPointDetail1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbClusteringAlgo;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbDistanceAlgo;
         private System.Windows.Forms.Label label2;
     }
 }
