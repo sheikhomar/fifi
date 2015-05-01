@@ -19,7 +19,7 @@ namespace fifi.WinUI
 
         private Chart _chart1;
 
-        public ScatterPlot(List<DrawableDataPoint> input, Chart winFormChart)
+        public ScatterPlot(IList<DrawableDataPoint> input, Chart winFormChart)
         {
             _chart1 = winFormChart;
             _chart1.Series.Clear();

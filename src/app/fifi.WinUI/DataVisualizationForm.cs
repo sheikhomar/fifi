@@ -16,8 +16,9 @@ namespace fifi.WinUI
         private readonly IdentifiableDataPointCollection dataSet;
         private readonly DataConversionTask dataConversionTask;
         private IDistanceMetric distanceMetric;
-        private List<DrawableDataPoint> chartDataSource;
+        private IList<DrawableDataPoint> chartDataSource;
         private ClusteringResult clusterResult;
+        private DistanceMatrix distanceMatrix;
         private KMeans kmeans;
 
         public DataVisualizationForm()
@@ -42,10 +43,11 @@ namespace fifi.WinUI
             dataConversionTask.Failure += DataConversionTask_Failure;
         }
 
-        private void DataConversionTask_Success(object sender, IEnumerable<DrawableDataPoint> result)
+        private void DataConversionTask_Success(object sender, DataConversionResult result)
         {
             loadingImage.Visible = false;
-            chartDataSource = result.ToList();
+            chartDataSource = result.DataPoints;
+            distanceMatrix = result.DistanceMatrix;
             var scatterPlot = new ScatterPlot(chartDataSource, chart);
             scatterPlot.Draw();
 
@@ -126,7 +128,8 @@ namespace fifi.WinUI
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            MessageBox.Show("Mathias din ost");
+            OutlierDetectForm form = new OutlierDetectForm(distanceMatrix);
+            form.ShowDialog();
         }
     }
 }

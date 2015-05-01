@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using fifi.Core;
+using MathNet.Numerics.Distributions;
 
 namespace fifi.Core
 {
@@ -25,7 +26,7 @@ namespace fifi.Core
         /// <summary>
         /// Occurs when the task is successfully completed.
         /// </summary>
-        public event EventHandler<IEnumerable<DrawableDataPoint>> Success;
+        public event EventHandler<DataConversionResult> Success;
 
         /// <summary>
         /// Occurs when the task fails because of unhandled exceptions.
@@ -41,7 +42,7 @@ namespace fifi.Core
         {
             var args = new TaskRunnerArgumentSet {Data = dataSet, DistanceMetric = distanceMetric};
 
-            var task = Task.Factory.StartNew<List<DrawableDataPoint>>(TaskRunner, args);
+            var task = Task.Factory.StartNew<DataConversionResult>(TaskRunner, args);
 
             // Make sure Success and Failure events are run within the caller thread.
             TaskScheduler currentContext = TaskScheduler.FromCurrentSynchronizationContext();
@@ -52,7 +53,7 @@ namespace fifi.Core
         // This method is made static on purpose to discourage access to instance members of this class
         // since it is called by another thread than the UI thread. Accessing controls from threads other 
         // than the UI thread will cause problems.
-        private static List<DrawableDataPoint> TaskRunner(object arg)
+        private static DataConversionResult TaskRunner(object arg)
         {
             TaskRunnerArgumentSet options = arg as TaskRunnerArgumentSet;
 
@@ -70,11 +71,13 @@ namespace fifi.Core
                 drawableDataPoints.Add(new DrawableDataPoint(originalDataPoint, x, y));
             }
 
-            return drawableDataPoints.OrderBy(d => d.Group).ToList();
+            var dataPoints = drawableDataPoints.OrderBy(d => d.Group).ToList();
+
+            return new DataConversionResult(dataPoints, distanceMatrix);
         }
 
 
-        protected virtual void OnSuccess(List<DrawableDataPoint> arg)
+        protected virtual void OnSuccess(DataConversionResult arg)
         {
             var handler = Success;
             if (handler != null)
@@ -88,12 +91,12 @@ namespace fifi.Core
                 handler(this, arg);
         }
 
-        private void TaskComplete(Task<List<DrawableDataPoint>> task)
+        private void TaskComplete(Task<DataConversionResult> task)
         {
             OnSuccess(task.Result);
         }
 
-        private void TaskFaulted(Task<List<DrawableDataPoint>> task)
+        private void TaskFaulted(Task<DataConversionResult> task)
         {
             if (task.Exception != null) 
                 OnFailure(task.Exception.InnerExceptions);
