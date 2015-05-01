@@ -92,9 +92,9 @@ namespace fifi.Data
 
             double difference = field.MaxValue - field.MinValue;
             double normalizedValue = (valueInDataField - field.MinValue) / difference;
-            dataItem.AddAttribute(field.Category, normalizedValue);
+            double finalValue = normalizedValue*field.Weight;
+            dataItem.AddAttribute(field.Category, finalValue);
         }
-
 
         private void ParseMultipleChoiceBinaryField(IField field, CsvReader csv, IdentifiableDataPoint profile)
         {
@@ -106,14 +106,10 @@ namespace fifi.Data
 
             foreach (IFieldValue possibleFieldValue in field.Values)
             {
+                double value = 0;
                 if (array.Contains(possibleFieldValue.Name))
-                {
-                    profile.AddAttribute(possibleFieldValue.Name, 1);
-                }
-                else
-                {
-                    profile.AddAttribute(possibleFieldValue.Name, 0);
-                }
+                    value = field.Weight;
+                profile.AddAttribute(possibleFieldValue.Name, value);
             }
         }
 
@@ -125,14 +121,10 @@ namespace fifi.Data
 
             foreach (IFieldValue possibleFieldValue in field.Values)
             {
+                double value = 0;
                 if (possibleFieldValue.Name.Equals(label))
-                {
-                    profile.AddAttribute(possibleFieldValue.Name, 1);
-                }
-                else
-                {
-                    profile.AddAttribute(possibleFieldValue.Name, 0);    
-                }
+                    value = field.Weight;
+                profile.AddAttribute(possibleFieldValue.Name, value);
             }
         }
 
@@ -140,16 +132,11 @@ namespace fifi.Data
         {
             string label = csv.GetField<string>(field.Index);
             double? translatedField = field.Values.GetDoubleValueFor(label);
-
-            if (translatedField.HasValue)
-            {
-                profile.AddAttribute(field.Category, translatedField.Value);
-            }
-            else
-            {
-                
+            if (!translatedField.HasValue)
                 throw new InvalidFieldValueException(csv.Row, field.Index);
-            }
+
+            double value = translatedField.Value*field.Weight;
+            profile.AddAttribute(field.Category, value);
         }
     }
 }

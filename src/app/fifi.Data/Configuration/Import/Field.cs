@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System.Configuration;
 
 namespace fifi.Data.Configuration.Import
 {
@@ -12,6 +9,8 @@ namespace fifi.Data.Configuration.Import
         const string AttributeCategory = "category";
         const string AttributeMinValue = "minValue";
         const string AttributeMaxValue = "maxValue";
+        const string AttributeWeight = "weight";
+        const string AttributeValues = "values";
 
         [ConfigurationProperty(AttributeIndex, IsRequired = true)]
         public int Index
@@ -34,12 +33,12 @@ namespace fifi.Data.Configuration.Import
             set { this[AttributeCategory] = value; }
         }
 
-        [ConfigurationProperty("values")]
+        [ConfigurationProperty(AttributeValues)]
         [ConfigurationCollection(typeof(FieldValueCollection),
            AddItemName = "add")]
         public FieldValueCollection Values
         {
-            get { return (FieldValueCollection)this["values"]; }
+            get { return (FieldValueCollection)this[AttributeValues]; }
         }
 
         [ConfigurationProperty(AttributeMinValue, IsRequired = false)]
@@ -54,6 +53,13 @@ namespace fifi.Data.Configuration.Import
         {
             get { return (double)this[AttributeMaxValue]; }
             set { this[AttributeMaxValue] = value; }
+        }
+
+        [ConfigurationProperty(AttributeWeight, IsRequired = false, DefaultValue = 1.0D)]
+        public double Weight
+        {
+            get { return (double)this[AttributeWeight]; }
+            set { this[AttributeWeight] = value; }
         }
 
         #region IField Implementation
@@ -88,7 +94,11 @@ namespace fifi.Data.Configuration.Import
             get { return MaxValue; }
         }
 
-        #endregion
+        double IField.Weight
+        {
+            get { return Weight; }
+        }
 
+        #endregion
     }
 }

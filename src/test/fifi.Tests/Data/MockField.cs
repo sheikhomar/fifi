@@ -10,5 +10,6 @@ namespace fifi.Tests.Data
         public IFieldValueCollection Values { get; set; }
         public double MinValue { get; set; }
         public double MaxValue { get; set; }
+        public double Weight { get; set; }
     }
 }

@@ -23,7 +23,8 @@ namespace fifi.Tests.Data
                 Index = index,
                 Category = "Gender",
                 Type = FieldType.Scalar,
-                Values = fieldValues2
+                Values = fieldValues2,
+                Weight = 2
             };
         }
         private MockField GenerateEmploymentStatusField(int index)
@@ -39,7 +40,8 @@ namespace fifi.Tests.Data
                 Index = index,
                 Category = "", // Not used
                 Type = FieldType.MultipleBinaryFields,
-                Values = fieldValues2
+                Values = fieldValues2,
+                Weight = 2.5D
             };
         }
         private MockField GenerateBookField(int index)
@@ -55,7 +57,8 @@ namespace fifi.Tests.Data
                 Index = index,
                 Category = "", // Not used
                 Type = FieldType.MultipleChoiceMultipleBinaryFields,
-                Values = fieldValues2
+                Values = fieldValues2,
+                Weight = 1.5
             };
         }
         private MockField GenerateNumericField(int index)
@@ -66,7 +69,8 @@ namespace fifi.Tests.Data
                 Category = "Age",
                 Type = FieldType.Numeric,
                 MinValue = 1900,
-                MaxValue = 2000
+                MaxValue = 2000,
+                Weight = 4.5
             };
         }
 
@@ -104,21 +108,21 @@ namespace fifi.Tests.Data
         [Test]
         public void ShouldParseScalarFieldsCorrectly()
         {
-            Assert.AreEqual(0.234, dataSet[0]["Gender"]);
-            Assert.AreEqual(1.134, dataSet[1]["Gender"]);
-            Assert.AreEqual(1.134, dataSet[2]["Gender"]);
+            Assert.AreEqual(0.234 * 2, dataSet[0]["Gender"]);
+            Assert.AreEqual(1.134 * 2, dataSet[1]["Gender"]);
+            Assert.AreEqual(1.134 * 2, dataSet[2]["Gender"]);
         }
 
         [Test]
         public void ShouldParseMultipleBinaryFieldsCorrectly()
         {
-            Assert.AreEqual(1, dataSet[0]["Study job"]);
+            Assert.AreEqual(2.5D, dataSet[0]["Study job"]);
             Assert.AreEqual(0, dataSet[0]["Full time"]);
             Assert.AreEqual(0, dataSet[0]["Unemployed"]);
             Assert.AreEqual(0, dataSet[1]["Study job"]);
-            Assert.AreEqual(1, dataSet[1]["Full time"]);
+            Assert.AreEqual(2.5D, dataSet[1]["Full time"]);
             Assert.AreEqual(0, dataSet[1]["Unemployed"]);
-            Assert.AreEqual(1, dataSet[2]["Study job"]);
+            Assert.AreEqual(2.5D, dataSet[2]["Study job"]);
             Assert.AreEqual(0, dataSet[2]["Full time"]);
             Assert.AreEqual(0, dataSet[2]["Unemployed"]);
         }
@@ -126,11 +130,11 @@ namespace fifi.Tests.Data
         [Test]
         public void ShouldParseMultipleChoiceMultipleBinaryFieldsCorrectly()
         {
-            Assert.AreEqual(1, dataSet[0]["Books"]);
-            Assert.AreEqual(1, dataSet[0]["Magazines"]);
-            Assert.AreEqual(1, dataSet[0]["Specialist books"]);
+            Assert.AreEqual(1.5D, dataSet[0]["Books"]);
+            Assert.AreEqual(1.5D, dataSet[0]["Magazines"]);
+            Assert.AreEqual(1.5D, dataSet[0]["Specialist books"]);
             Assert.AreEqual(0, dataSet[1]["Books"]);
-            Assert.AreEqual(1, dataSet[1]["Magazines"]);
+            Assert.AreEqual(1.5D, dataSet[1]["Magazines"]);
             Assert.AreEqual(0, dataSet[1]["Specialist books"]);
             Assert.AreEqual(0, dataSet[2]["Books"]);
             Assert.AreEqual(0, dataSet[2]["Magazines"]);
@@ -140,9 +144,9 @@ namespace fifi.Tests.Data
         [Test]
         public void ShouldParseNumericFieldsCorrectly()
         {
-            Assert.AreEqual(0.75, dataSet[0]["Age"]);
-            Assert.AreEqual(0.9,  dataSet[1]["Age"]);
-            Assert.AreEqual(1,    dataSet[2]["Age"]);
+            Assert.AreEqual(0.75 * 4.5, dataSet[0]["Age"]);
+            Assert.AreEqual(0.9 * 4.5, dataSet[1]["Age"]);
+            Assert.AreEqual(4.5, dataSet[2]["Age"]);
         }
     }
 }

@@ -10,5 +10,6 @@ namespace fifi.Data.Configuration.Import
         IFieldValueCollection Values { get; }
         double MinValue { get; }
         double MaxValue { get; }
+        double Weight { get; }
     }
 }
