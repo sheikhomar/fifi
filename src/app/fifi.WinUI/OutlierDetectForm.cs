@@ -39,9 +39,8 @@ namespace fifi.WinUI
             idLookUptable = itemList.ToDictionary(item => item.Id);
         }
 
-        public OutlierDetectForm(IdentifiableDataPointCollection identifiableDataPointCollection, DistanceMatrix distanceMatrix, int k, int limit)
+        public OutlierDetectForm(DistanceMatrix distanceMatrix)
         {
-            this.identifiableDataPointCollection = identifiableDataPointCollection;
             this.distanceMatrix = distanceMatrix;
             CreateItemList();
         }
