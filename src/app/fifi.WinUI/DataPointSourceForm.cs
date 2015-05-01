@@ -24,14 +24,28 @@ namespace fifi.WinUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            testPoint = new IdentifiableDataPoint(1, 5);
+            testPoint = new IdentifiableDataPoint(1, 12);
+            testPoint.AddAttribute("Gender", 1d);
+            testPoint.AddAttribute("Gender", 1d);
+            testPoint.AddAttribute("Gender", 1d);
+            testPoint.AddAttribute("Gender", 1d);
+            testPoint.AddAttribute("Gender", 1d);
+            testPoint.AddAttribute("Gender", 1d);
+            testPoint.AddAttribute("Gender", 1d);
             testPoint.AddAttribute("Gender", 1d);
             testPoint.AddAttribute("Income", 0.1429);
             testPoint.AddAttribute("Age", 0.16d);
             testPoint.AddAttribute("Purchase", 0.5d);
             testPoint.AddAttribute("Control", 1d);
 
-            testCentroid = new IdentifiableDataPoint(1, 5);
+            testCentroid = new IdentifiableDataPoint(1, 12);
+            testCentroid.AddAttribute("Gender", 0d);
+            testCentroid.AddAttribute("Gender", 0d);
+            testCentroid.AddAttribute("Gender", 0d);
+            testCentroid.AddAttribute("Gender", 0d);
+            testCentroid.AddAttribute("Gender", 0d);
+            testCentroid.AddAttribute("Gender", 0d);
+            testCentroid.AddAttribute("Gender", 0d);
             testCentroid.AddAttribute("Gender", 0d);
             testCentroid.AddAttribute("Income", 0.2858d);
             testCentroid.AddAttribute("Age", 0.16d);
@@ -40,12 +54,13 @@ namespace fifi.WinUI
 
             ran = new Random();
             fun = ran.Next(5, 100);
-            DataPointDetail test = new DataPointDetail();
-            this.Controls.Add(test);
-            test.GenerateDetails(testPoint, testCentroid);
-            test.Location = new Point(fun, fun);
-            test.BringToFront();
-            button1.BringToFront();
+            //DataPointDetail test = new DataPointDetail();
+            //this.Controls.Add(test);
+            //test.GenerateDetails(testPoint, testCentroid);
+            //test.Location = new Point(fun, fun);
+            //test.BringToFront();
+            //button1.BringToFront();
+            dataPointDetail1.GenerateDetails(testPoint, testCentroid);
         }
     }
 }

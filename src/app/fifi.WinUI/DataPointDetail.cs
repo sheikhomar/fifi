@@ -28,8 +28,8 @@ namespace fifi.WinUI
             lblID.Text = "ID: " + dataPoint.Id.ToString();
 
             dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.AutoSize = true;
-            //dataGridView1.BackgroundColor = this.BackColor;
+
+            dataGridView1.BackgroundColor = this.BackColor;
             dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
 
             for (int attributes = 0; attributes < dataPoint.Attributes.Count; attributes++)

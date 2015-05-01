@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
+            this.dataPointDetail1 = new fifi.WinUI.DataPointDetail();
             this.SuspendLayout();
             // 
             // button1
@@ -41,11 +42,19 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // dataPointDetail1
+            // 
+            this.dataPointDetail1.Location = new System.Drawing.Point(13, 42);
+            this.dataPointDetail1.Name = "dataPointDetail1";
+            this.dataPointDetail1.Size = new System.Drawing.Size(325, 234);
+            this.dataPointDetail1.TabIndex = 1;
+            // 
             // DataPointSourceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(475, 345);
+            this.Controls.Add(this.dataPointDetail1);
             this.Controls.Add(this.button1);
             this.Name = "DataPointSourceForm";
             this.Text = "DataPointSourceForm";
@@ -56,5 +65,6 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
+        private DataPointDetail dataPointDetail1;
     }
 }

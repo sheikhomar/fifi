@@ -57,7 +57,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(3, 37);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(303, 132);
+            this.dataGridView1.Size = new System.Drawing.Size(319, 192);
             this.dataGridView1.TabIndex = 3;
             // 
             // ColSimilarity
@@ -99,7 +99,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.lblID);
             this.Name = "DataPointDetail";
-            this.Size = new System.Drawing.Size(419, 296);
+            this.Size = new System.Drawing.Size(325, 234);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
