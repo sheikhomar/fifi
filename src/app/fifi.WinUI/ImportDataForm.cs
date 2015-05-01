@@ -124,5 +124,10 @@ namespace fifi.WinUI
         }
 
         #endregion
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

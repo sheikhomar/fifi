@@ -158,6 +158,7 @@
             this.btnClose.TabIndex = 9;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnImport
             // 
@@ -170,7 +171,7 @@
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
-            // LoadDataForm
+            // ImportDataForm
             // 
             this.AcceptButton = this.btnImport;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -183,7 +184,7 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(500, 250);
             this.MinimumSize = new System.Drawing.Size(500, 250);
-            this.Name = "LoadDataForm";
+            this.Name = "ImportDataForm";
             this.Text = "Select input data";
             this.Load += new System.EventHandler(this.LoadDataForm_Load);
             this.groupBox1.ResumeLayout(false);
