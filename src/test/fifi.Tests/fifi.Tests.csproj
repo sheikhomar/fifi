@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Core\DistanceMatrixTest.cs" />
     <Compile Include="Core\EuclideanMetricTests.cs" />
+    <Compile Include="Core\IdentifiableDataPointTests.cs" />
     <Compile Include="Core\KMeansTests.cs" />
     <Compile Include="Core\DataPointTests.cs" />
     <Compile Include="Core\LocalOutlierFactorTest.cs" />

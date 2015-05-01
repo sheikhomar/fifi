@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace fifi.Core
 {
@@ -34,11 +31,9 @@ namespace fifi.Core
         public void AddAttribute(string name, double value)
         {
             if (Dimensions <= Attributes.Count)
-            {
                 throw new NumberOfDimensionsExceededException("Cannot add more attributes as the original allowed dimension size has been reached.");
-            }
 
-            this.Coordinates[this.Attributes.Count] = value;
+            Coordinates[Attributes.Count] = value;
             Attributes.Add(name);
         }
     }
