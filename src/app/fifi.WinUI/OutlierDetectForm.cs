@@ -15,7 +15,7 @@ namespace fifi.WinUI
 {
     public partial class OutlierDetectForm : Form
     {
-        IdentifiableDataPointCollection identifiableDataPointCollection;
+        IdentifiableDataPointCollection identifiableDataPointCollection; //Remove
         private DistanceMatrix distanceMatrix;
         private List<LocalOutlierFactorItem> itemList;
         private Dictionary<int, LocalOutlierFactorItem> idLookUptable;
@@ -26,23 +26,26 @@ namespace fifi.WinUI
         {
             InitializeComponent();
 
-            IConfiguration configuration =
-               (ConfigurationSectionHandler)ConfigurationManager.GetSection("csvDataImport");
-            var reader = new StreamReader("UserData.csv");
-            var importer = new CsvDynamicDataImporter(reader, configuration);
-            this.identifiableDataPointCollection = importer.Run();
+            //IConfiguration configuration =
+            //   (ConfigurationSectionHandler)ConfigurationManager.GetSection("csvDataImport");
+            //var reader = new StreamReader("UserData.csv");
+            //var importer = new CsvDynamicDataImporter(reader, configuration);
+            //this.identifiableDataPointCollection = importer.Run();
 
-            var distanceMetric = new EuclideanMetric();
-            distanceMatrix = new DistanceMatrix(identifiableDataPointCollection, distanceMetric);
+            //var distanceMetric = new EuclideanMetric();
+            //distanceMatrix = new DistanceMatrix(identifiableDataPointCollection, distanceMetric);
 
-            CreateItemList();
-            idLookUptable = itemList.ToDictionary(item => item.Id);
+            //CreateItemList();
+            //idLookUptable = itemList.ToDictionary(item => item.Id);
         }
 
         public OutlierDetectForm(DistanceMatrix distanceMatrix)
         {
+            InitializeComponent();
+            
             this.distanceMatrix = distanceMatrix;
             CreateItemList();
+            idLookUptable = itemList.ToDictionary(item => item.Id);
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -67,9 +70,7 @@ namespace fifi.WinUI
                 var liveItemList = (List<LocalOutlierFactorItem>)dataGridView1.DataSource;
                 var markedItem = idLookUptable[liveItemList[e.RowIndex].Id];
 
-                //Todo send this id to someone.
-
-                dataPointDetail1.GenerateDetails(new IdentifiableDataPoint(e.ColumnIndex, 5), new IdentifiableDataPoint(e.ColumnIndex, 5));
+                dataPointDetail1.GenerateDetails( distanceMatrix.GetObject(markedItem.Id) as IdentifiableDataPoint, new IdentifiableDataPoint(e.ColumnIndex, 60));
             }
         }
 
@@ -92,9 +93,10 @@ namespace fifi.WinUI
             this.itemList = new List<LocalOutlierFactorItem>();
             var localOutlierPointList = CreateLocalOutlierPointList();
 
-            foreach (var item in localOutlierPointList)
+            for (int Id = 0; Id < localOutlierPointList.Count; Id++)
             {
-                itemList.Add(new LocalOutlierFactorItem(item.ID, item.LocalOutlierFactor));
+                itemList.Add(new LocalOutlierFactorItem(Id, localOutlierPointList[Id].LocalOutlierFactor));
+                
             }
         }
 
@@ -123,6 +125,11 @@ namespace fifi.WinUI
                     throw new Exception("ID not found");
                 }
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

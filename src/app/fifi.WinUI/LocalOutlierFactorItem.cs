@@ -39,7 +39,7 @@ namespace fifi.WinUI
         }
         public int Id { get; set; }
         public double LocalOutlierFactor { get; set; }
-        public string FormattetLocalOutlierFactor { get { return LocalOutlierFactor.ToString("2:N5"); } }
+        public string FormattetLocalOutlierFactor { get { return String.Format("{0,2:N5}",LocalOutlierFactor); } }
 
         public void UpdateIcon()
         {

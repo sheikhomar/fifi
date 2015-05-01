@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.columnIcon = new System.Windows.Forms.DataGridViewImageColumn();
-            this.columnProfile = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comlumnLocalOutlierFactor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.dataPointDetail1 = new fifi.WinUI.DataPointDetail();
+            this.columnIcon = new System.Windows.Forms.DataGridViewImageColumn();
+            this.columnProfile = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comlumnLocalOutlierFactor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -59,29 +59,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(297, 361);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            // 
-            // columnIcon
-            // 
-            this.columnIcon.DataPropertyName = "Image";
-            this.columnIcon.HeaderText = "Icon";
-            this.columnIcon.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
-            this.columnIcon.Name = "columnIcon";
-            this.columnIcon.ReadOnly = true;
-            // 
-            // columnProfile
-            // 
-            this.columnProfile.DataPropertyName = "ID";
-            this.columnProfile.HeaderText = "Profile";
-            this.columnProfile.Name = "columnProfile";
-            this.columnProfile.ReadOnly = true;
-            this.columnProfile.Width = 80;
-            // 
-            // comlumnLocalOutlierFactor
-            // 
-            this.comlumnLocalOutlierFactor.DataPropertyName = "LocalOutlierFactor";
-            this.comlumnLocalOutlierFactor.HeaderText = "Local Outlier Factor";
-            this.comlumnLocalOutlierFactor.Name = "comlumnLocalOutlierFactor";
-            this.comlumnLocalOutlierFactor.ReadOnly = true;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // label1
             // 
@@ -163,6 +141,32 @@
             this.dataPointDetail1.Size = new System.Drawing.Size(464, 402);
             this.dataPointDetail1.TabIndex = 6;
             // 
+            // columnIcon
+            // 
+            this.columnIcon.DataPropertyName = "Image";
+            this.columnIcon.HeaderText = "Icon";
+            this.columnIcon.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.columnIcon.Name = "columnIcon";
+            this.columnIcon.ReadOnly = true;
+            this.columnIcon.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // columnProfile
+            // 
+            this.columnProfile.DataPropertyName = "ID";
+            this.columnProfile.HeaderText = "Profile";
+            this.columnProfile.Name = "columnProfile";
+            this.columnProfile.ReadOnly = true;
+            this.columnProfile.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.columnProfile.Width = 80;
+            // 
+            // comlumnLocalOutlierFactor
+            // 
+            this.comlumnLocalOutlierFactor.DataPropertyName = "FormattetLocalOutlierFactor";
+            this.comlumnLocalOutlierFactor.HeaderText = "Local Outlier Factor";
+            this.comlumnLocalOutlierFactor.Name = "comlumnLocalOutlierFactor";
+            this.comlumnLocalOutlierFactor.ReadOnly = true;
+            this.comlumnLocalOutlierFactor.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
             // OutlierDetectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -194,10 +198,10 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Label label2;
+        private DataPointDetail dataPointDetail1;
         private System.Windows.Forms.DataGridViewImageColumn columnIcon;
         private System.Windows.Forms.DataGridViewTextBoxColumn columnProfile;
         private System.Windows.Forms.DataGridViewTextBoxColumn comlumnLocalOutlierFactor;
-        private DataPointDetail dataPointDetail1;
 
 
     }
