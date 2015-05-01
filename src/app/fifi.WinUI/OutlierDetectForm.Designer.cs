@@ -143,12 +143,14 @@
             // 
             // columnIcon
             // 
+            this.columnIcon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.columnIcon.DataPropertyName = "Image";
-            this.columnIcon.HeaderText = "Icon";
-            this.columnIcon.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.columnIcon.HeaderText = "False/Fake";
+            this.columnIcon.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.columnIcon.Name = "columnIcon";
             this.columnIcon.ReadOnly = true;
             this.columnIcon.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.columnIcon.Width = 67;
             // 
             // columnProfile
             // 

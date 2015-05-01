@@ -10,7 +10,7 @@ namespace fifi.WinUI
 {
     public enum IconType
     {
-        Mark, Question, None
+        CheckMark, QuestionMark, X, None
     }
 
     public class LocalOutlierFactorItem
@@ -29,29 +29,34 @@ namespace fifi.WinUI
             {
                 switch (Icon)
                 {
-                    case IconType.Mark:
-                        return Resources.Mark;
-                    case IconType.Question:
-                        return Resources.Question;
+                    case IconType.None:
+                        return Resources.Arrow;
+                    case IconType.CheckMark:
+                        return Resources.CheckMark;
+                    case IconType.QuestionMark:
+                        return Resources.QuestionMark;
                 }
-                return Resources.Empty;
+                return Resources.X;
             }
         }
         public int Id { get; set; }
         public double LocalOutlierFactor { get; set; }
-        public string FormattetLocalOutlierFactor { get { return String.Format("{0,2:N5}",LocalOutlierFactor); } }
+        public string FormattetLocalOutlierFactor { get { return String.Format("{0,2:N5}", LocalOutlierFactor); } }
 
         public void UpdateIcon()
         {
             switch (Icon)
             {
                 case IconType.None:
-                    Icon = IconType.Mark;
+                    Icon = IconType.X;
                     break;
-                case IconType.Mark:
-                    Icon = IconType.Question;
+                case IconType.X:
+                    Icon = IconType.CheckMark;
                     break;
-                case IconType.Question:
+                case IconType.CheckMark:
+                    Icon = IconType.QuestionMark;
+                    break;
+                case IconType.QuestionMark:
                     Icon = IconType.None;
                     break;
             }

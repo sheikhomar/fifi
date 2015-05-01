@@ -63,9 +63,19 @@ namespace fifi.WinUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Empty {
+        internal static System.Drawing.Bitmap Arrow {
             get {
-                object obj = ResourceManager.GetObject("Empty", resourceCulture);
+                object obj = ResourceManager.GetObject("Arrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CheckMark {
+            get {
+                object obj = ResourceManager.GetObject("CheckMark", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +103,9 @@ namespace fifi.WinUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Mark {
+        internal static System.Drawing.Bitmap QuestionMark {
             get {
-                object obj = ResourceManager.GetObject("Mark", resourceCulture);
+                object obj = ResourceManager.GetObject("QuestionMark", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +113,9 @@ namespace fifi.WinUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Question {
+        internal static System.Drawing.Bitmap X {
             get {
-                object obj = ResourceManager.GetObject("Question", resourceCulture);
+                object obj = ResourceManager.GetObject("X", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
