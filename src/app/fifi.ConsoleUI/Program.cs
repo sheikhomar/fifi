@@ -255,9 +255,9 @@ namespace fifi.ConsoleUI
         {
             DistanceMatrix distanceMatrix = new DistanceMatrix(dataCollection, distanceMetric);
             var outlierDetection = new LocalOutlierFactor(distanceMatrix, kNeighbours);
-            outlierDetection.Run();
+            var list = outlierDetection.Run();
 
-            foreach (var person in outlierDetection.ResultList)
+            foreach (var person in list)
             {
                 Console.WriteLine("Person: {0} has the Local Outlier Factor of {1}", person.ID, person.LocalOutlierFactor);
             }

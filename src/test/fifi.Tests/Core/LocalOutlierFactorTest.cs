@@ -26,8 +26,8 @@ namespace fifi.Data
             distanceMatrix.GetSetMatrix = LOFInput;
             kNeighbors = 3;
             LocalOutlierFactor LOF = new LocalOutlierFactor(distanceMatrix, kNeighbors);
-            LOF.Run();
-            double hej = LOF.ResultList[0].LocalOutlierFactor;
+            var list = LOF.Run();
+            double hej = list[0].LocalOutlierFactor;
             //Assert.AreEqual(1, LOF.ResultList[0].LocalOutlierFactor);
         }
     }

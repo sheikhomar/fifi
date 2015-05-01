@@ -103,9 +103,8 @@ namespace fifi.WinUI
         private List<LocalOutlierFactorPoint> CreateLocalOutlierPointList()
         {
             var localOutlierFactor = new LocalOutlierFactor(distanceMatrix, kValue);
-            localOutlierFactor.Run();
 
-            return localOutlierFactor.ResultList;
+            return localOutlierFactor.Run();
         }
 
 

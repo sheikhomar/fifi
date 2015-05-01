@@ -7,21 +7,23 @@ namespace fifi.Core
 {
     public class LocalOutlierFactor
     {
-        Matrix DistanceMatrix;
+        private Matrix DistanceMatrix;
         private int KNeighbours;
-        public List<LocalOutlierFactorPoint> ResultList = new List<LocalOutlierFactorPoint>();
+        private readonly List<LocalOutlierFactorPoint> resultList;
 
         public LocalOutlierFactor(Matrix distanceMatrix, int kNeighbours)
         {
             DistanceMatrix = distanceMatrix;
             KNeighbours = kNeighbours;
+            resultList = new List<LocalOutlierFactorPoint>();
         }
 
-        public void Run()
+        public List<LocalOutlierFactorPoint> Run()
         {
             DistanceToKthNeighbour(DistanceMatrix);
             CalcLocalReachabilityDensity();
             CalcLocalOutlierFactor();
+            return resultList;
         }
 
         private void DistanceToKthNeighbour(Matrix distanceMatrix)
@@ -48,7 +50,7 @@ namespace fifi.Core
                 person.KDistance = person.DistanceToNeighbours[neighboursToTake - 1].Item2;
                 person.ID = row;
 
-                ResultList.Add(person);
+                resultList.Add(person);
             }
         }
 
@@ -58,7 +60,7 @@ namespace fifi.Core
 
             double cardinality = KNeighbours;
 
-            foreach (var person in ResultList)
+            foreach (var person in resultList)
             {
                 sumOfReachDistK = CalcSumOfReachDistK(person);
 
@@ -75,7 +77,7 @@ namespace fifi.Core
 
             foreach (var neighbour in person.DistanceToNeighbours)
             {
-                KDistNeighbour = ResultList[neighbour.Item1].KDistance;
+                KDistNeighbour = resultList[neighbour.Item1].KDistance;
 
                 sum += Math.Max(KDistNeighbour, neighbour.Item2);
             }
@@ -89,7 +91,7 @@ namespace fifi.Core
 
             double cardinality = KNeighbours;
 
-            foreach (var person in ResultList)
+            foreach (var person in resultList)
             {
                 sumOfLocalReachabilityDensity = CalcSumOfLocalReachabilityDensity(person);
 
@@ -103,7 +105,7 @@ namespace fifi.Core
 
             foreach (var neighbour in person.DistanceToNeighbours)
             {
-                sum += ResultList[neighbour.Item1].LocalReachabilityDensity;
+                sum += resultList[neighbour.Item1].LocalReachabilityDensity;
             }
 
             return sum;
