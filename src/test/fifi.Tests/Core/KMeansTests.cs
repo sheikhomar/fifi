@@ -1,32 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using fifi.Core;
 using NUnit.Framework;
 
-namespace fifi.Tests.Core.Algorithms
+namespace fifi.Tests.Core
 {
     [TestFixture]
     public class KMeansTests
     {
-
-        private IdentifiableDataPointCollection dataCollection;
-        private IDistanceMetric distanceMetric;
-
         [SetUp]
         public void SetUp()
-        {
-            distanceMetric = new EuclideanMetric();
-
-            GenerateIdentifiableDataPointCollection _generatedDataCollection = new GenerateIdentifiableDataPointCollection(10);
-            dataCollection = _generatedDataCollection.Generate();        
+        {        
         }
 
         [Test]
-        public void KMeansClusteringWorksOnOneDimension()
+        public void KMeansShouldClusterDataPointsInOneDimensionCorrectly()
         {
             var dataSet = new IdentifiableDataPointCollection();
             var p1 = new IdentifiableDataPoint(0, 1);
@@ -48,13 +36,20 @@ namespace fifi.Tests.Core.Algorithms
 
             var result2 = kmeans2.Calculate();
 
-            Assert.AreEqual(3, result2.Clusters[0].Members.Count);
-            Assert.AreEqual(1, result2.Clusters[1].Members.Count);
+            var cluster1Members = result2.Clusters[0].Members.Select(e => e.Member).ToArray();
+            var cluster2Members = result2.Clusters[1].Members.Select(e => e.Member).ToArray();
+
+            Assert.AreEqual(3, cluster1Members.Length);
+            Assert.Contains(p1, cluster1Members);
+            Assert.Contains(p3, cluster1Members);
+            Assert.Contains(p4, cluster1Members);
+
+            Assert.AreEqual(1, cluster2Members.Length);
+            Assert.Contains(p2, cluster2Members);
         }
 
-
         [Test]
-        public void KMeansCentroidsArePlacedRightInOneDimension()
+        public void KMeansShouldCalculateCorrectCentroidsInOneDimension()
         {
             var dataSet = new IdentifiableDataPointCollection();
             var p1 = new IdentifiableDataPoint(0, 1);
@@ -63,11 +58,8 @@ namespace fifi.Tests.Core.Algorithms
             var p4 = new IdentifiableDataPoint(3, 1);
 
             p1.AddAttribute("Gender", 1);
-
             p2.AddAttribute("Gender", 0);
-
             p3.AddAttribute("Gender", 1);
-
             p4.AddAttribute("Gender", 1);
 
             dataSet.AddItem(p1);
@@ -78,14 +70,13 @@ namespace fifi.Tests.Core.Algorithms
             var kmeans2 = new KMeans(dataSet, new [] {0, 1} , new EuclideanMetric());
 
             var result2 = kmeans2.Calculate();
-            double[] _centroid1 = { 1 };
-            double[] _centroid2 = { 0 };
+            double[] centroid1 = { 1 };
+            double[] centroid2 = { 0 };
 
-            Assert.AreEqual(_centroid1, result2.Clusters[0].Centroid.Coordinates);
-            Assert.AreEqual(_centroid2, result2.Clusters[1].Centroid.Coordinates);
+            Assert.AreEqual(centroid1, result2.Clusters[0].Centroid.Coordinates);
+            Assert.AreEqual(centroid2, result2.Clusters[1].Centroid.Coordinates);
            
         }
-
 
         [Test]
         public void KMeansClusteringWorksOnTwoDimensions()
@@ -151,15 +142,14 @@ namespace fifi.Tests.Core.Algorithms
             var kmeans2 = new KMeans(dataSet, new []{0, 1, 2}, new EuclideanMetric());
 
             var result2 = kmeans2.Calculate();
-            double[] _centroid1 = { 1, 0.2858 };
-            double[] _centroid2 = { 1, 1 };
-            double[] _centroid3 = { 0, 0.1429 };
 
+            double[] centroid1 = { 1, 0.2858 };
+            double[] centroid2 = { 1, 1 };
+            double[] centroid3 = { 0, 0.1429 };
 
-            Assert.AreEqual(_centroid2, result2.Clusters[0].Centroid.Coordinates);
-            Assert.AreEqual(_centroid3, result2.Clusters[1].Centroid.Coordinates);
-            Assert.AreEqual(_centroid1, result2.Clusters[2].Centroid.Coordinates);
-
+            Assert.AreEqual(centroid2, result2.Clusters[0].Centroid.Coordinates);
+            Assert.AreEqual(centroid3, result2.Clusters[1].Centroid.Coordinates);
+            Assert.AreEqual(centroid1, result2.Clusters[2].Centroid.Coordinates);
         }
 
         [Test]
