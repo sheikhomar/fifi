@@ -21,7 +21,7 @@ namespace fifi.WinUI
             InitializeComponent();
         }
 
-        public void GenerateDetails(IdentifiableDataPoint dataPoint, IdentifiableDataPoint centroid)
+        public void GenerateDetails(IdentifiableDataPoint dataPoint, DataPoint centroid)
         {
             dataPointInfoList = new List<DataPointInfo>();
 
