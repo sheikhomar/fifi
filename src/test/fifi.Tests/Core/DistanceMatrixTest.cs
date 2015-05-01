@@ -15,7 +15,6 @@ namespace fifi.Tests.Core.Algorithms
         private IdentifiableDataPointCollection dataCollection;
         private IDistanceMetric distanceMetric;
         private GenerateIdentifiableDataPointCollection generatedDataCollection;
-        private DistanceMatrix distanceM;
         private Matrix distanceMatrix, expectedMatrix;
 
         [SetUp]

@@ -15,7 +15,6 @@ namespace fifi.WinUI
 {
     public partial class OutlierDetectForm : Form
     {
-        IdentifiableDataPointCollection identifiableDataPointCollection; //Remove
         private DistanceMatrix distanceMatrix;
         private List<LocalOutlierFactorItem> itemList;
         private Dictionary<int, LocalOutlierFactorItem> idLookUptable;
@@ -25,18 +24,6 @@ namespace fifi.WinUI
         public OutlierDetectForm()
         {
             InitializeComponent();
-
-            //IConfiguration configuration =
-            //   (ConfigurationSectionHandler)ConfigurationManager.GetSection("csvDataImport");
-            //var reader = new StreamReader("UserData.csv");
-            //var importer = new CsvDynamicDataImporter(reader, configuration);
-            //this.identifiableDataPointCollection = importer.Run();
-
-            //var distanceMetric = new EuclideanMetric();
-            //distanceMatrix = new DistanceMatrix(identifiableDataPointCollection, distanceMetric);
-
-            //CreateItemList();
-            //idLookUptable = itemList.ToDictionary(item => item.Id);
         }
 
         public OutlierDetectForm(DistanceMatrix distanceMatrix)
@@ -125,11 +112,6 @@ namespace fifi.WinUI
                     throw new Exception("ID not found");
                 }
             }
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }
