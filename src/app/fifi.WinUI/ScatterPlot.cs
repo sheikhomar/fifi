@@ -126,9 +126,19 @@ namespace fifi.WinUI
 
         #endregion
 
-        private void PointClicked()
+        private void PointClicked(object sender, EventArgs e)
         {
-            // Her skal laves eventhandling
+            foreach (var Series in _chart1.Series)
+            {
+                foreach (var Point in Series.Points)
+                {
+                    if (sender == (object)Point.Tag)
+                    {
+                        HighlightPoint(Point);
+                        break;
+                    }
+                }
+            }
         }
 
         #region Point Highlighting
