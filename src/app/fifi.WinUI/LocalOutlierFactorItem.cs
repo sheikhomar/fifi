@@ -38,6 +38,7 @@ namespace fifi.WinUI
                     case IconType.X:
                         return Resources.X;
                     default:
+                        throw new ArgumentException(String.Format("Unknown Icon type: {0}", Icon));
                 }
             }
         }
