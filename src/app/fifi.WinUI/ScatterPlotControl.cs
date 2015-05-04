@@ -50,7 +50,7 @@ namespace fifi.WinUI
 
         }
 
-        #region Private methods called by constructor to construct and style chart
+        #region Private methods called by BuildScatterPlot to construct and style chart
 
         private void AddSeries(string seriesName)
         {
@@ -128,21 +128,6 @@ namespace fifi.WinUI
 
         #endregion
 
-        public void PointClicked(object sender, EventArgs e)
-        {
-            foreach (var Series in chart1.Series)
-            {
-                foreach (var Point in Series.Points)
-                {
-                    if (sender == (object)Point.Tag)
-                    {
-                        HighlightPoint(Point);
-                        break;
-                    }
-                }
-            }
-        }
-
         #region Point Highlighting
         private Stack<Color> _colorStack = new Stack<Color>();
         private Stack<CDataPoint> _pointStack = new Stack<CDataPoint>();
@@ -167,6 +152,29 @@ namespace fifi.WinUI
             inputPoint.MarkerBorderWidth *= 2;
             inputPoint.MarkerSize *= 2;
         }
+
+        public void HighlightPoint(IdentifiableDataPoint inputPoint)
+        {
+            foreach (var Series in chart1.Series)
+            {
+                foreach (var Point in Series.Points)
+                {
+                    DrawableDataPoint drawDataPoint = (DrawableDataPoint)Point.Tag;
+                    if (inputPoint == drawDataPoint.Origin)
+                    {
+                        HighlightPoint(Point);
+                        return;
+                    }
+                }
+            }
+        }
+
+        public void HighlightPoint(DrawableDataPoint inputPoint)
+        {
+            IdentifiableDataPoint drawPoint = inputPoint.Origin;
+            HighlightPoint(drawPoint);
+        }
+
         #endregion
 
         private void chart1_MouseClick(object sender, MouseEventArgs e)
@@ -183,6 +191,8 @@ namespace fifi.WinUI
                 }
             }
         }
+
+
 
 
     }
