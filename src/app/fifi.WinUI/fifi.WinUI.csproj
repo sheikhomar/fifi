@@ -84,6 +84,12 @@
     <Compile Include="ImportDataForm.Designer.cs">
       <DependentUpon>ImportDataForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="OutlierDetectionComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OutlierDetectionComponent.Designer.cs">
+      <DependentUpon>OutlierDetectionComponent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScatterPlot.cs" />
