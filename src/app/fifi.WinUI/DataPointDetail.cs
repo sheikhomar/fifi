@@ -39,6 +39,16 @@ namespace fifi.WinUI
                 dataPointInfoList.Add(dataPointInfo);
             }
 
+            dataPointInfoList.Sort(delegate(DataPointInfo item1, DataPointInfo item2)
+            {
+                if (item1.Percent > item2.Percent)
+                    return 1;
+                else if (item1.Percent < item2.Percent)
+                    return -1;
+                else
+                    return 0;
+            });
+
             dataGridView1.DataSource = dataPointInfoList;
         }
 
