@@ -72,12 +72,6 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="LocalOutlierFactorItem.cs" />
-    <Compile Include="OutlierDetectForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OutlierDetectForm.Designer.cs">
-      <DependentUpon>OutlierDetectForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="ImportDataForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,9 +109,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OutlierDetectForm.resx">
-      <DependentUpon>OutlierDetectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImportDataForm.resx">
       <DependentUpon>ImportDataForm.cs</DependentUpon>

@@ -121,8 +121,8 @@ namespace fifi.WinUI
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            OutlierDetectForm form = new OutlierDetectForm(distanceMatrix);
-            form.ShowDialog();
+            //OutlierDetectForm form = new OutlierDetectForm(distanceMatrix);
+            //form.ShowDialog();
         }
 
         private void DataPointClicked(object sender, DrawableDataPoint e)
