@@ -7,6 +7,7 @@ namespace fifi.Data
     [TestFixture]
     public class LocalOutlierFactorTest
     {
+
         [Test]
         public void Calculate()
         {
@@ -15,8 +16,8 @@ namespace fifi.Data
                                    { 284, 195, 0, 123, 260 }, 
                                    { 259, 183, 123, 0, 140 }, 
                                    { 270, 222, 260, 140, 0 } };
+            double[] LOFResult = { 1.03891, 1.03319, 0.915506, 1.06623, 0.968356 };
             Matrix distanceMatrix = new Matrix(LOFInput);
-            double[] LOFResult = { 1.03891, 1.03319, 0.915506, 1.06623, 0.968356};
             int kNeighbors = 3;
             LocalOutlierFactor LOF = new LocalOutlierFactor(distanceMatrix, kNeighbors);
             var persons = LOF.Run();
