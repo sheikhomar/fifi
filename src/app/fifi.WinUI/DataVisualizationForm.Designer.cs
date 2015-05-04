@@ -205,8 +205,7 @@
             // 
             // dataPointDetailsComponent1
             // 
-            this.dataPointDetailsComponent1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataPointDetailsComponent1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataPointDetailsComponent1.Location = new System.Drawing.Point(508, 166);
             this.dataPointDetailsComponent1.Name = "dataPointDetailsComponent1";

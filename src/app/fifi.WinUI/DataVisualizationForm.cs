@@ -53,6 +53,7 @@ namespace fifi.WinUI
             scatterPlotControl1.BuildScatterPlot(chartDataSource);
 
             grpAlgorithmSettings.Enabled = true;
+            MakeTheWholeThingWork();
         }
 
         private void DataConversionTask_Failure(object sender, IEnumerable<Exception> errors)
@@ -73,13 +74,22 @@ namespace fifi.WinUI
 
         private void button1_Click(object sender, EventArgs e)
         {
+            MakeTheWholeThingWork();
+        }
+
+        private void MakeTheWholeThingWork()
+        {
             if (chartDataSource != null)
             {
                 /* Choosing distance algorithm */
                 switch (cbDistanceAlgo.Text)
                 {
-                    case "Euclidian distance": distanceMetric = new EuclideanMetric(); break;
-                    default: distanceMetric = new EuclideanMetric(); break;
+                    case "Euclidian distance":
+                        distanceMetric = new EuclideanMetric();
+                        break;
+                    default:
+                        distanceMetric = new EuclideanMetric();
+                        break;
                 }
 
                 /* Choosing number of clusters */
@@ -88,7 +98,7 @@ namespace fifi.WinUI
                 /* Choosing clustering algorithm */
                 switch (cbClusteringAlgo.Text)
                 {
-                    case "K-means": 
+                    case "K-means":
                         kmeans = new KMeans(this.dataSet, clusterNumbers, distanceMetric);
                         clusterResult = kmeans.Calculate();
                         break;
@@ -110,7 +120,6 @@ namespace fifi.WinUI
                 chartDataSource = chartDataSource.OrderBy(item => item.Group).ToList();
 
                 scatterPlotControl1.BuildScatterPlot(chartDataSource);
-
             }
         }
 
