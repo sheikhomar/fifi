@@ -24,8 +24,8 @@ namespace fifi.WinUI
         public DataVisualizationForm()
         {
             InitializeComponent();
-            this.loadingImage.Location = this.chart.Location;
-            this.loadingImage.Size = this.chart.Size;
+            this.loadingImage.Location = this.scatterPlotControl1.Location;
+            this.loadingImage.Size = this.scatterPlotControl1.Size;
             grpAlgorithmSettings.Enabled = false;
 
             // Resources.Loading is stolen from https://dribbble.com/shots/1420523-Loading-Chart
@@ -48,13 +48,8 @@ namespace fifi.WinUI
             loadingImage.Visible = false;
             chartDataSource = result.DataPoints;
             distanceMatrix = result.DistanceMatrix;
-            var scatterPlot = new ScatterPlot(chartDataSource, chart);
-            scatterPlot.Draw();
 
-            ChartArea area = chart.ChartAreas[0];
-
-            area.AxisX.Crossing = 0;
-            area.AxisY.Crossing = 0;
+            scatterPlotControl1.BuildScatterPlot(chartDataSource);
 
             grpAlgorithmSettings.Enabled = true;
         }
@@ -112,8 +107,8 @@ namespace fifi.WinUI
                     }
                 }
                 chartDataSource = chartDataSource.OrderBy(item => item.Group).ToList();
-                var scatterPlot = new ScatterPlot(chartDataSource, chart);
-                scatterPlot.Draw();
+
+                scatterPlotControl1.BuildScatterPlot(chartDataSource);
 
                 /* Show datapoint details */
                 Random ran = new Random();
