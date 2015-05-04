@@ -20,6 +20,9 @@ namespace fifi.WinUI
         private ClusteringResult clusterResult;
         private DistanceMatrix distanceMatrix;
         private KMeans kmeans;
+        private string currentDistanceMatrix;
+        private int currentClusterNumber;
+        private string currentClusterAlgorithm;
 
         public DataVisualizationForm()
         {
@@ -28,6 +31,9 @@ namespace fifi.WinUI
             this.loadingImage.Size = this.scatterPlotControl1.Size;
             scatterPlotControl1.DataPointClick += DataPointClicked;
             grpAlgorithmSettings.Enabled = false;
+            currentDistanceMatrix = null;
+            currentClusterNumber = 0;
+            currentClusterAlgorithm = null;
 
             // Resources.Loading is stolen from https://dribbble.com/shots/1420523-Loading-Chart
             this.loadingImage.Image = Resources.Loading2;
@@ -37,7 +43,7 @@ namespace fifi.WinUI
             : this()
         {
             this.dataSet = dataSet;
-            distanceMetric = new EuclideanMetric();
+            distanceMetric = DistanceMatrix(currentDistanceMatrix, distanceMetric);
 
             dataConversionTask = new DataConversionTask();
             dataConversionTask.Success += DataConversionTask_Success;
@@ -81,37 +87,16 @@ namespace fifi.WinUI
         {
             if (chartDataSource != null)
             {
-                /* Choosing distance algorithm */
-                switch (cbDistanceAlgo.Text)
-                {
-                    case "Euclidian distance":
-                        distanceMetric = new EuclideanMetric();
-                        break;
-                    default:
-                        distanceMetric = new EuclideanMetric();
-                        break;
-                }
+                Cluster cluster;
 
-                /* Choosing number of clusters */
-                int clusterNumbers = Convert.ToInt32(numberOfClusters.Value);
+                distanceMetric = DistanceMatrix(currentDistanceMatrix, distanceMetric);
 
-                /* Choosing clustering algorithm */
-                switch (cbClusteringAlgo.Text)
-                {
-                    case "K-means":
-                        kmeans = new KMeans(this.dataSet, clusterNumbers, distanceMetric);
-                        clusterResult = kmeans.Calculate();
-                        break;
-                    default:
-                        kmeans = new KMeans(this.dataSet, clusterNumbers, distanceMetric);
-                        clusterResult = kmeans.Calculate();
-                        break;
-                }
+                clusterResult = ClusterCalculate(clusterResult);
 
                 /* Executing scatterplot */
                 foreach (var dataPoint in chartDataSource)
                 {
-                    Cluster cluster = clusterResult.FindCluster(dataPoint.Origin);
+                    cluster = clusterResult.FindCluster(dataPoint.Origin);
                     if (cluster != null)
                     {
                         dataPoint.Group = string.Format("Cluster {0}", cluster.Id);
@@ -145,6 +130,77 @@ namespace fifi.WinUI
                     dataPointDetailsComponent1.GenerateDetails(point, cluster.Centroid);
                 }
             }
+        }
+
+        private IDistanceMetric DistanceMatrix(string currentDistanceMatrix, IDistanceMetric currentMetric)
+        {
+            string distanceMatrixName = cbDistanceAlgo.Text;
+
+            /* Choosing distance algorithm */
+            switch (distanceMatrixName)
+            {
+                case "Euclidian distance":
+                    if (distanceMatrixName != currentDistanceMatrix)
+                    {
+                        currentDistanceMatrix = distanceMatrixName;
+                        return new EuclideanMetric();
+                    }
+                    break;
+                default:
+                    if (distanceMatrixName != currentDistanceMatrix)
+                    {
+                        currentDistanceMatrix = distanceMatrixName;
+                        return new EuclideanMetric();
+                    }
+                    break;
+            }
+            return currentMetric;
+        }
+
+        private ClusteringResult ClusterCalculate(ClusteringResult currentClusterResult)
+        {
+            int inputClusterNumber = Convert.ToInt32(numberOfClusters.Value);
+            string inputClusterAlgo = cbClusteringAlgo.Text;
+
+            if (inputClusterNumber != currentClusterNumber)
+            {
+                currentClusterNumber = inputClusterNumber;
+
+                /* Choosing clustering algorithm without name filter */
+                switch (inputClusterAlgo)
+                {
+                    case "K-means":
+                            currentClusterAlgorithm = inputClusterAlgo;
+                            kmeans = new KMeans(this.dataSet, currentClusterNumber, distanceMetric);
+                            return kmeans.Calculate();
+                    default:
+                            currentClusterAlgorithm = inputClusterAlgo;
+                            kmeans = new KMeans(this.dataSet, currentClusterNumber, distanceMetric);
+                            return kmeans.Calculate();
+                }
+            }
+
+            /* Choosing clustering algorithm with name filter */
+            switch (inputClusterAlgo)
+            {
+                case "K-means":
+                    if (inputClusterAlgo != currentClusterAlgorithm)
+                    {
+                        currentClusterAlgorithm = inputClusterAlgo;
+                        kmeans = new KMeans(this.dataSet, currentClusterNumber, distanceMetric);
+                        return kmeans.Calculate();
+                    }
+                    break;
+                default:
+                    if (inputClusterAlgo != currentClusterAlgorithm)
+                    {
+                        currentClusterAlgorithm = inputClusterAlgo;
+                        kmeans = new KMeans(this.dataSet, currentClusterNumber, distanceMetric);
+                        return kmeans.Calculate();
+                    }
+                    break;
+            }
+            return currentClusterResult;
         }
     }
 }
