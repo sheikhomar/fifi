@@ -181,8 +181,15 @@ namespace fifi.WinUI
         {
             MouseOverOf();
 
-            _mouseOverHighligt = inputPoint;
-            inputPoint.MarkerSize *= 2;
+            if (_pointStack.Count == 0)
+            {
+                MouseOverOnHelper(inputPoint);
+            }
+
+            if (_pointStack.Count != 0 && inputPoint != _pointStack.Peek())
+            {
+                MouseOverOnHelper(inputPoint);
+            }
         }
 
         private void MouseOverOf()
@@ -192,6 +199,12 @@ namespace fifi.WinUI
                 _mouseOverHighligt.MarkerSize /= 2;
                 _mouseOverHighligt = null;
             }
+        }
+
+        private void MouseOverOnHelper(CDataPoint inputPoint)
+        {
+            _mouseOverHighligt = inputPoint;
+            inputPoint.MarkerSize *= 2;
         }
 
 
