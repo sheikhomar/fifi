@@ -114,10 +114,9 @@ namespace fifi.WinUI
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("This feature has not been implemented yet. Sorry :(");
-            //MessageBox.Show("string","Data conversion failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("This feature has not been implemented yet. \nSorry :(");
         }
 
         private void button3_Click(object sender, EventArgs e)
