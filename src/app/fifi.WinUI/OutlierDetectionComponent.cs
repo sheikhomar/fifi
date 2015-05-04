@@ -18,10 +18,12 @@ namespace fifi.WinUI
         public OutlierDetectionComponent()
         {
             InitializeComponent();
+            dataGridView1.Visible = false;
         }
 
         public void Build(DistanceMatrix input)
         {
+            dataGridView1.Visible = true;
             this.distanceMatrix = input;
             CreateItemList();
             idLookUptable = itemList.ToDictionary(item => item.Id);
@@ -102,6 +104,31 @@ namespace fifi.WinUI
                     throw new Exception("ID not found");
                 }
             }
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

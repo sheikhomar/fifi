@@ -69,9 +69,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(832, 14);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(762, 18);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(64, 42);
+            this.button1.Size = new System.Drawing.Size(100, 35);
             this.button1.TabIndex = 0;
             this.button1.Text = "Commit";
             this.button1.UseVisualStyleBackColor = true;
@@ -81,7 +83,7 @@
             // 
             this.btnGenerateClusters.Location = new System.Drawing.Point(577, 18);
             this.btnGenerateClusters.Name = "btnGenerateClusters";
-            this.btnGenerateClusters.Size = new System.Drawing.Size(82, 35);
+            this.btnGenerateClusters.Size = new System.Drawing.Size(100, 35);
             this.btnGenerateClusters.TabIndex = 0;
             this.btnGenerateClusters.Text = "Generate";
             this.btnGenerateClusters.UseVisualStyleBackColor = true;
@@ -89,9 +91,11 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(902, 14);
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(868, 18);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(66, 42);
+            this.button2.Size = new System.Drawing.Size(100, 35);
             this.button2.TabIndex = 1;
             this.button2.Text = "Close";
             this.button2.UseVisualStyleBackColor = true;
@@ -190,7 +194,7 @@
             this.scatterPlotControl1.Location = new System.Drawing.Point(11, 86);
             this.scatterPlotControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.scatterPlotControl1.Name = "scatterPlotControl1";
-            this.scatterPlotControl1.Size = new System.Drawing.Size(572, 319);
+            this.scatterPlotControl1.Size = new System.Drawing.Size(572, 295);
             this.scatterPlotControl1.TabIndex = 5;
             // 
             // dataPointDetailsComponent1
@@ -204,9 +208,10 @@
             // 
             // outlierDetectionComponent1
             // 
-            this.outlierDetectionComponent1.Location = new System.Drawing.Point(11, 410);
+            this.outlierDetectionComponent1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.outlierDetectionComponent1.Location = new System.Drawing.Point(12, 386);
             this.outlierDetectionComponent1.Name = "outlierDetectionComponent1";
-            this.outlierDetectionComponent1.Size = new System.Drawing.Size(572, 182);
+            this.outlierDetectionComponent1.Size = new System.Drawing.Size(572, 206);
             this.outlierDetectionComponent1.TabIndex = 7;
             // 
             // DataVisualizationForm

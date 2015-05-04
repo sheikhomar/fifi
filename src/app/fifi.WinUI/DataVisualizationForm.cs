@@ -31,6 +31,8 @@ namespace fifi.WinUI
             this.loadingImage.Size = this.scatterPlotControl1.Size;
             scatterPlotControl1.DataPointClick += DataPointClicked;
             grpAlgorithmSettings.Enabled = false;
+            outlierDetectionComponent1.Enabled = false;
+            dataPointDetailsComponent1.Enabled = false;
             currentDistanceMatrix = null;
             currentClusterNumber = 0;
             currentClusterAlgorithm = null;
@@ -40,6 +42,7 @@ namespace fifi.WinUI
 
             //Sub to all dem events
             outlierDetectionComponent1.DataPointClick += outlierDetectionComponent1_DataPointClick;
+            
         }
 
         void outlierDetectionComponent1_DataPointClick(object sender, IdentifiableDataPoint e)
@@ -68,11 +71,13 @@ namespace fifi.WinUI
 
             scatterPlotControl1.BuildScatterPlot(chartDataSource);
 
-            grpAlgorithmSettings.Enabled = true;
+            
             MakeTheWholeThingWork();
+            grpAlgorithmSettings.Enabled = true;
+            dataPointDetailsComponent1.Enabled = true;
 
             outlierDetectionComponent1.Build(distanceMatrix);
-
+            outlierDetectionComponent1.Enabled = true;
 
 
         }
@@ -130,8 +135,7 @@ namespace fifi.WinUI
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            //OutlierDetectForm form = new OutlierDetectForm(distanceMatrix);
-            //form.ShowDialog();
+            MessageBox.Show("This feature has not been implemented yet.\n\nTry again later  :-)");
         }
 
         private void DataPointClicked(object sender, DrawableDataPoint e)
