@@ -7,26 +7,26 @@ namespace fifi.Core
 {
     public class LocalOutlierFactor
     {
-        private Matrix DistanceMatrix;
-        private int KNeighbours;
+        private readonly Matrix distanceMatrix;
+        private int kNeighbours;
         private readonly List<LocalOutlierFactorPoint> resultList;
 
         public LocalOutlierFactor(Matrix distanceMatrix, int kNeighbours)
         {
-            DistanceMatrix = distanceMatrix;
-            KNeighbours = kNeighbours;
+            this.distanceMatrix = distanceMatrix;
+            this.kNeighbours = kNeighbours;
             resultList = new List<LocalOutlierFactorPoint>();
         }
 
         public List<LocalOutlierFactorPoint> Run()
         {
-            DistanceToKthNeighbour(DistanceMatrix);
+            DistanceToKthNeighbour();
             CalcLocalReachabilityDensity();
             CalcLocalOutlierFactor();
             return resultList;
         }
 
-        private void DistanceToKthNeighbour(Matrix distanceMatrix)
+        private void DistanceToKthNeighbour()
         {
             int lengthDim1 = distanceMatrix.Row;
             int lengthDim2 = distanceMatrix.Column;
@@ -37,11 +37,11 @@ namespace fifi.Core
                 for (int col = 0; col < lengthDim2; col++)
                 {
                     if (row != col)
-                        person.DistanceToNeighbours.Add(Tuple.Create(col, DistanceMatrix[row, col]));
+                        person.DistanceToNeighbours.Add(Tuple.Create(col, distanceMatrix[row, col]));
                 }
 
                 person.DistanceToNeighbours.Sort((x, y) => x.Item2.CompareTo(y.Item2));
-                int neighboursToTake = KNeighbours;
+                int neighboursToTake = kNeighbours;
 
                 while (neighboursToTake < lengthDim1-1 && person.DistanceToNeighbours[neighboursToTake - 1].Item2 == person.DistanceToNeighbours[neighboursToTake].Item2)
                 {
@@ -52,7 +52,7 @@ namespace fifi.Core
 
                 person.KDistance = person.DistanceToNeighbours[neighboursToTake - 1].Item2;
                 person.ID = row;
-
+                
                 resultList.Add(person);
             }
         }
@@ -61,10 +61,11 @@ namespace fifi.Core
         {
             double sumOfReachDistK;
 
-            double cardinality = KNeighbours;
+            double cardinality;
 
             foreach (var person in resultList)
             {
+                cardinality = person.DistanceToNeighbours.Count();
                 sumOfReachDistK = CalcSumOfReachDistK(person);
 
                 person.LocalReachabilityDensity = 1 / (sumOfReachDistK / cardinality);
@@ -92,7 +93,7 @@ namespace fifi.Core
         {
             double sumOfLocalReachabilityDensity;
 
-            double cardinality = KNeighbours;
+            double cardinality = kNeighbours;
 
             foreach (var person in resultList)
             {
