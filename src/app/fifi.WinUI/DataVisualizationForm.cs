@@ -43,7 +43,7 @@ namespace fifi.WinUI
             : this()
         {
             this.dataSet = dataSet;
-            distanceMetric = DistanceMatrix(currentDistanceMatrix, distanceMetric);
+            distanceMetric = DistanceMatrix(currentDistanceMatrix);
 
             dataConversionTask = new DataConversionTask();
             dataConversionTask.Success += DataConversionTask_Success;
@@ -89,9 +89,9 @@ namespace fifi.WinUI
             {
                 Cluster cluster;
 
-                distanceMetric = DistanceMatrix(currentDistanceMatrix, distanceMetric);
+                distanceMetric = DistanceMatrix(currentDistanceMatrix);
 
-                clusterResult = ClusterCalculate(clusterResult);
+                clusterResult = ClusterCalculate();
 
                 /* Executing scatterplot */
                 foreach (var dataPoint in chartDataSource)
@@ -132,7 +132,7 @@ namespace fifi.WinUI
             }
         }
 
-        private IDistanceMetric DistanceMatrix(string currentDistanceMatrix, IDistanceMetric currentMetric)
+        private IDistanceMetric DistanceMatrix(string currentDistanceMatrix)
         {
             string distanceMatrixName = cbDistanceAlgo.Text;
 
@@ -154,10 +154,10 @@ namespace fifi.WinUI
                     }
                     break;
             }
-            return currentMetric;
+            return distanceMetric;
         }
 
-        private ClusteringResult ClusterCalculate(ClusteringResult currentClusterResult)
+        private ClusteringResult ClusterCalculate()
         {
             int inputClusterNumber = Convert.ToInt32(numberOfClusters.Value);
             string inputClusterAlgo = cbClusteringAlgo.Text;
@@ -200,7 +200,7 @@ namespace fifi.WinUI
                     }
                     break;
             }
-            return currentClusterResult;
+            return clusterResult;
         }
     }
 }
