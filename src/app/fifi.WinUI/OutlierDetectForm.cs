@@ -116,7 +116,7 @@ namespace fifi.WinUI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This feature has not been implemented yet. \nSorry :(");
+            MessageBox.Show("This feature has not been implemented yet. \nSorry, plz no hate, we Not Canadians;(");
         }
 
         private void button3_Click(object sender, EventArgs e)
