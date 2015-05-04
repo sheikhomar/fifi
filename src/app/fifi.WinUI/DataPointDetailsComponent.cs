@@ -35,7 +35,7 @@ namespace fifi.WinUI
             {
                 dataPointInfo = new DataPointInfo();
                 dataPointInfo.Field = dataPoint.Attributes[attributes];
-                dataPointInfo.Value = dataPoint.Coordinates[attributes];
+                dataPointInfo.Value = dataPoint.OriginalValues[attributes];
                 dataPointInfo.Percent = PercentageCalculator(dataPoint.Coordinates[attributes], centroid.Coordinates[attributes]);
                 dataPointInfo.Similarity = SimilarityCalculator(dataPointInfo.Percent);
                 dataPointInfoList.Add(dataPointInfo);

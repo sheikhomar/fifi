@@ -21,7 +21,7 @@ namespace fifi.WinUI
 
         public string Field { get; set; }
 
-        public double Value { get; set; }
+        public string Value { get; set; }
 
         public double Percent { get; set; }
 
