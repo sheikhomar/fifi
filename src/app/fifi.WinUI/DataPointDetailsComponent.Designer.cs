@@ -1,6 +1,6 @@
 ﻿namespace fifi.WinUI
 {
-    partial class DataPointDetail
+    partial class DataPointDetailsComponent
     {
         /// <summary> 
         /// Required designer variable.

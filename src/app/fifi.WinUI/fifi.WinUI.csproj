@@ -52,11 +52,11 @@
     <Compile Include="BaseForm.Designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataPointDetail.cs">
+    <Compile Include="DataPointDetailsComponent.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DataPointDetail.Designer.cs">
-      <DependentUpon>DataPointDetail.cs</DependentUpon>
+    <Compile Include="DataPointDetailsComponent.Designer.cs">
+      <DependentUpon>DataPointDetailsComponent.cs</DependentUpon>
     </Compile>
     <Compile Include="DataPointInfo.cs" />
     <Compile Include="DataPointSourceForm.cs">
@@ -101,8 +101,8 @@
       <DependentUpon>DataVisualizationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Similarity.cs" />
-    <EmbeddedResource Include="DataPointDetail.resx">
-      <DependentUpon>DataPointDetail.cs</DependentUpon>
+    <EmbeddedResource Include="DataPointDetailsComponent.resx">
+      <DependentUpon>DataPointDetailsComponent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DataPointSourceForm.resx">
       <DependentUpon>DataPointSourceForm.cs</DependentUpon>

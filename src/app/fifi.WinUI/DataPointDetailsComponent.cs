@@ -11,12 +11,12 @@ using fifi.Core;
 
 namespace fifi.WinUI
 {
-    public partial class DataPointDetail : UserControl
+    public partial class DataPointDetailsComponent : UserControl
     {
         private List<DataPointInfo> dataPointInfoList;
         private DataPointInfo dataPointInfo;
 
-        public DataPointDetail()
+        public DataPointDetailsComponent()
         {
             InitializeComponent();
             dataGridView1.Visible = false;

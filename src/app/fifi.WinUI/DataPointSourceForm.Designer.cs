@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.dataPointDetail1 = new fifi.WinUI.DataPointDetail();
+            this.dataPointDetail1 = new fifi.WinUI.DataPointDetailsComponent();
             this.SuspendLayout();
             // 
             // button1
@@ -65,6 +65,6 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private DataPointDetail dataPointDetail1;
+        private DataPointDetailsComponent dataPointDetail1;
     }
 }

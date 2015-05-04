@@ -37,7 +37,7 @@
             this.numberOfClusters = new System.Windows.Forms.NumericUpDown();
             this.btnGenerateClusters = new System.Windows.Forms.Button();
             this.loadingImage = new System.Windows.Forms.PictureBox();
-            this.dataPointDetail1 = new fifi.WinUI.DataPointDetail();
+            this.dataPointDetail1 = new fifi.WinUI.DataPointDetailsComponent();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -256,7 +256,7 @@
         private System.Windows.Forms.Button btnGenerateClusters;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numberOfClusters;
-        private DataPointDetail dataPointDetail1;
+        private DataPointDetailsComponent dataPointDetail1;
         private System.Windows.Forms.ComboBox cbClusteringAlgo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbDistanceAlgo;
