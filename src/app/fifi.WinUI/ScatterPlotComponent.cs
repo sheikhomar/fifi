@@ -173,6 +173,31 @@ namespace fifi.WinUI
             HighlightPoint(drawPoint);
         }
 
+
+        #region Mouseover Highlighting
+        private CDataPoint _mouseOverHighligt = null;
+
+        private void MouseOverOn(CDataPoint inputPoint)
+        {
+            MouseOverOf();
+
+            _mouseOverHighligt = inputPoint;
+            inputPoint.MarkerSize *= 2;
+        }
+
+        private void MouseOverOf()
+        {
+            if (_mouseOverHighligt != null)
+            {
+                _mouseOverHighligt.MarkerSize /= 2;
+                _mouseOverHighligt = null;
+            }
+        }
+
+
+        #endregion
+
+
         #endregion
 
         private void chart1_MouseClick(object sender, MouseEventArgs e)
@@ -190,8 +215,19 @@ namespace fifi.WinUI
             }
         }
 
+        private void chart1_MouseMove(object sender, MouseEventArgs e)
+        {
+            HitTestResult result = chart1.HitTest(e.X, e.Y, ChartElementType.DataPoint);
+            if (result.ChartElementType == ChartElementType.DataPoint)
+            {
+                CDataPoint dataPoint = (CDataPoint)result.Object;
+                MouseOverOn(dataPoint);
+            }
+            else
+            {
+                MouseOverOf();
+            }
 
-
-
+        }
     }
 }

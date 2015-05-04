@@ -52,13 +52,14 @@
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             this.chart1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.chart1_MouseClick);
+            this.chart1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart1_MouseMove);
             // 
-            // ScatterPlotControl
+            // ScatterPlotComponent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.chart1);
-            this.Name = "ScatterPlotControl";
+            this.Name = "ScatterPlotComponent";
             this.Size = new System.Drawing.Size(1021, 518);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
