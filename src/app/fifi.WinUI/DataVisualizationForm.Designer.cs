@@ -79,11 +79,11 @@
             // 
             // btnGenerateClusters
             // 
-            this.btnGenerateClusters.Location = new System.Drawing.Point(577, 14);
+            this.btnGenerateClusters.Location = new System.Drawing.Point(577, 18);
             this.btnGenerateClusters.Name = "btnGenerateClusters";
-            this.btnGenerateClusters.Size = new System.Drawing.Size(112, 42);
+            this.btnGenerateClusters.Size = new System.Drawing.Size(82, 35);
             this.btnGenerateClusters.TabIndex = 0;
-            this.btnGenerateClusters.Text = "Generate clusters";
+            this.btnGenerateClusters.Text = "Generate";
             this.btnGenerateClusters.UseVisualStyleBackColor = true;
             this.btnGenerateClusters.Click += new System.EventHandler(this.button1_Click);
             // 
