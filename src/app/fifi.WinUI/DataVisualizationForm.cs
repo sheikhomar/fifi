@@ -133,7 +133,7 @@ namespace fifi.WinUI
                 Cluster cluster = clusterResult.FindCluster(point);
                 if (cluster != null)
                 {
-                    dataPointDetail1.GenerateDetails(point, cluster.Centroid);
+                    dataPointDetailsComponent1.GenerateDetails(point, cluster.Centroid);
                 }
             }
         }
