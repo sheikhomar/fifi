@@ -1,6 +1,6 @@
 ﻿namespace fifi.WinUI
 {
-    partial class ScatterPlotControl
+    partial class ScatterPlotComponent
     {
         /// <summary> 
         /// Required designer variable.

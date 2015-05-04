@@ -13,9 +13,9 @@ using fifi.Core;
 
 namespace fifi.WinUI
 {
-    public partial class ScatterPlotControl : UserControl
+    public partial class ScatterPlotComponent : UserControl
     {
-        public ScatterPlotControl()
+        public ScatterPlotComponent()
         {
             InitializeComponent();
         }

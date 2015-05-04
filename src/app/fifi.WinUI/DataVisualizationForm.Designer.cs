@@ -41,7 +41,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.scatterPlotControl1 = new fifi.WinUI.ScatterPlotControl();
+            this.scatterPlotControl1 = new fifi.WinUI.ScatterPlotComponent();
             this.grpAlgorithmSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numberOfClusters)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadingImage)).BeginInit();
@@ -264,6 +264,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private ScatterPlotControl scatterPlotControl1;
+        private ScatterPlotComponent scatterPlotControl1;
     }
 }

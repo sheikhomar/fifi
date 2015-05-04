@@ -87,11 +87,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScatterPlot.cs" />
-    <Compile Include="ScatterPlotControl.cs">
+    <Compile Include="ScatterPlotComponent.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ScatterPlotControl.Designer.cs">
-      <DependentUpon>ScatterPlotControl.cs</DependentUpon>
+    <Compile Include="ScatterPlotComponent.Designer.cs">
+      <DependentUpon>ScatterPlotComponent.cs</DependentUpon>
     </Compile>
     <Compile Include="ScatterPlotUtility.cs" />
     <Compile Include="DataVisualizationForm.cs">
@@ -126,8 +126,8 @@
     <EmbeddedResource Include="DataVisualizationForm.resx">
       <DependentUpon>DataVisualizationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ScatterPlotControl.resx">
-      <DependentUpon>ScatterPlotControl.cs</DependentUpon>
+    <EmbeddedResource Include="ScatterPlotComponent.resx">
+      <DependentUpon>ScatterPlotComponent.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

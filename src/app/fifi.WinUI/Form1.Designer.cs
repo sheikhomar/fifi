@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.scatterPlotControl1 = new fifi.WinUI.ScatterPlotControl();
+            this.scatterPlotControl1 = new fifi.WinUI.ScatterPlotComponent();
             this.SuspendLayout();
             // 
             // scatterPlotControl1
@@ -55,7 +55,7 @@
 
         #endregion
 
-        private ScatterPlotControl scatterPlotControl1;
+        private ScatterPlotComponent scatterPlotControl1;
 
     }
 }
