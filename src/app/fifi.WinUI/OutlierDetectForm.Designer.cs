@@ -37,14 +37,20 @@
             this.button1 = new System.Windows.Forms.Button();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
-            this.dataPointDetail1 = new fifi.WinUI.DataPointDetail();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dataPointDetail1 = new fifi.WinUI.DataPointDetail();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -66,7 +72,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(268, 301);
+            this.dataGridView1.Size = new System.Drawing.Size(300, 244);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -97,6 +103,7 @@
             this.comlumnLocalOutlierFactor.Name = "comlumnLocalOutlierFactor";
             this.comlumnLocalOutlierFactor.ReadOnly = true;
             this.comlumnLocalOutlierFactor.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.comlumnLocalOutlierFactor.Width = 130;
             // 
             // label1
             // 
@@ -171,15 +178,6 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Limiter:";
             // 
-            // dataPointDetail1
-            // 
-            this.dataPointDetail1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataPointDetail1.Location = new System.Drawing.Point(318, 3);
-            this.dataPointDetail1.Name = "dataPointDetail1";
-            this.dataPointDetail1.Size = new System.Drawing.Size(391, 402);
-            this.dataPointDetail1.TabIndex = 6;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.button3);
@@ -194,7 +192,17 @@
             this.groupBox1.Size = new System.Drawing.Size(300, 86);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "Options";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(126, 48);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(70, 23);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "Close";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -205,20 +213,103 @@
             this.button2.Text = "Commit changes";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // button7
             // 
-            this.button3.Location = new System.Drawing.Point(126, 48);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(70, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Close";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button7.FlatAppearance.BorderSize = 0;
+            this.button7.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Image = global::fifi.WinUI.Properties.Resources.X16;
+            this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button7.Location = new System.Drawing.Point(73, 14);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(53, 31);
+            this.button7.TabIndex = 11;
+            this.button7.Text = "Real";
+            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Image = global::fifi.WinUI.Properties.Resources.QuestionMark16;
+            this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button6.Location = new System.Drawing.Point(224, 14);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(78, 31);
+            this.button6.TabIndex = 10;
+            this.button6.Text = "Unknown";
+            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Image = global::fifi.WinUI.Properties.Resources.CheckMark16;
+            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button5.Location = new System.Drawing.Point(132, 14);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(86, 31);
+            this.button5.TabIndex = 9;
+            this.button5.Text = "False/Fake";
+            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Image = global::fifi.WinUI.Properties.Resources.Arrow16;
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.Location = new System.Drawing.Point(0, 14);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(67, 31);
+            this.button4.TabIndex = 8;
+            this.button4.Text = "Not Set";
+            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.button4);
+            this.groupBox2.Controls.Add(this.button6);
+            this.groupBox2.Controls.Add(this.button7);
+            this.groupBox2.Controls.Add(this.button5);
+            this.groupBox2.Location = new System.Drawing.Point(12, 354);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(300, 51);
+            this.groupBox2.TabIndex = 12;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Icon Help";
+            // 
+            // dataPointDetail1
+            // 
+            this.dataPointDetail1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataPointDetail1.Location = new System.Drawing.Point(318, 3);
+            this.dataPointDetail1.Name = "dataPointDetail1";
+            this.dataPointDetail1.Size = new System.Drawing.Size(391, 402);
+            this.dataPointDetail1.TabIndex = 6;
             // 
             // OutlierDetectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(721, 417);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataPointDetail1);
             this.Controls.Add(this.dataGridView1);
@@ -230,6 +321,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -243,12 +335,17 @@
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Label label2;
         private DataPointDetail dataPointDetail1;
-        private System.Windows.Forms.DataGridViewImageColumn columnIcon;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnProfile;
-        private System.Windows.Forms.DataGridViewTextBoxColumn comlumnLocalOutlierFactor;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.DataGridViewImageColumn columnIcon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn columnProfile;
+        private System.Windows.Forms.DataGridViewTextBoxColumn comlumnLocalOutlierFactor;
+        private System.Windows.Forms.GroupBox groupBox2;
 
 
     }
