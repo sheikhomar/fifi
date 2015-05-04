@@ -295,14 +295,12 @@ namespace fifi.ConsoleUI
         static void TestMDS()
         {
             double[,] distanceTestOne = { { 0, 87.0, 284.0, 259, 259 }, { 87.0, 0, 195, 183, 222 }, { 284, 195, 0, 123, 260 }, { 259, 183, 123, 0, 140 }, { 259, 222, 260, 140, 0 } };
-            Matrix distanceTestOneMatrix = new Matrix(distanceTestOne.GetLength(0), distanceTestOne.GetLength(1));
-            distanceTestOneMatrix.GetSetMatrix = distanceTestOne;
+            Matrix distanceTestOneMatrix = new Matrix(distanceTestOne);
             MultiDimensionalScaling a = new MultiDimensionalScaling(distanceTestOneMatrix);
             a.Calculate();
 
             double[,] distanceTestTwo = { { 0, 93.0, 82.0, 133 }, { 93.0, 0, 52, 60 }, { 82, 52, 0, 111 }, { 133, 60, 111, 0 } };
-            Matrix distanceTestTwoMatrix = new Matrix(distanceTestTwo.GetLength(0), distanceTestTwo.GetLength(1));
-            distanceTestTwoMatrix.GetSetMatrix = distanceTestTwo;
+            Matrix distanceTestTwoMatrix = new Matrix(distanceTestTwo);
             MultiDimensionalScaling b = new MultiDimensionalScaling(distanceTestTwoMatrix);
             b.Calculate();
         }

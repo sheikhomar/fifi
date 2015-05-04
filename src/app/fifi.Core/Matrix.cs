@@ -20,17 +20,18 @@ namespace fifi.Core
             matrix = new double[row, column];
         }
 
+        public Matrix(double[,] setmatrix)
+        {
+            matrix = setmatrix;
+        }
+
         public double this[int row, int colum]
         {
             get {return matrix[row, colum]; }
             set {matrix[row, colum] = value; }
         }
 
-        public double[,] GetSetMatrix 
-        {
-            get { return matrix; }
-            set { matrix = value; }
-        }
+        public double[,] GetMatrix { get { return matrix; } }
 
         public int Row 
         {

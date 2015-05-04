@@ -37,7 +37,7 @@ namespace fifi.Core
                 for (int col = 0; col < lengthDim2; col++)
                 {
                     if (row != col)
-                        person.DistanceToNeighbours.Add(Tuple.Create<int, double>(col, DistanceMatrix.GetSetMatrix[row, col]));
+                        person.DistanceToNeighbours.Add(Tuple.Create<int, double>(col, DistanceMatrix.GetMatrix[row, col]));
                 }
 
                 person.DistanceToNeighbours.Sort();

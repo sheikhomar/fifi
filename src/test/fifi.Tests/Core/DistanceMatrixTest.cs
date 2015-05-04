@@ -99,7 +99,7 @@ namespace fifi.Tests.Core.Algorithms
                                                 {0.8718, 0.8718, 0.8718, 0.8718, 0,	0, 0, 0, 0,	1.4214},
                                                 {0.8718, 0.8718, 0.8718, 0.8718, 0,	0, 0, 0, 0,	1.4214},
                                                 {1.4087, 1.4087, 1.7276, 1.7276, 1.4214, 1.4214, 1.4214, 1.4214, 1.4214, 0}};
-            smallExpectedMatrix.GetSetMatrix = hardCodedExpectedMatrix;
+            smallExpectedMatrix = new Matrix(hardCodedExpectedMatrix);
 
             for (int row = 0; row < collectionSize; row++)
             {

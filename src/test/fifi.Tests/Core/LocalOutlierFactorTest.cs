@@ -23,7 +23,7 @@ namespace fifi.Data
                                    { 284, 195, 0, 123, 260 }, 
                                    { 259, 183, 123, 0, 140 }, 
                                    { 270, 222, 260, 140, 0 } };
-            distanceMatrix.GetSetMatrix = LOFInput;
+            distanceMatrix = new Matrix(LOFInput);
             kNeighbors = 3;
             LocalOutlierFactor LOF = new LocalOutlierFactor(distanceMatrix, kNeighbors);
             var list = LOF.Run();

@@ -64,7 +64,7 @@ namespace fifi.Core
 
         private Matrix TwoDCoordinateGenerator(Matrix scalarProductMatrix)
         {
-            Matrix<double> convertedMatrix = DenseMatrix.OfArray(scalarProductMatrix.GetSetMatrix);
+            Matrix<double> convertedMatrix = DenseMatrix.OfArray(scalarProductMatrix.GetMatrix);
             var eigenInfo = convertedMatrix.Evd();
 
             /* Eigenvalue calculator */
@@ -87,8 +87,7 @@ namespace fifi.Core
                 eigenvector = secondEigenvector;
             }
 
-            Matrix resultMatrix = new Matrix(eigenvalueMatrix.RowCount, eigenvectorMatrix.ColumnCount);
-            resultMatrix.GetSetMatrix = eigenvalueMatrix.Multiply(eigenvectorMatrix).ToArray();
+            Matrix resultMatrix = new Matrix(eigenvalueMatrix.Multiply(eigenvectorMatrix).ToArray());
             return resultMatrix;
         }
 
