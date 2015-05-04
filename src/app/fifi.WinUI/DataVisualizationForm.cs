@@ -26,6 +26,7 @@ namespace fifi.WinUI
             InitializeComponent();
             this.loadingImage.Location = this.scatterPlotControl1.Location;
             this.loadingImage.Size = this.scatterPlotControl1.Size;
+            scatterPlotControl1.DataPointClick += DataPointClicked;
             grpAlgorithmSettings.Enabled = false;
 
             // Resources.Loading is stolen from https://dribbble.com/shots/1420523-Loading-Chart
@@ -110,9 +111,6 @@ namespace fifi.WinUI
 
                 scatterPlotControl1.BuildScatterPlot(chartDataSource);
 
-                /* Show datapoint details */
-                Random ran = new Random();
-                dataPointDetail1.GenerateDetails(dataSet[ran.Next(0, 150)], dataSet[ran.Next(0, 150)]);
             }
         }
 
@@ -125,6 +123,19 @@ namespace fifi.WinUI
         {
             OutlierDetectForm form = new OutlierDetectForm(distanceMatrix);
             form.ShowDialog();
+        }
+
+        private void DataPointClicked(object sender, DrawableDataPoint e)
+        {
+            if (clusterResult != null)
+            {
+                IdentifiableDataPoint point = e.Origin;
+                Cluster cluster = clusterResult.FindCluster(point);
+                if (cluster != null)
+                {
+                    dataPointDetail1.GenerateDetails(point, cluster.Centroid);
+                }
+            }
         }
     }
 }
