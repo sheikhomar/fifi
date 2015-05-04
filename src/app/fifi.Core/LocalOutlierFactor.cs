@@ -37,13 +37,13 @@ namespace fifi.Core
                 for (int col = 0; col < lengthDim2; col++)
                 {
                     if (row != col)
-                        person.DistanceToNeighbours.Add(Tuple.Create<int, double>(col, DistanceMatrix.GetMatrix[row, col]));
+                        person.DistanceToNeighbours.Add(Tuple.Create(col, DistanceMatrix[row, col]));
                 }
 
-                person.DistanceToNeighbours.Sort();
+                person.DistanceToNeighbours.Sort((x, y) => x.Item2.CompareTo(y.Item2));
                 int neighboursToTake = KNeighbours;
 
-                while (person.DistanceToNeighbours[neighboursToTake - 1].Item2 == person.DistanceToNeighbours[neighboursToTake].Item2)
+                while (neighboursToTake < lengthDim1-1 && person.DistanceToNeighbours[neighboursToTake - 1].Item2 == person.DistanceToNeighbours[neighboursToTake].Item2)
                 {
                     neighboursToTake++;
                 }
