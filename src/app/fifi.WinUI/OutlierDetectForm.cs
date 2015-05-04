@@ -13,7 +13,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace fifi.WinUI
 {
-    public partial class OutlierDetectForm : Form
+    public partial class OutlierDetectForm : UserControl
     {
         private DistanceMatrix distanceMatrix;
         private List<LocalOutlierFactorItem> itemList;
@@ -54,10 +54,11 @@ namespace fifi.WinUI
             }
             if (e.ColumnIndex > 0)
             {
-                var liveItemList = (List<LocalOutlierFactorItem>)dataGridView1.DataSource;
-                var markedItem = idLookUptable[liveItemList[e.RowIndex].Id];
+                //Tell Omar to do stuff
+                //var liveItemList = (List<LocalOutlierFactorItem>)dataGridView1.DataSource;
+                //var markedItem = idLookUptable[liveItemList[e.RowIndex].Id];
 
-                dataPointDetail1.GenerateDetails( distanceMatrix.GetObject(markedItem.Id) as IdentifiableDataPoint, new IdentifiableDataPoint(e.ColumnIndex, 60));
+                //dataPointDetail1.GenerateDetails( distanceMatrix.GetObject(markedItem.Id) as IdentifiableDataPoint, new IdentifiableDataPoint(e.ColumnIndex, 60));
             }
         }
 
@@ -112,16 +113,6 @@ namespace fifi.WinUI
                     throw new Exception("ID not found");
                 }
             }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("This feature has not been implemented yet. \nSorry, plz no hate, we Not Canadians;(");
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            Close();
         }
     }
 }
