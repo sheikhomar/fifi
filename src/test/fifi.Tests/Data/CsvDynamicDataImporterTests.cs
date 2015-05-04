@@ -38,7 +38,7 @@ namespace fifi.Tests.Data
             return new MockField
             {
                 Index = index,
-                Category = "", // Not used
+                Category = "Employment",
                 Type = FieldType.MultipleBinaryFields,
                 Values = fieldValues2,
                 Weight = 2.5D
@@ -55,7 +55,7 @@ namespace fifi.Tests.Data
             return new MockField
             {
                 Index = index,
-                Category = "", // Not used
+                Category = "Reading", 
                 Type = FieldType.MultipleChoiceMultipleBinaryFields,
                 Values = fieldValues2,
                 Weight = 1.5
@@ -116,29 +116,29 @@ namespace fifi.Tests.Data
         [Test]
         public void ShouldParseMultipleBinaryFieldsCorrectly()
         {
-            Assert.AreEqual(2.5D, dataSet[0]["Study job"]);
-            Assert.AreEqual(0, dataSet[0]["Full time"]);
-            Assert.AreEqual(0, dataSet[0]["Unemployed"]);
-            Assert.AreEqual(0, dataSet[1]["Study job"]);
-            Assert.AreEqual(2.5D, dataSet[1]["Full time"]);
-            Assert.AreEqual(0, dataSet[1]["Unemployed"]);
-            Assert.AreEqual(2.5D, dataSet[2]["Study job"]);
-            Assert.AreEqual(0, dataSet[2]["Full time"]);
-            Assert.AreEqual(0, dataSet[2]["Unemployed"]);
+            Assert.AreEqual(2.5D, dataSet[0]["Employment: Study job"]);
+            Assert.AreEqual(0,    dataSet[0]["Employment: Full time"]);
+            Assert.AreEqual(0,    dataSet[0]["Employment: Unemployed"]);
+            Assert.AreEqual(0,    dataSet[1]["Employment: Study job"]);
+            Assert.AreEqual(2.5D, dataSet[1]["Employment: Full time"]);
+            Assert.AreEqual(0,    dataSet[1]["Employment: Unemployed"]);
+            Assert.AreEqual(2.5D, dataSet[2]["Employment: Study job"]);
+            Assert.AreEqual(0,    dataSet[2]["Employment: Full time"]);
+            Assert.AreEqual(0,    dataSet[2]["Employment: Unemployed"]);
         }
 
         [Test]
         public void ShouldParseMultipleChoiceMultipleBinaryFieldsCorrectly()
         {
-            Assert.AreEqual(1.5D, dataSet[0]["Books"]);
-            Assert.AreEqual(1.5D, dataSet[0]["Magazines"]);
-            Assert.AreEqual(1.5D, dataSet[0]["Specialist books"]);
-            Assert.AreEqual(0, dataSet[1]["Books"]);
-            Assert.AreEqual(1.5D, dataSet[1]["Magazines"]);
-            Assert.AreEqual(0, dataSet[1]["Specialist books"]);
-            Assert.AreEqual(0, dataSet[2]["Books"]);
-            Assert.AreEqual(0, dataSet[2]["Magazines"]);
-            Assert.AreEqual(0, dataSet[2]["Specialist books"]);
+            Assert.AreEqual(1.5D, dataSet[0]["Reading: Books"]);
+            Assert.AreEqual(1.5D, dataSet[0]["Reading: Magazines"]);
+            Assert.AreEqual(1.5D, dataSet[0]["Reading: Specialist books"]);
+            Assert.AreEqual(0,    dataSet[1]["Reading: Books"]);
+            Assert.AreEqual(1.5D, dataSet[1]["Reading: Magazines"]);
+            Assert.AreEqual(0,    dataSet[1]["Reading: Specialist books"]);
+            Assert.AreEqual(0,    dataSet[2]["Reading: Books"]);
+            Assert.AreEqual(0,    dataSet[2]["Reading: Magazines"]);
+            Assert.AreEqual(0,    dataSet[2]["Reading: Specialist books"]);
         }
 
         [Test]

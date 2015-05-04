@@ -90,10 +90,11 @@ namespace fifi.Data
             if (!csv.TryGetField(field.Index, out valueInDataField))
                 throw new InvalidNumericValueException(csv.Row, field.Index);
 
+            string originalValue = Convert.ToInt32(valueInDataField).ToString();
             double difference = field.MaxValue - field.MinValue;
             double normalizedValue = (valueInDataField - field.MinValue) / difference;
             double finalValue = normalizedValue*field.Weight;
-            dataItem.AddAttribute(field.Category, finalValue);
+            dataItem.AddAttribute(field.Category, finalValue, originalValue);
         }
 
         private void ParseMultipleChoiceBinaryField(IField field, CsvReader csv, IdentifiableDataPoint profile)
@@ -107,9 +108,15 @@ namespace fifi.Data
             foreach (IFieldValue possibleFieldValue in field.Values)
             {
                 double value = 0;
+                string originalValue = "No";
                 if (array.Contains(possibleFieldValue.Name))
+                {
                     value = field.Weight;
-                profile.AddAttribute(possibleFieldValue.Name, value);
+                    originalValue = "Yes";
+                }
+
+                string name = String.Format("{0}: {1}", field.Category, possibleFieldValue.Name);
+                profile.AddAttribute(name, value, originalValue);
             }
         }
 
@@ -122,9 +129,15 @@ namespace fifi.Data
             foreach (IFieldValue possibleFieldValue in field.Values)
             {
                 double value = 0;
+                string originalValue = "No";
                 if (possibleFieldValue.Name.Equals(label))
+                {
                     value = field.Weight;
-                profile.AddAttribute(possibleFieldValue.Name, value);
+                    originalValue = "Yes";
+                }
+
+                string name = String.Format("{0}: {1}", field.Category, possibleFieldValue.Name);
+                profile.AddAttribute(name, value, originalValue);
             }
         }
 
@@ -136,7 +149,7 @@ namespace fifi.Data
                 throw new InvalidFieldValueException(csv.Row, field.Index);
 
             double value = translatedField.Value*field.Weight;
-            profile.AddAttribute(field.Category, value);
+            profile.AddAttribute(field.Category, value, label);
         }
     }
 }

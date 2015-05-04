@@ -9,10 +9,12 @@ namespace fifi.Core
         {
             Id = id;
             Attributes = new List<string>();
+            OriginalValues = new List<string>();
         }
 
         public int Id { get; private set; }
         public List<string> Attributes { get; private set; }
+        public List<string> OriginalValues { get; private set; }
         public double this[string attributeName]
         {
             get
@@ -28,13 +30,14 @@ namespace fifi.Core
             }
         }
 
-        public void AddAttribute(string name, double value)
+        public void AddAttribute(string name, double value, string originalValue = "")
         {
             if (Dimensions <= Attributes.Count)
                 throw new NumberOfDimensionsExceededException("Cannot add more attributes as the original allowed dimension size has been reached.");
 
             Coordinates[Attributes.Count] = value;
             Attributes.Add(name);
+            OriginalValues.Add(originalValue);
         }
     }
 }
