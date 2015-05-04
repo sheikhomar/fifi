@@ -41,13 +41,8 @@ namespace fifi.WinUI
 
             List<DrawableDataPoint> drawableDataPoints = MakeClusterAndCoordinatesDrawable(coordinateMatrix, result, dataCollection);
 
-            var scatterPlot = new ScatterPlot(drawableDataPoints, chart1);
-            scatterPlot.Draw();
+            scatterPlotControl1.BuildScatterPlot(drawableDataPoints);
 
-            ChartArea area = chart1.ChartAreas[0];
-
-            area.AxisX.Crossing = 0;
-            area.AxisY.Crossing = 0;
         }
 
         private List<DrawableDataPoint> MakeClusterAndCoordinatesDrawable(Matrix coordinateMatrix, ClusteringResult clusters, IdentifiableDataPointCollection dataCollection)
@@ -66,6 +61,11 @@ namespace fifi.WinUI
                 drawableDataPoints.Add(drawableDataPoint);
             }
             return drawableDataPoints.OrderBy(d => d.Group).ToList();
+        }
+
+        private void scatterPlotControl1_DataPointClick(object sender, DrawableDataPoint e)
+        {
+            MessageBox.Show(string.Format("Du har klikket på ID: {0}", e.Origin.Id));
         }
     }
 }
