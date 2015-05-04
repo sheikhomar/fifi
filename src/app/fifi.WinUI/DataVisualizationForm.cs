@@ -27,8 +27,11 @@ namespace fifi.WinUI
         public DataVisualizationForm()
         {
             InitializeComponent();
-            this.loadingImage.Location = this.scatterPlotControl1.Location;
-            this.loadingImage.Size = this.scatterPlotControl1.Size;
+            #region ImageLoadingScreen
+            ImageLoadingScreen.Location = new System.Drawing.Point(0, 0);
+            ImageLoadingScreen.Size = this.Size;
+            ImageLoadingScreen.BringToFront();
+            #endregion
             scatterPlotControl1.DataPointClick += DataPointClicked;
             grpAlgorithmSettings.Enabled = false;
             outlierDetectionComponent1.Enabled = false;
@@ -38,7 +41,7 @@ namespace fifi.WinUI
             currentClusterAlgorithm = null;
 
             // Resources.Loading is stolen from https://dribbble.com/shots/1420523-Loading-Chart
-            this.loadingImage.Image = Resources.Loading2;
+            this.ImageLoadingScreen.Image = Resources.Loading2;
 
             //Sub to all dem events
             outlierDetectionComponent1.DataPointClick += outlierDetectionComponent1_DataPointClick;
@@ -65,7 +68,7 @@ namespace fifi.WinUI
 
         private void DataConversionTask_Success(object sender, DataConversionResult result)
         {
-            loadingImage.Visible = false;
+            ImageLoadingScreen.Visible = false;
             chartDataSource = result.DataPoints;
             distanceMatrix = result.DistanceMatrix;
 
@@ -84,7 +87,7 @@ namespace fifi.WinUI
 
         private void DataConversionTask_Failure(object sender, IEnumerable<Exception> errors)
         {
-            loadingImage.Visible = false;
+            ImageLoadingScreen.Visible = false;
             StringBuilder temp = new StringBuilder();
             temp.AppendLine("Data import failed with following errors:");
             foreach (var exp in errors)

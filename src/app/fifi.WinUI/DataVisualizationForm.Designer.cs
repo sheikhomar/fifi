@@ -38,13 +38,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.numberOfClusters = new System.Windows.Forms.NumericUpDown();
-            this.loadingImage = new System.Windows.Forms.PictureBox();
+            this.ImageLoadingScreen = new System.Windows.Forms.PictureBox();
             this.scatterPlotControl1 = new fifi.WinUI.ScatterPlotComponent();
             this.dataPointDetailsComponent1 = new fifi.WinUI.DataPointDetailsComponent();
             this.outlierDetectionComponent1 = new fifi.WinUI.OutlierDetectionComponent();
             this.grpAlgorithmSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numberOfClusters)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.loadingImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageLoadingScreen)).BeginInit();
             this.SuspendLayout();
             // 
             // grpAlgorithmSettings
@@ -172,19 +172,14 @@
             0,
             0});
             // 
-            // loadingImage
+            // ImageLoadingScreen
             // 
-            this.loadingImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.loadingImage.BackColor = System.Drawing.Color.White;
-            this.loadingImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.loadingImage.Location = new System.Drawing.Point(12, 166);
-            this.loadingImage.Name = "loadingImage";
-            this.loadingImage.Size = new System.Drawing.Size(106, 28);
-            this.loadingImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.loadingImage.TabIndex = 0;
-            this.loadingImage.TabStop = false;
+            this.ImageLoadingScreen.Location = new System.Drawing.Point(2, 173);
+            this.ImageLoadingScreen.Name = "ImageLoadingScreen";
+            this.ImageLoadingScreen.Size = new System.Drawing.Size(16, 34);
+            this.ImageLoadingScreen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ImageLoadingScreen.TabIndex = 8;
+            this.ImageLoadingScreen.TabStop = false;
             // 
             // scatterPlotControl1
             // 
@@ -219,10 +214,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(996, 603);
+            this.Controls.Add(this.ImageLoadingScreen);
             this.Controls.Add(this.outlierDetectionComponent1);
             this.Controls.Add(this.dataPointDetailsComponent1);
             this.Controls.Add(this.scatterPlotControl1);
-            this.Controls.Add(this.loadingImage);
             this.Controls.Add(this.grpAlgorithmSettings);
             this.Name = "DataVisualizationForm";
             this.Text = "Display clusters";
@@ -230,7 +225,7 @@
             this.grpAlgorithmSettings.ResumeLayout(false);
             this.grpAlgorithmSettings.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numberOfClusters)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.loadingImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImageLoadingScreen)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -251,5 +246,6 @@
         private ScatterPlotComponent scatterPlotControl1;
         private DataPointDetailsComponent dataPointDetailsComponent1;
         private OutlierDetectionComponent outlierDetectionComponent1;
+        private System.Windows.Forms.PictureBox ImageLoadingScreen;
     }
 }
