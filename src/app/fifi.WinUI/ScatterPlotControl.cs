@@ -54,15 +54,13 @@ namespace fifi.WinUI
 
         private void AddSeries(string seriesName)
         {
-            chart1.Series.Add(seriesName);
-            chart1.Series[seriesName].ChartType = SeriesChartType.Point;
+            Series s = chart1.Series.Add(seriesName);
+            s.ChartType = SeriesChartType.Point;
         }
 
 
         private void AddDatapointToSeries(int seriesNumber, CDataPoint node, DrawableDataPoint originalObject)
         {
-            node.ToolTip = string.Format("Cluster {0}\n" + "ID: {1}\n",
-                seriesNumber, originalObject.Origin.Id);
             node.Tag = originalObject;
 
             chart1.Series[seriesNumber - 1].Points.Add(node);
