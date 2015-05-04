@@ -42,6 +42,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.scatterPlotControl1 = new fifi.WinUI.ScatterPlotComponent();
             this.dataPointDetailsComponent1 = new fifi.WinUI.DataPointDetailsComponent();
+            this.outlierDetectionComponent1 = new fifi.WinUI.OutlierDetectionComponent();
             this.grpAlgorithmSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numberOfClusters)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadingImage)).BeginInit();
@@ -200,7 +201,7 @@
             this.scatterPlotControl1.Location = new System.Drawing.Point(11, 165);
             this.scatterPlotControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.scatterPlotControl1.Name = "scatterPlotControl1";
-            this.scatterPlotControl1.Size = new System.Drawing.Size(490, 427);
+            this.scatterPlotControl1.Size = new System.Drawing.Size(492, 201);
             this.scatterPlotControl1.TabIndex = 5;
             // 
             // dataPointDetailsComponent1
@@ -212,11 +213,19 @@
             this.dataPointDetailsComponent1.Size = new System.Drawing.Size(397, 426);
             this.dataPointDetailsComponent1.TabIndex = 6;
             // 
+            // outlierDetectionComponent1
+            // 
+            this.outlierDetectionComponent1.Location = new System.Drawing.Point(11, 371);
+            this.outlierDetectionComponent1.Name = "outlierDetectionComponent1";
+            this.outlierDetectionComponent1.Size = new System.Drawing.Size(490, 221);
+            this.outlierDetectionComponent1.TabIndex = 7;
+            // 
             // DataVisualizationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(916, 603);
+            this.Controls.Add(this.outlierDetectionComponent1);
             this.Controls.Add(this.dataPointDetailsComponent1);
             this.Controls.Add(this.scatterPlotControl1);
             this.Controls.Add(this.groupBox1);
@@ -250,5 +259,6 @@
         private System.Windows.Forms.Button button1;
         private ScatterPlotComponent scatterPlotControl1;
         private DataPointDetailsComponent dataPointDetailsComponent1;
+        private OutlierDetectionComponent outlierDetectionComponent1;
     }
 }

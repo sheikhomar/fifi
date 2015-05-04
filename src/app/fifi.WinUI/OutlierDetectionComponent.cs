@@ -8,6 +8,7 @@ namespace fifi.WinUI
 {
     public partial class OutlierDetectionComponent : UserControl
     {
+        public event EventHandler<IdentifiableDataPoint> DataPointClick;
         private DistanceMatrix distanceMatrix;
         private List<LocalOutlierFactorItem> itemList;
         private Dictionary<int, LocalOutlierFactorItem> idLookUptable;
@@ -24,41 +25,38 @@ namespace fifi.WinUI
             this.distanceMatrix = input;
             CreateItemList();
             idLookUptable = itemList.ToDictionary(item => item.Id);
-        }
-
-        private void Form2_Load(object sender, EventArgs e)
-        {
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.DataSource = itemList.OrderByDescending(point => point.LocalOutlierFactor).Take(limit).ToList();
         }
 
 
+
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0)
+                return;
+
+            var liveItemList = (List<LocalOutlierFactorItem>)dataGridView1.DataSource;
+            var markedItem = idLookUptable[liveItemList[e.RowIndex].Id];
+            
             if (e.ColumnIndex == 0)
             {
-                var liveItemList = (List<LocalOutlierFactorItem>)dataGridView1.DataSource;
-                var markedItem = idLookUptable[liveItemList[e.RowIndex].Id];
                 markedItem.UpdateIcon();
-
                 dataGridView1.UpdateCellValue(e.ColumnIndex, e.RowIndex);
             }
-            if (e.ColumnIndex > 0)
+            else if (e.ColumnIndex > 0)
             {
-                //Tell Omar to do stuff
-                //var liveItemList = (List<LocalOutlierFactorItem>)dataGridView1.DataSource;
-                //var markedItem = idLookUptable[liveItemList[e.RowIndex].Id];
+                if (DataPointClick != null)
+                {
+                    var identifiableDataPoint = distanceMatrix.GetObject(markedItem.Id) as IdentifiableDataPoint;
 
-                //dataPointDetail1.GenerateDetails( distanceMatrix.GetObject(markedItem.Id) as IdentifiableDataPoint, new IdentifiableDataPoint(e.ColumnIndex, 60));
+                    if (identifiableDataPoint != null)
+                    {
+                        DataPointClick(this, identifiableDataPoint);
+                    }
+                }
             }
         }
-
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void button1_Click(object sender, EventArgs e)
         {

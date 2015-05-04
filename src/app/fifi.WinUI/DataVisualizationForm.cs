@@ -37,6 +37,16 @@ namespace fifi.WinUI
 
             // Resources.Loading is stolen from https://dribbble.com/shots/1420523-Loading-Chart
             this.loadingImage.Image = Resources.Loading2;
+
+            //Sub to all dem events
+            outlierDetectionComponent1.DataPointClick += outlierDetectionComponent1_DataPointClick;
+        }
+
+        void outlierDetectionComponent1_DataPointClick(object sender, IdentifiableDataPoint e)
+        {
+            //DataPointClick(this, identifiableDataPoint);
+            dataPointDetailsComponent1.GenerateDetails(e, clusterResult.FindCluster(e).Centroid);
+            scatterPlotControl1.HighlightPoint(e);
         }
 
         public DataVisualizationForm(IdentifiableDataPointCollection dataSet) 
@@ -60,6 +70,11 @@ namespace fifi.WinUI
 
             grpAlgorithmSettings.Enabled = true;
             MakeTheWholeThingWork();
+
+            outlierDetectionComponent1.Build(distanceMatrix);
+
+
+
         }
 
         private void DataConversionTask_Failure(object sender, IEnumerable<Exception> errors)

@@ -113,6 +113,9 @@
     <EmbeddedResource Include="ImportDataForm.resx">
       <DependentUpon>ImportDataForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OutlierDetectionComponent.resx">
+      <DependentUpon>OutlierDetectionComponent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
