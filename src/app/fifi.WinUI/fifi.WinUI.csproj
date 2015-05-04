@@ -193,6 +193,9 @@
     <None Include="Resources\X16.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\CircleBlue.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\CircleGreen.png" />
   </ItemGroup>
   <ItemGroup>
