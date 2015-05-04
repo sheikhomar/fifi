@@ -30,11 +30,11 @@
         {
             this.lblID = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ColSimilarity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ColSimilarity = new System.Windows.Forms.DataGridViewImageColumn();
             this.ColField = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColPercent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,6 +50,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -67,12 +68,26 @@
             this.dataGridView1.Size = new System.Drawing.Size(391, 218);
             this.dataGridView1.TabIndex = 3;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(-1, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 20);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Details";
+            // 
             // ColSimilarity
             // 
-            this.ColSimilarity.DataPropertyName = "Similarity";
+            this.ColSimilarity.DataPropertyName = "Color";
             this.ColSimilarity.HeaderText = "Similarity";
+            this.ColSimilarity.Image = global::fifi.WinUI.Properties.Resources.CircleBlue;
+            this.ColSimilarity.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.ColSimilarity.Name = "ColSimilarity";
             this.ColSimilarity.ReadOnly = true;
+            this.ColSimilarity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColSimilarity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.ColSimilarity.Width = 75;
             // 
             // ColField
@@ -89,6 +104,7 @@
             this.ColValue.HeaderText = "Value";
             this.ColValue.Name = "ColValue";
             this.ColValue.ReadOnly = true;
+            this.ColValue.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ColValue.Width = 75;
             // 
             // ColPercent
@@ -97,17 +113,8 @@
             this.ColPercent.HeaderText = "% similar with centroid";
             this.ColPercent.Name = "ColPercent";
             this.ColPercent.ReadOnly = true;
+            this.ColPercent.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ColPercent.Width = 140;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(-1, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 20);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Details";
             // 
             // DataPointDetail
             // 
@@ -129,7 +136,7 @@
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColSimilarity;
+        private System.Windows.Forms.DataGridViewImageColumn ColSimilarity;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColField;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColValue;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColPercent;

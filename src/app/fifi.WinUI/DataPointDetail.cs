@@ -19,10 +19,12 @@ namespace fifi.WinUI
         public DataPointDetail()
         {
             InitializeComponent();
+            dataGridView1.Visible = false;
         }
 
         public void GenerateDetails(IdentifiableDataPoint dataPoint, DataPoint centroid)
         {
+            dataGridView1.Visible = true;
             dataPointInfoList = new List<DataPointInfo>();
 
             lblID.Text = "ID: " + dataPoint.Id.ToString();

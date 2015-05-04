@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace fifi.WinUI
 {
-    public enum Similarity { Different, Similar, Same }
+    public enum Similarity { None, Different, Similar, Same }
 }
