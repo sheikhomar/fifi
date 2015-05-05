@@ -65,12 +65,11 @@
             this.grpAlgorithmSettings.Size = new System.Drawing.Size(974, 69);
             this.grpAlgorithmSettings.TabIndex = 2;
             this.grpAlgorithmSettings.TabStop = false;
-            this.grpAlgorithmSettings.Text = "Clustering algorithm settings";
+            this.grpAlgorithmSettings.Text = "Clustering";
             // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Location = new System.Drawing.Point(762, 18);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 35);
@@ -91,8 +90,7 @@
             // 
             // button2
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.Location = new System.Drawing.Point(868, 18);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 35);
@@ -189,7 +187,7 @@
             this.scatterPlotControl1.Location = new System.Drawing.Point(11, 86);
             this.scatterPlotControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.scatterPlotControl1.Name = "scatterPlotControl1";
-            this.scatterPlotControl1.Size = new System.Drawing.Size(572, 295);
+            this.scatterPlotControl1.Size = new System.Drawing.Size(572, 287);
             this.scatterPlotControl1.TabIndex = 5;
             // 
             // dataPointDetailsComponent1
@@ -198,22 +196,22 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataPointDetailsComponent1.Location = new System.Drawing.Point(589, 87);
             this.dataPointDetailsComponent1.Name = "dataPointDetailsComponent1";
-            this.dataPointDetailsComponent1.Size = new System.Drawing.Size(397, 505);
+            this.dataPointDetailsComponent1.Size = new System.Drawing.Size(397, 523);
             this.dataPointDetailsComponent1.TabIndex = 6;
             // 
             // outlierDetectionComponent1
             // 
             this.outlierDetectionComponent1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.outlierDetectionComponent1.Location = new System.Drawing.Point(12, 386);
+            this.outlierDetectionComponent1.Location = new System.Drawing.Point(12, 378);
             this.outlierDetectionComponent1.Name = "outlierDetectionComponent1";
-            this.outlierDetectionComponent1.Size = new System.Drawing.Size(572, 206);
+            this.outlierDetectionComponent1.Size = new System.Drawing.Size(572, 232);
             this.outlierDetectionComponent1.TabIndex = 7;
             // 
             // DataVisualizationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(996, 603);
+            this.ClientSize = new System.Drawing.Size(996, 621);
             this.Controls.Add(this.ImageLoadingScreen);
             this.Controls.Add(this.outlierDetectionComponent1);
             this.Controls.Add(this.dataPointDetailsComponent1);
