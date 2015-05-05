@@ -187,7 +187,7 @@
             this.scatterPlotControl1.Location = new System.Drawing.Point(11, 86);
             this.scatterPlotControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.scatterPlotControl1.Name = "scatterPlotControl1";
-            this.scatterPlotControl1.Size = new System.Drawing.Size(572, 287);
+            this.scatterPlotControl1.Size = new System.Drawing.Size(572, 239);
             this.scatterPlotControl1.TabIndex = 5;
             // 
             // dataPointDetailsComponent1
@@ -196,28 +196,30 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataPointDetailsComponent1.Location = new System.Drawing.Point(589, 87);
             this.dataPointDetailsComponent1.Name = "dataPointDetailsComponent1";
-            this.dataPointDetailsComponent1.Size = new System.Drawing.Size(397, 523);
+            this.dataPointDetailsComponent1.Size = new System.Drawing.Size(397, 522);
             this.dataPointDetailsComponent1.TabIndex = 6;
             // 
             // outlierDetectionComponent1
             // 
             this.outlierDetectionComponent1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.outlierDetectionComponent1.Location = new System.Drawing.Point(12, 378);
+            this.outlierDetectionComponent1.Location = new System.Drawing.Point(11, 379);
             this.outlierDetectionComponent1.Name = "outlierDetectionComponent1";
-            this.outlierDetectionComponent1.Size = new System.Drawing.Size(572, 232);
+            this.outlierDetectionComponent1.Size = new System.Drawing.Size(572, 230);
             this.outlierDetectionComponent1.TabIndex = 7;
             // 
             // DataVisualizationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(996, 621);
+            this.ClientSize = new System.Drawing.Size(996, 620);
             this.Controls.Add(this.ImageLoadingScreen);
             this.Controls.Add(this.outlierDetectionComponent1);
             this.Controls.Add(this.dataPointDetailsComponent1);
             this.Controls.Add(this.scatterPlotControl1);
             this.Controls.Add(this.grpAlgorithmSettings);
+            this.MinimumSize = new System.Drawing.Size(1012, 659);
             this.Name = "DataVisualizationForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Display clusters";
             this.Shown += new System.EventHandler(this.DataVisualizationForm_Shown);
             this.grpAlgorithmSettings.ResumeLayout(false);
