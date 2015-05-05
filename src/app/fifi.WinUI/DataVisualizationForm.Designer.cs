@@ -187,7 +187,7 @@
             this.scatterPlotControl1.Location = new System.Drawing.Point(11, 86);
             this.scatterPlotControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.scatterPlotControl1.Name = "scatterPlotControl1";
-            this.scatterPlotControl1.Size = new System.Drawing.Size(572, 239);
+            this.scatterPlotControl1.Size = new System.Drawing.Size(572, 288);
             this.scatterPlotControl1.TabIndex = 5;
             // 
             // dataPointDetailsComponent1
@@ -201,10 +201,11 @@
             // 
             // outlierDetectionComponent1
             // 
-            this.outlierDetectionComponent1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.outlierDetectionComponent1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.outlierDetectionComponent1.Location = new System.Drawing.Point(11, 379);
             this.outlierDetectionComponent1.Name = "outlierDetectionComponent1";
-            this.outlierDetectionComponent1.Size = new System.Drawing.Size(572, 230);
+            this.outlierDetectionComponent1.Size = new System.Drawing.Size(572, 229);
             this.outlierDetectionComponent1.TabIndex = 7;
             // 
             // DataVisualizationForm
