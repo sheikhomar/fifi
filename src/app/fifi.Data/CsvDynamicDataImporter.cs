@@ -90,7 +90,7 @@ namespace fifi.Data
             if (!csv.TryGetField(field.Index, out valueInDataField))
                 throw new InvalidNumericValueException(csv.Row, field.Index);
 
-            string originalValue = Convert.ToInt32(valueInDataField).ToString();
+            string originalValue = valueInDataField.ToString();
             double difference = field.MaxValue - field.MinValue;
             double normalizedValue = (valueInDataField - field.MinValue) / difference;
             double finalValue = normalizedValue*field.Weight;

@@ -132,6 +132,7 @@
     <EmbeddedResource Include="ScatterPlotComponent.resx">
       <DependentUpon>ScatterPlotComponent.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -146,7 +147,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="OriginalApp.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\fifi.ConsoleUI\fifi.ConsoleUI.csproj">
