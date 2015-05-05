@@ -213,6 +213,7 @@ namespace fifi.WinUI
 
         #endregion
 
+        #region Eventhandlers
         private void chart1_MouseClick(object sender, MouseEventArgs e)
         {
             HitTestResult result = chart1.HitTest(e.X, e.Y, ChartElementType.DataPoint);
@@ -242,5 +243,7 @@ namespace fifi.WinUI
             }
 
         }
+        #endregion
+
     }
 }
