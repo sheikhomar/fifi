@@ -93,10 +93,11 @@ namespace fifi.Core
         {
             double sumOfLocalReachabilityDensity;
 
-            double cardinality = kNeighbours;
+            double cardinality;
 
             foreach (var person in resultList)
             {
+                cardinality = person.DistanceToNeighbours.Count();
                 sumOfLocalReachabilityDensity = CalcSumOfLocalReachabilityDensity(person);
 
                 person.LocalOutlierFactor = (sumOfLocalReachabilityDensity / cardinality) / person.LocalReachabilityDensity;
