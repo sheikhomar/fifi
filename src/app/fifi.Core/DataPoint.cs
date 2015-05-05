@@ -57,7 +57,7 @@ namespace fifi.Core
                 this[i] = another[i];
         }
 
-        public DataPoint Copy()
+        public DataPoint Clone()
         {
             DataPoint dataPoint = new DataPoint(Dimensions);
             for (int i = 0; i < Dimensions; i++)

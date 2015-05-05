@@ -29,7 +29,7 @@ namespace fifi.Core
             this.centroids = dataCollection
                 .OrderBy(dataPoint => Guid.NewGuid()) // Random order
                 .Take(k)
-                .Select(dataPoint => dataPoint.Copy())
+                .Select(dataPoint => dataPoint.Clone())
                 .ToList();
 
             EnsureDistinctCentroid();
@@ -46,7 +46,7 @@ namespace fifi.Core
                     "Array contains dublicate indicies, which is not allowed.", "centroidIndicies");
 
             this.centroids = centroidIndicies
-                .Select(index => this.dataCollection[index].Copy())
+                .Select(index => this.dataCollection[index].Clone())
                 .ToList();
 
             EnsureDistinctCentroid();

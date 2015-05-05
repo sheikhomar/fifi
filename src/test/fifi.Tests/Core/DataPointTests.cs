@@ -146,7 +146,7 @@ namespace fifi.Tests.Core
         {
             var dataPoint = new DataPoint(new double[] { 1, 2, 3, 4 });
 
-            var clonedDataPoint = dataPoint.Copy();
+            var clonedDataPoint = dataPoint.Clone();
 
             Assert.AreNotSame(dataPoint, clonedDataPoint);
             Assert.AreNotSame(dataPoint.Coordinates, clonedDataPoint.Coordinates);
