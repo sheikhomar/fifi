@@ -214,10 +214,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(996, 620);
             this.Controls.Add(this.ImageLoadingScreen);
-            this.Controls.Add(this.outlierDetectionComponent1);
             this.Controls.Add(this.dataPointDetailsComponent1);
             this.Controls.Add(this.scatterPlotControl1);
             this.Controls.Add(this.grpAlgorithmSettings);
+            this.Controls.Add(this.outlierDetectionComponent1);
             this.MinimumSize = new System.Drawing.Size(1012, 659);
             this.Name = "DataVisualizationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
