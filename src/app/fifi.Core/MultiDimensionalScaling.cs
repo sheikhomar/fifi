@@ -7,7 +7,7 @@ namespace fifi.Core
 {
     public class MultiDimensionalScaling
     {
-        Matrix matrix;
+        private Matrix matrix;
 
         public MultiDimensionalScaling(Matrix data)
         {
