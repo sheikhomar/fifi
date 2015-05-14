@@ -64,10 +64,7 @@
     <Compile Include="Matrix.cs" />
     <Compile Include="MultiDimensionalScaling.cs" />
     <Compile Include="Exceptions\NumberOfDimensionsExceededException.cs" />
-    <Compile Include="Outlier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TempOutlierDetection.cs" />
-    <Compile Include="TempOutlierDetection2.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -87,12 +87,6 @@ namespace fifi.ConsoleUI
             if (multiDimensionalScaling)
                 MultiDimensionalScaling(writer, dataCollection, distanceMetric);
 
-            if (outlierDetection)
-                OutlierDetectionMethod(writer, result, outlierDetectionPrintmembers);
-
-            if (outlierDetection2)
-                OutlierDetectionMethod2(writer, result, outlierDetectionPrintmembers, dataCollection);
-
             if (localOutlierFactor)
                 LocalOutlierFactorD(4, dataCollection, distanceMetric);
 
@@ -199,56 +193,6 @@ namespace fifi.ConsoleUI
                 writer.Write("\r\n");
             }
             writer.WriteLine("\r\n");
-        }
-
-        static void OutlierDetectionMethod(StreamWriter writer, ClusteringResult result, bool outlierDetectionPrintmembers)
-        {
-            var outlierDetection= new TempOutlierDetection(result);
-
-            var outliers = outlierDetection.Calculate();
-            int numbOutliers = outliers.Count;
-
-            writer.WriteLine("OutlierDetection");
-            writer.WriteLine("Number of outliers = " + numbOutliers);
-
-            if (outlierDetectionPrintmembers)
-            {
-                writer.WriteLine("\r\nOutlier members are:");
-                for (int index = 0; index < outliers.Count; index++)
-                {
-                    writer.WriteLine("Outlier[{0}] belongs to cluster {1} as member {2} ", index, outliers[index].belongingCluster, index, outliers[index].identifiableDataPoint);
-                } 
-            }
-
-            int members = result.Clusters.Sum(cster => cster.Members.Count);
-            double ratio = members / numbOutliers;
-
-            writer.WriteLine("\r\nThis run's outlier-ratio is {0} (Members:{1}, Outliers:{2})",ratio,members,numbOutliers);
-        }
-
-        static void OutlierDetectionMethod2(StreamWriter writer, ClusteringResult result, bool outlierDetectionPrintmembers, IdentifiableDataPointCollection data)
-        {
-            var outlierDetection = new TempOutlierDetection2(result, data);
-
-            var outliers = outlierDetection.Calculate();
-            int numbOutliers = outliers.Count;
-
-            writer.WriteLine("OutlierDetection");
-            writer.WriteLine("Number of outliers = " + numbOutliers);
-
-            if (outlierDetectionPrintmembers)
-            {
-                writer.WriteLine("\r\nOutlier members are:");
-                for (int index = 0; index < outliers.Count; index++)
-                {
-                    writer.WriteLine("Outlier[{0}] belongs to cluster {1} as member {2} ", index, outliers[index].belongingCluster, index, outliers[index].identifiableDataPoint);
-                }
-            }
-
-            int members = result.Clusters.Sum(cster => cster.Members.Count);
-            double ratio = members / numbOutliers;
-
-            writer.WriteLine("\r\nThis run's outlier-ratio is {0} (Members:{1}, Outliers:{2})", ratio, members, numbOutliers);
         }
 
         static void LocalOutlierFactorD(int kNeighbours, IdentifiableDataPointCollection dataCollection, IDistanceMetric distanceMetric)
