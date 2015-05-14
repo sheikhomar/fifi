@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using CsvHelper;
@@ -13,6 +14,7 @@ namespace fifi.Data
         private TextReader reader;
         private IConfiguration config;
         private string fieldDelimiter;
+        private CultureInfo cultureFormat;
 
         public CsvDynamicDataImporter(TextReader reader, IConfiguration config)
         {
@@ -87,7 +89,10 @@ namespace fifi.Data
         private void ParseNumericField(IField field, CsvReader csv, IdentifiableDataPoint dataItem)
         {
             double valueInDataField;
-            if (!csv.TryGetField(field.Index, out valueInDataField))
+            string val = csv.GetField(field.Index);
+            cultureFormat = new CultureInfo("en");
+
+            if (!double.TryParse(val, NumberStyles.Any, cultureFormat, out valueInDataField))
                 throw new InvalidNumericValueException(csv.Row, field.Index);
 
             string originalValue = valueInDataField.ToString();
