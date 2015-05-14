@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace fifi.Core
 {
@@ -11,11 +9,10 @@ namespace fifi.Core
     /// </summary>
     public class KMeans : IClusteringAlgorithm
     {
-        private int k;
-        private IdentifiableDataPointCollection dataCollection;
-        private int maxIterations;
-        private IDistanceMetric distanceMetric;
-        private IList<DataPoint> centroids;
+        private readonly IdentifiableDataPointCollection dataCollection;
+        private readonly int maxIterations;
+        private readonly IDistanceMetric distanceMetric;
+        private readonly IList<DataPoint> centroids;
 
         public KMeans(IdentifiableDataPointCollection dataCollection, int k, IDistanceMetric distanceMetric, int maxIterations = 100)
         {
@@ -23,7 +20,6 @@ namespace fifi.Core
                 throw new ArgumentException("Clusters cannot be generated for less than one centroid");
         
             this.dataCollection = dataCollection;
-            this.k = k;
             this.maxIterations = maxIterations;
             this.distanceMetric = distanceMetric;
             this.centroids = dataCollection
@@ -52,62 +48,56 @@ namespace fifi.Core
             EnsureDistinctCentroid();
         }
 
-
         public ClusteringResult Calculate()
         {
-            ClusteringResult result = new ClusteringResult();
-
-            for (int i = 0; i < centroids.Count; i++)
-                result.Clusters.Add(new Cluster(i + 1, centroids[i]));
+            ClusteringResult result = new ClusteringResult(centroids);
 
             bool centroidMoved = false;
-            int count = 0;
+            int iterationCount = 0;
 
             do
             {
-                count++;
-
-                foreach (var cluster in result.Clusters)
-                {
-                    cluster.Members.Clear();
-                }
-
-                foreach (var dataItem in dataCollection)
-                {
-                    Cluster closestCluster = null;
-                    double minDistance = double.MaxValue;
-                    foreach (var cluster in result.Clusters)
-                    {
-                        var centroid = cluster.Centroid;
-                        double distance = distanceMetric.Calculate(centroid, dataItem);
-                        if (distance < minDistance)
-                        {
-                            minDistance = distance;
-                            closestCluster = cluster;
-                        }
-                    }
-
-                    ClusterMember member = new ClusterMember(dataItem, minDistance);
-                    closestCluster.Members.Add(member);
-                }
-                centroidMoved = false;
-
+                iterationCount++;
+                result.ClearMembers();
+                AssignEachDataPointToNearestCluster(result.Clusters);
                 result.Clusters.RemoveAll(cluster => cluster.Members.Count == 0);
-
+                centroidMoved = false;
                 foreach (var cluster in result.Clusters)
                 {
                     if (MoveCentroidIfNeeded(cluster))
+                    {
                         centroidMoved = true;
+                        break;
+                    }
                 }
 
-                if (count >= maxIterations)
+                if (iterationCount >= maxIterations)
                     centroidMoved = false;
-
             } while (centroidMoved);
 
-
-
             return result;
+        }
+
+        private void AssignEachDataPointToNearestCluster(IList<Cluster> clusters)
+        {
+            foreach (var dataItem in dataCollection)
+            {
+                Cluster closestCluster = null;
+                double minDistance = double.MaxValue;
+                foreach (var cluster in clusters)
+                {
+                    var centroid = cluster.Centroid;
+                    double distance = distanceMetric.Calculate(centroid, dataItem);
+                    if (distance < minDistance)
+                    {
+                        minDistance = distance;
+                        closestCluster = cluster;
+                    }
+                }
+
+                ClusterMember member = new ClusterMember(dataItem, minDistance);
+                closestCluster.Members.Add(member);
+            }
         }
 
         private void EnsureDistinctCentroid()
@@ -140,6 +130,7 @@ namespace fifi.Core
 
             return hasCentroidMoved;
         }
+
         private DataPoint CalculateGravityCenter(Cluster cluster)
         {
             DataPoint centroid = cluster.Centroid;
@@ -158,6 +149,5 @@ namespace fifi.Core
 
             return gravityCenter;
         }
-
     }
 }
