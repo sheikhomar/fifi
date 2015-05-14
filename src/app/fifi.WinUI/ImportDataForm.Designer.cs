@@ -31,10 +31,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtSelectedFile = new System.Windows.Forms.TextBox();
             this.btnBrowse = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbFieldDelimiter = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cmbValueDelimiter = new System.Windows.Forms.ComboBox();
             this.chkRemoveWhitespace = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnClose = new System.Windows.Forms.Button();
@@ -72,20 +72,19 @@
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
-            // comboBox1
+            // cmbFieldDelimiter
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbFieldDelimiter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Colon",
-            "Semicolon",
-            "Tab"});
-            this.comboBox1.Location = new System.Drawing.Point(99, 60);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(336, 21);
-            this.comboBox1.TabIndex = 3;
-            this.comboBox1.Text = "Colon";
+            this.cmbFieldDelimiter.FormattingEnabled = true;
+            this.cmbFieldDelimiter.Items.AddRange(new object[] {
+            "Comma",
+            "Semicolon"});
+            this.cmbFieldDelimiter.Location = new System.Drawing.Point(99, 60);
+            this.cmbFieldDelimiter.Name = "cmbFieldDelimiter";
+            this.cmbFieldDelimiter.Size = new System.Drawing.Size(336, 21);
+            this.cmbFieldDelimiter.TabIndex = 3;
+            this.cmbFieldDelimiter.Text = "Comma";
             // 
             // label2
             // 
@@ -105,20 +104,19 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Value delimiter";
             // 
-            // comboBox2
+            // cmbValueDelimiter
             // 
-            this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.cmbValueDelimiter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Colon",
-            "Semicolon",
-            "Tab"});
-            this.comboBox2.Location = new System.Drawing.Point(99, 87);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(336, 21);
-            this.comboBox2.TabIndex = 5;
-            this.comboBox2.Text = "Colon";
+            this.cmbValueDelimiter.FormattingEnabled = true;
+            this.cmbValueDelimiter.Items.AddRange(new object[] {
+            "Comma",
+            "Semicolon"});
+            this.cmbValueDelimiter.Location = new System.Drawing.Point(99, 87);
+            this.cmbValueDelimiter.Name = "cmbValueDelimiter";
+            this.cmbValueDelimiter.Size = new System.Drawing.Size(336, 21);
+            this.cmbValueDelimiter.TabIndex = 5;
+            this.cmbValueDelimiter.Text = "Comma";
             // 
             // chkRemoveWhitespace
             // 
@@ -142,8 +140,8 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.btnBrowse);
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.cmbValueDelimiter);
+            this.groupBox1.Controls.Add(this.cmbFieldDelimiter);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
@@ -202,10 +200,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtSelectedFile;
         private System.Windows.Forms.Button btnBrowse;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbFieldDelimiter;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cmbValueDelimiter;
         private System.Windows.Forms.CheckBox chkRemoveWhitespace;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnClose;

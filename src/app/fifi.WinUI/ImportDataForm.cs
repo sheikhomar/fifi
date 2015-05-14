@@ -55,6 +55,11 @@ namespace fifi.WinUI
                 txtSelectedFile.Text = dialog.FileName;
         }
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
         private IdentifiableDataPointCollection DataImportTask_Run(object input)
         {
             ImportOptions options = input as ImportOptions;
@@ -106,15 +111,20 @@ namespace fifi.WinUI
             {
                 Configuration = configuration,
                 Path = txtSelectedFile.Text,
-                FieldDelimiter = ",",
-                ValueDelimiter = ',',
+                FieldDelimiter = GetSelectedValueAsChar(cmbFieldDelimiter).ToString(),
+                ValueDelimiter = GetSelectedValueAsChar(cmbValueDelimiter),
                 RemoveWhiteSpace = chkRemoveWhitespace.Checked
             };
         }
 
-        private bool ValidateUserInput()
+        private char GetSelectedValueAsChar(ComboBox comboBox)
         {
-            return true;
+            switch (comboBox.Text)
+            {
+                case "Comma": return ',';
+                case "Semicolon": return ';';
+            }
+            return ' ';
         }
 
         private void ToggleUserInputControls(bool enabled)
@@ -125,9 +135,5 @@ namespace fifi.WinUI
 
         #endregion
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
     }
 }
