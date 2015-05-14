@@ -54,7 +54,7 @@
     <Compile Include="Configuration\Import\IFieldCollection.cs" />
     <Compile Include="Configuration\Import\IFieldValue.cs" />
     <Compile Include="Configuration\Import\IFieldValueCollection.cs" />
-    <Compile Include="CsvDynamicDataImporter.cs" />
+    <Compile Include="CsvDataImporter.cs" />
     <Compile Include="IDataImporter.cs" />
     <Compile Include="InvalidFieldValueException.cs" />
     <Compile Include="InvalidNumericValueException.cs" />

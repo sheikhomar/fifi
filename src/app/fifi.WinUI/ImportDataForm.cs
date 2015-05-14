@@ -60,7 +60,7 @@ namespace fifi.WinUI
             ImportOptions options = input as ImportOptions;
 
             var reader = new StreamReader(options.Path);
-            var importer = new CsvDynamicDataImporter(reader, options.Configuration)
+            var importer = new CsvDataImporter(reader, options.Configuration)
             {
                 FieldDelimiter = options.FieldDelimiter,
                 ValueDelimiter = options.ValueDelimiter,

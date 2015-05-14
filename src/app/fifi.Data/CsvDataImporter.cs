@@ -5,19 +5,23 @@ using System.Linq;
 using CsvHelper;
 using fifi.Core;
 using fifi.Data.Configuration.Import;
-using System.Threading;
 
 namespace fifi.Data
 {
-    public class CsvDynamicDataImporter : IDataImporter
+    public class CsvDataImporter : IDataImporter
     {
-        private TextReader reader;
-        private IConfiguration config;
+        private readonly TextReader reader;
+        private readonly IConfiguration config;
+        private readonly CultureInfo parseCulture;
         private string fieldDelimiter;
-        private CultureInfo cultureFormat;
 
-        public CsvDynamicDataImporter(TextReader reader, IConfiguration config)
+        public CsvDataImporter(TextReader reader, IConfiguration config)
         {
+            if (reader == null) 
+                throw new ArgumentNullException("reader");
+            if (config == null) 
+                throw new ArgumentNullException("config");
+
             this.reader = reader;
             this.config = config;
 
@@ -25,6 +29,7 @@ namespace fifi.Data
             this.RemoveWhiteSpace = true;
             this.FieldDelimiter = ",";
             this.ValueDelimiter = ',';
+            parseCulture = new CultureInfo("en");
         }
 
         public string FieldDelimiter
@@ -90,9 +95,9 @@ namespace fifi.Data
         {
             double valueInDataField;
             string val = csv.GetField(field.Index);
-            cultureFormat = new CultureInfo("en");
+            
 
-            if (!double.TryParse(val, NumberStyles.Any, cultureFormat, out valueInDataField))
+            if (!double.TryParse(val, NumberStyles.Any, parseCulture, out valueInDataField))
                 throw new InvalidNumericValueException(csv.Row, field.Index);
 
             string originalValue = valueInDataField.ToString();

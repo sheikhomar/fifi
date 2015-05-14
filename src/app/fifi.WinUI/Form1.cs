@@ -26,7 +26,7 @@ namespace fifi.WinUI
             IConfiguration configuration =
                 (ConfigurationSectionHandler)ConfigurationManager.GetSection("csvDataImport");
             var reader = new StreamReader("UserData.csv");
-            var importer = new CsvDynamicDataImporter(reader, configuration);
+            var importer = new CsvDataImporter(reader, configuration);
             var dataCollection = importer.Run();
             var k = 4;
             var distanceMetric = new EuclideanMetric();

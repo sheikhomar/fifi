@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace fifi.Tests.Data
 {
     [TestFixture]
-    public class CsvDynamicDataImporterWithFaultyTests
+    public class CsvDataImporterWithFaultyTests
     {
         private MockField GenerateGenderField(int index)
         {
@@ -60,7 +60,7 @@ Male,1956
 Female,1964
 Invalid,1930";
             var reader = new StringReader(data);
-            var importer = new CsvDynamicDataImporter(reader, config);
+            var importer = new CsvDataImporter(reader, config);
 
             var exception = Assert.Throws<InvalidFieldValueException>(() => importer.Run());
             Assert.AreEqual(4, exception.LineNumber);
@@ -76,7 +76,7 @@ Invalid,1930";
 ,1998
 Female,1993";
             var reader = new StringReader(data);
-            var importer = new CsvDynamicDataImporter(reader, config);
+            var importer = new CsvDataImporter(reader, config);
 
             var exception = Assert.Throws<InvalidFieldValueException>(() => importer.Run());
             Assert.AreEqual(2, exception.LineNumber);
@@ -92,7 +92,7 @@ Female,1993";
 Female,1998a
 Male,1993";
             var reader = new StringReader(data);
-            var importer = new CsvDynamicDataImporter(reader, config);
+            var importer = new CsvDataImporter(reader, config);
 
             var exception = Assert.Throws<InvalidNumericValueException>(() => importer.Run());
             Assert.AreEqual(2, exception.LineNumber);
@@ -108,7 +108,7 @@ Male,1993";
 Female,1998
 Male,";
             var reader = new StringReader(data);
-            var importer = new CsvDynamicDataImporter(reader, config);
+            var importer = new CsvDataImporter(reader, config);
 
             var exception = Assert.Throws<InvalidNumericValueException>(() => importer.Run());
             Assert.AreEqual(3, exception.LineNumber);

@@ -35,7 +35,7 @@ namespace fifi.ConsoleUI
             IConfiguration configuration =
                 (ConfigurationSectionHandler) ConfigurationManager.GetSection("csvDataImport");
             var reader = new StreamReader("UserData.csv");
-            CsvDynamicDataImporter importer = new CsvDynamicDataImporter(reader, configuration);
+            CsvDataImporter importer = new CsvDataImporter(reader, configuration);
             var dataSet = importer.Run();
             reader.Close();
         }
@@ -56,7 +56,7 @@ namespace fifi.ConsoleUI
             IConfiguration configuration =
                 (ConfigurationSectionHandler)ConfigurationManager.GetSection("csvDataImport");
             var reader = new StreamReader("UserData.csv");
-            var importer = new CsvDynamicDataImporter(reader, configuration);
+            var importer = new CsvDataImporter(reader, configuration);
             var dataCollection = importer.Run();
 
             //Algo//

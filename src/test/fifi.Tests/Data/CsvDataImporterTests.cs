@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace fifi.Tests.Data
 {
     [TestFixture]
-    public class CsvDynamicDataImporterTests
+    public class CsvDataImporterTests
     {
         private IdentifiableDataPointCollection dataSet;
 
@@ -95,7 +95,7 @@ namespace fifi.Tests.Data
         {
             var config = SetupMockConfiguration();
             var reader = new StringReader(Resources.SampleData);
-            var importer = new CsvDynamicDataImporter(reader, config);
+            var importer = new CsvDataImporter(reader, config);
             dataSet = importer.Run();
         }
 
