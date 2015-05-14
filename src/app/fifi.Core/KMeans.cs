@@ -61,8 +61,12 @@ namespace fifi.Core
                 result.ClearMembers();
                 AssignEachDataPointToNearestCluster(result.Clusters);
                 result.Clusters.RemoveAll(cluster => cluster.Members.Count == 0);
-                centroidMoved = result.Clusters.Any(MoveCentroidIfNeeded);
 
+                centroidMoved = false;
+                foreach (var cluster in result.Clusters)
+                    if (MoveCentroidIfNeeded(cluster))
+                        centroidMoved = true;
+                
                 if (iterationCount >= maxIterations)
                     centroidMoved = false;
             } while (centroidMoved);
