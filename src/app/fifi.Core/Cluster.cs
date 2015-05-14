@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace fifi.Core
 {
@@ -10,6 +7,9 @@ namespace fifi.Core
     {
         public Cluster(int id, DataPoint centroid)
         {
+            if (centroid == null) 
+                throw new ArgumentNullException("centroid");
+
             Centroid = centroid;
             Members = new List<ClusterMember>();
             Id = id;
