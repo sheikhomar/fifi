@@ -56,11 +56,11 @@ namespace fifi.WinUI
 
         private double PercentageCalculator(double dataPointAttribute, double centroidAttribute)
         {
-            double percentage = 0;
-            percentage = centroidAttribute - dataPointAttribute;
-            if (percentage < 0)
-                percentage *= (-1);
-            return (1 - percentage) * 100;
+            double differense = 0;
+            differense = centroidAttribute - dataPointAttribute;
+            if (differense < 0)
+                differense *= (-1);
+            return (1 - differense) * 100;
         }
 
         private Similarity SimilarityCalculator(double percentage)
