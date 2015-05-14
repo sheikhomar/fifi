@@ -48,7 +48,7 @@ namespace fifi.WinUI
             
         }
 
-        void outlierDetectionComponent1_DataPointClick(object sender, IdentifiableDataPoint e)
+        private void outlierDetectionComponent1_DataPointClick(object sender, IdentifiableDataPoint e)
         {
             //DataPointClick(this, identifiableDataPoint);
             dataPointDetailsComponent1.GenerateDetails(e, clusterResult.FindCluster(e).Centroid);
@@ -59,7 +59,7 @@ namespace fifi.WinUI
             : this()
         {
             this.dataSet = dataSet;
-            distanceMetric = DistanceMatrix(currentDistanceMatrix);
+            distanceMetric = DistanceMetric(currentDistanceMatrix);
 
             dataConversionTask = new DataConversionTask();
             dataConversionTask.Success += DataConversionTask_Success;
@@ -112,7 +112,7 @@ namespace fifi.WinUI
             {
                 Cluster cluster;
 
-                distanceMetric = DistanceMatrix(currentDistanceMatrix);
+                distanceMetric = DistanceMetric(currentDistanceMatrix);
 
                 clusterResult = ClusterCalculate();
 
@@ -154,7 +154,7 @@ namespace fifi.WinUI
             }
         }
 
-        private IDistanceMetric DistanceMatrix(string currentDistanceMatrix)
+        private IDistanceMetric DistanceMetric(string currentDistanceMatrix)
         {
             string distanceMatrixName = cbDistanceAlgo.Text;
 
