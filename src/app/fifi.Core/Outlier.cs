@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using fifi.Core;
-
-namespace fifi.Core
+﻿namespace fifi.Core
 {
     public class Outlier
     {

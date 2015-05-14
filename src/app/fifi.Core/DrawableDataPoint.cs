@@ -1,7 +1,4 @@
-﻿using System;
-using fifi.Core;
-
-namespace fifi.Core
+﻿namespace fifi.Core
 {
     public class DrawableDataPoint : DataPoint
     {

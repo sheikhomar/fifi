@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace fifi.Core
+﻿namespace fifi.Core
 {
     /// <summary>
     /// Represents a contract for classes implementing distance metrics.

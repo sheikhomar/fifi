@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using fifi.Core;
-using MathNet.Numerics.Distributions;
 
 namespace fifi.Core
 {
