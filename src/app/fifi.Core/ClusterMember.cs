@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace fifi.Core
 {
@@ -10,6 +6,11 @@ namespace fifi.Core
     {
         public ClusterMember(IdentifiableDataPoint member, double distance)
         {
+            if (member == null) 
+                throw new ArgumentNullException("member");
+            if (distance < 0)
+                throw new ArgumentException("Distance must be a positive integer", "distance");
+
             Member = member;
             Distance = distance;
         }
