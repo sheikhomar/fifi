@@ -30,13 +30,13 @@ namespace fifi.Core
             }
         }
 
-        public void AddAttribute(string name, double value, string originalValue = "")
+        public void AddAttribute(string attribute, double value, string originalValue = "")
         {
             if (Dimensions <= Attributes.Count)
-                throw new NumberOfDimensionsExceededException("Cannot add more attributes as the original allowed dimension size has been reached.");
+                throw new NumberOfDimensionsExceededException("Cannot add more attributes since the original allowed dimension size has been reached.");
 
-            Coordinates[Attributes.Count] = value;
-            Attributes.Add(name);
+            this[Attributes.Count] = value;
+            Attributes.Add(attribute);
             OriginalValues.Add(originalValue);
         }
     }
