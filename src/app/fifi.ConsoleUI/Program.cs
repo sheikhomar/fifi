@@ -166,8 +166,8 @@ namespace fifi.ConsoleUI
             int limiter = 20;
 
 
-            if (limiter > resultMatrix.Column)
-                limiter = resultMatrix.Column;
+            if (limiter > resultMatrix.Columns)
+                limiter = resultMatrix.Columns;
 
             char letter = 'A';
 

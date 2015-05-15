@@ -29,21 +29,21 @@ namespace fifi.Core
 
         public double[,] GetMatrix { get { return matrix; } }
 
-        public int Row 
+        public int Rows 
         {
             get { return matrix.GetLength(0); } 
         }
 
-        public int Column
+        public int Columns
         {
             get { return matrix.GetLength(1); }
         }
 
         public void SquaredValues()
         {
-            for (int row = 0; row < Row; row++)
+            for (int row = 0; row < Rows; row++)
             {
-                for (int col = 0; col < Column; col++)
+                for (int col = 0; col < Columns; col++)
                 {
                     matrix[row, col] *= matrix[row, col];
                 }

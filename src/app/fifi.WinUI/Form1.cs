@@ -49,7 +49,7 @@ namespace fifi.WinUI
         {
             List<DrawableDataPoint> drawableDataPoints = new List<DrawableDataPoint>();
 
-            for (int col = 0; col < coordinateMatrix.Column; col++)
+            for (int col = 0; col < coordinateMatrix.Columns; col++)
             {
                 double x = coordinateMatrix[0, col];
                 double y = coordinateMatrix[1, col];

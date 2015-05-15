@@ -27,8 +27,8 @@ namespace fifi.Core
 
         private void DistanceToKthNeighbour()
         {
-            int lengthDim1 = distanceMatrix.Row;
-            int lengthDim2 = distanceMatrix.Column;
+            int lengthDim1 = distanceMatrix.Rows;
+            int lengthDim2 = distanceMatrix.Columns;
             
             for (int row = 0; row < lengthDim1; row++)
             {
