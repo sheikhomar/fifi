@@ -107,7 +107,7 @@ namespace fifi.Core
                         // We can avoid this exception by implementing
                         // a method that looks for new centroids if this.centroids
                         // contains duplicate DataPoints.
-                        //throw new InvalidOperationException("Centroids contains duplicate data points.");
+                        throw new InvalidOperationException("Centroids contains duplicate data points.");
                     }
                 }
             }
