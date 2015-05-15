@@ -31,8 +31,6 @@ namespace fifi.WinUI
             dataGridView1.DataSource = itemList.OrderByDescending(point => point.LocalOutlierFactor).Take(limit).ToList();
         }
 
-
-
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
@@ -66,7 +64,6 @@ namespace fifi.WinUI
             dataGridView1.DataSource = itemList.OrderByDescending(point => point.LocalOutlierFactor).Take(limit).ToList(); ;
         }
 
-
         private void CreateItemList()
         {
             this.itemList = new List<LocalOutlierFactorItem>();
@@ -79,14 +76,12 @@ namespace fifi.WinUI
             }
         }
 
-
         private List<LocalOutlierFactorPoint> CreateLocalOutlierPointList()
         {
             var localOutlierFactor = new LocalOutlierFactor(distanceMatrix, kValue);
 
             return localOutlierFactor.Run();
         }
-
 
         private void UpdateLocalOutlierItemList()
         {
@@ -104,31 +99,6 @@ namespace fifi.WinUI
                     throw new Exception("ID not found");
                 }
             }
-        }
-
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
