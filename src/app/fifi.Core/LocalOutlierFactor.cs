@@ -42,7 +42,8 @@ namespace fifi.Core
                 person.DistanceToNeighbours.Sort((x, y) => x.Item2.CompareTo(y.Item2));
                 int neighboursToTake = kNeighbours;
 
-                if (person.DistanceToNeighbours[neighboursToTake - 1].Item2 == person.DistanceToNeighbours[neighboursToTake].Item2)
+                if (person.DistanceToNeighbours[neighboursToTake - 1].Item2 == person.DistanceToNeighbours[neighboursToTake].Item2 
+                    || person.DistanceToNeighbours[neighboursToTake - 2].Item2 == person.DistanceToNeighbours[neighboursToTake - 1].Item2)
                 {
                     while (neighboursToTake < lengthDim1 - 1 && person.DistanceToNeighbours[neighboursToTake - 1].Item2 == person.DistanceToNeighbours[neighboursToTake].Item2)
                     {
