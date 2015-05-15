@@ -112,7 +112,6 @@
             this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Smoothing:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // button1
             // 
@@ -132,7 +131,6 @@
             this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Limiter:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // numericUpDown2
             // 
@@ -155,7 +153,6 @@
             0,
             0,
             0});
-            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
             // 
             // numericUpDown1
             // 
@@ -178,7 +175,6 @@
             0,
             0,
             0});
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // groupBox1
             // 
@@ -217,7 +213,6 @@
             this.comboBox1.Size = new System.Drawing.Size(81, 21);
             this.comboBox1.TabIndex = 6;
             this.comboBox1.Text = "LOF";
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // groupBox2
             // 
