@@ -20,9 +20,7 @@ namespace fifi.ConsoleUI
             var start = DateTime.Now;
 
             RunProgram();
-            //TestImport();
 
-            // TODO: Fancy stuff
             var diff = DateTime.Now - start;
             Console.WriteLine("FiFi has finished in {0} ms...", diff.TotalMilliseconds);
             Console.WriteLine("Press any key to kill me :)");
@@ -48,9 +46,6 @@ namespace fifi.ConsoleUI
             bool printKMeansMembers = false;
             bool distanceMatrix = true;
             bool multiDimensionalScaling = true;
-            bool outlierDetection = false;
-            bool outlierDetectionPrintmembers = false;
-            bool outlierDetection2 = false;
             bool localOutlierFactor = true;
 
             IConfiguration configuration =
@@ -207,21 +202,6 @@ namespace fifi.ConsoleUI
             }
         }
 
-        //static void TestImport() //Needs update to fit the new structure
-        //{
-        //    var reader = new StreamReader("UserData.csv");
-        //    var importer = new CsvProfileImporter(reader);
-
-        //    var Profiles = importer.Run();
-        //    foreach (var item in Profiles.Take(22))
-        //    {
-        //        foreach (var value in item.Values)
-        //        {
-        //            Console.Write("{0}\t", value);
-        //        }
-        //        Console.WriteLine("\n");
-        //    }
-        //}
 
         static void TestConfig()
         {
