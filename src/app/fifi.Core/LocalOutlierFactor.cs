@@ -45,16 +45,18 @@ namespace fifi.Core
                 if (person.DistanceToNeighbours[neighboursToTake - 1].Item2 == person.DistanceToNeighbours[neighboursToTake].Item2 
                     || person.DistanceToNeighbours[neighboursToTake - 2].Item2 == person.DistanceToNeighbours[neighboursToTake - 1].Item2)
                 {
-                    while (neighboursToTake < lengthDim1 - 1 && person.DistanceToNeighbours[neighboursToTake - 1].Item2 == person.DistanceToNeighbours[neighboursToTake].Item2)
+                    do
                     {
                         neighboursToTake++;
-                    }
-                    neighboursToTake++;               
+                    } while ((neighboursToTake < (lengthDim1 - 1)) &&
+                             (person.DistanceToNeighbours[neighboursToTake - 1].Item2 ==
+                              person.DistanceToNeighbours[neighboursToTake].Item2));
+                    neighboursToTake++;
                 }
 
                 person.DistanceToNeighbours = person.DistanceToNeighbours.Take(neighboursToTake).ToList();
 
-                person.KDistance = person.DistanceToNeighbours[neighboursToTake - 1].Item2;
+                person.KDistance = person.DistanceToNeighbours[person.DistanceToNeighbours.Count-1].Item2;
                 person.ID = row;
                 
                 resultList.Add(person);
