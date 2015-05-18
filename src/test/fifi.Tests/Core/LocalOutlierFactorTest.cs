@@ -9,7 +9,7 @@ namespace fifi.Data
     {
 
         [Test]
-        public void Calculate()
+        public void LOFOnANormalDistanceMatrix()
         {
             double[,] LOFInput = { { 0, 87, 284, 259, 270 }, 
                                    { 87, 0, 195, 183, 222 }, 
@@ -39,7 +39,7 @@ namespace fifi.Data
         }
 
         [Test]
-        public void Calculate2()
+        public void LOFWhereLastTwoValuesAreEqual()
         {
             double[,] LOFInput = { { 0, 87, 231, 259, 259 }, 
                                    { 87, 0, 195, 183, 222 }, 
