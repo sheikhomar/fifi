@@ -69,7 +69,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="WinUI\ScatterPlotTests.cs" />
     <Compile Include="WinUI\ScatterPlotUtilityTests.cs" />
   </ItemGroup>
   <ItemGroup>
