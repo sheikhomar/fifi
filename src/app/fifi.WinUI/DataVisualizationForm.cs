@@ -40,22 +40,14 @@ namespace fifi.WinUI
             currentClusterNumber = 0;
             currentClusterAlgorithm = null;
 
-            // Resources.Loading is stolen from https://dribbble.com/shots/1420523-Loading-Chart
             this.ImageLoadingScreen.Image = Resources.Loading2;
 
-            //Sub to all dem events
+            //Subscribe to all events
             outlierDetectionComponent1.DataPointClick += outlierDetectionComponent1_DataPointClick;
             
         }
 
-        private void outlierDetectionComponent1_DataPointClick(object sender, IdentifiableDataPoint e)
-        {
-            //DataPointClick(this, identifiableDataPoint);
-            dataPointDetailsComponent1.GenerateDetails(e, clusterResult.FindCluster(e).Centroid);
-            scatterPlotControl1.HighlightPoint(e);
-        }
-
-        public DataVisualizationForm(IdentifiableDataPointCollection dataSet) 
+        public DataVisualizationForm(IdentifiableDataPointCollection dataSet)
             : this()
         {
             this.dataSet = dataSet;
@@ -64,6 +56,13 @@ namespace fifi.WinUI
             dataConversionTask = new DataConversionTask();
             dataConversionTask.Success += DataConversionTask_Success;
             dataConversionTask.Failure += DataConversionTask_Failure;
+        }
+
+        private void outlierDetectionComponent1_DataPointClick(object sender, IdentifiableDataPoint e)
+        {
+            //DataPointClick(this, identifiableDataPoint);
+            dataPointDetailsComponent1.GenerateDetails(e, clusterResult.FindCluster(e).Centroid);
+            scatterPlotControl1.HighlightPoint(e);
         }
 
         private void DataConversionTask_Success(object sender, DataConversionResult result)

@@ -48,9 +48,6 @@ namespace fifi.Core
             task.ContinueWith(TaskFaulted, CancellationToken.None, TaskContinuationOptions.OnlyOnFaulted, currentContext);
         }
 
-        // This method is made static on purpose to discourage access to instance members of this class
-        // since it is called by another thread than the UI thread. Accessing controls from threads other 
-        // than the UI thread will cause problems.
         private static DataConversionResult TaskRunner(object arg)
         {
             TaskRunnerArgumentSet options = arg as TaskRunnerArgumentSet;
