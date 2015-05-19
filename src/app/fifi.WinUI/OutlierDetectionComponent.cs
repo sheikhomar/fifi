@@ -100,5 +100,10 @@ namespace fifi.WinUI
                 }
             }
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

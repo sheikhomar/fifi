@@ -109,9 +109,10 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(20, 119);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.Size = new System.Drawing.Size(118, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Smoothing:";
+            this.label1.Text = "Neighbours to Compare";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // button1
             // 
@@ -189,7 +190,7 @@
             this.groupBox1.Controls.Add(this.numericUpDown1);
             this.groupBox1.Location = new System.Drawing.Point(417, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(132, 198);
+            this.groupBox1.Size = new System.Drawing.Size(148, 198);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Outlier Detection";
@@ -305,7 +306,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "OutlierDetectionComponent";
-            this.Size = new System.Drawing.Size(552, 212);
+            this.Size = new System.Drawing.Size(568, 212);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
