@@ -74,7 +74,7 @@ namespace fifi.WinUI
             scatterPlotControl1.BuildScatterPlot(chartDataSource);
 
             
-            MakeTheWholeThingWork();
+            RunClusteringAndGraph();
             grpAlgorithmSettings.Enabled = true;
             dataPointDetailsComponent1.Enabled = true;
 
@@ -102,10 +102,10 @@ namespace fifi.WinUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MakeTheWholeThingWork();
+            RunClusteringAndGraph();
         }
 
-        private void MakeTheWholeThingWork()
+        private void RunClusteringAndGraph()
         {
             if (chartDataSource != null)
             {
