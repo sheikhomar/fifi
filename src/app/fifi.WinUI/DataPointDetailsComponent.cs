@@ -43,9 +43,9 @@ namespace fifi.WinUI
 
             dataPointInfoList.Sort(delegate(DataPointInfo item1, DataPointInfo item2)
             {
-                if (item1.Percent > item2.Percent)
+                if (item1.Percent < item2.Percent)
                     return 1;
-                else if (item1.Percent < item2.Percent)
+                else if (item1.Percent > item2.Percent)
                     return -1;
                 else
                     return 0;
@@ -60,17 +60,17 @@ namespace fifi.WinUI
             differense = centroidAttribute - dataPointAttribute;
             if (differense < 0)
                 differense *= (-1);
-            return (1 - differense) * 100;
+            return (centroidAttribute + dataPointAttribute) * 0.5 * 100;
         }
 
         private Similarity SimilarityCalculator(double percentage)
         {
             if (percentage <= 33.33)
-                return Similarity.Different;
+                return Similarity.Same;
             else if (percentage <= 66.66)
                 return Similarity.Similar;
             else
-                return Similarity.Same;
+                return Similarity.Different;
         }
     }
 }

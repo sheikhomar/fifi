@@ -117,7 +117,7 @@ namespace fifi.WinUI
                 {
                     clusterResult = ClusterCalculate();
                 }
-                catch (InvalidOperationException ex)
+                catch (InvalidOperationException)
                 {
                     MessageBox.Show("Please try again.");
                     return;
