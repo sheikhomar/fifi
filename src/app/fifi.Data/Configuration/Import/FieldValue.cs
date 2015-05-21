@@ -4,8 +4,8 @@ namespace fifi.Data.Configuration.Import
 {
     public class FieldValue : ConfigurationElement, IFieldValue
     {
-        const string AttributeName = "name";
-        const string AttributeValue = "value";
+        private const string AttributeName = "name";
+        private const string AttributeValue = "value";
 
         [ConfigurationProperty(AttributeName, IsRequired = true)]
         public string Name

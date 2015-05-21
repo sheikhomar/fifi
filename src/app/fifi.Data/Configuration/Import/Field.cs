@@ -4,13 +4,13 @@ namespace fifi.Data.Configuration.Import
 {
     public class Field : ConfigurationElement, IField
     {
-        const string AttributeIndex = "index";
-        const string AttributeType = "type";
-        const string AttributeCategory = "category";
-        const string AttributeMinValue = "minValue";
-        const string AttributeMaxValue = "maxValue";
-        const string AttributeWeight = "weight";
-        const string AttributeValues = "values";
+        private const string AttributeIndex = "index";
+        private const string AttributeType = "type";
+        private const string AttributeCategory = "category";
+        private const string AttributeMinValue = "minValue";
+        private const string AttributeMaxValue = "maxValue";
+        private const string AttributeWeight = "weight";
+        private const string AttributeValues = "values";
 
         [ConfigurationProperty(AttributeIndex, IsRequired = true)]
         public int Index
