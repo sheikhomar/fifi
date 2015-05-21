@@ -115,13 +115,15 @@ namespace fifi.Data
 
             string[] array = label.Split(ValueDelimiter).Select(l => l.Trim()).ToArray();
 
+            int fieldCount = field.Values.Count();
+
             foreach (IFieldValue possibleFieldValue in field.Values)
             {
                 double value = 0;
                 string originalValue = "No";
                 if (array.Contains(possibleFieldValue.Name))
                 {
-                    value = field.Weight;
+                    value = field.Weight / fieldCount;
                     originalValue = "Yes";
                 }
 
@@ -136,13 +138,15 @@ namespace fifi.Data
             if (RemoveWhiteSpace)
                 label = label.Trim();
 
+            int fieldCount = field.Values.Count();
+
             foreach (IFieldValue possibleFieldValue in field.Values)
             {
                 double value = 0;
                 string originalValue = "No";
                 if (possibleFieldValue.Name.Equals(label))
                 {
-                    value = field.Weight;
+                    value = field.Weight / fieldCount;
                     originalValue = "Yes";
                 }
 

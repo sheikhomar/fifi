@@ -41,7 +41,7 @@ namespace fifi.Tests.Data
                 Category = "Employment",
                 Type = FieldType.MultipleBinaryFields,
                 Values = fieldValues2,
-                Weight = 2.5D
+                Weight = 3.0D
             };
         }
         private MockField GenerateBookField(int index)
@@ -58,7 +58,7 @@ namespace fifi.Tests.Data
                 Category = "Reading", 
                 Type = FieldType.MultipleChoiceMultipleBinaryFields,
                 Values = fieldValues2,
-                Weight = 1.5
+                Weight = 6
             };
         }
         private MockField GenerateNumericField(int index)
@@ -116,13 +116,13 @@ namespace fifi.Tests.Data
         [Test]
         public void ShouldParseMultipleBinaryFieldsCorrectly()
         {
-            Assert.AreEqual(2.5D, dataSet[0]["Employment: Study job"]);
+            Assert.AreEqual(1D,   dataSet[0]["Employment: Study job"]);
             Assert.AreEqual(0,    dataSet[0]["Employment: Full time"]);
             Assert.AreEqual(0,    dataSet[0]["Employment: Unemployed"]);
             Assert.AreEqual(0,    dataSet[1]["Employment: Study job"]);
-            Assert.AreEqual(2.5D, dataSet[1]["Employment: Full time"]);
+            Assert.AreEqual(1D,   dataSet[1]["Employment: Full time"]);
             Assert.AreEqual(0,    dataSet[1]["Employment: Unemployed"]);
-            Assert.AreEqual(2.5D, dataSet[2]["Employment: Study job"]);
+            Assert.AreEqual(1D,   dataSet[2]["Employment: Study job"]);
             Assert.AreEqual(0,    dataSet[2]["Employment: Full time"]);
             Assert.AreEqual(0,    dataSet[2]["Employment: Unemployed"]);
         }
@@ -130,11 +130,11 @@ namespace fifi.Tests.Data
         [Test]
         public void ShouldParseMultipleChoiceMultipleBinaryFieldsCorrectly()
         {
-            Assert.AreEqual(1.5D, dataSet[0]["Reading: Books"]);
-            Assert.AreEqual(1.5D, dataSet[0]["Reading: Magazines"]);
-            Assert.AreEqual(1.5D, dataSet[0]["Reading: Specialist books"]);
+            Assert.AreEqual(2D,   dataSet[0]["Reading: Books"]);
+            Assert.AreEqual(2D,   dataSet[0]["Reading: Magazines"]);
+            Assert.AreEqual(2D,   dataSet[0]["Reading: Specialist books"]);
             Assert.AreEqual(0,    dataSet[1]["Reading: Books"]);
-            Assert.AreEqual(1.5D, dataSet[1]["Reading: Magazines"]);
+            Assert.AreEqual(2D,   dataSet[1]["Reading: Magazines"]);
             Assert.AreEqual(0,    dataSet[1]["Reading: Specialist books"]);
             Assert.AreEqual(0,    dataSet[2]["Reading: Books"]);
             Assert.AreEqual(0,    dataSet[2]["Reading: Magazines"]);
