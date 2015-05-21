@@ -113,7 +113,16 @@ namespace fifi.WinUI
 
                 distanceMetric = DistanceMetric(currentDistanceMatrix);
 
-                clusterResult = ClusterCalculate();
+                try
+                {
+                    clusterResult = ClusterCalculate();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    MessageBox.Show("Please try again.");
+                    return;
+                }
+                
 
                 /* Executing scatterplot */
                 foreach (var dataPoint in chartDataSource)
@@ -182,46 +191,20 @@ namespace fifi.WinUI
         {
             int inputClusterNumber = Convert.ToInt32(numberOfClusters.Value);
             string inputClusterAlgo = cbClusteringAlgo.Text;
+            currentClusterNumber = inputClusterNumber;
 
-            if (inputClusterNumber != currentClusterNumber)
-            {
-                currentClusterNumber = inputClusterNumber;
-
-                /* Choosing clustering algorithm without name filter */
-                switch (inputClusterAlgo)
-                {
-                    case "K-means":
-                            currentClusterAlgorithm = inputClusterAlgo;
-                            kmeans = new KMeans(this.dataSet, currentClusterNumber, distanceMetric);
-                            return kmeans.Calculate();
-                    default:
-                            currentClusterAlgorithm = inputClusterAlgo;
-                            kmeans = new KMeans(this.dataSet, currentClusterNumber, distanceMetric);
-                            return kmeans.Calculate();
-                }
-            }
-
-            /* Choosing clustering algorithm with name filter */
+            /* Choosing clustering algorithm without name filter */
             switch (inputClusterAlgo)
             {
                 case "K-means":
-                    if (inputClusterAlgo != currentClusterAlgorithm)
-                    {
-                        currentClusterAlgorithm = inputClusterAlgo;
-                        kmeans = new KMeans(this.dataSet, currentClusterNumber, distanceMetric);
-                        return kmeans.Calculate();
-                    }
-                    break;
+                    currentClusterAlgorithm = inputClusterAlgo;
+                    kmeans = new KMeans(this.dataSet, currentClusterNumber, distanceMetric);
+                    return kmeans.Calculate();
                 default:
-                    if (inputClusterAlgo != currentClusterAlgorithm)
-                    {
-                        currentClusterAlgorithm = inputClusterAlgo;
-                        kmeans = new KMeans(this.dataSet, currentClusterNumber, distanceMetric);
-                        return kmeans.Calculate();
-                    }
-                    break;
+                    currentClusterAlgorithm = inputClusterAlgo;
+                    kmeans = new KMeans(this.dataSet, currentClusterNumber, distanceMetric);
+                    return kmeans.Calculate();
             }
-            return clusterResult;
         }
     }
 }
