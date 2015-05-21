@@ -30,16 +30,16 @@
         {
             this.lblID = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ColField = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColPercent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.ColSimilarity = new System.Windows.Forms.DataGridViewImageColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.ColSimilarity = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ColField = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColPercent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,32 +73,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(391, 218);
             this.dataGridView1.TabIndex = 3;
             // 
-            // ColField
-            // 
-            this.ColField.DataPropertyName = "Field";
-            this.ColField.HeaderText = "Field";
-            this.ColField.Name = "ColField";
-            this.ColField.ReadOnly = true;
-            this.ColField.Width = 75;
-            // 
-            // ColValue
-            // 
-            this.ColValue.DataPropertyName = "Value";
-            this.ColValue.HeaderText = "Value";
-            this.ColValue.Name = "ColValue";
-            this.ColValue.ReadOnly = true;
-            this.ColValue.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColValue.Width = 75;
-            // 
-            // ColPercent
-            // 
-            this.ColPercent.DataPropertyName = "FormatedPercent";
-            this.ColPercent.HeaderText = "% similar with centroid";
-            this.ColPercent.Name = "ColPercent";
-            this.ColPercent.ReadOnly = true;
-            this.ColPercent.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColPercent.Width = 140;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -120,18 +94,6 @@
             this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewImageColumn1.Width = 75;
-            // 
-            // ColSimilarity
-            // 
-            this.ColSimilarity.DataPropertyName = "Color";
-            this.ColSimilarity.HeaderText = "Similarity";
-            this.ColSimilarity.Image = global::fifi.WinUI.Properties.Resources.CircleBlue;
-            this.ColSimilarity.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.ColSimilarity.Name = "ColSimilarity";
-            this.ColSimilarity.ReadOnly = true;
-            this.ColSimilarity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColSimilarity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ColSimilarity.Width = 75;
             // 
             // button1
             // 
@@ -201,6 +163,44 @@
             this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button4.UseVisualStyleBackColor = true;
             // 
+            // ColSimilarity
+            // 
+            this.ColSimilarity.DataPropertyName = "Color";
+            this.ColSimilarity.HeaderText = "Similarity";
+            this.ColSimilarity.Image = global::fifi.WinUI.Properties.Resources.CircleBlue;
+            this.ColSimilarity.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.ColSimilarity.Name = "ColSimilarity";
+            this.ColSimilarity.ReadOnly = true;
+            this.ColSimilarity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColSimilarity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ColSimilarity.Width = 75;
+            // 
+            // ColField
+            // 
+            this.ColField.DataPropertyName = "Field";
+            this.ColField.HeaderText = "Field";
+            this.ColField.Name = "ColField";
+            this.ColField.ReadOnly = true;
+            this.ColField.Width = 75;
+            // 
+            // ColValue
+            // 
+            this.ColValue.DataPropertyName = "Value";
+            this.ColValue.HeaderText = "Value";
+            this.ColValue.Name = "ColValue";
+            this.ColValue.ReadOnly = true;
+            this.ColValue.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColValue.Width = 75;
+            // 
+            // ColPercent
+            // 
+            this.ColPercent.DataPropertyName = "FormatedPercent";
+            this.ColPercent.HeaderText = "% different with centroid";
+            this.ColPercent.Name = "ColPercent";
+            this.ColPercent.ReadOnly = true;
+            this.ColPercent.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColPercent.Width = 142;
+            // 
             // DataPointDetailsComponent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -225,15 +225,15 @@
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewImageColumn ColSimilarity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColField;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColValue;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColPercent;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.DataGridViewImageColumn ColSimilarity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColField;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColValue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColPercent;
 
     }
 }
