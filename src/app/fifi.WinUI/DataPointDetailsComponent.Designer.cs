@@ -171,7 +171,7 @@
             this.ColSimilarity.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.ColSimilarity.Name = "ColSimilarity";
             this.ColSimilarity.ReadOnly = true;
-            this.ColSimilarity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColSimilarity.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColSimilarity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.ColSimilarity.Width = 75;
             // 
@@ -189,7 +189,7 @@
             this.ColValue.HeaderText = "Value";
             this.ColValue.Name = "ColValue";
             this.ColValue.ReadOnly = true;
-            this.ColValue.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColValue.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColValue.Width = 75;
             // 
             // ColPercent
@@ -198,7 +198,7 @@
             this.ColPercent.HeaderText = "% different with centroid";
             this.ColPercent.Name = "ColPercent";
             this.ColPercent.ReadOnly = true;
-            this.ColPercent.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColPercent.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColPercent.Width = 142;
             // 
             // DataPointDetailsComponent

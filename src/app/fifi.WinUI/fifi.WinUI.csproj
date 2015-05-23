@@ -125,6 +125,7 @@
     <None Include="App.config" />
     <None Include="Bundesliga.config" />
     <None Include="Bundesliga.csv" />
+    <None Include="DataTest.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
