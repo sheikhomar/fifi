@@ -59,12 +59,6 @@
       <DependentUpon>DataPointDetailsComponent.cs</DependentUpon>
     </Compile>
     <Compile Include="DataPointInfo.cs" />
-    <Compile Include="DataPointSourceForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DataPointSourceForm.Designer.cs">
-      <DependentUpon>DataPointSourceForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="LocalOutlierFactorItem.cs" />
     <Compile Include="ImportDataForm.cs">
       <SubType>Form</SubType>
@@ -96,9 +90,6 @@
     <Compile Include="Similarity.cs" />
     <EmbeddedResource Include="DataPointDetailsComponent.resx">
       <DependentUpon>DataPointDetailsComponent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DataPointSourceForm.resx">
-      <DependentUpon>DataPointSourceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImportDataForm.resx">
       <DependentUpon>ImportDataForm.cs</DependentUpon>
