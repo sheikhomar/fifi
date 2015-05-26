@@ -17,7 +17,6 @@ namespace fifi.Core
         /// </returns>
         public double Calculate(DataPoint point1, DataPoint point2)
         {
-            // TODO: Check for array bounds / list sizes 
             if (point1.Dimensions != point2.Dimensions)
             {
                 throw new DimensionsMismatchExceptions(point1, point2);
