@@ -114,6 +114,9 @@
       <DependentUpon>ScatterPlotComponent.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
+    <None Include="Brugermanual.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Bundesliga.config" />
     <None Include="Bundesliga.csv" />
     <None Include="DataTest.config" />

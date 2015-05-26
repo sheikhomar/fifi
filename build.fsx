@@ -14,6 +14,7 @@ let version = "0.1"  // or retrieve from CI server
 // Targets
 Target "Clean" (fun _ ->
     CleanDirs [buildDir; testDir; deployDir]
+    CopyFile (buildDir + "/readme.txt") "README.md"
 )
  
 Target "BuildApp" (fun _ ->
