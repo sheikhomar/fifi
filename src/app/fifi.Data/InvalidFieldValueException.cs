@@ -11,7 +11,7 @@ namespace fifi.Data
             Field = field;
         }
         
-        public int LineNumber { get; set; }
+        public int LineNumber { get; private set; }
         public int Field { get; private set; }
     }
 }
