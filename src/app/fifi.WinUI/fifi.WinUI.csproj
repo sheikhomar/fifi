@@ -119,6 +119,10 @@
     </None>
     <None Include="Bundesliga.config" />
     <None Include="Bundesliga.csv" />
+    <None Include="Claus.config" />
+    <None Include="clausData.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="DataTest.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
