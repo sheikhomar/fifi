@@ -32,7 +32,7 @@ namespace fifi.WinUI
         #region Event Handlers
         private void LoadDataForm_Load(object sender, EventArgs e)
         {
-            txtSelectedFile.Text = Path.Combine(Environment.CurrentDirectory, "UserData.csv");
+            txtSelectedFile.Text = Path.Combine(Environment.CurrentDirectory, "ClausData.csv");
             btnBrowse.Select();
         }
 
